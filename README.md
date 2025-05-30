@@ -43,6 +43,8 @@ PNAD_2009
 
 ## 📂 Arquivos para Uso
 
+Tabela 1: Inventário de Projetos e Pesquisas Geradoras de Dados em Segurança Pública
+Esta tabela lista os principais projetos, serviços e pesquisas que resultaram na coleta de dados sobre vitimização e percepção de segurança, muitas vezes realizados por ou para instituições específicas.
 <table>
   <thead>
     <tr>
@@ -145,6 +147,8 @@ PNAD_2009
   </tbody>
 </table>
 
+Tabela 2: Catálogo Detalhado de Pesquisas de Vitimização (Características Técnicas)
+Esta tabela apresenta um panorama de diversas pesquisas de vitimização realizadas no Brasil, com detalhes sobre sua metodologia, abrangência e escopo temporal. Nota: Algumas informações podem estar incompletas ou necessitar de verificação nas fontes originais.
 <table>
   <thead>
     <tr>
