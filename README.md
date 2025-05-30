@@ -4,35 +4,48 @@ Repositório organizado para análise de dados de vitimização, seguindo boas p
 
 ## 📂 Estrutura do Repositório
 ```text
-/repositorio-seguranca-publica
-├── 1_documentacao_geral/
-│   ├── plano_gestao_dados.md       # Data Management Plan (DMP)
-│   ├── protocolos_coleta.md
-│   └── diretrizes_eticas.pdf
-├── 2_dados/
-│   ├── brutos/                     # Dados originais imutáveis
-│   │   ├── pnad/                   # Por fonte de dados
-│   │   ├── anuario_fbsp/
-│   │   ├── sim/
-│   │   └── municipais/
-│   ├── intermediarios/            # Dados em processamento
-│   └── tratados/                  # Dados prontos para análise
-│       ├── versoes/               # Versionamento semântico (v1.0.0)
-│       └── padronizados/          # Dados integrados
-├── 3_scripts/
-│   ├── coleta/                    # Scripts de ingestão
+/Repositorio_pesquisas
+├── dados_brutos/                   # Dados originais imutáveis
+│   └── "identificação_data_dataset"/  
+│       ├── csv/                   # Por fonte de dados
+│       |   ├── agressao
+│       |   ├── furto
+│       |   ├── roubo
+│       |   ├── roubofurto
+│       |   ├── seguranca
+│       |   ├── tentativa
+│       |   └── cvs.html
+│       └── tabelas/
+│           ├── agressao
+│           ├── furto
+│           ├── roubo
+│           ├── roubofurto
+│           ├── seguranca
+│           ├── tentativa
+│           └── cvs.html
+├── dados_tratados/                   # Dados prontos para análise
+│   └── "identificação_data_dataset"/  
+│       └── csv/
+├── scripts/
 │   ├── tratamento/                # ETL e limpeza
+│   |   └── "identificação_data_dataset"/
+│   │       ├── notebook_tratamento.ipynb
+│   │       └── tratamento.py
 │   ├── analise/                   # Modelagem estatística
+│   |   └── "identificação_data_dataset"/
+│   │       ├── notebook_analise.ipynb
+│   │       └── analise.py
 │   └── visualizacao/              # Dashboards e gráficos
-├── 4_analises/                    # Projetos específicos
-│   ├── projeto_tendências/
-│   ├── projeto_fatores_risco/
-│   └── projeto_comparativo/
-├── 5_outputs/
+│       └── "identificação_data_dataset"/
+│           ├── notebook_visualizacao.ipynb
+│           └── visualizacao.py
+├── analises/                    # Projetos específicos
 │   ├── relatorios/
-│   ├── publicacoes/
 │   └── visualizacoes/
-└── 6_metadados/                   # Documentação técnica
+├── documentos/
+│   └──  "identificação_data_dataset"/                # ETL e limpeza
+│       └── questionario.pdf
+└── metadados/                   # Documentação técnica
     ├── por_fonte/                # Metadados específicos
     ├── dicionario_unificado.csv  # Variáveis padronizadas
     └── log_integracao.md         # Histórico de combinações
