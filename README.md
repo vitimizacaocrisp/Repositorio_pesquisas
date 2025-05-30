@@ -37,6 +37,31 @@ Repositório organizado para análise de dados de vitimização, seguindo boas p
     ├── dicionario_unificado.csv  # Variáveis padronizadas
     └── log_integracao.md         # Histórico de combinações
 ```
+## 📂 Metadados e Documentação Técnica
+<ul>
+<li>Metadados por Fonte: Documentação detalhada sobre cada conjunto de dados.</li>
+<li>Dicionário de Variáveis: Arquivo dicionario_unificado.csv com descrição de todas as variáveis padronizadas.</li>
+<li>Log de Integração: Histórico de combinações e transformações de dados.</li>
+</ul>
+
+# 📂 Fluxo de Trabalho de Dados
+<h3>Adicionar Dados</h3>
+<ul>
+    <li>Coloque os dados brutos na pasta <code>/2_dados/brutos/</code>, seguindo a estrutura por fonte.</li>
+    <li>Documente os metadados na pasta <code>/6_metadados/por_fonte/</code>.</li>
+</ul>
+
+<h3>Processamento e Análise</h3>
+<ul>
+    <li>Utilize os scripts em <code>/3_scripts/</code> para tratamento e análise.</li>
+    <li>Salve os resultados intermediários em <code>/2_dados/intermediarios/</code> e os finais em <code>/2_dados/tratados/</code>.</li>
+</ul>
+
+<h3>Publicação de Resultados</h3>
+<ul>
+    <li>Armazene relatórios, artigos e visualizações em <code>/5_outputs/</code>.</li>
+</ul>
+
 
 ## 📂 Arquivos em Uso
 PNAD_2009
