@@ -7,15 +7,7 @@ Repositório organizado para análise de dados de vitimização, seguindo boas p
 /Repositorio_pesquisas
 ├── dados_brutos/                   # Dados originais imutáveis
 │   └── "identificação_data_dataset"/  
-│       ├── csv/                   # Por fonte de dados
-│       |   ├── agressao
-│       |   ├── furto
-│       |   ├── roubo
-│       |   ├── roubofurto
-│       |   ├── seguranca
-│       |   ├── tentativa
-│       |   └── cvs.html
-│       └── tabelas/
+│       └── csv/                   # Por fonte de dados
 │           ├── agressao
 │           ├── furto
 │           ├── roubo
@@ -24,21 +16,18 @@ Repositório organizado para análise de dados de vitimização, seguindo boas p
 │           ├── tentativa
 │           └── cvs.html
 ├── dados_tratados/                   # Dados prontos para análise
-│   └── "identificação_data_dataset"/  
-│       └── csv/
+│   └── csv/  
+│       └── "identificação_data_dataset".csv
 ├── scripts/
 │   ├── tratamento/                # ETL e limpeza
-│   |   └── "identificação_data_dataset"/
-│   │       ├── notebook_tratamento.ipynb
-│   │       └── tratamento.py
+│   │   ├── "identificação_data_dataset".ipynb
+│   │   └── "identificação_data_dataset".py
 │   ├── analise/                   # Modelagem estatística
-│   |   └── "identificação_data_dataset"/
-│   │       ├── notebook_analise.ipynb
-│   │       └── analise.py
+│   │   ├── "identificação_data_dataset".ipynb
+│   │   └── "identificação_data_dataset".py
 │   └── visualizacao/              # Dashboards e gráficos
-│       └── "identificação_data_dataset"/
-│           ├── notebook_visualizacao.ipynb
-│           └── visualizacao.py
+│       ├── "identificação_data_dataset".ipynb
+│       └── "identificação_data_dataset".py
 ├── analises/                    # Projetos específicos
 │   ├── relatorios/
 │   └── visualizacoes/
@@ -50,6 +39,14 @@ Repositório organizado para análise de dados de vitimização, seguindo boas p
     ├── dicionario_unificado.csv  # Variáveis padronizadas
     └── log_integracao.md         # Histórico de combinações
 ```
+
+## 🌿 Branches
+O repositório é dividido em duas branches principais para organização dos tipos de scripts:
+    📓 notebook: Contém os arquivos .ipynb utilizados para análise exploratória, prototipagem e visualização interativa.
+    🐍 script: Contém os arquivos .py otimizados para produção, automação e reprodutibilidade de código.
+
+Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de arquivo e ferramenta utilizada.
+
 ## 📂 Metadados e Documentação Técnica
 <ul>
 <li>Metadados por Fonte: Documentação detalhada sobre cada conjunto de dados.</li>
