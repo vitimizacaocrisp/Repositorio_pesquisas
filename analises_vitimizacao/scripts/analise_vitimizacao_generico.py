@@ -8,7 +8,6 @@ Original file is located at
 
 # Instalação de Bibliotecas
 """
-
 #pip install tabula-py PyMuPDF openpyxl seaborn
 
 """# 🧩 Etapa 1: Preparar o Ambiente"""

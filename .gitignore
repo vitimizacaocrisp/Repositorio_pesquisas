@@ -2,11 +2,6 @@
 .vscode/
 .env
 .venv/
-.env.*
-
 *.md
-
-*.py
-*.pyc
-*.pyo
-pycache/
+*.ipynb
+.ipynb_checkpoints/
