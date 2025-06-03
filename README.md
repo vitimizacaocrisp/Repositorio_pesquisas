@@ -2,6 +2,11 @@
 
 Repositório organizado para análise de dados de vitimização, seguindo boas práticas de gestão da informação científica e reprodutibilidade.
 
+## Instruções
+
+Drive: <a>https://drive.google.com/drive/folders/1pK3QqwFvI_7SEJp2UkDrPn-Yt_EOQOTm?usp=sharing</a>
+baixe os arquivos do drive e os coloque em: /analises_vitimizacao/dados_brutos/
+
 ## 📂 Estrutura do Repositório
 ```text
 /Repositorio_pesquisas
