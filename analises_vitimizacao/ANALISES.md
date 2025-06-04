@@ -36,52 +36,6 @@ dados_brutos/
 
 ## 📂 Análises Possíveis e Dados Relevantes
 
-<style>
-.analysis-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 0.9em;
-  font-family: sans-serif;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-.analysis-table thead tr {
-  background-color: #2c3e50;
-  color: #ffffff;
-  text-align: left;
-}
-
-.analysis-table th,
-.analysis-table td {
-  padding: 12px 15px;
-  border: 1px solid #dddddd;
-}
-
-.analysis-table tbody tr {
-  border-bottom: 1px solid #dddddd;
-}
-
-.analysis-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
-}
-
-.analysis-table tbody tr:last-of-type {
-  border-bottom: 2px solid #2c3e50;
-}
-
-.analysis-table tbody tr:hover {
-  background-color: #e1f5fe;
-  color: #000000;
-}
-
-.analysis-table td[rowspan] {
-  vertical-align: top;
-  font-weight: bold;
-  color: #2c3e50;
-}
-</style>
-
 <table class="analysis-table">
   <thead>
     <tr>

@@ -7,4 +7,4 @@
 .python-version
 pyproject.toml
 
-analises_vitimizacao/dados_brutos/
+analises_vitimizacao/dados_brutos/*
