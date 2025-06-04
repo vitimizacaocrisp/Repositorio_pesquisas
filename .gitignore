@@ -5,3 +5,5 @@
 *.md
 *.ipynb
 .ipynb_checkpoints/
+
+analises_vitimizacao/dados_brutos/*
