@@ -4,4 +4,7 @@
 .venv/
 .env.*
 
-.analises_vitimizacao/dados_brutos/.*
+.python-version
+pyproject.toml
+
+analises_vitimizacao/dados_brutos/

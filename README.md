@@ -4,7 +4,7 @@ Repositório organizado para análise de dados de vitimização, seguindo boas p
 
 ## Instruções
 
-Drive: <a>https://drive.google.com/drive/folders/1pK3QqwFvI_7SEJp2UkDrPn-Yt_EOQOTm?usp=sharing</a>
+Drive: <a>https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing</a></br>
 baixe os arquivos do drive e os coloque em: /analises_vitimizacao/dados_brutos/
 
 ## 📂 Estrutura do Repositório
@@ -12,16 +12,10 @@ baixe os arquivos do drive e os coloque em: /analises_vitimizacao/dados_brutos/
 /Repositorio_pesquisas
 ├── dados_brutos/                   # Dados originais imutáveis
 │   └── "identificação_data_dataset"/  
-│       └── csv/                   # Por fonte de dados
-│           ├── agressao
-│           ├── furto
-│           ├── roubo
-│           ├── roubofurto
-│           ├── seguranca
-│           ├── tentativa
-│           └── cvs.html
 ├── dados_tratados/                   # Dados prontos para análise
-│   └── csv/  
+│   ├── csv/  
+│   │   └── "identificação_data_dataset".csv
+│   └── excel/  
 │       └── "identificação_data_dataset".csv
 ├── scripts/
 │   ├── tratamento/                # ETL e limpeza
@@ -46,17 +40,19 @@ baixe os arquivos do drive e os coloque em: /analises_vitimizacao/dados_brutos/
 ```
 
 ## 🌿 Branches
+```text
 O repositório é dividido em duas branches principais para organização dos tipos de scripts:
+
     📓 notebook: Contém os arquivos .ipynb utilizados para análise exploratória, prototipagem e visualização interativa.
     🐍 script: Contém os arquivos .py otimizados para produção, automação e reprodutibilidade de código.
 
 Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de arquivo e ferramenta utilizada.
-
+```
 ## 📂 Metadados e Documentação Técnica
 <ul>
-<li>Metadados por Fonte: Documentação detalhada sobre cada conjunto de dados.</li>
-<li>Dicionário de Variáveis: Arquivo dicionario_unificado.csv com descrição de todas as variáveis padronizadas.</li>
-<li>Log de Integração: Histórico de combinações e transformações de dados.</li>
+    <li>Metadados por Fonte: Documentação detalhada sobre cada conjunto de dados.</li>
+    <li>Dicionário de Variáveis: Arquivo dicionario_unificado.csv com descrição de todas as variáveis padronizadas.</li>
+    <li>Log de Integração: Histórico de combinações e transformações de dados.</li>
 </ul>
 
 # 📂 Fluxo de Trabalho de Dados
@@ -77,15 +73,115 @@ Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de ar
     <li>Armazene relatórios, artigos e visualizações em <code>/5_outputs/</code>.</li>
 </ul>
 
+## 📂 Arquivos Buscados
 
-## 📂 Arquivos em Uso
-PNAD_2009
+<style>
+/* General Styling */
+.security-tables {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
 
-## 📂 Arquivos para Uso
+.security-tables h2 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+  margin-top: 30px;
+}
 
+.security-tables p {
+  background-color: #f8f9fa;
+  padding: 12px;
+  border-left: 4px solid #3498db;
+  font-style: italic;
+}
+
+/* Table Styling */
+.security-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.95em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.security-table thead tr {
+  background-color: #3498db;
+  color: #ffffff;
+  text-align: left;
+  position: sticky;
+  top: 0;
+}
+
+.security-table th, 
+.security-table td {
+  padding: 12px 15px;
+  border: 1px solid #dddddd;
+}
+
+.security-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  transition: all 0.2s;
+}
+
+.security-table tbody tr:nth-of-type(even) {
+  background-color: #f8f9fa;
+}
+
+.security-table tbody tr:last-of-type {
+  border-bottom: 2px solid #3498db;
+}
+
+.security-table tbody tr:hover {
+  background-color: #e3f2fd;
+  transform: scale(1.005);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Special cell styling */
+.security-table td[rowspan] {
+  vertical-align: top;
+  font-weight: bold;
+  background-color: #e3f2fd;
+}
+
+/* Checkmark styling */
+.security-table td:first-child {
+  text-align: center;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.security-table td:first-child:empty::before {
+  content: "◯";
+  color: #95a5a6;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .security-table {
+    font-size: 0.85em;
+  }
+  .security-table th, 
+  .security-table td {
+    padding: 8px 10px;
+  }
+}
+
+/* HR styling */
+.security-tables hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(52, 152, 219, 0), rgba(52, 152, 219, 0.75), rgba(52, 152, 219, 0));
+  margin: 40px 0;
+}
+</style>
+
+<div class="security-tables">
 <h2>Tabela 1: Inventário de Projetos e Pesquisas Geradoras de Dados em Segurança Pública</h2>
 <p>Esta tabela lista os principais projetos, serviços e pesquisas que resultaram na coleta de dados sobre vitimização e percepção de segurança, muitas vezes realizados por ou para instituições específicas.</p>
-<table>
+<table class="security-table">
     <thead>
         <tr>
             <th>Check List</th>
@@ -96,7 +192,7 @@ PNAD_2009
     </thead>
     <tbody>
         <tr>
-            <td></td>
+            <td>✅</td>
             <td>2002</td>
             <td>Survey de Vitimização em Belo Horizonte</td>
             <td>Belo Horizonte - Minas Gerais</td>
@@ -108,7 +204,7 @@ PNAD_2009
             <td>Rio de Janeiro - Rio de Janeiro</td>
         </tr>
         <tr>
-            <td></td>
+            <td>✅</td>
             <td>2005</td>
             <td>Prevenção da violência nas escolas públicas de Belo Horizonte: caracterização das escolas e intervenções possíveis</td>
             <td>Contagem - Minas Gerais</td>
@@ -210,7 +306,8 @@ PNAD_2009
 
 <h2>Tabela 2: Catálogo Detalhado de Pesquisas de Vitimização (Características Técnicas)</h2>
 <p>Esta tabela apresenta um panorama de diversas pesquisas de vitimização realizadas no Brasil, com detalhes sobre sua metodologia, abrangência e escopo temporal. <strong>Nota</strong>: Algumas informações podem estar incompletas ou necessitar de verificação nas fontes originais.</p>
-<table>
+
+<table class="security-table">
     <thead>
         <tr>
             <th>Check List</th>
@@ -223,7 +320,7 @@ PNAD_2009
     </thead>
     <tbody>
         <tr>
-            <td></td>
+            <td>✅</td>
             <td>1988</td>
             <td>PNAD</td>
             <td>Brasil</td>
@@ -519,7 +616,7 @@ PNAD_2009
             <td>3.000 domicílios</td>
         </tr>
         <tr>
-            <td></td>
+            <td>✅</td>
             <td>2008</td>
             <td>Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã</td>
             <td>Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas Gerais</td>
@@ -543,7 +640,7 @@ PNAD_2009
             <td>5.067 entrevistados</td>
         </tr>
         <tr>
-            <td></td>
+            <td>✅</td>
             <td>2009</td>
             <td>PNAD</td>
             <td>Brasil</td>
@@ -633,4 +730,4 @@ PNAD_2009
     </tbody>
 </table>
 
-<p>Fonte: Catão, 2010 “Treinamento para Pesquisa Nacional de Vitimização realizada em São Paulo. Junho, 2010” apud Relatório da Primeira Pesquisa Nacional de Vitimização – 2013</p>
+</div>
