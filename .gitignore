@@ -10,3 +10,5 @@
 *.pyc
 *.pyo
 pycache/
+
+analises_vitimizacao/dados_brutos/*
