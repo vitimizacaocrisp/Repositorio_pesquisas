@@ -1,17 +1,25 @@
 # %%
 import pandas as pd
-import os
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 from fpdf import FPDF
 
-# --- Carregue o arquivo CSV ---
-df_bh = pd.read_excel('../../dados_tratados/excel/belo_horrizonte_2002.xlsx')
+sns.set_theme(style="whitegrid")
+plt.rcParams['figure.figsize'] = (10, 6)
+
+# %%
+# --- Carregar o arquivo de dados original (Belo Horizonte 2002) ---
+caminho_dados_bh = '../../dados_tratados/excel/belo_horrizonte_2002.xlsx'
+df_original = pd.read_excel(caminho_dados_bh)
+print(f"Dados de Belo Horizonte (2002) carregados. Total de {len(df_original)} registros.")
+
+# --- Carregar o novo arquivo de dados (Minas Gerais) ---
+caminho_dados_mg = '../../dados_tratados/excel/percepcao_medoMG.xlsx'
+df_mg = pd.read_excel(caminho_dados_mg)
+print(f"Dados de Minas Gerais carregados. Total de {len(df_mg)} registros.")
 
 
-# --- Limpeza e Preparação ---
-
-# Renomear as colunas de interesse para facilitar a manipulação
 colunas_renomeadas = {
     'Sexo': 'sexo',
     'faixas de idade': 'faixa_idade',
@@ -23,244 +31,208 @@ colunas_renomeadas = {
     'Risco de agressão': 'risco_agressao',
     'Risco de sequestro': 'risco_sequestro'
 }
-df_bh.rename(columns=colunas_renomeadas, inplace=True)
+df_original.rename(columns=colunas_renomeadas, inplace=True)
 
-# Selecionar apenas as colunas de interesse para a análise
-colunas_analise = list(colunas_renomeadas.values())
-df_analise = df_bh[colunas_analise].copy()
+# --- Combinar os dois DataFrames ---
+df_combinado = pd.concat([df_original, df_mg], ignore_index=True)
 
-# Remover linhas onde as variáveis essenciais são nulas
-df_analise.dropna(subset=['sexo', 'faixa_idade', 'cor_raca',
-                  'risco_roubo', 'risco_agressao', 'risco_sequestro'], inplace=True)
+# --- Limpeza e Preparação (Aplicado ao DataFrame combinado) ---
+colunas_essenciais = ['sexo', 'faixa_idade', 'estrato_bairro']
+df_combinado.dropna(subset=colunas_essenciais, inplace=True)
 
-# Limpar e padronizar os dados de 'cor_raca'
-df_analise['cor_raca'] = df_analise['cor_raca'].str.strip().replace(
-    {'Mistura negro e de branco': 'Parda'})
-
-print("Dados carregados e preparados com sucesso!")
-print(f"Total de registros para análise: {len(df_analise)}")
-print("\nPrimeiras 5 linhas do dataset limpo:")
-print(df_analise.head())
+print("\nDataFrames combinados com sucesso!")
+print(f"Total de registros para análise: {len(df_combinado)}")
+print("\nPrimeiras 5 linhas do dataset combinado:")
+print(df_combinado.head())
 
 # %%
-# Configurações de estilo para os gráficos
-sns.set_style("whitegrid")
-plt.rcParams['figure.figsize'] = [14, 6]
+# ===================================================================
+# CÉLULA 1: ANÁLISE DE DADOS E GERAÇÃO DOS GRÁFICOS
+# ===================================================================
 
-# Criar uma figura com dois subplots
-fig, axes = plt.subplots(1, 2)
+print("Iniciando a geração das análises...")
 
-# Gráfico 1: Distribuição por Sexo
-sns.countplot(data=df_analise, x='sexo',
-              ax=axes[0], palette='viridis', order=df_analise['sexo'].value_counts().index)
-axes[0].set_title('Distribuição dos Respondentes por Sexo')
-axes[0].set_xlabel('Sexo')
-axes[0].set_ylabel('Contagem')
+# --- SETUP INICIAL ---
+pasta_temp = 'temp_graficos'
+if not os.path.exists(pasta_temp):
+    os.makedirs(pasta_temp)
 
-# Gráfico 2: Distribuição por Cor/Raça
-sns.countplot(data=df_analise, y='cor_raca',
-              ax=axes[1], palette='plasma', order=df_analise['cor_raca'].value_counts().index)
-axes[1].set_title('Distribuição dos Respondentes por Cor/Raça')
-axes[1].set_xlabel('Contagem')
-axes[1].set_ylabel('Cor/Raça')
+df_analise = df_combinado
+colunas_risco = ['risco_roubo', 'risco_agressao', 'risco_sequestro']
+nomes_graficos = [] 
 
-
-plt.tight_layout()
-plt.show()
-
-# %%
-# Calcular a média de risco por sexo
-df_risco_sexo = df_analise.groupby(
-    'sexo')[['risco_roubo', 'risco_agressao', 'risco_sequestro']].mean().reset_index()
-
-# Reformatar o dataframe para visualização
-df_risco_sexo_melted = df_risco_sexo.melt(
-    id_vars='sexo', var_name='tipo_risco', value_name='percepcao_media_risco')
-
-# Criar o gráfico de barras
-plt.figure(figsize=(10, 6))
-sns.barplot(data=df_risco_sexo_melted, x='tipo_risco',
-            y='percepcao_media_risco', hue='sexo', palette='viridis')
-
+# --- Análise 1: Percepção de Risco por Sexo ---
+print("--> Gerando Análise de Risco por Sexo...")
+df_risco_sexo = df_analise.groupby('sexo')[colunas_risco].mean().reset_index()
+df_risco_sexo_melted = df_risco_sexo.melt(id_vars='sexo', var_name='tipo_risco', value_name='percepcao_media_risco')
+plt.figure(figsize=(12, 7))
+sns.barplot(data=df_risco_sexo_melted, x='tipo_risco', y='percepcao_media_risco', hue='sexo', palette='magma')
 plt.title('Percepção Média de Risco por Sexo', fontsize=16, fontweight='bold')
-plt.xlabel('Tipo de Risco', fontsize=12)
+plt.xlabel('Tipo de Crime', fontsize=12)
 plt.ylabel('Percepção Média de Risco (escala)', fontsize=12)
 plt.xticks(ticks=[0, 1, 2], labels=['Roubo', 'Agressão', 'Sequestro'])
 plt.legend(title='Sexo')
-plt.show()
-
-# Exibir a tabela com os dados
-print("Tabela: Percepção Média de Risco por Sexo")
-print(df_risco_sexo.set_index('sexo').round(2))
-
-# %%
-# Calcular a média de risco por estrato do bairro
-df_risco_bairro = df_analise.groupby('estrato_bairro')[
-    ['risco_roubo', 'risco_agressao', 'risco_sequestro']].mean().reset_index()
-
-# Reformatar o dataframe para visualização
-df_risco_bairro_melted = df_risco_bairro.melt(
-    id_vars='estrato_bairro', var_name='tipo_risco', value_name='percepcao_media_risco')
-
-# Criar o gráfico de barras
-plt.figure(figsize=(10, 6))
-sns.barplot(data=df_risco_bairro_melted, x='tipo_risco',
-            y='percepcao_media_risco', hue='estrato_bairro', palette='crest')
-
-plt.title('Percepção de Risco por Tipo de Bairro',
-          fontsize=16, fontweight='bold')
-plt.xlabel('Tipo de Risco', fontsize=12)
-plt.ylabel('Percepção Média de Risco (escala)', fontsize=12)
-plt.xticks(ticks=[0, 1, 2], labels=['Roubo', 'Agressão', 'Sequestro'])
-plt.legend(title='Tipo de Bairro')
-plt.show()
-
-# Exibir a tabela com os dados
-print("Tabela: Percepção Média de Risco por Tipo de Bairro")
-print(df_risco_bairro.set_index('estrato_bairro').round(2))
-
-# %%
-# --- ETAPA 1: CARREGAR E ANALISAR OS DADOS ---
-
-try:
-
-    colunas_renomeadas = {
-        'Sexo': 'sexo',
-        'ESTRATO': 'estrato_bairro',
-        'Risco de roubo (grande, médio e pequeno)': 'risco_roubo',
-        'Risco de agressão': 'risco_agressao',
-        'Risco de sequestro': 'risco_sequestro'
-    }
-    df_bh.rename(columns=colunas_renomeadas, inplace=True)
-
-    colunas_analise = list(colunas_renomeadas.values())
-    df_analise = df_bh[colunas_analise].copy()
-    df_analise.dropna(inplace=True)
-
-    df_risco_sexo = df_analise.groupby(
-        'sexo')[['risco_roubo', 'risco_agressao', 'risco_sequestro']].mean()
-    df_risco_bairro = df_analise.groupby('estrato_bairro')[
-        ['risco_roubo', 'risco_agressao', 'risco_sequestro']].mean()
-
-    print("Análise dos dados concluída com sucesso.")
-
-except FileNotFoundError:
-    print("ERRO: O arquivo 'belo_horrizonte_2002.xlsx - Sheet1.csv' não foi encontrado.")
-    exit()
-
-# --- ETAPA 2: GERAR E SALVAR OS GRÁFICOS ---
-
-sns.set_style("whitegrid")
-plt.rcParams['figure.figsize'] = [10, 6]
-
-# Gráfico 1: Percepção de Risco por Sexo
-df_risco_sexo_melted = df_risco_sexo.reset_index().melt(
-    id_vars='sexo', var_name='tipo_risco', value_name='percepcao_media')
-plt.figure()
-sns.barplot(data=df_risco_sexo_melted, x='tipo_risco',
-            y='percepcao_media', hue='sexo', palette='viridis')
-plt.title('Percepção Média de Risco por Sexo', fontsize=16)
-plt.xlabel('Tipo de Risco')
-plt.ylabel('Percepção Média de Risco')
-plt.xticks(ticks=[0, 1, 2], labels=['Roubo', 'Agressão', 'Sequestro'])
-plt.legend(title='Sexo')
-caminho_grafico_sexo = "grafico_risco_sexo.png"
+plt.tight_layout()
+caminho_grafico_sexo = os.path.join(pasta_temp, 'grafico_risco_sexo.png')
 plt.savefig(caminho_grafico_sexo)
-plt.close()  # Fecha a figura para não interferir no próximo gráfico
-
-# Gráfico 2: Percepção de Risco por Tipo de Bairro
-df_risco_bairro_melted = df_risco_bairro.reset_index().melt(
-    id_vars='estrato_bairro', var_name='tipo_risco', value_name='percepcao_media')
-plt.figure()
-sns.barplot(data=df_risco_bairro_melted, x='tipo_risco',
-            y='percepcao_media', hue='estrato_bairro', palette='crest')
-plt.title('Percepção de Risco por Tipo de Bairro', fontsize=16)
-plt.xlabel('Tipo de Risco')
-plt.ylabel('Percepção Média de Risco')
-plt.xticks(ticks=[0, 1, 2], labels=['Roubo', 'Agressão', 'Sequestro'])
-plt.legend(title='Tipo de Bairro')
-caminho_grafico_bairro = "grafico_risco_bairro.png"
-plt.savefig(caminho_grafico_bairro)
+nomes_graficos.append(caminho_grafico_sexo)
 plt.close()
-
-print("Gráficos gerados e salvos temporariamente.")
-
-# --- ETAPA 3: GERAR O CONTEÚDO E O PDF ---
-
-# (Função e formatação de texto permanecem as mesmas da versão anterior)
+print("--> Tabela e Gráfico de Risco por Sexo prontos.")
 
 
-def formatar_df_para_texto(df, titulo):
-    df_rounded = df.round(2)
-    cabecalho = " | ".join(
-        [f"{col:<18}" for col in [df_rounded.index.name] + df_rounded.columns.tolist()])
-    separador = "-" * len(cabecalho)
-    linhas_dados = [f"{index:<18} | " + " | ".join(
-        [f"{str(value):<18}" for value in row]) for index, row in df_rounded.iterrows()]
-    return f"{titulo}\n{separador}\n{cabecalho}\n{separador}\n" + "\n".join(linhas_dados) + f"\n{separador}"
+# --- Análise 2: Percepção de Risco por Bairro ---
+print("\n--> Gerando Análise de Risco por Bairro...")
+df_risco_bairro = df_analise.groupby('estrato_bairro')[colunas_risco].mean().reset_index()
+df_risco_bairro_melted = df_risco_bairro.melt(id_vars='estrato_bairro', var_name='tipo_risco', value_name='percepcao_media_risco')
+plt.figure(figsize=(12, 7))
+sns.barplot(data=df_risco_bairro_melted, x='tipo_risco', y='percepcao_media_risco', hue='estrato_bairro', palette='crest')
+plt.title('Percepção Média de Risco por Tipo de Bairro', fontsize=16, fontweight='bold')
+plt.xlabel('Tipo de Crime', fontsize=12)
+plt.ylabel('Percepção Média de Risco (escala)', fontsize=12)
+plt.xticks(ticks=[0, 1, 2], labels=['Roubo', 'Agressão', 'Sequestro'])
+plt.legend(title='Estrato do Bairro')
+plt.tight_layout()
+caminho_grafico_bairro = os.path.join(pasta_temp, 'grafico_risco_bairro.png')
+plt.savefig(caminho_grafico_bairro)
+nomes_graficos.append(caminho_grafico_bairro)
+plt.close()
+print("--> Tabela e Gráfico de Risco por Bairro prontos.")
 
 
-tabela_sexo_texto = formatar_df_para_texto(
-    df_risco_sexo, "Tabela 1: Percepção Média de Risco por Sexo")
-tabela_bairro_texto = formatar_df_para_texto(
-    df_risco_bairro, "\nTabela 2: Percepção Média de Risco por Tipo de Bairro")
-# ... (restante do código para gerar o PDF)
+# --- Análise 3: Percepção de Risco por Faixa de Idade ---
+print("\n--> Gerando Análise de Risco por Faixa de Idade...")
+df_risco_idade = df_analise.groupby('faixa_idade')[colunas_risco].mean().reset_index()
+df_risco_idade_melted = df_risco_idade.melt(id_vars='faixa_idade', var_name='tipo_risco', value_name='percepcao_media_risco')
+plt.figure(figsize=(12, 7))
+sns.barplot(data=df_risco_idade_melted, x='tipo_risco', y='percepcao_media_risco', hue='faixa_idade', palette='rocket')
+plt.title('Percepção Média de Risco por Faixa de Idade', fontsize=16, fontweight='bold')
+plt.xlabel('Tipo de Crime', fontsize=12)
+plt.ylabel('Percepção Média de Risco (escala)', fontsize=12)
+plt.xticks(ticks=[0, 1, 2], labels=['Roubo', 'Agressão', 'Sequestro'])
+plt.legend(title='Faixa de Idade', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+caminho_grafico_idade = os.path.join(pasta_temp, 'grafico_risco_idade.png')
+plt.savefig(caminho_grafico_idade, bbox_inches='tight')
+nomes_graficos.append(caminho_grafico_idade)
+plt.close()
+print("--> Tabela e Gráfico de Risco por Faixa de Idade prontos.")
 
 
+# --- Análise 4: Matriz de Correlação Numérica entre Riscos ---
+print("\n--> Gerando Matriz de Correlação...")
+df_correlacao = df_analise[colunas_risco].corr()
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(df_correlacao, annot=True, cmap='viridis', fmt=".2f", linewidths=.5)
+plt.title('Matriz de Correlação entre Percepções de Risco', fontsize=16, fontweight='bold')
+plt.xticks(rotation=45)
+plt.yticks(rotation=0)
+plt.tight_layout()
+caminho_grafico_correlacao = os.path.join(pasta_temp, 'grafico_matriz_correlacao.png')
+plt.savefig(caminho_grafico_correlacao)
+nomes_graficos.append(caminho_grafico_correlacao)
+plt.close()
+print("--> Matriz Numérica (Heatmap) de Correlação pronta.")
+print("\n--- Matriz de Correlação ---")
+print(df_correlacao.round(2))
+
+print("\n\nAnálises concluídas! Todos os gráficos foram salvos temporariamente.")
+
+# %%
+# ===================================================================
+# CÉLULA 2: GERAÇÃO DO RELATÓRIO PDF FINAL
+# ===================================================================
+
+print("Iniciando a montagem do relatório em PDF...")
+
+# Classe PDF personalizada com funções de ajuda
 class PDF(FPDF):
     def header(self):
-        self.set_font('Arial', 'B', 14)
-        self.cell(
-            0, 10, 'Análise de Percepção Social - Belo Horizonte 2002', 0, 1, 'C')
+        self.set_font('Arial', 'B', 12)
+        data_hoje = pd.to_datetime('today').strftime('%d de %B de %Y')
+        self.cell(0, 10, f'Relatório de Percepção Social - {data_hoje}', 0, 1, 'C')
         self.ln(5)
-
     def footer(self):
         self.set_y(-15)
         self.set_font('Arial', 'I', 8)
         self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'C')
+    def chapter_title(self, title):
+        self.set_font('Arial', 'B', 14)
+        self.cell(0, 10, title, 0, 1, 'L')
+        self.ln(5)
+    def output_df_to_pdf(self, df):
+        # Header
+        self.set_font('Arial', 'B', 10)
+        col_width = self.w / (len(df.columns) + 1.5)
+        for col in df.columns:
+            self.cell(col_width, 10, str(col).replace('_', ' ').title(), 1, 0, 'C')
+        self.ln()
+        # Body
+        self.set_font('Arial', '', 10)
+        for index, row in df.iterrows():
+            for col in df.columns:
+                value = row[col]
+                if isinstance(value, float):
+                    value = f'{value:.2f}'
+                self.cell(col_width, 10, str(value), 1, 0, 'C')
+            self.ln()
+        self.ln(5)
 
-
-# Criação do PDF
+# Iniciar PDF
 pdf = PDF()
 pdf.add_page()
 pdf.set_font('Arial', 'B', 16)
-pdf.multi_cell(0, 10, "Relatório Final da Análise de Percepção Social", 0, 'C')
-pdf.ln(5)
-
-# Seção de Texto
-pdf.set_font('Arial', '', 11)
-pdf.multi_cell(
-    0, 7, f"Data da Análise: {pd.Timestamp.now().strftime('%d de %B de %Y')}\n\n1. Resumo e Tabelas")
-pdf.ln(5)
-
-# Inserindo tabelas com fonte monoespaçada para alinhamento
-pdf.set_font('Courier', '', 10)
-pdf.multi_cell(0, 5, f"{tabela_sexo_texto}\n{tabela_bairro_texto}")
-pdf.ln(5)
-
-# Seção de Gráficos
-pdf.add_page()
-pdf.set_font('Arial', 'B', 14)
-pdf.cell(0, 10, '2. Visualizações Gráficas', 0, 1, 'L')
-pdf.ln(5)
-
-pdf.set_font('Arial', 'I', 12)
-pdf.cell(0, 10, 'Gráfico 1: Análise de Risco por Sexo', 0, 1, 'C')
-# Largura da imagem no PDF (ex: 180mm). A altura é calculada automaticamente para manter a proporção.
-pdf.image(caminho_grafico_sexo, w=180)
+pdf.cell(0, 10, 'Análise Combinada de Percepção de Segurança', 0, 1, 'C')
 pdf.ln(10)
 
-pdf.cell(0, 10, 'Gráfico 2: Análise de Risco por Tipo de Bairro', 0, 1, 'C')
-pdf.image(caminho_grafico_bairro, w=180)
+# Página 1: Risco por Sexo
+pdf.chapter_title('1. Análise da Percepção de Risco por Sexo')
+pdf.output_df_to_pdf(df_risco_sexo.set_index('sexo'))
+pdf.image(caminho_grafico_sexo, w=170)
 
-# --- ETAPA 4: SALVAR O PDF E LIMPAR ARQUIVOS TEMPORÁRIOS ---
+# Página 2: Risco por Bairro
+pdf.add_page()
+pdf.chapter_title('2. Análise da Percepção de Risco por Bairro')
+pdf.output_df_to_pdf(df_risco_bairro.set_index('estrato_bairro'))
+pdf.image(caminho_grafico_bairro, w=170)
+
+# Página 3: Risco por Faixa de Idade
+pdf.add_page()
+pdf.chapter_title('3. Análise da Percepção de Risco por Faixa de Idade')
+pdf.output_df_to_pdf(df_risco_idade.set_index('faixa_idade'))
+pdf.image(caminho_grafico_idade, w=170)
+
+# Página 4: Matriz de Correlação
+pdf.add_page()
+pdf.chapter_title('4. Matriz Numérica de Correlação entre Riscos')
+pdf.set_font('Arial', '', 11)
+pdf.multi_cell(0, 7, "A tabela e o mapa de calor abaixo mostram a correlação entre a percepção dos diferentes tipos de risco. Valores próximos de 1 indicam uma forte correlação positiva, significando que quem teme um tipo de crime também tende a temer o outro.")
+pdf.ln(5)
+pdf.image(caminho_grafico_correlacao, w=120, x=pdf.w / 2 - 60)
+
+# Página 5: Conclusões
+pdf.add_page()
+pdf.chapter_title('5. Resultados e Conclusões')
+texto_conclusao = (
+    "A análise dos dados de percepção de segurança revela insights importantes sobre como diferentes "
+    "grupos demográficos e sociais experienciam o medo em relação à criminalidade. A correlação positiva "
+    "entre os tipos de risco sugere que a sensação de insegurança é um sentimento generalizado, não focado em um único tipo de crime.\n\n"
+    "Observou-se que a percepção de risco não é homogênea, apresentando variações significativas "
+    "quando segmentada por sexo, faixa etária e estrato do bairro de residência. "
+    "Por exemplo, a análise por sexo indicou [descreva aqui a principal diferença, ex: que o público feminino percebe maior risco de sequestro].\n\n"
+    "Estes resultados sugerem a necessidade de políticas de segurança pública que sejam sensíveis a "
+    "essas diferentes percepções, focando esforços em localidades e grupos que demonstram maior "
+    "sensação de insegurança."
+)
+pdf.set_font('Arial', '', 12)
+pdf.multi_cell(0, 7, texto_conclusao.encode('latin-1', 'replace').decode('latin-1'))
+
+
+# --- Salvamento e Limpeza ---
 pasta_analises = os.path.join('..', '..', 'analises')
 if not os.path.exists(pasta_analises):
     os.makedirs(pasta_analises)
-    print(f"Pasta '{pasta_analises}' criada.")
-
-caminho_arquivo_pdf = os.path.join(
-    pasta_analises, "relatorio_completo_percepcao_social.pdf")
+caminho_arquivo_pdf = os.path.join(pasta_analises, "relatorio_completo_percepcao_social.pdf")
 
 try:
     pdf.output(caminho_arquivo_pdf)
@@ -270,7 +242,9 @@ try:
 except Exception as e:
     print(f"\nOcorreu um erro ao gerar o PDF: {e}")
 finally:
-    # Limpeza dos arquivos de imagem temporários
-    os.remove(caminho_grafico_sexo)
-    os.remove(caminho_grafico_bairro)
-    print("Arquivos de imagem temporários foram removidos.")
+    for caminho in nomes_graficos:
+        os.remove(caminho)
+    os.rmdir(pasta_temp)
+    print("\nArquivos temporários removidos.")
+
+
