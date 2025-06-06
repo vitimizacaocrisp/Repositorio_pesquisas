@@ -689,7 +689,7 @@ Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de ar
       <td>percepção_medo_MG_2008, segurança</td>
       <td>Dados de 2008 podem estar desatualizados</td>
         <td>
-        <a href="analises_vitimizacao/analises/visualizacoes/relatorio_completo_percepcao_social.pdf">PDF</a>,
+        <a href="analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">PDF</a>,
         <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
         <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
       </td>
@@ -700,7 +700,7 @@ Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de ar
       <td>amostra_BH.xls, amostra_MG.xls</td>
       <td>Verificar compatibilidade dos dados</td>
         <td>
-        <a href="analises_vitimizacao/analises/visualizacoes/relatorio_completo_percepcao_social.pdf">PDF</a>,
+        <a href="analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">PDF</a>,
         <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
         <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
       </td>
