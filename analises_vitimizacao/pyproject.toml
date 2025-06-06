@@ -13,5 +13,6 @@ dependencies = [
     "statsmodels",
     "xlrd",
     "openpyxl",
-    "os"
+    "os",
+    "fpdf"
 ]
