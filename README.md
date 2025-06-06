@@ -639,73 +639,142 @@ Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de ar
 <table class="analysis-table">
   <thead>
     <tr>
+      <th>✔️</th>
       <th>Categoria</th>
       <th>Análise Possível</th>
       <th>Dados Relevantes</th>
       <th>Observações</th>
+      <th>Arquivos</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td><input type="checkbox"></td>
       <td rowspan="3">Violência Urbana</td>
       <td>Evolução dos índices de violência ao longo do tempo</td>
       <td>indices_violencia.csv, totais2008ateMAIO.csv</td>
       <td>Comparar anos diferentes</td>
+      <td>
+        <a href="analises_vitimizacao/analises/indices_violencia.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/indices_violencia.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/indices_violencia.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox"></td>
       <td>Comparação entre tipos de crimes (agressão, furto, roubo)</td>
       <td>agressao, furto, roubo, roubofurto</td>
       <td>Pode-se analisar proporções entre crimes</td>
+      <td>
+        <a href="analises_vitimizacao/analises/agressao.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/agressao.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/agressao.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox"></td>
       <td>Vítimização por unidades policiais</td>
       <td>Vitimizacao_UP_27.csv, Vitimizacao_UP_27.xlsx</td>
       <td>Dados em dois formatos para comparação</td>
+      <td>
+        <a href="analises_vitimizacao/analises/Vitimizacao_UP_27.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/Vitimizacao_UP_27.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/Vitimizacao_UP_27.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox">✅</td>
       <td rowspan="2">Percepção Social</td>
       <td>Medo e percepção de segurança em MG/BH</td>
       <td>percepção_medo_MG_2008, segurança</td>
       <td>Dados de 2008 podem estar desatualizados</td>
+      <td>
+        <a href="analises_vitimizacao/analises/percepcao_social.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox">✅</td>
       <td>Comparação entre amostras de BH e MG</td>
       <td>amostra_BH.xls, amostra_MG.xls</td>
       <td>Verificar compatibilidade dos dados</td>
+      <td>
+        <a href="analises_vitimizacao/analises/percepcao_social.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox"></td>
       <td>Demografia</td>
       <td>Distribuição populacional por idade e sexo</td>
       <td>populacao_idade_sexo.csv</td>
       <td>Pode cruzar com dados de violência</td>
+      <td>
+        <a href="analises_vitimizacao/analises/populacao_idade_sexo.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/populacao_idade_sexo.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/populacao_idade_sexo.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox"></td>
       <td rowspan="3">Violência Escolar</td>
       <td>Panorama da violência em escolas (2006)</td>
       <td>violencia_escolas_2006, alunos_2006.csv, professores_2006.csv</td>
       <td>Perspectivas de diferentes atores</td>
+      <td>
+        <a href="analises_vitimizacao/analises/violencia_escolas_2006.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/violencia_escolas_2006.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/violencia_escolas_2006.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox"></td>
       <td>Comparação entre percepção de alunos e professores</td>
       <td>alunos_2006.csv, professores_2006.csv</td>
       <td>Análise de divergências</td>
+      <td>
+        <a href="analises_vitimizacao/analises/alunos_2006.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/alunos_2006.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/alunos_2006.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox"></td>
       <td>Metodologia da pesquisa escolar</td>
       <td>roteiro_2006.csv</td>
       <td>Entender como os dados foram coletados</td>
+      <td>
+        <a href="analises_vitimizacao/analises/roteiro_2006.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/roteiro_2006.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/roteiro_2006.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox"></td>
       <td>Homicídios</td>
       <td>Análise de homicídios tentados e consumados</td>
       <td>Homicidios Tentado e Consumado(EN)</td>
       <td>Verificar se dados estão em inglês</td>
+      <td>
+        <a href="analises_vitimizacao/analises/Homicidios_Tentado_e_Consumado.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/Homicidios_Tentado_e_Consumado.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/Homicidios_Tentado_e_Consumado.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
+      <td><input type="checkbox"></td>
       <td>Dados Socioeconômicos</td>
       <td>Análise de indicadores PNAD</td>
       <td>PNAD_1998, PNAD_2009</td>
       <td>Grande intervalo temporal entre pesquisas</td>
+      <td>
+        <a href="analises_vitimizacao/analises/PNAD_1998.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/PNAD_1998.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/PNAD_1998.ipynb">.ipynb</a>
+      </td>
     </tr>
   </tbody>
 </table>
+
