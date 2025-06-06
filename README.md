@@ -688,12 +688,22 @@ Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de ar
       <td>Medo e percepção de segurança em MG/BH</td>
       <td>percepção_medo_MG_2008, segurança</td>
       <td>Dados de 2008 podem estar desatualizados</td>
+        <td>
+        <a href="analises_vitimizacao/analises/visualizacoes/relatorio_completo_percepcao_social.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
       <td><input type="checkbox">✅</td>
       <td>Comparação entre amostras de BH e MG</td>
       <td>amostra_BH.xls, amostra_MG.xls</td>
       <td>Verificar compatibilidade dos dados</td>
+        <td>
+        <a href="analises_vitimizacao/analises/visualizacoes/relatorio_completo_percepcao_social.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
+      </td>
     </tr>
     <tr>
       <td><input type="checkbox"></td>
