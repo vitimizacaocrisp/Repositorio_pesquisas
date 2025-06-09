@@ -1,193 +1,193 @@
-#pip install tabula-py PyMuPDF openpyxl seaborn
-
-# Importações
+# %%
+# Célula 1: Importar as bibliotecas necessárias
 import pandas as pd
 import numpy as np
 import os
+import openpyxl
+import xlsxwriter
 import glob
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-from openpyxl import load_workbook
-from IPython.display import display
 
-# Configurações de exibição
-plt.style.use('ggplot')
-pd.set_option('display.max_columns', None)
-pd.set_option('display.width', 1000)
-
+# %%
 # Função: Carregamento de dados CSV/XLSX
-def carregar_dados(caminho_pasta):
-    arquivos_csv = glob.glob(os.path.join(caminho_pasta, '**/csv/*.csv'), recursive=True)
-    arquivos_xls = glob.glob(os.path.join(caminho_pasta, '**/tabelas/*.xls*'), recursive=True)
+caminho_pasta = '../../dados_brutos/PNAD_2009'
+
+agressao = glob.glob(os.path.join(
+    caminho_pasta, 'agressao/*.xls'), recursive=True)
+furto = glob.glob(os.path.join(caminho_pasta, 'furto/*.xls'), recursive=True)
+roubo = glob.glob(os.path.join(caminho_pasta, 'roubo/*.xls'), recursive=True)
+roubofurto = glob.glob(os.path.join(
+    caminho_pasta, 'roubofurto/*.xls'), recursive=True)
+seguranca = glob.glob(os.path.join(
+    caminho_pasta, 'seguranca/*.xls'), recursive=True)
+tentativa = glob.glob(os.path.join(
+    caminho_pasta, 'tentativa/*.xls'), recursive=True)
+
+
+def processar_arquivo(tipo):
     dados = {}
 
-    for arquivo in arquivos_csv:
+    for arquivo in tipo:
         try:
-            nome = os.path.basename(arquivo).replace('.csv', '')
-            dados[nome] = pd.read_csv(arquivo, encoding='latin1', sep=';', decimal=',')
-            print(f"[OK] CSV {nome}")
-        except Exception as e:
-            print(f"[ERRO] CSV {arquivo}: {e}")
-
-    for arquivo in arquivos_xls:
-        try:
-            nome = os.path.basename(arquivo).replace('.xlsx', '').replace('.xls', '')
+            nome = os.path.basename(arquivo).replace(
+                '.xlsx', '').replace('.xls', '')
             xls = pd.ExcelFile(arquivo)
             for sheet_name in xls.sheet_names:
-                df_nome = f"{nome}_{sheet_name}" if len(xls.sheet_names) > 1 else nome
-                dados[df_nome] = pd.read_excel(arquivo, sheet_name=sheet_name)
+                df_nome = f"{nome}_{sheet_name}" if len(
+                    xls.sheet_names) > 1 else nome
+                dados[df_nome] = pd.read_excel(arquivo, sheet_name=sheet_name, header=[
+                                               0, 1], skiprows=7, index_col=0, skipfooter=3)
+
+                # tratamento dos dados
+
+                dados[df_nome].rename(columns={
+                    'Total(1)': 'total(%)',
+                    'Unnamed: 1_level_1': '',
+                    'Homens': 'homens',
+                    'Mulheres': 'mulheres',
+                    'Branca': 'branca',
+                    'Preta ou parda ': 'preta/parda',
+                    'Preta ou parda .1': 'preta',
+                    'Preta ou parda .2': 'parda'
+                }, inplace=True)
+
+                dados[df_nome] = dados[df_nome][dados[df_nome].index.notna()]
+
+                dados[df_nome] = dados[df_nome].apply(
+                    pd.to_numeric, errors='coerce')
+                dados[df_nome] = dados[df_nome].round(2)
+
                 print(f"[OK] Excel {df_nome}")
         except Exception as e:
             print(f"[ERRO] Excel {arquivo}: {e}")
 
     return dados
 
-# Função: Tratamento básico dos dados
-def tratar_dados(dados_brutos):
-    dados_tratados = {}
 
-    for nome, df in dados_brutos.items():
-        try:
-            df = df.dropna(axis=1, how='all')
-
-            # Padronização de nomes
-            df.columns = [col.strip().upper().replace(' ', '_') for col in df.columns]
-
-            for col in df.select_dtypes(include=['object']):
-                df[col] = df[col].astype(str).str.upper().str.strip()
-
-            date_cols = [col for col in df.columns if 'DATA' in col or 'DATE' in col]
-            for col in date_cols:
-                df[col] = pd.to_datetime(df[col], errors='coerce')
-
-            dados_tratados[nome] = df
-            print(f"[OK] Tratamento: {nome}")
-        except Exception as e:
-            print(f"[ERRO] Tratamento {nome}: {e}")
-
-    return dados_tratados
-
-# Etapa 3: Análise exploratória genérica
-def analise_exploratoria(dados_tratados, exportar_graficos=False):
-    os.makedirs('graficos', exist_ok=True)
-
-    for nome, df in dados_tratados.items():
-        print(f"\n📊 Análise: {nome}")
-        print("="*60)
-
-        print("✅ Shape:", df.shape)
-        print("\n📌 Primeiras linhas:")
-        display(df.head())
-
-        print("\n📈 Estatísticas:")
-        display(df.describe(include='all'))
-
-        # Colunas categóricas com poucos valores únicos
-        cat_cols = [col for col in df.select_dtypes(include='object') if df[col].nunique() < 30]
-
-        for col in cat_cols:
-            print(f"\n🔸 {col}:")
-            display(df[col].value_counts(dropna=False))
-
-            # Gráfico de barras
-            plt.figure(figsize=(10, 4))
-            df[col].value_counts().plot(kind='bar')
-            plt.title(f'Distribuição: {col} - {nome}')
-            plt.xticks(rotation=45)
-            plt.tight_layout()
-            if exportar_graficos:
-                plt.savefig(f'graficos/{nome}_{col}_barras.png')
-            plt.show()
-
-        # Colunas numéricas
-        num_cols = df.select_dtypes(include=np.number).columns
-        if len(num_cols) >= 2:
-            print("\n🔢 Matriz de Correlação:")
-            plt.figure(figsize=(8, 6))
-            sns.heatmap(df[num_cols].corr(), annot=True, cmap='coolwarm')
-            plt.title(f'Correlação Numérica - {nome}')
-            plt.tight_layout()
-            if exportar_graficos:
-                plt.savefig(f'graficos/{nome}_correlacao.png')
-            plt.show()
+dados_agressao = processar_arquivo(agressao)
+dados_furto = processar_arquivo(furto)
+dados_roubo = processar_arquivo(roubo)
+dados_roubofurto = processar_arquivo(roubofurto)
+dados_seguranca = processar_arquivo(seguranca)
+dados_tentativa = processar_arquivo(tentativa)
 
 
-# Exportar dados tratados
-def exportar_dados(dados_tratados, pasta_saida='dados_tratados', formato='xlsx'):
+# %%
+print(dados_roubofurto['cv123011a'].info())
+print(dados_roubofurto['cv123011a'].head())
+
+# %%
+print(dados_agressao['cv126011a'].info())
+print(dados_agressao['cv126011a'].head())
+
+
+# %%
+todos_dados = {
+    'agressao': dados_agressao,
+    'furto': dados_furto,
+    'roubo': dados_roubo,
+    'roubofurto': dados_roubofurto,
+    'seguranca': dados_seguranca,
+    'tentativa': dados_tentativa
+}
+
+print(todos_dados['agressao']['cv126011a'].info())
+print(todos_dados['agressao']['cv126011a'].head())
+
+# %%
+
+
+def exportar_dados_organizados(dicionario_principal, pasta_base='../../dados_tratados/PNAD_2009'):
+    """
+    Exporta um dicionário aninhado de DataFrames para arquivos CSV e XLSX,
+    organizando os arquivos em pastas por categoria e por formato.
+    """
+    print(f"Iniciando a exportação para a pasta base: '{pasta_base}'")
+
+    # Verifica se o dicionário principal não está vazio
+    if not dicionario_principal:
+        print("[AVISO] O dicionário de dados está vazio. Nenhuma exportação será feita.")
+        return
+
+    # Loop pelas categorias (ex: 'agressao', 'furto')
+    for categoria, dicionario_dataframes in dicionario_principal.items():
+        print(f"\n--- Exportando categoria: {categoria.upper()} ---")
+
+        # Define e cria os diretórios de saída para esta categoria
+        path_saida_csv = os.path.join(pasta_base, 'csv', categoria)
+        path_saida_xlsx = os.path.join(pasta_base, 'xlsx', categoria)
+        os.makedirs(path_saida_csv, exist_ok=True)
+        os.makedirs(path_saida_xlsx, exist_ok=True)
+
+        # Loop pelos DataFrames dentro da categoria
+        for nome_df, df in dicionario_dataframes.items():
+
+            # --- Exportação para CSV ---
+            # Define o caminho completo do arquivo
+            caminho_csv = os.path.join(path_saida_csv, f"{nome_df}.csv")
+            try:
+                # sep=';' e encoding='utf-8-sig' são ideais para abrir no Excel em português
+                df.to_csv(caminho_csv, sep=';',
+                          encoding='utf-8-sig', index=True)
+                print(f"  [OK] CSV salvo: {caminho_csv}")
+            except Exception as e:
+                print(f"  [ERRO] Falha ao salvar CSV {caminho_csv}: {e}")
+
+            # --- Exportação para XLSX ---
+            # Define o caminho completo do arquivo
+            caminho_xlsx = os.path.join(path_saida_xlsx, f"{nome_df}.xlsx")
+            try:
+                # index=True garante que o índice do DataFrame seja salvo
+                df.to_excel(caminho_xlsx, index=True, sheet_name='dados')
+                print(f"  [OK] XLSX salvo: {caminho_xlsx}")
+            except Exception as e:
+                print(f"  [ERRO] Falha ao salvar XLSX {caminho_xlsx}: {e}")
+
+    print(f"\n[SUCESSO] Exportação de todos os dados concluída!")
+    print(f"Verifique a pasta '{pasta_base}' no seu diretório.")
+
+
+# %%
+def exportar_categorias_em_abas(dados_aninhados, pasta_saida='../../dados_tratados/PNAD_2009'):
+    """
+    Exporta cada categoria para um único arquivo Excel, onde cada DataFrame
+    da categoria se torna uma aba (planilha) dentro do arquivo.
+    """
+    print(
+        f"Iniciando a exportação por categoria para a pasta: '{pasta_saida}'")
+
+    # Cria a pasta de saída se ela não existir
     os.makedirs(pasta_saida, exist_ok=True)
 
-    for nome, df in dados_tratados.items():
+    # Loop pelas categorias (ex: 'agressao', 'furto')
+    for categoria, dicionario_dataframes in dados_aninhados.items():
+        # Define o caminho do arquivo Excel para a categoria atual
+        caminho_arquivo_xlsx = os.path.join(pasta_saida, f"{categoria}.xlsx")
+
+        print(
+            f"\n--- Criando arquivo para a categoria: {categoria.upper()} ---")
+        print(f"Arquivo: {caminho_arquivo_xlsx}")
+
         try:
-            nome_limpo = nome.replace(' ', '_').replace('/', '_')[:50]
-            caminho_saida = os.path.join(pasta_saida, f"{nome_limpo}.{formato}")
-            if formato == 'csv':
-                df.to_csv(caminho_saida, index=False, sep=';', encoding='utf-8-sig')
-            else:
-                df.to_excel(caminho_saida, index=False)
-            print(f"[EXPORTADO] {nome} -> {caminho_saida}")
+            # Usa o ExcelWriter para escrever várias abas no mesmo arquivo
+            with pd.ExcelWriter(caminho_arquivo_xlsx, engine='xlsxwriter') as writer:
+                # Loop pelos DataFrames dentro da categoria
+                for nome_aba, df in dicionario_dataframes.items():
+                    # Escreve cada DataFrame em uma aba com seu respectivo nome
+                    # 'index=True' garante que a coluna de índice seja salva
+                    df.to_excel(writer, sheet_name=nome_aba, index=True)
+                    print(f"  -> Aba '{nome_aba}' salva.")
+
         except Exception as e:
-            print(f"[ERRO] ao exportar {nome}: {e}")
+            print(
+                f"[ERRO] Falha ao criar o arquivo para a categoria '{categoria}': {e}")
 
-# Exportar dados tratados e gráficos
-def exportar_dados_e_graficos(dados_tratados, pasta_dados='dados_tratados', pasta_graficos='graficos', formato='xlsx'):
-    os.makedirs(pasta_dados, exist_ok=True)
-    os.makedirs(pasta_graficos, exist_ok=True)
-
-    for nome, df in dados_tratados.items():
-        nome_limpo = nome.replace(' ', '_').replace('/', '_')[:50]
-
-        # 📁 Exporta os dados tratados
-        try:
-            caminho_saida = os.path.join(pasta_dados, f"{nome_limpo}.{formato}")
-            if formato == 'csv':
-                df.to_csv(caminho_saida, index=False, sep=';', encoding='utf-8-sig')
-            else:
-                df.to_excel(caminho_saida, index=False)
-            print(f"[DADOS EXPORTADOS] {nome} -> {caminho_saida}")
-        except Exception as e:
-            print(f"[ERRO EXPORTAÇÃO DE DADOS] {nome}: {e}")
-
-        # 📊 Exporta gráficos categóricos
-        try:
-            cat_cols = [col for col in df.select_dtypes(include='object') if df[col].nunique() < 30]
-            for col in cat_cols:
-                plt.figure(figsize=(10, 4))
-                df[col].value_counts().plot(kind='bar')
-                plt.title(f'Distribuição: {col} - {nome}')
-                plt.xticks(rotation=45)
-                plt.tight_layout()
-                caminho_grafico = os.path.join(pasta_graficos, f"{nome_limpo}_{col}_barras.png")
-                plt.savefig(caminho_grafico)
-                plt.close()
-                print(f"[GRÁFICO CATEGÓRICO] {col} -> {caminho_grafico}")
-        except Exception as e:
-            print(f"[ERRO GRÁFICO CATEGÓRICO] {nome}: {e}")
-
-        # 📈 Exporta matriz de correlação
-        try:
-            num_cols = df.select_dtypes(include=np.number).columns
-            if len(num_cols) >= 2:
-                plt.figure(figsize=(8, 6))
-                sns.heatmap(df[num_cols].corr(), annot=True, cmap='coolwarm')
-                plt.title(f'Correlação Numérica - {nome}')
-                plt.tight_layout()
-                caminho_corr = os.path.join(pasta_graficos, f"{nome_limpo}_correlacao.png")
-                plt.savefig(caminho_corr)
-                plt.close()
-                print(f"[GRÁFICO CORRELAÇÃO] -> {caminho_corr}")
-        except Exception as e:
-            print(f"[ERRO GRÁFICO DE CORRELAÇÃO] {nome}: {e}")
+    print(f"\n[SUCESSO] Exportação por categoria concluída!")
+    print(f"Verifique a pasta '{pasta_saida}'.")
 
 
+# %%
+exportar_dados_organizados(todos_dados)
 
-CAMINHO_DADOS = '../../dados_brutos/PNAD_2009/' 
-
-print("🔄 Carregando dados...")
-dados_brutos = carregar_dados(CAMINHO_DADOS)
-
-print("\n🧹 Tratando dados...")
-dados_tratados = tratar_dados(dados_brutos)
-
-print("\n📊 Executando análise exploratória...")
-analise_exploratoria(dados_tratados, exportar_graficos=True)
+# %%
+exportar_categorias_em_abas(todos_dados)

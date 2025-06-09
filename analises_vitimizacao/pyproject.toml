@@ -14,5 +14,6 @@ dependencies = [
     "xlrd",
     "openpyxl",
     "os",
-    "fpdf"
+    "fpdf",
+    "xlsxwriter"
 ]
