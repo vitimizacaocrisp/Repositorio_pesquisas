@@ -1,38 +1,38 @@
-﻿;Total;Procura pela polícia em decorrência do último furto;Procura pela polícia em decorrência do último furto
-;;Procuraram ;Não procuraram 
-               Brasil;0.0;1.49;0.9
-Situação do domicílio;;;
-Urbana;0.0;1.5;0.93
-Rural;0.0;5.93;2.54
-Grandes Regiões e Unidades da Federação;;;
-Norte;0.0;4.52;2.02
-Rondônia;0.0;8.93;6.75
-Acre;0.0;11.09;4.94
-Amazonas;0.0;10.72;5.59
-Roraima;0.0;8.72;6.84
-Pará;0.0;9.44;2.78
-Amapá;0.0;11.16;8.3
-Tocantins;0.0;10.52;5.66
-Nordeste;0.0;3.19;1.2
-Maranhão;0.0;10.42;3.62
-Piauí;0.0;10.89;4.68
-Ceará;0.0;6.35;2.3
-Rio Grande do Norte;0.0;11.43;4.7
-Paraíba;0.0;18.56;7.35
-Pernambuco;0.0;6.96;2.63
-Alagoas;0.0;19.63;4.12
-Sergipe;0.0;9.55;4.16
-Bahia;0.0;5.72;2.31
-Sudeste;0.0;2.4;1.84
-Minas Gerais;0.0;4.48;3.55
-Espírito Santo;0.0;8.97;5.96
-Rio de Janeiro;0.0;6.19;3.08
-São Paulo;0.0;3.3;2.82
-Sul;0.0;3.06;2.23
-Paraná;0.0;4.95;3.63
-Santa Catarina;0.0;5.41;4.47
-Rio Grande do Sul;0.0;5.31;3.59
-Centro-Oeste;0.0;2.93;1.9
-Mato Grosso do Sul;0.0;6.74;3.88
-Mato Grosso;0.0;7.33;4.35
-Goiás;0.0;4.52;2.71
+﻿;total;procura pela polícia em decorrência do último furto;procura pela polícia em decorrência do último furto
+;unnamed: 1_level_1;procuraram;não procuraram
+               brasil;0.0;1.49;0.9
+situação do domicílio;;;
+urbana;0.0;1.5;0.93
+rural;0.0;5.93;2.54
+grandes regiões e unidades da federação;;;
+norte;0.0;4.52;2.02
+rondônia;0.0;8.93;6.75
+acre;0.0;11.09;4.94
+amazonas;0.0;10.72;5.59
+roraima;0.0;8.72;6.84
+pará;0.0;9.44;2.78
+amapá;0.0;11.16;8.3
+tocantins;0.0;10.52;5.66
+nordeste;0.0;3.19;1.2
+maranhão;0.0;10.42;3.62
+piauí;0.0;10.89;4.68
+ceará;0.0;6.35;2.3
+rio grande do norte;0.0;11.43;4.7
+paraíba;0.0;18.56;7.35
+pernambuco;0.0;6.96;2.63
+alagoas;0.0;19.63;4.12
+sergipe;0.0;9.55;4.16
+bahia;0.0;5.72;2.31
+sudeste;0.0;2.4;1.84
+minas gerais;0.0;4.48;3.55
+espírito santo;0.0;8.97;5.96
+rio de janeiro;0.0;6.19;3.08
+são paulo;0.0;3.3;2.82
+sul;0.0;3.06;2.23
+paraná;0.0;4.95;3.63
+santa catarina;0.0;5.41;4.47
+rio grande do sul;0.0;5.31;3.59
+centro-oeste;0.0;2.93;1.9
+mato grosso do sul;0.0;6.74;3.88
+mato grosso;0.0;7.33;4.35
+goiás;0.0;4.52;2.71

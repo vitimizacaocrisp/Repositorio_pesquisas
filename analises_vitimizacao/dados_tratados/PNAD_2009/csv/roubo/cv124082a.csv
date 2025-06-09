@@ -1,39 +1,38 @@
-﻿"Situação do domicílio,                                                    Grandes Regiões e 
-Unidades da Federação ";Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%)
-;Total;Realização do registro do último roubo na delegacia de polícia;Realização do registro do último roubo na delegacia de polícia.1
-               Brasil;0.0;0.51;4.65
-Situação do domicílio;;;
-Urbana;0.0;0.52;4.78
-Rural;0.0;2.28;22.77
-Grandes Regiões e Unidades da Federação;;;
-Norte;0.0;1.19;11.89
-Rondônia;0.0;1.81;43.17
-Acre;0.0;4.48;38.28
-Amazonas;0.0;2.35;27.93
-Roraima;0.0;4.61;32.26
-Pará;0.0;1.74;16.33
-Amapá;0.0;4.52;44.5
-Tocantins;0.0;7.29;38.54
-Nordeste;0.0;1.16;6.98
-Maranhão;0.0;7.57;24.59
-Piauí;0.0;3.33;48.31
-Ceará;0.0;2.19;8.24
-Rio Grande do Norte;0.0;2.98;27.94
-Paraíba;0.0;3.74;22.67
-Pernambuco;0.0;1.45;15.75
-Alagoas;0.0;7.69;21.61
-Sergipe;0.0;4.62;23.82
-Bahia;0.0;1.94;18.1
-Sudeste;0.0;0.8;8.98
-Minas Gerais;0.0;1.35;17.81
-Espírito Santo;0.0;5.37;26.84
-Rio de Janeiro;0.0;1.65;22.14
-São Paulo;0.0;1.13;12.21
-Sul;0.0;1.07;13.96
-Paraná;0.0;2.06;19.54
-Santa Catarina;0.0;1.92;66.22
-Rio Grande do Sul;0.0;1.23;19.75
-Centro-Oeste;0.0;1.29;12.83
-Mato Grosso do Sul;0.0;4.08;38.51
-Mato Grosso;0.0;3.41;34.14
-Goiás;0.0;2.27;16.1
+﻿;coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%)
+;total;realização do registro do último roubo na delegacia de polícia;realização do registro do último roubo na delegacia de polícia.1
+               brasil;0.0;0.5084660080516233;4.653808801356644
+situação do domicílio;;;
+urbana;0.0;0.5244791686992127;4.782584387210245
+rural;0.0;2.2833209284012255;22.773742689970383
+grandes regiões e unidades da federação;;;
+norte;0.0;1.1884068376743386;11.886240799048847
+rondônia;0.0;1.8063474604675205;43.168990498018395
+acre;0.0;4.4761428171107065;38.27605344558445
+amazonas;0.0;2.3461789757648432;27.927259441002125
+roraima;0.0;4.608388535915693;32.25871975140985
+pará;0.0;1.7371234978717853;16.32673402808713
+amapá;0.0;4.519163947274241;44.50449263706005
+tocantins;0.0;7.292212389266367;38.54455120040794
+nordeste;0.0;1.1636247317596082;6.979726632041976
+maranhão;0.0;7.5672734992131225;24.59363887244265
+piauí;0.0;3.3320133835754153;48.31419406184354
+ceará;0.0;2.1890230576260814;8.238136458348592
+rio grande do norte;0.0;2.9769773430494344;27.937787373233153
+paraíba;0.0;3.7363952095239794;22.66746427111214
+pernambuco;0.0;1.4508160895744135;15.746596991524312
+alagoas;0.0;7.685145709522297;21.61447230803146
+sergipe;0.0;4.621032175906628;23.816088906595702
+bahia;0.0;1.938472407871577;18.101045869305267
+sudeste;0.0;0.7973653816505734;8.976527640876439
+minas gerais;0.0;1.345623047593027;17.807785974386938
+espírito santo;0.0;5.367620623543539;26.8381031177177
+rio de janeiro;0.0;1.6535587873898256;22.140643757660282
+são paulo;0.0;1.1276032472850015;12.207433755100583
+sul;0.0;1.0690003266285342;13.962278492274127
+paraná;0.0;2.0622358876023386;19.539350282545747
+santa catarina;0.0;1.9194765128555211;66.22193969351548
+rio grande do sul;0.0;1.2269505274142416;19.751713296175915
+centro-oeste;0.0;1.2915780226316225;12.831927968378203
+mato grosso do sul;0.0;4.077398036017045;38.50875922904987
+mato grosso;0.0;3.4137953427368224;34.137953427368224
+goiás;0.0;2.2719514295852226;16.10412630970702

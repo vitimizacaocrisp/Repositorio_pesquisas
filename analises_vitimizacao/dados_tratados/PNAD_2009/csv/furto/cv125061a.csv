@@ -1,38 +1,38 @@
-﻿;Total;Procura pela polícia em decorrência do último furto;Procura pela polícia em decorrência do último furto
-;;Procuraram ;Não procuraram 
-               Brasil;1.64;2.14;1.92
-Situação do domicílio;;;
-Urbana;1.76;2.28;2.01
-Rural;4.97;7.15;5.91
-Grandes Regiões e Unidades da Federação;;;
-Norte;4.25;5.78;4.93
-Rondônia;9.38;15.53;8.84
-Acre;10.25;11.21;13.24
-Amazonas;11.62;15.08;13.34
-Roraima;10.37;14.92;11.13
-Pará;7.41;11.41;8.17
-Amapá;13.63;15.83;17.29
-Tocantins;11.59;15.74;12.84
-Nordeste;3.93;4.52;4.34
-Maranhão;18.22;17.43;19.81
-Piauí;13.25;18.77;13.13
-Ceará;7.06;7.21;8.31
-Rio Grande do Norte;10.88;17.12;11.06
-Paraíba;11.57;21.6;13.87
-Pernambuco;6.01;8.85;6.73
-Alagoas;11.04;19.62;12.82
-Sergipe;9.41;16.15;8.4
-Bahia;5.71;8.07;6.17
-Sudeste;2.8;3.79;3.27
-Minas Gerais;4.96;6.7;6.09
-Espírito Santo;10.31;15.48;10.33
-Rio de Janeiro;5.69;8.69;6.28
-São Paulo;4.23;5.44;5.02
-Sul;3.23;4.26;4.07
-Paraná;4.69;7.07;5.71
-Santa Catarina;7.64;8.34;9.67
-Rio Grande do Sul;5.25;6.9;6.77
-Centro-Oeste;3.18;4.37;3.67
-Mato Grosso do Sul;7.28;9.89;8.27
-Mato Grosso;7.15;9.01;9.17
-Goiás;4.89;7.25;5.14
+﻿;total;procura pela polícia em decorrência do último furto;procura pela polícia em decorrência do último furto
+;unnamed: 1_level_1;procuraram;não procuraram
+               brasil;1.64;2.14;1.92
+situação do domicílio;;;
+urbana;1.76;2.28;2.01
+rural;4.97;7.15;5.91
+grandes regiões e unidades da federação;;;
+norte;4.25;5.78;4.93
+rondônia;9.38;15.53;8.84
+acre;10.25;11.21;13.24
+amazonas;11.62;15.08;13.34
+roraima;10.37;14.92;11.13
+pará;7.41;11.41;8.17
+amapá;13.63;15.83;17.29
+tocantins;11.59;15.74;12.84
+nordeste;3.93;4.52;4.34
+maranhão;18.22;17.43;19.81
+piauí;13.25;18.77;13.13
+ceará;7.06;7.21;8.31
+rio grande do norte;10.88;17.12;11.06
+paraíba;11.57;21.6;13.87
+pernambuco;6.01;8.85;6.73
+alagoas;11.04;19.62;12.82
+sergipe;9.41;16.15;8.4
+bahia;5.71;8.07;6.17
+sudeste;2.8;3.79;3.27
+minas gerais;4.96;6.7;6.09
+espírito santo;10.31;15.48;10.33
+rio de janeiro;5.69;8.69;6.28
+são paulo;4.23;5.44;5.02
+sul;3.23;4.26;4.07
+paraná;4.69;7.07;5.71
+santa catarina;7.64;8.34;9.67
+rio grande do sul;5.25;6.9;6.77
+centro-oeste;3.18;4.37;3.67
+mato grosso do sul;7.28;9.89;8.27
+mato grosso;7.15;9.01;9.17
+goiás;4.89;7.25;5.14

@@ -1,47 +1,40 @@
-﻿;"Total
-(1)";Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo)
-;;"Menos
-de 1/4 ";"1/4 a menos
-de 1/2 ";"1/2 a menos
-de 1 ";"1 a menos
-de 2";2 ou mais ;"Sem
-rendimento
-(2)"
-               Brasil;0.0;2.6;1.24;0.94;1.02;1.76;4.68
-Situação do domicílio;;;;;;;
-Urbana;0.0;2.67;1.44;1.0;1.02;1.77;4.76
-Rural;0.0;3.58;2.12;2.06;3.22;5.7;13.22
-Grandes Regiões e Unidades da Federação;;;;;;;
-Norte;0.0;6.4;2.88;2.9;2.92;5.36;12.75
-Rondônia;0.0;20.96;8.23;4.75;4.73;11.33;36.73
-Acre;0.0;13.21;8.57;7.34;7.3;17.42;34.26
-Amazonas;0.0;15.81;4.41;7.24;6.92;11.2;22.95
-Roraima;0.0;16.28;10.0;8.08;9.99;18.03;41.44
-Pará;0.0;8.61;5.54;5.47;6.71;12.3;21.38
-Amapá;0.0;34.51;8.55;10.83;20.72;18.68;49.9
-Tocantins;0.0;15.53;9.88;4.64;5.44;11.13;48.87
-Nordeste;0.0;3.21;1.82;2.08;2.88;5.23;9.56
-Maranhão;0.0;16.99;7.03;10.24;17.59;26.83;22.78
-Piauí;0.0;7.72;4.94;6.83;10.64;20.0;46.57
-Ceará;0.0;7.39;3.65;5.98;4.34;12.26;18.09
-Rio Grande do Norte;0.0;6.58;5.8;6.32;8.04;16.62;41.62
-Paraíba;0.0;6.01;8.18;4.42;8.87;19.72;25.6
-Pernambuco;0.0;7.11;3.89;5.26;4.77;10.79;13.41
-Alagoas;0.0;5.54;4.39;8.4;11.89;24.1;14.49
-Sergipe;0.0;8.97;5.88;7.68;8.15;12.83;28.65
-Bahia;0.0;5.04;3.76;3.25;5.1;9.19;21.97
-Sudeste;0.0;5.27;2.35;1.42;1.43;2.57;7.49
-Minas Gerais;0.0;9.06;3.34;2.08;2.49;4.32;14.55
-Espírito Santo;0.0;18.04;6.78;4.75;4.93;9.56;32.83
-Rio de Janeiro;0.0;8.1;5.12;2.9;2.47;4.42;15.31
-São Paulo;0.0;8.72;4.42;2.43;2.18;3.83;10.95
-Sul;0.0;7.09;4.21;2.39;1.84;3.32;11.23
-Paraná;0.0;12.05;5.85;3.85;3.24;5.66;18.05
-Santa Catarina;0.0;24.22;10.48;5.7;3.3;7.24;22.6
-Rio Grande do Sul;0.0;7.79;6.79;3.52;2.93;4.39;18.7
-Centro-Oeste;0.0;7.66;4.08;2.08;2.33;4.19;12.5
-Mato Grosso do Sul;0.0;16.93;10.39;5.46;5.54;10.84;20.43
-Mato Grosso;0.0;17.96;9.53;3.09;6.17;13.85;28.45
-Goiás;0.0;9.61;4.93;3.01;2.75;5.9;19.71
-Distrito Federal;0.0;20.66;10.22;7.8;6.28;6.0;21.46
-Fonte: IBGE, Diretoria de Pesquisas, Coordenação de Trabalho e Rendimento, Pesquisa Nacional por Amostra de Domicílios 2009.;;;;;;;
+﻿;total(1);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo)
+;unnamed: 1_level_1;menosde 1/4;1/4 a menosde 1/2;1/2 a menosde 1;1 a menosde 2;2 ou mais;semrendimento(2)
+               brasil;0.0;2.6;1.24;0.94;1.02;1.76;4.68
+situação do domicílio;;;;;;;
+urbana;0.0;2.67;1.44;1.0;1.02;1.77;4.76
+rural;0.0;3.58;2.12;2.06;3.22;5.7;13.22
+grandes regiões e unidades da federação;;;;;;;
+norte;0.0;6.4;2.88;2.9;2.92;5.36;12.75
+rondônia;0.0;20.96;8.23;4.75;4.73;11.33;36.73
+acre;0.0;13.21;8.57;7.34;7.3;17.42;34.26
+amazonas;0.0;15.81;4.41;7.24;6.92;11.2;22.95
+roraima;0.0;16.28;10.0;8.08;9.99;18.03;41.44
+pará;0.0;8.61;5.54;5.47;6.71;12.3;21.38
+amapá;0.0;34.51;8.55;10.83;20.72;18.68;49.9
+tocantins;0.0;15.53;9.88;4.64;5.44;11.13;48.87
+nordeste;0.0;3.21;1.82;2.08;2.88;5.23;9.56
+maranhão;0.0;16.99;7.03;10.24;17.59;26.83;22.78
+piauí;0.0;7.72;4.94;6.83;10.64;20.0;46.57
+ceará;0.0;7.39;3.65;5.98;4.34;12.26;18.09
+rio grande do norte;0.0;6.58;5.8;6.32;8.04;16.62;41.62
+paraíba;0.0;6.01;8.18;4.42;8.87;19.72;25.6
+pernambuco;0.0;7.11;3.89;5.26;4.77;10.79;13.41
+alagoas;0.0;5.54;4.39;8.4;11.89;24.1;14.49
+sergipe;0.0;8.97;5.88;7.68;8.15;12.83;28.65
+bahia;0.0;5.04;3.76;3.25;5.1;9.19;21.97
+sudeste;0.0;5.27;2.35;1.42;1.43;2.57;7.49
+minas gerais;0.0;9.06;3.34;2.08;2.49;4.32;14.55
+espírito santo;0.0;18.04;6.78;4.75;4.93;9.56;32.83
+rio de janeiro;0.0;8.1;5.12;2.9;2.47;4.42;15.31
+são paulo;0.0;8.72;4.42;2.43;2.18;3.83;10.95
+sul;0.0;7.09;4.21;2.39;1.84;3.32;11.23
+paraná;0.0;12.05;5.85;3.85;3.24;5.66;18.05
+santa catarina;0.0;24.22;10.48;5.7;3.3;7.24;22.6
+rio grande do sul;0.0;7.79;6.79;3.52;2.93;4.39;18.7
+centro-oeste;0.0;7.66;4.08;2.08;2.33;4.19;12.5
+mato grosso do sul;0.0;16.93;10.39;5.46;5.54;10.84;20.43
+mato grosso;0.0;17.96;9.53;3.09;6.17;13.85;28.45
+goiás;0.0;9.61;4.93;3.01;2.75;5.9;19.71
+distrito federal;0.0;20.66;10.22;7.8;6.28;6.0;21.46
+fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;;

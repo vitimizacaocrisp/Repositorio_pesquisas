@@ -1,19 +1,19 @@
-﻿;Unnamed: 1_level_0;Agrícola;Indústria;Construção;Comércio e Reparação;Serviços
-Pará;100.0;28.41869101694123;14.238281996915141;6.547209817160485;17.957364357554717;31.602299622253476
-Região Metropolitana de Belém;100;1.17;7.73;11.83;27.15;50.51
-Ceará;100;34.73;14.11;6.81;14.93;29.16
-Região Metropolitana de Fortaleza;100;7.05;19.73;8.81;21.38;42.47
-Pernambuco;100;35.82;8.38;6.7;14.87;32.67
-Região Metropolitana de Recife;100;2.54;10.75;9.54;21.77;51.77
-Bahia;100;44.57;5.86;6.46;12.96;29.79
-Região Metropolitana de Salvador;100;3.24;9.78;11.92;20.82;53.35
-Minas Gerais;100;25.13;14.89;8.5;15.15;36.23
-Região Metropolitana de Belo Horizonte;100;4.64;15.51;11.45;16.62;51.75
-      Rio de Janeiro;100;2.69;13.41;10.91;17.6;54.83
-Região Metropolitana do Rio de Janeiro;100;0.93;11.66;10.77;18.5;57.72
-São Paulo;100;7.04;21.94;8.58;18.02;44.4
-Região Metropolitana de São Paulo;100;0.74;21.45;8.66;18.72;50.37
-       Paraná;100;19.62;15.74;8.5;16.93;39.18
-  Região Metropolitana de Curitiba;100;5.04;17.27;9.08;20.95;47.66
-      Rio Grande do Sul;100;25.44;18.8;6.67;15.02;33.82
-        Região Metropolitana de Porto Alegre;100;4.54;23.69;8.46;18.82;44.13
+﻿;unnamed: 1_level_0;agrícola;indústria;construção;comércio e reparação;serviços
+;100.0;28.41869101694123;14.238281996915141;6.547209817160485;17.957364357554717;31.602299622253476
+região metropolitana de belém;100;1.17;7.73;11.83;27.15;50.51
+ceará;100;34.73;14.11;6.81;14.93;29.16
+região metropolitana de fortaleza;100;7.05;19.73;8.81;21.38;42.47
+pernambuco;100;35.82;8.38;6.7;14.87;32.67
+região metropolitana de recife;100;2.54;10.75;9.54;21.77;51.77
+bahia;100;44.57;5.86;6.46;12.96;29.79
+região metropolitana de salvador;100;3.24;9.78;11.92;20.82;53.35
+minas gerais;100;25.13;14.89;8.5;15.15;36.23
+região metropolitana de belo horizonte;100;4.64;15.51;11.45;16.62;51.75
+      rio de janeiro;100;2.69;13.41;10.91;17.6;54.83
+região metropolitana do rio de janeiro;100;0.93;11.66;10.77;18.5;57.72
+são paulo;100;7.04;21.94;8.58;18.02;44.4
+região metropolitana de são paulo;100;0.74;21.45;8.66;18.72;50.37
+       paraná;100;19.62;15.74;8.5;16.93;39.18
+  região metropolitana de curitiba;100;5.04;17.27;9.08;20.95;47.66
+      rio grande do sul;100;25.44;18.8;6.67;15.02;33.82
+        região metropolitana de porto alegre;100;4.54;23.69;8.46;18.82;44.13

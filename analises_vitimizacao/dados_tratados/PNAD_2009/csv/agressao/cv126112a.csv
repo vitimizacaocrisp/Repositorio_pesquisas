@@ -1,37 +1,35 @@
-﻿"Sexo, cor ou raça, grupos de idade,
-nível de instrução e classes de
-rendimento mensal domiciliar  per capita";Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%)
-;Total;Motivo de não terem procurado a polícia em decorrência da última agressão física;Motivo de não terem procurado a polícia em decorrência da última agressão física.1;Motivo de não terem procurado a polícia em decorrência da última agressão física.2;Motivo de não terem procurado a polícia em decorrência da última agressão física.3;Motivo de não terem procurado a polícia em decorrência da última agressão física.4
-Total (1)(2);0.0;7.93;4.78;5.51;3.11;3.89
-Sexo;;;;;;
-Homens;0.0;9.93;5.41;6.19;4.12;4.69
-Mulheres;0.0;12.28;8.34;9.5;4.2;5.41
-Cor ou raça;;;;;;
-Branca;0.0;11.43;7.67;8.55;5.65;5.64
-Preta ou parda;0.0;10.16;6.16;6.91;3.48;4.58
-Preta;0.0;21.54;12.46;16.22;7.18;11.72
-Parda;0.0;11.63;7.01;7.48;3.99;4.86
-Grupos de idade;;;;;;
-10 a 24 anos;0.0;11.57;6.24;8.76;4.27;5.04
-25 a 34 anos;0.0;15.65;9.43;9.74;6.67;7.33
-35 a 39 anos;0.0;28.35;18.22;16.74;8.61;12.28
-40 a 49 anos;0.0;22.93;15.32;14.38;8.17;9.8
-50 anos ou mais;0.0;17.37;13.66;14.25;9.64;10.23
-Nível de instrução;;;;;;
-Sem instrução;0.0;24.2;16.08;19.15;8.2;12.14
-Fundamental incompleto ou equivalente;0.0;12.61;6.46;8.32;4.22;4.91
-Fundamental completo ou equivalente;0.0;20.78;13.4;14.82;8.55;11.29
-Médio incompleto ou equivalente;0.0;25.14;15.59;17.71;10.14;12.56
-Médio completo ou equivalente;0.0;18.09;11.8;11.02;7.73;9.59
-Superior incompleto ou equivalente;0.0;33.44;29.16;22.35;21.12;19.61
-Superior completo ou equivalente;0.0;35.41;21.9;24.96;19.02;16.26
-Classes de rendimento mensal domiciliar per capita;;;;;;
-Total (3)(4);0.0;7.96;4.84;5.52;3.12;3.89
-Sem rendimento a menos ;;;;;;
-de 1/4 do salário mínimo (3)(5);0.0;21.91;11.9;14.58;8.02;8.45
-1/4 a menos de 1/2 salário mínimo (3);0.0;16.01;10.94;12.08;5.46;7.47
-1/2 a menos de 1 salário mínimo (3);0.0;15.93;8.06;10.03;5.95;6.34
-1 a menos de 2 salários mínimos (3) ;0.0;15.6;10.46;11.73;7.23;7.77
-2 salários mínimos ou mais (3) ;0.0;18.83;13.01;14.36;13.02;11.19
-Fonte: IBGE, Diretoria de Pesquisas, Coordenação de Trabalho e Rendimento, Pesquisa Nacional por Amostra de Domicílios 2009.;;;;;;
-(1) Inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) Inclusive as pessoas com nível de instrução não determinado. (3) Ex-;;;;;;
+﻿;coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias (%)
+;total;motivo de não terem procurado a polícia em decorrência da última agressão física;motivo de não terem procurado a polícia em decorrência da última agressão física.1;motivo de não terem procurado a polícia em decorrência da última agressão física.2;motivo de não terem procurado a polícia em decorrência da última agressão física.3;motivo de não terem procurado a polícia em decorrência da última agressão física.4
+total (1)(2);0.0;7.934803550250025;4.7810171065600535;5.511568432629823;3.105985524221105;3.8905677701786
+sexo;;;;;;
+homens;0.0;9.927290833103656;5.413057628044406;6.192213738933812;4.118115012616331;4.688922497239006
+mulheres;0.0;12.276023164301098;8.33642271166016;9.496778893011806;4.200300731193673;5.412036136677721
+cor ou raça;;;;;;
+branca;0.0;11.433554282431134;7.672727505847191;8.550069121444595;5.646820987615149;5.642282079487593
+preta ou parda;0.0;10.159672668501596;6.160670695227867;6.9081820388604545;3.476644731088095;4.577327046798887
+preta;0.0;21.542358102624792;12.45741091550848;16.2187952489122;7.176596556349427;11.72221730737577
+parda;0.0;11.631120608030974;7.007241916312314;7.479160857352509;3.987305779195903;4.8625032281806515
+grupos de idade;;;;;;
+10 a 24 anos;0.0;11.570928841811522;6.2351457885091675;8.758484137170509;4.273971485709047;5.037869816714452
+25 a 34 anos;0.0;15.646806724634088;9.43151762121932;9.7379679317335;6.667656391667244;7.334092657883198
+35 a 39 anos;0.0;28.35266883648733;18.222651799823886;16.737824793125178;8.61284110975031;12.28121785695665
+40 a 49 anos;0.0;22.925922815879158;15.323996049248281;14.3828981265282;8.16838202295936;9.796041338080498
+50 anos ou mais;0.0;17.372790796241727;13.66261086364586;14.246179434639963;9.636577397585752;10.229430374193033
+nível de instrução;;;;;;
+sem instrução;0.0;24.198734985850233;16.077324420659078;19.147277508647203;8.201289662329518;12.143504345404468
+fundamental incompleto ou equivalente;0.0;12.605382998017722;6.463157461282302;8.321891240404236;4.218217315890711;4.906636650653695
+fundamental completo ou equivalente;0.0;20.777862085169517;13.397734324094792;14.815592426327646;8.547215949374287;11.291699038019903
+médio incompleto ou equivalente;0.0;25.14234656560165;15.59111264728936;17.707328108396162;10.138276105821035;12.561290940438813
+médio completo ou equivalente;0.0;18.091168711663613;11.803139707002577;11.01721351828181;7.728403713382255;9.59289239771238
+superior incompleto ou equivalente;0.0;33.44377152654125;29.16295592294683;22.354069924051185;21.1172463533881;19.605500827988777
+superior completo ou equivalente;0.0;35.406977909010834;21.895445976277628;24.962372442640852;19.02409001288226;16.25583927187649
+classes de rendimento mensal domiciliar per capita;;;;;;
+total (3)(4);0.0;7.9581552151927;4.838845240645833;5.517909928145605;3.1225033245819054;3.893921772958755
+sem rendimento a menos ;;;;;;
+de 1/4 do salário mínimo (3)(5);0.0;21.907926635678052;11.899066320519651;14.579030831080864;8.022560808445252;8.448802052157946
+1/4 a menos de 1/2 salário mínimo (3);0.0;16.007394949772042;10.937158475690122;12.080468616004753;5.456116137900074;7.469204592439165
+1/2 a menos de 1 salário mínimo (3);0.0;15.92948705920949;8.057762536541185;10.029782273851263;5.952824305562895;6.3389703655264595
+1 a menos de 2 salários mínimos (3) ;0.0;15.600721945916316;10.458907468897468;11.731470568636059;7.231936996147836;7.769337787042948
+2 salários mínimos ou mais (3) ;0.0;18.825463347446902;13.011942012831012;14.355997984402544;13.019452219397957;11.188106148111862
+fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;
+(1) inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) inclusive as pessoas com nível de instrução não determinado. (3) ex-;;;;;;

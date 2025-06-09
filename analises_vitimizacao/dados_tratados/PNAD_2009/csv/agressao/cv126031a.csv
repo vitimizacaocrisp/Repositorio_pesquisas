@@ -1,18 +1,13 @@
-﻿;"Total
-(1)";Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo);Classes de rendimento mensal domiciliar per capita (salário mínimo)
-;;"Sem rendimento a menos de 1/4
-(2) ";"1/4 a menos
-de 1/2 ";"1/2 a menos
-de 1 ";"1 a menos
-de 2";2 ou mais 
-               Brasil;2.19;5.28;4.23;3.7;3.68;5.35
-Situação do domicílio;;;;;;
-Urbana;2.34;5.87;4.52;3.96;3.81;5.48
-Rural;7.29;11.4;11.85;12.02;14.44;27.88
-Grandes Regiões;;;;;;
-Norte;5.11;11.1;8.83;8.31;11.11;12.54
-Nordeste;4.11;7.56;6.51;6.43;7.49;10.31
-Sudeste;3.94;11.79;9.9;7.33;6.03;8.66
-Sul;4.77;15.8;9.64;8.4;8.24;10.95
-Centro-Oeste;6.22;18.42;14.42;8.38;9.76;13.4
-Fonte: IBGE, Diretoria de Pesquisas, Coordenação de Trabalho e Rendimento, Pesquisa Nacional por Amostra de Domicílios 2009.;;;;;;
+﻿;total(1);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo)
+;unnamed: 1_level_1;sem rendimento a menos de 1/4(2);1/4 a menosde 1/2;1/2 a menosde 1;1 a menosde 2;2 ou mais
+               brasil;2.19;5.28;4.23;3.7;3.68;5.35
+situação do domicílio;;;;;;
+urbana;2.34;5.87;4.52;3.96;3.81;5.48
+rural;7.29;11.4;11.85;12.02;14.44;27.88
+grandes regiões;;;;;;
+norte;5.11;11.1;8.83;8.31;11.11;12.54
+nordeste;4.11;7.56;6.51;6.43;7.49;10.31
+sudeste;3.94;11.79;9.9;7.33;6.03;8.66
+sul;4.77;15.8;9.64;8.4;8.24;10.95
+centro-oeste;6.22;18.42;14.42;8.38;9.76;13.4
+fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;

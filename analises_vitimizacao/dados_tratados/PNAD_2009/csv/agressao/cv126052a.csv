@@ -1,11 +1,11 @@
-﻿;Total;Local de ocorrência da última agressão física;Local de ocorrência da última agressão física;Local de ocorrência da última agressão física
-;;Própria residência ;Via pública;Outro
-               Brasil;0.0;2.74;1.7;2.71
-Situação do domicílio;;;;
-Urbana;0.0;2.91;1.72;2.82
-Rural;0.0;6.63;6.34;8.96
-Grandes Regiões;;;;
-Norte;0.0;8.16;3.79;6.38
-Nordeste;0.0;4.76;2.82;5.48
-Sudeste;0.0;4.82;3.18;4.85
-Sul;0.0;7.79;4.64;5.68
+﻿;total;local de ocorrência da última agressão física;local de ocorrência da última agressão física;local de ocorrência da última agressão física
+;unnamed: 1_level_1;própria residência;via pública;outro
+               brasil;0.0;2.74;1.7;2.71
+situação do domicílio;;;;
+urbana;0.0;2.91;1.72;2.82
+rural;0.0;6.63;6.34;8.96
+grandes regiões;;;;
+norte;0.0;8.16;3.79;6.38
+nordeste;0.0;4.76;2.82;5.48
+sudeste;0.0;4.82;3.18;4.85
+sul;0.0;7.79;4.64;5.68

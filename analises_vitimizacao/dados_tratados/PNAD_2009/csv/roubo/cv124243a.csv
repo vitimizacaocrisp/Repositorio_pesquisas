@@ -1,18 +1,18 @@
-﻿;Unnamed: 1_level_0;10 a 15 anos;16 a 24 anos;25 a 34 anos;35 a 49 anos;50 anos ou mais
-Pará;4.96855767699383;11.430424719423824;7.065042136622085;5.959234284160699;7.529476792386565;7.783206789806507
-Região Metropolitana de Belém;3.59;13.66;5.23;5.31;5.98;8.93
-Ceará;3.75;12.5;5.21;5.62;5.44;9.48
-Região Metropolitana de Fortaleza;3.67;10.71;5.46;5.73;5.59;8.36
-Pernambuco;5.04;15.44;7.23;6.65;8.15;7.68
-Região Metropolitana de Recife;4.31;14.14;6.69;6.45;6.67;8.65
-Bahia;4.46;12.09;6.41;5.57;6.38;7.91
-Região Metropolitana de Salvador;3.64;13.55;5.41;5.04;5.84;8.44
-Minas Gerais;4.33;18.23;7.29;7.25;7.79;8.65
-Região Metropolitana de Belo Horizonte;5.2;24.14;8.48;8.47;9.0;10.51
-      Rio de Janeiro;4.76;18.76;7.55;7.1;7.12;8.63
-Região Metropolitana do Rio de Janeiro;5.09;19.84;8.04;7.57;7.48;9.05
-São Paulo;3.55;15.24;6.11;6.08;5.54;6.42
-Região Metropolitana de São Paulo;4.03;18.18;7.03;7.11;6.33;7.3
-       Paraná;5.39;18.34;7.91;9.91;8.69;8.98
-  Região Metropolitana de Curitiba;6.06;19.88;8.92;10.52;10.8;11.75
-      Rio Grande do Sul;4.3;17.01;8.63;8.58;8.02;7.83
+﻿;unnamed: 1_level_0;10 a 15 anos;16 a 24 anos;25 a 34 anos;35 a 49 anos;50 anos ou mais
+;4.96855767699383;11.430424719423824;7.065042136622085;5.959234284160699;7.529476792386565;7.783206789806507
+região metropolitana de belém;3.59;13.66;5.23;5.31;5.98;8.93
+ceará;3.75;12.5;5.21;5.62;5.44;9.48
+região metropolitana de fortaleza;3.67;10.71;5.46;5.73;5.59;8.36
+pernambuco;5.04;15.44;7.23;6.65;8.15;7.68
+região metropolitana de recife;4.31;14.14;6.69;6.45;6.67;8.65
+bahia;4.46;12.09;6.41;5.57;6.38;7.91
+região metropolitana de salvador;3.64;13.55;5.41;5.04;5.84;8.44
+minas gerais;4.33;18.23;7.29;7.25;7.79;8.65
+região metropolitana de belo horizonte;5.2;24.14;8.48;8.47;9.0;10.51
+      rio de janeiro;4.76;18.76;7.55;7.1;7.12;8.63
+região metropolitana do rio de janeiro;5.09;19.84;8.04;7.57;7.48;9.05
+são paulo;3.55;15.24;6.11;6.08;5.54;6.42
+região metropolitana de são paulo;4.03;18.18;7.03;7.11;6.33;7.3
+       paraná;5.39;18.34;7.91;9.91;8.69;8.98
+  região metropolitana de curitiba;6.06;19.88;8.92;10.52;10.8;11.75
+      rio grande do sul;4.3;17.01;8.63;8.58;8.02;7.83

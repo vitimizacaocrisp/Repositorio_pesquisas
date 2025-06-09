@@ -1,48 +1,48 @@
-﻿Brasil (1);0.0;2.442928364173709;2.366781460938505;2.459666233335182;3.2437101940910926;3.9251171159688343
-Sem instrução;0.0;6.225547072794506;8.40844069227787;8.63845716751349;7.136490905572484;11.946885704254086
-Fundamental incompleto ou equivalente;0;3.51;3.76;4.36;4.64;6.23
-Fundamental completo ou equivalente;0;6.86;6.75;6.9;9.49;10.79
-Médio incompleto ou equivalente;0;7.21;6.91;6.64;11.01;11.39
-Médio completo ou equivalente;0;4.66;4.28;4.57;7.52;7.38
-Superior incompleto ou equivalente;0;10.08;8.71;8.3;14.95;13.74
-Superior completo ou equivalente;0;7.96;6.98;6.9;13.59;10.76
-Norte (1);0;5.99;6.91;5.7;8.07;11.42
-Sem instrução;0;15.13;19.79;18.05;17.04;33.01
-Fundamental incompleto ou equivalente;0;9.04;11.27;10.19;12.87;18.26
-Fundamental completo ou equivalente;0;16.1;17.04;15.97;19.3;26.43
-Médio incompleto ou equivalente;0;12.36;14.57;12.06;34.8;31.77
-Médio completo ou equivalente;0;9.1;11.47;10.36;15.71;19.36
-Superior incompleto ou equivalente;0;23.32;24.13;22.64;49.45;71.67
-Superior completo ou equivalente;0;19.7;21.24;25.3;43.28;26.87
-Nordeste (1);0;4.83;4.31;4.87;5.81;7.29
-Sem instrução;0;8.0;11.83;15.42;9.47;16.95
-Fundamental incompleto ou equivalente;0;6.69;6.58;9.11;9.1;12.68
-Fundamental completo ou equivalente;0;11.97;12.46;10.51;22.55;20.28
-Médio incompleto ou equivalente;0;13.06;11.67;13.44;20.09;21.07
-Médio completo ou equivalente;0;9.69;6.97;7.6;11.2;13.58
-Superior incompleto ou equivalente;0;18.66;15.33;12.49;28.6;36.49
-Superior completo ou equivalente;0;18.72;13.78;13.06;22.5;22.52
-Sudeste (1);0;4.46;4.65;4.64;5.73;6.68
-Sem instrução;0;16.67;21.21;17.14;15.24;23.01
-Fundamental incompleto ou equivalente;0;6.76;7.65;8.94;7.77;10.03
-Fundamental completo ou equivalente;0;13.37;13.84;14.37;15.64;18.38
-Médio incompleto ou equivalente;0;19.21;13.79;12.01;17.45;21.89
-Médio completo ou equivalente;0;8.6;8.9;8.83;15.94;12.69
-Superior incompleto ou equivalente;0;22.33;16.48;16.96;19.8;20.57
-Superior completo ou equivalente;0;14.17;11.81;13.45;21.1;18.09
-Sul (1);0;5.82;5.46;5.79;7.97;8.74
-Sem instrução;0;17.45;25.01;22.66;37.48;38.2
-Fundamental incompleto ou equivalente;0;8.09;8.34;9.74;11.32;14.91
-Fundamental completo ou equivalente;0;15.83;13.4;15.98;19.43;24.96
-Médio incompleto ou equivalente;0;14.35;23.96;15.66;31.04;23.75
-Médio completo ou equivalente;0;11.72;9.32;13.0;20.96;16.96
-Superior incompleto ou equivalente;0;19.94;22.31;17.95;39.88;22.78
-Superior completo ou equivalente;0;16.42;13.47;12.81;44.34;19.08
-Centro-Oeste (1);0;5.3;5.2;6.15;9.13;9.7
-Sem instrução;0;22.2;25.09;20.91;24.97;38.19
-Fundamental incompleto ou equivalente;0;8.13;9.02;9.25;13.02;15.48
-Fundamental completo ou equivalente;0;14.12;16.11;21.98;30.71;25.9
-Médio incompleto ou equivalente;0;14.83;13.17;17.61;30.61;26.15
-Médio completo ou equivalente;0;10.12;10.24;11.48;18.75;16.64
-Superior incompleto ou equivalente;0;20.89;18.77;23.13;44.83;44.74
-Superior completo ou equivalente;0;17.03;18.03;13.94;40.01;26.29
+﻿;0.0;2.442928364173709;2.366781460938505;2.459666233335182;3.2437101940910926;3.9251171159688343
+;0.0;6.225547072794506;8.40844069227787;8.63845716751349;7.136490905572484;11.946885704254086
+fundamental incompleto ou equivalente;0;3.51;3.76;4.36;4.64;6.23
+fundamental completo ou equivalente;0;6.86;6.75;6.9;9.49;10.79
+médio incompleto ou equivalente;0;7.21;6.91;6.64;11.01;11.39
+médio completo ou equivalente;0;4.66;4.28;4.57;7.52;7.38
+superior incompleto ou equivalente;0;10.08;8.71;8.3;14.95;13.74
+superior completo ou equivalente;0;7.96;6.98;6.9;13.59;10.76
+norte (1);0;5.99;6.91;5.7;8.07;11.42
+sem instrução;0;15.13;19.79;18.05;17.04;33.01
+fundamental incompleto ou equivalente;0;9.04;11.27;10.19;12.87;18.26
+fundamental completo ou equivalente;0;16.1;17.04;15.97;19.3;26.43
+médio incompleto ou equivalente;0;12.36;14.57;12.06;34.8;31.77
+médio completo ou equivalente;0;9.1;11.47;10.36;15.71;19.36
+superior incompleto ou equivalente;0;23.32;24.13;22.64;49.45;71.67
+superior completo ou equivalente;0;19.7;21.24;25.3;43.28;26.87
+nordeste (1);0;4.83;4.31;4.87;5.81;7.29
+sem instrução;0;8.0;11.83;15.42;9.47;16.95
+fundamental incompleto ou equivalente;0;6.69;6.58;9.11;9.1;12.68
+fundamental completo ou equivalente;0;11.97;12.46;10.51;22.55;20.28
+médio incompleto ou equivalente;0;13.06;11.67;13.44;20.09;21.07
+médio completo ou equivalente;0;9.69;6.97;7.6;11.2;13.58
+superior incompleto ou equivalente;0;18.66;15.33;12.49;28.6;36.49
+superior completo ou equivalente;0;18.72;13.78;13.06;22.5;22.52
+sudeste (1);0;4.46;4.65;4.64;5.73;6.68
+sem instrução;0;16.67;21.21;17.14;15.24;23.01
+fundamental incompleto ou equivalente;0;6.76;7.65;8.94;7.77;10.03
+fundamental completo ou equivalente;0;13.37;13.84;14.37;15.64;18.38
+médio incompleto ou equivalente;0;19.21;13.79;12.01;17.45;21.89
+médio completo ou equivalente;0;8.6;8.9;8.83;15.94;12.69
+superior incompleto ou equivalente;0;22.33;16.48;16.96;19.8;20.57
+superior completo ou equivalente;0;14.17;11.81;13.45;21.1;18.09
+sul (1);0;5.82;5.46;5.79;7.97;8.74
+sem instrução;0;17.45;25.01;22.66;37.48;38.2
+fundamental incompleto ou equivalente;0;8.09;8.34;9.74;11.32;14.91
+fundamental completo ou equivalente;0;15.83;13.4;15.98;19.43;24.96
+médio incompleto ou equivalente;0;14.35;23.96;15.66;31.04;23.75
+médio completo ou equivalente;0;11.72;9.32;13.0;20.96;16.96
+superior incompleto ou equivalente;0;19.94;22.31;17.95;39.88;22.78
+superior completo ou equivalente;0;16.42;13.47;12.81;44.34;19.08
+centro-oeste (1);0;5.3;5.2;6.15;9.13;9.7
+sem instrução;0;22.2;25.09;20.91;24.97;38.19
+fundamental incompleto ou equivalente;0;8.13;9.02;9.25;13.02;15.48
+fundamental completo ou equivalente;0;14.12;16.11;21.98;30.71;25.9
+médio incompleto ou equivalente;0;14.83;13.17;17.61;30.61;26.15
+médio completo ou equivalente;0;10.12;10.24;11.48;18.75;16.64
+superior incompleto ou equivalente;0;20.89;18.77;23.13;44.83;44.74
+superior completo ou equivalente;0;17.03;18.03;13.94;40.01;26.29

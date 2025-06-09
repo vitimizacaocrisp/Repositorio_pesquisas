@@ -1,18 +1,18 @@
-﻿;Unnamed: 1_level_0;Empregados;Trabalhadores domésticos;Conta própria;Empregadores ;Outra
-Pará;0.0;3.7956569151619988;11.507189341706713;6.17967024576679;14.7551130775692;19.665024842034693
-Região Metropolitana de Belém;0;3.4;12.06;6.41;21.06;26.01
-Ceará;0;3.02;11.32;6.47;14.46;17.68
-Região Metropolitana de Fortaleza;0;2.51;11.9;6.36;16.56;21.67
-Pernambuco;0;3.31;16.69;7.86;19.16;21.59
-Região Metropolitana de Recife;0;3.19;15.0;9.12;24.69;49.01
-Bahia;0;3.12;11.02;6.01;12.91;19.66
-Região Metropolitana de Salvador;0;2.66;13.29;7.32;18.2;24.35
-Minas Gerais;0;2.7;15.6;5.81;10.7;17.19
-Região Metropolitana de Belo Horizonte;0;3.23;21.74;10.14;20.01;33.97
-      Rio de Janeiro;0;2.48;13.59;6.88;14.02;32.49
-Região Metropolitana do Rio de Janeiro;0;2.71;14.33;7.44;16.31;34.24
-São Paulo;0;1.93;11.34;5.6;10.62;23.78
-Região Metropolitana de São Paulo;0;2.12;16.88;7.78;15.51;33.99
-       Paraná;0;2.97;15.79;7.23;12.24;20.92
-  Região Metropolitana de Curitiba;0;3.33;21.96;9.09;16.24;37.76
-      Rio Grande do Sul;0;3.28;11.98;6.89;10.27;21.14
+﻿;unnamed: 1_level_0;empregados;trabalhadores domésticos;conta própria;empregadores;outra
+;0.0;3.7956569151619988;11.507189341706713;6.17967024576679;14.7551130775692;19.665024842034693
+região metropolitana de belém;0;3.4;12.06;6.41;21.06;26.01
+ceará;0;3.02;11.32;6.47;14.46;17.68
+região metropolitana de fortaleza;0;2.51;11.9;6.36;16.56;21.67
+pernambuco;0;3.31;16.69;7.86;19.16;21.59
+região metropolitana de recife;0;3.19;15.0;9.12;24.69;49.01
+bahia;0;3.12;11.02;6.01;12.91;19.66
+região metropolitana de salvador;0;2.66;13.29;7.32;18.2;24.35
+minas gerais;0;2.7;15.6;5.81;10.7;17.19
+região metropolitana de belo horizonte;0;3.23;21.74;10.14;20.01;33.97
+      rio de janeiro;0;2.48;13.59;6.88;14.02;32.49
+região metropolitana do rio de janeiro;0;2.71;14.33;7.44;16.31;34.24
+são paulo;0;1.93;11.34;5.6;10.62;23.78
+região metropolitana de são paulo;0;2.12;16.88;7.78;15.51;33.99
+       paraná;0;2.97;15.79;7.23;12.24;20.92
+  região metropolitana de curitiba;0;3.33;21.96;9.09;16.24;37.76
+      rio grande do sul;0;3.28;11.98;6.89;10.27;21.14

@@ -1,36 +1,36 @@
-﻿;Unnamed: 1_level_0;Falta de provas;Não era importante;Não acreditavam na polícia;Não queriam envolver a polícia ou medo de represália;Outro
-Brasil;1.768869295502065;4.643458916873252;3.1438208991859162;2.694973305533619;3.268807523593266;4.890174280777566
-Dinheiro, cartão de débito ou crédito, ou cheque;2.24;6.6;4.75;3.43;4.58;7.45
-Telefone celular;2.1;6.68;4.0;3.18;4.34;6.68
-Documentos ou objetos pessoais;3.35;9.9;7.11;5.1;7.06;9.83
-Carro, motocicleta ou bicicleta;4.93;12.96;10.76;7.6;9.28;13.31
-Outro;3.88;9.6;7.1;6.52;8.14;10.94
-Norte;4.59;12.32;7.47;5.84;7.97;12.42
-Dinheiro, cartão de débito ou crédito, ou cheque;5.07;17.45;11.1;7.16;9.78;20.79
-Telefone celular;5.03;15.54;8.87;6.71;9.75;20.95
-Documentos ou objetos pessoais;7.36;21.89;15.04;10.05;14.92;28.75
-Carro, motocicleta ou bicicleta;9.24;22.06;18.32;11.51;17.25;23.68
-Outro;10.45;25.73;19.37;15.75;28.28;30.07
-Nordeste;3.07;8.04;4.95;4.52;4.78;7.45
-Dinheiro, cartão de débito ou crédito, ou cheque;3.65;9.97;7.63;5.45;6.72;12.03
-Telefone celular;3.34;11.71;5.88;4.73;6.03;9.11
-Documentos ou objetos pessoais;5.42;16.52;10.33;7.94;10.05;16.63
-Carro, motocicleta ou bicicleta;8.85;20.94;18.53;13.5;13.66;22.46
-Outro;6.77;17.1;11.86;10.82;12.12;18.25
-Sudeste;3.09;8.72;6.07;5.07;6.33;8.92
-Dinheiro, cartão de débito ou crédito, ou cheque;3.97;11.88;8.79;6.27;8.44;11.69
-Telefone celular;3.93;12.89;7.82;6.35;8.87;13.14
-Documentos ou objetos pessoais;6.57;20.63;16.01;10.53;14.18;16.66
-Carro, motocicleta ou bicicleta;10.56;34.86;21.82;19.02;24.06;30.7
-Outro;7.44;18.31;14.12;13.77;16.27;20.57
-Sul;4.84;11.22;8.84;8.5;11.13;11.79
-Dinheiro, cartão de débito ou crédito, ou cheque;6.46;16.71;12.91;10.74;15.65;17.79
-Telefone celular;6.41;15.85;13.8;12.32;17.3;17.59
-Documentos ou objetos pessoais;9.55;22.7;21.52;16.12;22.21;22.8
-Carro, motocicleta ou bicicleta;14.16;35.29;24.28;26.47;40.99;61.47
-Outro;8.81;21.31;16.27;14.85;19.02;21.9
-Centro-Oeste;5.24;13.21;9.1;7.97;11.08;14.36
-Dinheiro, cartão de débito ou crédito, ou cheque;7.23;18.28;13.32;11.03;17.18;26.38
-Telefone celular;6.49;17.98;12.48;10.49;15.29;20.56
-Documentos ou objetos pessoais;10.21;29.52;18.05;16.38;23.34;36.28
-Carro, motocicleta ou bicicleta;13.03;36.02;34.1;21.11;32.14;27.41
+﻿;unnamed: 1_level_0;falta de provas;não era importante;não acreditavam na polícia;não queriam envolver a polícia ou medo de represália;outro
+;1.768869295502065;4.643458916873252;3.1438208991859162;2.694973305533619;3.268807523593266;4.890174280777566
+dinheiro, cartão de débito ou crédito, ou cheque;2.24;6.6;4.75;3.43;4.58;7.45
+telefone celular;2.1;6.68;4.0;3.18;4.34;6.68
+documentos ou objetos pessoais;3.35;9.9;7.11;5.1;7.06;9.83
+carro, motocicleta ou bicicleta;4.93;12.96;10.76;7.6;9.28;13.31
+outro;3.88;9.6;7.1;6.52;8.14;10.94
+norte;4.59;12.32;7.47;5.84;7.97;12.42
+dinheiro, cartão de débito ou crédito, ou cheque;5.07;17.45;11.1;7.16;9.78;20.79
+telefone celular;5.03;15.54;8.87;6.71;9.75;20.95
+documentos ou objetos pessoais;7.36;21.89;15.04;10.05;14.92;28.75
+carro, motocicleta ou bicicleta;9.24;22.06;18.32;11.51;17.25;23.68
+outro;10.45;25.73;19.37;15.75;28.28;30.07
+nordeste;3.07;8.04;4.95;4.52;4.78;7.45
+dinheiro, cartão de débito ou crédito, ou cheque;3.65;9.97;7.63;5.45;6.72;12.03
+telefone celular;3.34;11.71;5.88;4.73;6.03;9.11
+documentos ou objetos pessoais;5.42;16.52;10.33;7.94;10.05;16.63
+carro, motocicleta ou bicicleta;8.85;20.94;18.53;13.5;13.66;22.46
+outro;6.77;17.1;11.86;10.82;12.12;18.25
+sudeste;3.09;8.72;6.07;5.07;6.33;8.92
+dinheiro, cartão de débito ou crédito, ou cheque;3.97;11.88;8.79;6.27;8.44;11.69
+telefone celular;3.93;12.89;7.82;6.35;8.87;13.14
+documentos ou objetos pessoais;6.57;20.63;16.01;10.53;14.18;16.66
+carro, motocicleta ou bicicleta;10.56;34.86;21.82;19.02;24.06;30.7
+outro;7.44;18.31;14.12;13.77;16.27;20.57
+sul;4.84;11.22;8.84;8.5;11.13;11.79
+dinheiro, cartão de débito ou crédito, ou cheque;6.46;16.71;12.91;10.74;15.65;17.79
+telefone celular;6.41;15.85;13.8;12.32;17.3;17.59
+documentos ou objetos pessoais;9.55;22.7;21.52;16.12;22.21;22.8
+carro, motocicleta ou bicicleta;14.16;35.29;24.28;26.47;40.99;61.47
+outro;8.81;21.31;16.27;14.85;19.02;21.9
+centro-oeste;5.24;13.21;9.1;7.97;11.08;14.36
+dinheiro, cartão de débito ou crédito, ou cheque;7.23;18.28;13.32;11.03;17.18;26.38
+telefone celular;6.49;17.98;12.48;10.49;15.29;20.56
+documentos ou objetos pessoais;10.21;29.52;18.05;16.38;23.34;36.28
+carro, motocicleta ou bicicleta;13.03;36.02;34.1;21.11;32.14;27.41

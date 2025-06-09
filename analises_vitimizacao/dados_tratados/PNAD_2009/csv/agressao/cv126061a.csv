@@ -1,38 +1,38 @@
-﻿;Total;Procura pela polícia em decorrência da última agressão física;Procura pela polícia em decorrência da última agressão física
-;;Procuraram ;Não procuraram 
-               Brasil;2.18;2.71;2.68
-Situação do domicílio;;;
-Urbana;2.33;2.92;2.82
-Rural;7.28;8.72;8.93
-Grandes Regiões e Unidades da Federação;;;
-Norte;5.08;6.52;6.19
-Rondônia;15.48;16.71;19.74
-Acre;21.99;26.27;25.76
-Amazonas;12.95;16.52;16.5
-Roraima;16.55;22.5;23.68
-Pará;7.58;10.45;8.87
-Amapá;18.56;18.96;24.21
-Tocantins;14.34;15.43;19.23
-Nordeste;4.1;4.94;4.94
-Maranhão;17.52;17.54;21.03
-Piauí;15.4;18.37;18.66
-Ceará;8.67;10.42;10.27
-Rio Grande do Norte;14.77;17.86;16.81
-Paraíba;18.73;26.96;20.55
-Pernambuco;6.58;10.56;7.75
-Alagoas;13.05;19.02;19.52
-Sergipe;20.21;25.58;19.46
-Bahia;6.1;8.75;7.07
-Sudeste;3.93;4.9;4.78
-Minas Gerais;7.32;8.6;9.0
-Espírito Santo;13.89;14.25;17.23
-Rio de Janeiro;8.29;11.41;10.05
-São Paulo;5.81;7.34;7.12
-Sul;4.82;5.99;6.09
-Paraná;7.24;9.67;8.83
-Santa Catarina;11.91;13.37;16.15
-Rio Grande do Sul;7.48;9.12;9.64
-Centro-Oeste;6.2;8.24;6.86
-Mato Grosso do Sul;14.46;15.84;18.21
-Mato Grosso;16.54;22.93;15.05
-Goiás;8.37;11.83;9.36
+﻿;total;procura pela polícia em decorrência da última agressão física;procura pela polícia em decorrência da última agressão física
+;unnamed: 1_level_1;procuraram;não procuraram
+               brasil;2.18;2.71;2.68
+situação do domicílio;;;
+urbana;2.33;2.92;2.82
+rural;7.28;8.72;8.93
+grandes regiões e unidades da federação;;;
+norte;5.08;6.52;6.19
+rondônia;15.48;16.71;19.74
+acre;21.99;26.27;25.76
+amazonas;12.95;16.52;16.5
+roraima;16.55;22.5;23.68
+pará;7.58;10.45;8.87
+amapá;18.56;18.96;24.21
+tocantins;14.34;15.43;19.23
+nordeste;4.1;4.94;4.94
+maranhão;17.52;17.54;21.03
+piauí;15.4;18.37;18.66
+ceará;8.67;10.42;10.27
+rio grande do norte;14.77;17.86;16.81
+paraíba;18.73;26.96;20.55
+pernambuco;6.58;10.56;7.75
+alagoas;13.05;19.02;19.52
+sergipe;20.21;25.58;19.46
+bahia;6.1;8.75;7.07
+sudeste;3.93;4.9;4.78
+minas gerais;7.32;8.6;9.0
+espírito santo;13.89;14.25;17.23
+rio de janeiro;8.29;11.41;10.05
+são paulo;5.81;7.34;7.12
+sul;4.82;5.99;6.09
+paraná;7.24;9.67;8.83
+santa catarina;11.91;13.37;16.15
+rio grande do sul;7.48;9.12;9.64
+centro-oeste;6.2;8.24;6.86
+mato grosso do sul;14.46;15.84;18.21
+mato grosso;16.54;22.93;15.05
+goiás;8.37;11.83;9.36

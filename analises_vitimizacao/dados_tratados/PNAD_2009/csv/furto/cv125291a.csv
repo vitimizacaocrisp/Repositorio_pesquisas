@@ -1,17 +1,17 @@
-﻿Pará;7.41193131675433;11.347208363874659;10.371635015083918;12.460204613819167;18.449351274928272
-Região Metropolitana de Belém;7.314501206667667;13.582504778148957;11.668772913083417;13.585173675938911;14.20316179809981
-Ceará;7.06;9.88;8.02;9.93;11.22
-Região Metropolitana de Fortaleza;4.64;8.33;7.24;9.06;10.07
-Pernambuco;6.01;8.78;9.59;11.14;13.14
-Região Metropolitana de Recife;6.78;10.42;9.53;11.17;14.01
-Bahia;5.71;6.76;7.34;9.74;16.38
-Região Metropolitana de Salvador;5.44;7.65;7.1;9.54;18.91
-Minas Gerais;4.96;5.93;6.77;6.9;11.42
-Região Metropolitana de Belo Horizonte;5.5;9.36;8.66;11.09;18.5
-      Rio de Janeiro;5.69;8.57;8.57;10.0;11.34
-Região Metropolitana do Rio de Janeiro;6.31;9.24;9.21;11.62;12.85
-São Paulo;4.23;5.78;5.68;6.91;7.83
-Região Metropolitana de São Paulo;5.37;7.87;7.1;8.95;11.35
-       Paraná;4.69;7.43;8.95;7.92;10.22
-  Região Metropolitana de Curitiba;6.09;9.09;13.48;11.08;13.64
-      Rio Grande do Sul;5.25;7.51;6.65;9.07;8.3
+﻿;7.41193131675433;11.347208363874659;10.371635015083918;12.460204613819167;18.449351274928272
+;7.314501206667667;13.582504778148957;11.668772913083417;13.585173675938911;14.20316179809981
+ceará;7.06;9.88;8.02;9.93;11.22
+região metropolitana de fortaleza;4.64;8.33;7.24;9.06;10.07
+pernambuco;6.01;8.78;9.59;11.14;13.14
+região metropolitana de recife;6.78;10.42;9.53;11.17;14.01
+bahia;5.71;6.76;7.34;9.74;16.38
+região metropolitana de salvador;5.44;7.65;7.1;9.54;18.91
+minas gerais;4.96;5.93;6.77;6.9;11.42
+região metropolitana de belo horizonte;5.5;9.36;8.66;11.09;18.5
+      rio de janeiro;5.69;8.57;8.57;10.0;11.34
+região metropolitana do rio de janeiro;6.31;9.24;9.21;11.62;12.85
+são paulo;4.23;5.78;5.68;6.91;7.83
+região metropolitana de são paulo;5.37;7.87;7.1;8.95;11.35
+       paraná;4.69;7.43;8.95;7.92;10.22
+  região metropolitana de curitiba;6.09;9.09;13.48;11.08;13.64
+      rio grande do sul;5.25;7.51;6.65;9.07;8.3

@@ -1,19 +1,19 @@
-﻿Pará;3838.784;2902.542;2185.625;64.79573846570113;48.99268943439202;36.89167868890202
-Região Metropolitana de Belém;1041.708;503.568;257.514;59.0389482907344;28.539787649579868;14.594642385524715
-Ceará;5413.14;4377.24;3091.75;75.78;61.28;43.28
-Região Metropolitana de Fortaleza;2085.41;1347.19;750.4;69.26;44.74;24.92
-Pernambuco;5845.26;4816.59;3743.14;79.84;65.79;51.13
-Região Metropolitana de Recife;2404.78;1684.67;982.8;74.52;52.2;30.45
-Bahia;9895.67;8409.41;6656.61;80.53;68.44;54.17
-Região Metropolitana de Salvador;2513.85;1653.06;800.95;77.4;50.89;24.66
-Minas Gerais;13718.45;12108.87;10387.25;79.15;69.86;59.93
-Região Metropolitana de Belo Horizonte;3466.24;2628.75;1896.3;78.07;59.21;42.71
-      Rio de Janeiro;11057.44;9038.81;5861.62;79.72;65.16;42.26
-Região Metropolitana do Rio de Janeiro;7928.94;6184.65;3442.85;77.88;60.74;33.81
-São Paulo;28127.38;24204.67;18185.86;78.97;67.96;51.06
-Região Metropolitana de São Paulo;12898.48;10138.15;5926.54;76.13;59.84;34.98
-       Paraná;7203.64;6187.11;5050.19;78.3;67.25;54.89
-  Região Metropolitana de Curitiba;2099.19;1542.32;1134.53;74.36;54.63;40.19
-      Rio Grande do Sul;7950.17;7018.41;5813.71;83.98;74.14;61.41
-        Região Metropolitana de Porto Alegre;2810.38;2105.96;1470.52;80.42;60.26;42.08
-Fonte: IBGE, Diretoria de Pesquisas, Coordenação de Trabalho e Rendimento, Pesquisa Nacional por Amostra de Domicílios 2009.;;;;;;
+﻿;3838.784;2902.542;2185.625;64.79573846570113;48.99268943439202;36.89167868890202
+;1041.708;503.568;257.514;59.0389482907344;28.539787649579868;14.594642385524715
+ceará;5413.14;4377.24;3091.75;75.78;61.28;43.28
+região metropolitana de fortaleza;2085.41;1347.19;750.4;69.26;44.74;24.92
+pernambuco;5845.26;4816.59;3743.14;79.84;65.79;51.13
+região metropolitana de recife;2404.78;1684.67;982.8;74.52;52.2;30.45
+bahia;9895.67;8409.41;6656.61;80.53;68.44;54.17
+região metropolitana de salvador;2513.85;1653.06;800.95;77.4;50.89;24.66
+minas gerais;13718.45;12108.87;10387.25;79.15;69.86;59.93
+região metropolitana de belo horizonte;3466.24;2628.75;1896.3;78.07;59.21;42.71
+      rio de janeiro;11057.44;9038.81;5861.62;79.72;65.16;42.26
+região metropolitana do rio de janeiro;7928.94;6184.65;3442.85;77.88;60.74;33.81
+são paulo;28127.38;24204.67;18185.86;78.97;67.96;51.06
+região metropolitana de são paulo;12898.48;10138.15;5926.54;76.13;59.84;34.98
+       paraná;7203.64;6187.11;5050.19;78.3;67.25;54.89
+  região metropolitana de curitiba;2099.19;1542.32;1134.53;74.36;54.63;40.19
+      rio grande do sul;7950.17;7018.41;5813.71;83.98;74.14;61.41
+        região metropolitana de porto alegre;2810.38;2105.96;1470.52;80.42;60.26;42.08
+fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;

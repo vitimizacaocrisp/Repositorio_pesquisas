@@ -1,12 +1,11 @@
-﻿;Unnamed: 1_level_0;Economicamente ativas;Economicamente ativas;Economicamente ativas;"Não economicamente
- ativas"
-;;Total;Condição de ocupação na semana de referência;Condição de ocupação na semana de referência.1;Unnamed: 5_level_1
-               Brasil;2.18;2.31;2.4;5.2;3.4
-Situação do domicílio;;;;;
-Urbana;2.33;2.52;2.61;5.46;3.5
-Rural;7.28;7.11;7.06;23.09;11.57
-Grandes Regiões;;;;;
-Norte;5.08;5.81;6.03;13.37;7.35
-Nordeste;4.1;4.03;4.23;8.15;6.2
-Sudeste;3.93;4.27;4.5;9.23;6.26
-Sul;4.82;5.55;5.63;13.56;7.79
+﻿;unnamed: 1_level_0;economicamente ativas;economicamente ativas;economicamente ativas;não economicamente ativas
+;unnamed: 1_level_1;total;condição de ocupação na semana de referência;condição de ocupação na semana de referência.1;unnamed: 5_level_1
+               brasil;2.182154660674005;2.305850875732986;2.3988530087633135;5.200567275464455;3.397931654982427
+situação do domicílio;;;;;
+urbana;2.3348449611084185;2.5166401795357776;2.6075715747562382;5.45879096925257;3.498931729003211
+rural;7.283757878245127;7.112170382466702;7.0628142026542955;23.09112801031258;11.574931002129356
+grandes regiões;;;;;
+norte;5.076348988365006;5.8086078216905745;6.031339713941565;13.373515154775724;7.348698090398134
+nordeste;4.101055219049027;4.025614331679859;4.226860341242705;8.1466482332498;6.196289831802927
+sudeste;3.9250985394308;4.266106415141097;4.5001256725210395;9.230284097013932;6.2608312233324455
+sul;4.822497614550128;5.552280396232995;5.625326711490674;13.560161856299812;7.7948541745879325

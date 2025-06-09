@@ -1,49 +1,49 @@
-﻿;Unnamed: 1_level_0;Própria residência ;Via pública;Outro
-Brasil (1);100.0;25.44933466076451;47.997923314712864;26.55274202452263
-Sem instrução;100;37.1;44.02;18.87
-Fundamental incompleto ou equivalente;100;24.79;45.12;30.09
-Fundamental completo ou equivalente;100;23.75;51.55;24.69
-Médio incompleto ou equivalente;100;19.76;52.77;27.48
-Médio completo ou equivalente;100;27.61;48.68;23.71
-Superior incompleto ou equivalente;100;19.5;56.1;24.4
-Superior completo ou equivalente;100;22.17;54.8;23.03
-Norte (1);100;23.7;52.42;23.87
-Sem instrução;100;44.71;32.91;22.38
-Fundamental incompleto ou equivalente;100;19.85;54.99;25.16
-Fundamental completo ou equivalente;100;27.45;49.68;22.88
-Médio incompleto ou equivalente;100;19.14;54.86;26.01
-Médio completo ou equivalente;100;24.66;54.83;20.5
-Superior incompleto ou equivalente;100;22.47;58.63;18.9
-Superior completo ou equivalente;100;30.01;35.19;34.8
-Nordeste (1);100;26.92;49.27;23.82
-Sem instrução;100;37.33;42.44;20.23
-Fundamental incompleto ou equivalente;100;26.68;46.67;26.65
-Fundamental completo ou equivalente;100;24.38;54.44;21.18
-Médio incompleto ou equivalente;100;19.93;58.12;21.95
-Médio completo ou equivalente;100;27.4;53.37;19.22
-Superior incompleto ou equivalente;100;15.41;54.73;29.86
-Superior completo ou equivalente;100;18.91;52.44;28.65
-Sudeste (1);100;24.68;47.87;27.45
-Sem instrução;100;33.54;53.95;12.51
-Fundamental incompleto ou equivalente;100;23.98;44.65;31.37
-Fundamental completo ou equivalente;100;23.95;47.7;28.35
-Médio incompleto ou equivalente;100;20.3;48.14;31.56
-Médio completo ou equivalente;100;30.55;44.34;25.11
-Superior incompleto ou equivalente;100;13.73;64.79;21.48
-Superior completo ou equivalente;100;19.11;61.11;19.77
-Sul (1);100;24.23;46.0;29.77
-Sem instrução;100;38.69;35.61;25.7
-Fundamental incompleto ou equivalente;100;25.03;41.39;33.58
-Fundamental completo ou equivalente;100;18.12;59.85;22.03
-Médio incompleto ou equivalente;100;19.25;51.07;29.68
-Médio completo ou equivalente;100;22.05;48.26;29.69
-Superior incompleto ou equivalente;100;38.98;35.71;25.31
-Superior completo ou equivalente;100;23.13;52.18;24.69
-Centro-Oeste (1);100;27.41;41.3;31.29
-Sem instrução;100;36.4;46.82;16.78
-Fundamental incompleto ou equivalente;100;25.41;34.66;39.94
-Fundamental completo ou equivalente;100;28.91;47.63;23.46
-Médio incompleto ou equivalente;100;17.92;57.81;24.27
-Médio completo ou equivalente;100;26.56;48.04;25.39
-Superior incompleto ou equivalente;100;36.94;26.06;37.0
-Superior completo ou equivalente;100;42.94;38.36;18.71
+﻿;unnamed: 1_level_0;própria residência;via pública;outro
+;100.0;25.44933466076451;47.997923314712864;26.55274202452263
+sem instrução;100;37.1;44.02;18.87
+fundamental incompleto ou equivalente;100;24.79;45.12;30.09
+fundamental completo ou equivalente;100;23.75;51.55;24.69
+médio incompleto ou equivalente;100;19.76;52.77;27.48
+médio completo ou equivalente;100;27.61;48.68;23.71
+superior incompleto ou equivalente;100;19.5;56.1;24.4
+superior completo ou equivalente;100;22.17;54.8;23.03
+norte (1);100;23.7;52.42;23.87
+sem instrução;100;44.71;32.91;22.38
+fundamental incompleto ou equivalente;100;19.85;54.99;25.16
+fundamental completo ou equivalente;100;27.45;49.68;22.88
+médio incompleto ou equivalente;100;19.14;54.86;26.01
+médio completo ou equivalente;100;24.66;54.83;20.5
+superior incompleto ou equivalente;100;22.47;58.63;18.9
+superior completo ou equivalente;100;30.01;35.19;34.8
+nordeste (1);100;26.92;49.27;23.82
+sem instrução;100;37.33;42.44;20.23
+fundamental incompleto ou equivalente;100;26.68;46.67;26.65
+fundamental completo ou equivalente;100;24.38;54.44;21.18
+médio incompleto ou equivalente;100;19.93;58.12;21.95
+médio completo ou equivalente;100;27.4;53.37;19.22
+superior incompleto ou equivalente;100;15.41;54.73;29.86
+superior completo ou equivalente;100;18.91;52.44;28.65
+sudeste (1);100;24.68;47.87;27.45
+sem instrução;100;33.54;53.95;12.51
+fundamental incompleto ou equivalente;100;23.98;44.65;31.37
+fundamental completo ou equivalente;100;23.95;47.7;28.35
+médio incompleto ou equivalente;100;20.3;48.14;31.56
+médio completo ou equivalente;100;30.55;44.34;25.11
+superior incompleto ou equivalente;100;13.73;64.79;21.48
+superior completo ou equivalente;100;19.11;61.11;19.77
+sul (1);100;24.23;46.0;29.77
+sem instrução;100;38.69;35.61;25.7
+fundamental incompleto ou equivalente;100;25.03;41.39;33.58
+fundamental completo ou equivalente;100;18.12;59.85;22.03
+médio incompleto ou equivalente;100;19.25;51.07;29.68
+médio completo ou equivalente;100;22.05;48.26;29.69
+superior incompleto ou equivalente;100;38.98;35.71;25.31
+superior completo ou equivalente;100;23.13;52.18;24.69
+centro-oeste (1);100;27.41;41.3;31.29
+sem instrução;100;36.4;46.82;16.78
+fundamental incompleto ou equivalente;100;25.41;34.66;39.94
+fundamental completo ou equivalente;100;28.91;47.63;23.46
+médio incompleto ou equivalente;100;17.92;57.81;24.27
+médio completo ou equivalente;100;26.56;48.04;25.39
+superior incompleto ou equivalente;100;36.94;26.06;37.0
+superior completo ou equivalente;100;42.94;38.36;18.71

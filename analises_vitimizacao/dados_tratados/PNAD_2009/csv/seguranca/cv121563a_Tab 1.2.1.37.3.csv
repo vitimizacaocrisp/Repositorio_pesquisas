@@ -1,19 +1,19 @@
-﻿;Unnamed: 1_level_0;Menos de 1/4 ;1/4 a menos de 1/2 ;1/2 a menos de 1 ;1 a menos de 2;2 ou mais ;Sem rendimento (2)
-Pará;64.72027186819284;62.48045868989636;61.73043838199463;64.54810899601424;67.7433556454669;71.85382645475026;59.70908088171932
-Região Metropolitana de Belém;58.98;47.21;51.26;58.66;63.86;71.39;52.81
-Ceará;75.76;76.93;75.94;75.03;74.95;77.28;68.9
-Região Metropolitana de Fortaleza;69.12;61.31;67.1;68.26;71.78;77.0;70.37
-Pernambuco;79.83;78.52;80.75;79.44;80.4;80.4;72.31
-Região Metropolitana de Recife;74.51;68.68;71.85;74.14;78.04;78.13;73.99
-Bahia;80.53;79.54;80.63;81.15;80.6;81.0;80.2
-Região Metropolitana de Salvador;77.37;69.38;75.2;77.61;80.14;80.18;67.48
-Minas Gerais;79.12;76.81;78.32;79.39;78.6;80.95;79.29
-Região Metropolitana de Belo Horizonte;78.03;68.65;76.36;77.95;76.7;81.66;80.2
-      Rio de Janeiro;79.75;77.67;79.36;79.7;80.48;79.73;71.21
-Região Metropolitana do Rio de Janeiro;77.91;74.27;75.78;77.08;78.8;79.11;69.19
-São Paulo;78.95;78.65;77.51;78.13;79.07;81.62;71.08
-Região Metropolitana de São Paulo;76.1;76.41;73.91;75.35;76.54;78.92;66.3
-       Paraná;78.27;81.71;79.21;77.71;77.27;79.17;76.85
-  Região Metropolitana de Curitiba;74.28;69.64;75.08;70.81;74.27;76.96;73.69
-      Rio Grande do Sul;83.94;83.7;86.2;84.2;83.94;82.75;86.52
-        Região Metropolitana de Porto Alegre;80.38;77.83;79.93;80.48;79.24;82.49;78.82
+﻿;unnamed: 1_level_0;menos de 1/4;1/4 a menos de 1/2;1/2 a menos de 1;1 a menos de 2;2 ou mais;sem rendimento (2)
+;64.72027186819284;62.48045868989636;61.73043838199463;64.54810899601424;67.7433556454669;71.85382645475026;59.70908088171932
+região metropolitana de belém;58.98;47.21;51.26;58.66;63.86;71.39;52.81
+ceará;75.76;76.93;75.94;75.03;74.95;77.28;68.9
+região metropolitana de fortaleza;69.12;61.31;67.1;68.26;71.78;77.0;70.37
+pernambuco;79.83;78.52;80.75;79.44;80.4;80.4;72.31
+região metropolitana de recife;74.51;68.68;71.85;74.14;78.04;78.13;73.99
+bahia;80.53;79.54;80.63;81.15;80.6;81.0;80.2
+região metropolitana de salvador;77.37;69.38;75.2;77.61;80.14;80.18;67.48
+minas gerais;79.12;76.81;78.32;79.39;78.6;80.95;79.29
+região metropolitana de belo horizonte;78.03;68.65;76.36;77.95;76.7;81.66;80.2
+      rio de janeiro;79.75;77.67;79.36;79.7;80.48;79.73;71.21
+região metropolitana do rio de janeiro;77.91;74.27;75.78;77.08;78.8;79.11;69.19
+são paulo;78.95;78.65;77.51;78.13;79.07;81.62;71.08
+região metropolitana de são paulo;76.1;76.41;73.91;75.35;76.54;78.92;66.3
+       paraná;78.27;81.71;79.21;77.71;77.27;79.17;76.85
+  região metropolitana de curitiba;74.28;69.64;75.08;70.81;74.27;76.96;73.69
+      rio grande do sul;83.94;83.7;86.2;84.2;83.94;82.75;86.52
+        região metropolitana de porto alegre;80.38;77.83;79.93;80.48;79.24;82.49;78.82

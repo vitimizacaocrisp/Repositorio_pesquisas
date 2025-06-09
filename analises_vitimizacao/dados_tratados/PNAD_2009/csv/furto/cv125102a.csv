@@ -1,36 +1,34 @@
-﻿;Total;Local de ocorrência do último furto;Local de ocorrência do último furto;Local de ocorrência do último furto;Local de ocorrência do último furto;Local de ocorrência do último furto
-;;"Própria residência
-ou de terceiros";Estabelecimento comercial;Via pública;"Transporte
-coletivo";Outro
-Total (1)(2);0.0;1.23;2.71;1.94;4.66;3.29
-Sexo;;;;;;
-Homens;0.0;1.57;3.35;2.22;7.13;4.19
-Mulheres;0.0;1.57;4.19;2.91;5.73;4.77
-Cor ou raça;;;;;;
-Branca;0.0;1.83;3.71;2.58;7.09;4.91
-Preta ou parda;0.0;1.44;4.02;2.52;5.99;4.06
-Preta;0.0;3.5;9.52;5.69;13.81;10.89
-Parda;0.0;1.57;4.26;2.79;6.57;4.42
-Grupos de idade;;;;;;
+﻿;total;local de ocorrência do último furto;local de ocorrência do último furto;local de ocorrência do último furto;local de ocorrência do último furto;local de ocorrência do último furto
+;unnamed: 1_level_1;própria residênciaou de terceiros;estabelecimento comercial;via pública;transportecoletivo;outro
+total (1)(2);0.0;1.23;2.71;1.94;4.66;3.29
+sexo;;;;;;
+homens;0.0;1.57;3.35;2.22;7.13;4.19
+mulheres;0.0;1.57;4.19;2.91;5.73;4.77
+cor ou raça;;;;;;
+branca;0.0;1.83;3.71;2.58;7.09;4.91
+preta ou parda;0.0;1.44;4.02;2.52;5.99;4.06
+preta;0.0;3.5;9.52;5.69;13.81;10.89
+parda;0.0;1.57;4.26;2.79;6.57;4.42
+grupos de idade;;;;;;
 10 a 24 anos;0.0;3.11;5.44;3.02;7.76;4.12
 25 a 34 anos;0.0;2.47;5.5;3.25;9.55;7.9
 35 a 39 anos;0.0;2.77;7.82;5.44;14.9;12.9
 40 a 49 anos;0.0;2.25;5.59;4.13;10.87;8.32
 50 anos ou mais;0.0;1.66;5.57;3.91;9.32;8.41
-Nível de instrução;;;;;;
-Sem instrução;0.0;2.25;12.78;8.0;21.14;13.85
-Fundamental incompleto ou equivalente;0.0;1.69;5.15;3.87;8.33;5.2
-Fundamental completo ou equivalente;0.0;3.28;7.48;5.33;13.09;9.92
-Médio incompleto ou equivalente;0.0;4.2;8.65;5.03;13.94;9.64
-Médio completo ou equivalente;0.0;2.38;4.69;3.12;8.2;7.31
-Superior incompleto ou equivalente;0.0;5.58;9.85;4.97;11.68;12.71
-Superior completo ou equivalente;0.0;4.03;7.46;4.24;14.64;9.14
-Classes de rendimento mensal domiciliar per capita;;;;;;
-Total (3)(4);0.0;1.24;2.7;1.95;4.68;3.29
-Sem rendimento a menos de 1/4 do salário mínimo (3) (5);0.0;2.81;16.32;9.03;20.97;12.18
+nível de instrução;;;;;;
+sem instrução;0.0;2.25;12.78;8.0;21.14;13.85
+fundamental incompleto ou equivalente;0.0;1.69;5.15;3.87;8.33;5.2
+fundamental completo ou equivalente;0.0;3.28;7.48;5.33;13.09;9.92
+médio incompleto ou equivalente;0.0;4.2;8.65;5.03;13.94;9.64
+médio completo ou equivalente;0.0;2.38;4.69;3.12;8.2;7.31
+superior incompleto ou equivalente;0.0;5.58;9.85;4.97;11.68;12.71
+superior completo ou equivalente;0.0;4.03;7.46;4.24;14.64;9.14
+classes de rendimento mensal domiciliar per capita;;;;;;
+total (3)(4);0.0;1.24;2.7;1.95;4.68;3.29
+sem rendimento a menos de 1/4 do salário mínimo (3) (5);0.0;2.81;16.32;9.03;20.97;12.18
 1/4 a menos de 1/2 salário mínimo (3);0.0;2.57;8.26;5.05;12.56;9.06
 1/2 a menos de 1 salário mínimo (3);0.0;2.19;5.29;3.52;8.86;5.78
 1 a menos de 2 salários mínimos (3) ;0.0;2.07;4.93;3.48;7.72;6.11
 2 salários mínimos ou mais (3) ;0.0;2.65;4.82;3.18;9.4;6.71
-Fonte: IBGE, Diretoria de Pesquisas, Coordenação de Trabalho e Rendimento, Pesquisa Nacional por Amostra de Domicílios 2009.;;;;;;
-(1) Inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) Inclusive as pessoas com nível de instrução não determinado. (3) Ex-;;;;;;
+fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;
+(1) inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) inclusive as pessoas com nível de instrução não determinado. (3) ex-;;;;;;

@@ -1,37 +1,35 @@
-﻿;Total;Agressor na última agressão física;Agressor na última agressão física;Agressor na última agressão física;Agressor na última agressão física;Agressor na última agressão física
-;;Pessoa desconhecida;"Policial ou segurança
- privada";Cônjuge ou ex-cônjuge;Parente;"Pessoa
-conhecida"
-Total (1)(2);2.18;2.88;8.01;4.81;6.09;3.4
-Sexo;;;;;;
-Homens;2.52;3.19;8.6;15.95;8.69;3.84
-Mulheres;2.75;4.64;18.61;4.88;7.13;4.88
-Cor ou raça;;;;;;
-Branca;2.92;4.32;13.31;7.61;10.07;5.08
-Preta ou parda;2.66;3.47;9.54;6.03;7.09;4.1
-Preta;6.03;7.94;22.16;13.09;14.05;9.07
-Parda;2.75;3.84;10.13;6.78;8.06;4.42
-Grupos de idade;;;;;;
+﻿;total;agressor na última agressão física;agressor na última agressão física;agressor na última agressão física;agressor na última agressão física;agressor na última agressão física
+;unnamed: 1_level_1;pessoa desconhecida;policial ou segurança privada;cônjuge ou ex-cônjuge;parente;pessoaconhecida
+total (1)(2);2.18;2.88;8.01;4.81;6.09;3.4
+sexo;;;;;;
+homens;2.52;3.19;8.6;15.95;8.69;3.84
+mulheres;2.75;4.64;18.61;4.88;7.13;4.88
+cor ou raça;;;;;;
+branca;2.92;4.32;13.31;7.61;10.07;5.08
+preta ou parda;2.66;3.47;9.54;6.03;7.09;4.1
+preta;6.03;7.94;22.16;13.09;14.05;9.07
+parda;2.75;3.84;10.13;6.78;8.06;4.42
+grupos de idade;;;;;;
 10 a 24 anos;2.98;4.24;11.61;9.07;10.66;4.18
 25 a 34 anos;3.5;5.47;14.54;7.11;11.12;6.19
 35 a 39 anos;5.56;8.4;27.27;12.05;19.3;9.67
 40 a 49 anos;4.49;6.57;19.73;11.38;14.56;8.63
 50 anos ou mais;4.24;5.96;25.72;14.87;12.98;8.24
-Nível de instrução;;;;;;
-Sem instrução;5.94;8.58;29.53;14.94;13.93;9.72
-Fundamental incompleto ou equivalente;2.79;4.27;10.93;7.22;8.8;4.05
-Fundamental completo ou equivalente;4.99;7.42;18.56;12.51;15.32;8.61
-Médio incompleto ou equivalente;5.52;7.65;29.22;14.99;18.93;9.83
-Médio completo ou equivalente;4.0;5.38;18.5;8.99;15.28;7.78
-Superior incompleto ou equivalente;8.61;11.52;37.3;24.83;29.16;19.24
-Superior completo ou equivalente;7.53;9.5;41.91;27.29;31.24;16.06
-Classes de rendimento mensal domiciliar per capita;;;;;;
-Total (3)(4);2.19;2.89;8.02;4.82;6.09;3.41
-Sem rendimento a menos ;;;;;;
+nível de instrução;;;;;;
+sem instrução;5.94;8.58;29.53;14.94;13.93;9.72
+fundamental incompleto ou equivalente;2.79;4.27;10.93;7.22;8.8;4.05
+fundamental completo ou equivalente;4.99;7.42;18.56;12.51;15.32;8.61
+médio incompleto ou equivalente;5.52;7.65;29.22;14.99;18.93;9.83
+médio completo ou equivalente;4.0;5.38;18.5;8.99;15.28;7.78
+superior incompleto ou equivalente;8.61;11.52;37.3;24.83;29.16;19.24
+superior completo ou equivalente;7.53;9.5;41.91;27.29;31.24;16.06
+classes de rendimento mensal domiciliar per capita;;;;;;
+total (3)(4);2.19;2.89;8.02;4.82;6.09;3.41
+sem rendimento a menos ;;;;;;
 de 1/4 do salário mínimo (3)(5);5.28;7.84;18.81;9.54;14.03;7.81
 1/4 a menos de 1/2 salário mínimo (3);4.23;6.68;15.43;8.67;11.9;6.49
 1/2 a menos de 1 salário mínimo (3);3.7;5.25;14.2;8.97;10.67;5.24
 1 a menos de 2 salários mínimos (3) ;3.68;5.31;16.04;10.39;12.46;6.8
 2 salários mínimos ou mais (3) ;5.35;6.51;24.37;19.59;20.61;10.08
-Fonte: IBGE, Diretoria de Pesquisas, Coordenação de Trabalho e Rendimento, Pesquisa Nacional por Amostra de Domicílios 2009.;;;;;;
-(1) Inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) Inclusive as pessoas com nível de instrução não determinado. (3) Ex-;;;;;;
+fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;
+(1) inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) inclusive as pessoas com nível de instrução não determinado. (3) ex-;;;;;;

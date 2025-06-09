@@ -1,18 +1,18 @@
-﻿;Unnamed: 1_level_0;Empregados;Trabalhadores domésticos;Conta própria;Empregadores ;Outra
-Pará;6.9786552968562745;7.861500402331332;12.128873691282738;10.489816975555815;14.16018567457497;20.598261910978664
-Região Metropolitana de Belém;4.92;5.96;12.99;8.03;21.49;27.0
-Ceará;5.0;5.81;12.28;8.07;14.54;19.34
-Região Metropolitana de Fortaleza;4.41;5.32;12.3;7.55;17.02;21.93
-Pernambuco;6.27;6.84;16.11;10.95;20.8;21.82
-Região Metropolitana de Recife;6.0;6.84;16.14;11.09;24.98;48.7
-Bahia;5.56;6.11;12.2;8.26;13.91;21.4
-Região Metropolitana de Salvador;4.93;5.65;14.04;8.82;19.03;24.6
-Minas Gerais;5.47;6.12;16.67;7.55;12.51;18.17
-Região Metropolitana de Belo Horizonte;6.98;7.54;22.69;12.83;21.09;34.81
-      Rio de Janeiro;4.76;5.27;14.45;8.25;15.23;33.04
-Região Metropolitana do Rio de Janeiro;5.3;5.85;15.37;8.92;17.71;34.94
-São Paulo;3.81;4.06;11.53;6.97;11.88;24.55
-Região Metropolitana de São Paulo;4.3;4.74;16.92;9.11;16.37;34.24
-       Paraná;4.83;5.94;16.22;8.18;13.59;20.67
-  Região Metropolitana de Curitiba;5.74;6.7;23.02;10.73;17.06;37.62
-      Rio Grande do Sul;4.56;6.05;12.47;8.08;10.13;21.72
+﻿;unnamed: 1_level_0;empregados;trabalhadores domésticos;conta própria;empregadores;outra
+;6.9786552968562745;7.861500402331332;12.128873691282738;10.489816975555815;14.16018567457497;20.598261910978664
+região metropolitana de belém;4.92;5.96;12.99;8.03;21.49;27.0
+ceará;5.0;5.81;12.28;8.07;14.54;19.34
+região metropolitana de fortaleza;4.41;5.32;12.3;7.55;17.02;21.93
+pernambuco;6.27;6.84;16.11;10.95;20.8;21.82
+região metropolitana de recife;6.0;6.84;16.14;11.09;24.98;48.7
+bahia;5.56;6.11;12.2;8.26;13.91;21.4
+região metropolitana de salvador;4.93;5.65;14.04;8.82;19.03;24.6
+minas gerais;5.47;6.12;16.67;7.55;12.51;18.17
+região metropolitana de belo horizonte;6.98;7.54;22.69;12.83;21.09;34.81
+      rio de janeiro;4.76;5.27;14.45;8.25;15.23;33.04
+região metropolitana do rio de janeiro;5.3;5.85;15.37;8.92;17.71;34.94
+são paulo;3.81;4.06;11.53;6.97;11.88;24.55
+região metropolitana de são paulo;4.3;4.74;16.92;9.11;16.37;34.24
+       paraná;4.83;5.94;16.22;8.18;13.59;20.67
+  região metropolitana de curitiba;5.74;6.7;23.02;10.73;17.06;37.62
+      rio grande do sul;4.56;6.05;12.47;8.08;10.13;21.72

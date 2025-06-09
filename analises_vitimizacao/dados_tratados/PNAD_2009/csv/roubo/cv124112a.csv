@@ -1,37 +1,34 @@
-﻿"Sexo, cor ou raça,
-grupos de idade, nível de instrução 
-e classes de rendimento
-mensal domiciliar per capita";Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%)
-;Total;Motivo de não terem procurado a polícia em decorrência do último roubo;Motivo de não terem procurado a polícia em decorrência do último roubo.1;Motivo de não terem procurado a polícia em decorrência do último roubo.2;Motivo de não terem procurado a polícia em decorrência do último roubo.3;Motivo de não terem procurado a polícia em decorrência do último roubo.4
-Total (1)(2);0.0;4.21;2.64;1.95;2.84;4.62
-Sexo;;;;;;
-Homens;0.0;5.11;3.39;2.6;3.8;6.08
-Mulheres;0.0;5.98;3.72;2.6;4.06;6.4
-Cor ou raça;;;;;;
-Branca;0.0;5.73;3.94;2.94;4.78;6.92
-Preta ou parda;0.0;5.71;3.37;2.48;3.47;5.79
-Preta;0.0;11.59;8.25;6.02;8.47;12.73
-Parda;0.0;6.27;3.61;2.62;3.7;6.46
-Grupos de idade;;;;;;
-10 a 24 anos;0.0;6.51;3.75;2.97;4.39;6.74
-25 a 34 anos;0.0;8.62;5.04;3.52;5.73;9.39
-35 a 39 anos;0.0;12.91;8.88;5.76;9.96;14.27
-40 a 49 anos;0.0;10.04;6.93;4.52;7.65;13.07
-50 anos ou mais;0.0;8.45;6.83;4.64;6.67;10.23
-Nível de instrução;;;;;;
-Sem instrução;0.0;13.75;13.33;8.57;9.85;16.73
-Fundamental incompleto ou equivalente;0.0;6.34;4.67;3.59;4.88;8.19
-Fundamental completo ou equivalente;0.0;11.74;7.65;5.23;7.77;13.44
-Médio incompleto ou equivalente;0.0;11.69;6.4;4.9;7.05;12.08
-Médio completo ou equivalente;0.0;8.02;4.42;3.24;5.6;8.34
-Superior incompleto ou equivalente;0.0;15.06;8.67;6.63;12.85;16.79
-Superior completo ou equivalente;0.0;17.2;9.44;6.87;13.38;13.41
-Classes de rendimento mensal domiciliar per capita;;;;;;
-Total (3)(4);0.0;4.23;2.64;1.96;2.85;4.64
-Sem rendimento a menos de 1/4 do salário mínimo (3) (5);0.0;11.71;10.46;5.41;8.32;15.46
-1/4 a menos de 1/2 salário mínimo (3);0.0;9.14;6.38;4.61;5.64;10.8
-1/2 a menos de 1 salário mínimo (3);0.0;7.28;4.7;3.73;4.93;9.09
-1 a menos de 2 salários mínimos (3) ;0.0;8.1;4.57;3.78;5.82;8.41
-2 salários mínimos ou mais (3) ;0.0;8.88;5.91;4.26;8.46;9.33
-Fonte: IBGE, Diretoria de Pesquisas, Coordenação de Trabalho e Rendimento, Pesquisa Nacional por Amostra de Domicílios 2009.;;;;;;
-(1) Inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) Inclusive as pessoas com nível de instrução não determinado. (3) Ex-;;;;;;
+﻿;coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último roubo que foram vítimas, no período de referência de 365 dias (%)
+;total;motivo de não terem procurado a polícia em decorrência do último roubo;motivo de não terem procurado a polícia em decorrência do último roubo.1;motivo de não terem procurado a polícia em decorrência do último roubo.2;motivo de não terem procurado a polícia em decorrência do último roubo.3;motivo de não terem procurado a polícia em decorrência do último roubo.4
+total (1)(2);0.0;4.212800105155133;2.6350012237333327;1.9518543234119992;2.838887807342168;4.624632123611441
+sexo;;;;;;
+homens;0.0;5.10572950074503;3.3921406866529016;2.5955249146704267;3.8015199624450053;6.080495728501765
+mulheres;0.0;5.976035449443504;3.717758752778127;2.6024289797378524;4.062545578680676;6.403746462083348
+cor ou raça;;;;;;
+branca;0.0;5.726065832786598;3.939974055301707;2.9383396591393245;4.7783229356625885;6.922629892138545
+preta ou parda;0.0;5.705446586612587;3.372393094285793;2.475324705729576;3.4707925341973813;5.787911953506636
+preta;0.0;11.594204203852861;8.254530162702418;6.020645937615219;8.472887156131044;12.728697149187944
+parda;0.0;6.269788609528693;3.611151093744206;2.6208570626646153;3.7048805684565296;6.455475564808933
+grupos de idade;;;;;;
+10 a 24 anos;0.0;6.512351399680265;3.745550271173594;2.9699552595994994;4.394125690378891;6.744170318686604
+25 a 34 anos;0.0;8.617844902262037;5.0374680806231655;3.523781822775497;5.727643083251569;9.393881301644262
+35 a 39 anos;0.0;12.912275281742277;8.877088725297837;5.760457042673352;9.956089404303633;14.274336627308204
+40 a 49 anos;0.0;10.038615989487335;6.934886081310327;4.517776043263018;7.645523494819397;13.065423920463566
+50 anos ou mais;0.0;8.446764596621506;6.827322627645295;4.636796862814598;6.674058136258643;10.234428288432854
+nível de instrução;;;;;;
+sem instrução;0.0;13.754399576946911;13.327949132820374;8.568556187260329;9.851259494434519;16.731733305484006
+fundamental incompleto ou equivalente;0.0;6.337282548281007;4.6662777521366205;3.5870235408643927;4.877425230356435;8.194365027673522
+fundamental completo ou equivalente;0.0;11.741680470595846;7.6536757345027535;5.22962705758344;7.769137384681653;13.443516211136917
+médio incompleto ou equivalente;0.0;11.693170652440525;6.401524844937679;4.895246003140828;7.052949928265715;12.084750059522406
+médio completo ou equivalente;0.0;8.018584491046074;4.418447300527082;3.2378405187086203;5.604293695193507;8.336675918460278
+superior incompleto ou equivalente;0.0;15.059080405314193;8.671496447839361;6.632862385581006;12.852244389058525;16.7921570772392
+superior completo ou equivalente;0.0;17.19988235328317;9.43566541459598;6.871321971186088;13.378569417452036;13.410103614930891
+classes de rendimento mensal domiciliar per capita;;;;;;
+total (3)(4);0.0;4.229274194575787;2.6414239758160116;1.9641827351048105;2.847862094175835;4.637764564074551
+sem rendimento a menos de 1/4 do salário mínimo (3) (5);0.0;11.705889940208085;10.46138064628093;5.410321809420506;8.318024315393188;15.462898279954967
+1/4 a menos de 1/2 salário mínimo (3);0.0;9.137900997593514;6.378427299373929;4.613287576433751;5.6401976215028595;10.798666035992975
+1/2 a menos de 1 salário mínimo (3);0.0;7.281393581008858;4.704373816026497;3.734214053085317;4.926772344862705;9.089104552444068
+1 a menos de 2 salários mínimos (3) ;0.0;8.09799328245062;4.5698555313810925;3.7750843305717403;5.82457818758136;8.413642646921948
+2 salários mínimos ou mais (3) ;0.0;8.875113870938092;5.911385268256816;4.256984801968604;8.458586967953563;9.32558790765031
+fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;
+(1) inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) inclusive as pessoas com nível de instrução não determinado. (3) ex-;;;;;;

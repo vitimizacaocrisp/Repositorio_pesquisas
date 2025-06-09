@@ -1,19 +1,19 @@
-﻿;Unnamed: 1_level_0;homens;mulheres;branca;preta/parda
-Pará;7.554678085910418;7.967142443189776;11.162623376330641;15.064089132220639;7.428294231424838
-Região Metropolitana de Belém;8.62;10.04;11.55;16.34;9.42
-Ceará;8.78;8.15;13.53;13.4;9.16
-Região Metropolitana de Fortaleza;7.88;9.23;11.45;13.36;8.73
-Pernambuco;6.63;8.06;9.1;11.31;7.95
-Região Metropolitana de Recife;8.64;10.98;12.55;12.64;11.12
-Bahia;6.11;7.07;8.22;13.71;6.14
-Região Metropolitana de Salvador;6.25;7.76;9.19;13.92;6.57
-Minas Gerais;7.35;8.53;8.66;11.77;7.52
-Região Metropolitana de Belo Horizonte;9.15;11.43;12.21;17.6;10.13
-      Rio de Janeiro;8.33;10.47;10.61;10.6;10.95
-Região Metropolitana do Rio de Janeiro;9.45;11.87;12.26;12.13;12.8
-São Paulo;5.85;6.8;7.47;6.59;8.81
-Região Metropolitana de São Paulo;7.86;9.96;9.95;9.49;11.25
-       Paraná;7.29;7.75;9.74;8.33;11.1
-  Região Metropolitana de Curitiba;11.03;13.44;13.5;12.46;16.11
-      Rio Grande do Sul;7.55;8.41;9.99;8.25;12.64
-        Região Metropolitana de Porto Alegre;7.69;9.48;11.08;8.97;14.07
+﻿;unnamed: 1_level_0;homens;mulheres;branca;preta/parda
+;7.554678085910418;7.967142443189776;11.162623376330641;15.064089132220639;7.428294231424838
+região metropolitana de belém;8.62;10.04;11.55;16.34;9.42
+ceará;8.78;8.15;13.53;13.4;9.16
+região metropolitana de fortaleza;7.88;9.23;11.45;13.36;8.73
+pernambuco;6.63;8.06;9.1;11.31;7.95
+região metropolitana de recife;8.64;10.98;12.55;12.64;11.12
+bahia;6.11;7.07;8.22;13.71;6.14
+região metropolitana de salvador;6.25;7.76;9.19;13.92;6.57
+minas gerais;7.35;8.53;8.66;11.77;7.52
+região metropolitana de belo horizonte;9.15;11.43;12.21;17.6;10.13
+      rio de janeiro;8.33;10.47;10.61;10.6;10.95
+região metropolitana do rio de janeiro;9.45;11.87;12.26;12.13;12.8
+são paulo;5.85;6.8;7.47;6.59;8.81
+região metropolitana de são paulo;7.86;9.96;9.95;9.49;11.25
+       paraná;7.29;7.75;9.74;8.33;11.1
+  região metropolitana de curitiba;11.03;13.44;13.5;12.46;16.11
+      rio grande do sul;7.55;8.41;9.99;8.25;12.64
+        região metropolitana de porto alegre;7.69;9.48;11.08;8.97;14.07

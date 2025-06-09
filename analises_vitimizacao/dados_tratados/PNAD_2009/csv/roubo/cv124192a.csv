@@ -1,36 +1,36 @@
-﻿;Unnamed: 1_level_0;Própria residência ou de terceiros;Estabele-cimento comercial;Via pública;Transporte Coletivo;Outro
-Brasil (1);0.0;3.0411263242469655;3.6652259588621803;0.7221016668785301;3.9816094756457643;6.566472029951337
-Sem rendimento a menos de 1/4 do salário mínimo (2);0.0;9.71;16.94;2.21;14.21;24.83
+﻿;unnamed: 1_level_0;própria residência ou de terceiros;estabele-cimento comercial;via pública;transporte coletivo;outro
+;0.0;3.0411263242469655;3.6652259588621803;0.7221016668785301;3.9816094756457643;6.566472029951337
+sem rendimento a menos de 1/4 do salário mínimo (2);0.0;9.71;16.94;2.21;14.21;24.83
 1/4 a menos de 1/2 salário mínimo ;0.0;7.33;11.3;1.63;11.29;16.58
 1/2 a menos de 1 salário mínimo ;0.0;5.67;7.66;1.22;6.92;11.8
 1 a menos de 2 salários mínimos ;0.0;5.88;6.31;1.34;6.89;12.32
 2 salários mínimos ou mais ;0.0;5.86;6.35;1.63;9.07;13.35
-Norte (1);0.0;5.81;9.27;1.28;10.15;16.77
-Sem rendimento a menos de 1/4 do salário mínimo (2);0.0;14.84;34.01;4.14;32.8;51.75
+norte (1);0.0;5.81;9.27;1.28;10.15;16.77
+sem rendimento a menos de 1/4 do salário mínimo (2);0.0;14.84;34.01;4.14;32.8;51.75
 1/4 a menos de 1/2 salário mínimo ;0.0;14.04;26.63;3.19;24.32;36.54
 1/2 a menos de 1 salário mínimo ;0.0;11.6;18.46;2.15;18.79;25.32
 1 a menos de 2 salários mínimos ;0.0;13.28;20.74;3.59;18.16;36.69
 2 salários mínimos ou mais ;0.0;11.51;17.01;4.29;32.22;41.39
-Nordeste (1);0.0;5.53;6.62;0.9;5.67;10.64
-Sem rendimento a menos de 1/4 do salário mínimo (2);0.0;12.26;23.22;2.5;16.6;35.04
+nordeste (1);0.0;5.53;6.62;0.9;5.67;10.64
+sem rendimento a menos de 1/4 do salário mínimo (2);0.0;12.26;23.22;2.5;16.6;35.04
 1/4 a menos de 1/2 salário mínimo ;0.0;11.39;15.62;2.0;13.71;24.33
 1/2 a menos de 1 salário mínimo ;0.0;10.24;12.36;1.54;9.62;19.95
 1 a menos de 2 salários mínimos ;0.0;11.99;13.12;1.88;10.38;25.58
 2 salários mínimos ou mais ;0.0;14.23;12.88;2.62;14.19;28.46
-Sudeste (1);0.0;5.71;6.3;1.44;7.19;12.14
-Sem rendimento a menos de 1/4 do salário mínimo (2);0.0;28.01;33.03;7.71;50.69;59.39
+sudeste (1);0.0;5.71;6.3;1.44;7.19;12.14
+sem rendimento a menos de 1/4 do salário mínimo (2);0.0;28.01;33.03;7.71;50.69;59.39
 1/4 a menos de 1/2 salário mínimo ;0.0;17.6;27.15;4.93;27.27;34.52
 1/2 a menos de 1 salário mínimo ;0.0;11.52;14.76;2.82;12.25;25.05
 1 a menos de 2 salários mínimos ;0.0;10.96;10.1;2.38;11.8;21.65
 2 salários mínimos ou mais ;0.0;9.39;10.09;2.55;14.31;20.62
-Sul (1);0.0;7.46;7.05;2.55;13.17;16.84
-Sem rendimento a menos de 1/4 do salário mínimo (2);0.0;41.64;49.8;10.38;100.01;100.1
+sul (1);0.0;7.46;7.05;2.55;13.17;16.84
+sem rendimento a menos de 1/4 do salário mínimo (2);0.0;41.64;49.8;10.38;100.01;100.1
 1/4 a menos de 1/2 salário mínimo ;0.0;23.13;39.03;8.95;60.26;97.73
 1/2 a menos de 1 salário mínimo ;0.0;14.17;15.53;4.27;30.81;28.45
 1 a menos de 2 salários mínimos ;0.0;12.08;12.63;4.34;19.31;25.75
 2 salários mínimos ou mais ;0.0;11.82;13.32;4.32;24.75;27.35
-Centro-Oeste (1);0.0;8.19;10.0;2.54;13.68;15.18
-Sem rendimento a menos de 1/4 do salário mínimo (2);0.0;31.51;;8.92;68.46;57.41
+centro-oeste (1);0.0;8.19;10.0;2.54;13.68;15.18
+sem rendimento a menos de 1/4 do salário mínimo (2);0.0;31.51;;8.92;68.46;57.41
 1/4 a menos de 1/2 salário mínimo ;0.0;21.9;29.45;6.1;38.01;43.91
 1/2 a menos de 1 salário mínimo ;0.0;14.08;19.89;4.32;25.69;32.62
 1 a menos de 2 salários mínimos ;0.0;13.6;16.68;3.99;25.52;27.69

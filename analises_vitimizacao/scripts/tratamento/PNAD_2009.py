@@ -41,20 +41,33 @@ def processar_arquivo(tipo):
                 # tratamento dos dados
 
                 dados[df_nome].rename(columns={
-                    'Total(1)': 'total(%)',
-                    'Unnamed: 1_level_1': '',
-                    'Homens': 'homens',
-                    'Mulheres': 'mulheres',
-                    'Branca': 'branca',
+                    'unnamed: 1_level_1': '',
                     'Preta ou parda ': 'preta/parda',
                     'Preta ou parda .1': 'preta',
-                    'Preta ou parda .2': 'parda'
+                    'Preta ou parda .2': 'parda',
+                    'Sem rendimento a menos de 1/4 (2)': 'sem rendimento a menos de 1/4',
+                    'sem rendimento a menos de 1/4 (2)'
+                    'Unnamed: 5_level_1': 'total'
                 }, inplace=True)
 
-                dados[df_nome] = dados[df_nome][dados[df_nome].index.notna()]
+                if isinstance(dados[df_nome].columns, pd.MultiIndex):
+                    dados[df_nome].columns = pd.MultiIndex.from_tuples([
+                        tuple(str(c).replace('\n', '').strip() for c in col)
+                        for col in dados[df_nome].columns
+                    ])
+                else:
+                    dados[df_nome].columns = dados[df_nome].columns.str.replace('\n', '', regex=True).str.strip()
 
-                dados[df_nome] = dados[df_nome].apply(
-                    pd.to_numeric, errors='coerce')
+
+                dados[df_nome] = dados[df_nome][dados[df_nome].index.notna()]
+                
+                dados[df_nome].index = dados[df_nome].index.astype(str).str.lower()
+                dados[df_nome].columns = pd.MultiIndex.from_tuples([tuple(str(item).lower() for item in col) for col in dados[df_nome].columns])
+
+                for col in dados[df_nome].select_dtypes(include='object').columns:
+                    dados[df_nome][col] = dados[df_nome][col].str.lower()
+
+                dados[df_nome] = dados[df_nome].apply(pd.to_numeric, errors='coerce')
                 dados[df_nome] = dados[df_nome].round(2)
 
                 print(f"[OK] Excel {df_nome}")

@@ -1,43 +1,38 @@
-﻿"Situação do domicílio,                                                    Grandes Regiões e 
-Unidades da Federação ";Coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);Coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%)
-;"Dinheiro, cartão de
-débito ou crédito, 
-ou cheque";Telefone celular;"Documentos ou
-objetos pessoais";"Carro, motocicleta
-ou bicicleta";Outro
-               Brasil;1.8;1.68;2.01;2.63;1.46
-Situação do domicílio;;;;;
-Urbana;1.87;1.69;2.07;2.71;1.57
-Rural;6.18;9.35;9.6;10.04;3.38
-Grandes Regiões e Unidades da Federação;;;;;
-Norte;5.61;4.88;5.95;7.94;4.2
-Rondônia;14.21;12.32;13.15;12.3;8.17
-Acre;13.42;13.54;12.22;17.36;14.38
-Amazonas;15.04;9.54;9.64;33.01;10.78
-Roraima;14.79;20.16;19.02;20.21;13.74
-Pará;10.42;9.35;11.43;13.72;7.4
-Amapá;11.04;16.74;18.16;17.41;17.69
-Tocantins;9.6;9.58;18.55;15.28;6.93
-Nordeste;3.31;3.0;4.27;6.95;2.88
-Maranhão;10.27;9.16;10.9;21.19;9.37
-Piauí;15.66;14.71;20.67;15.71;11.35
-Ceará;7.65;6.22;9.49;7.02;4.59
-Rio Grande do Norte;10.28;10.12;14.02;19.64;9.7
-Paraíba;11.97;13.57;24.3;33.19;9.3
-Pernambuco;6.13;6.9;8.14;11.28;10.07
-Alagoas;17.1;12.61;29.15;20.55;12.55
-Sergipe;16.17;8.74;11.3;14.92;9.78
-Bahia;6.23;5.2;8.02;13.39;5.58
-Sudeste;3.06;2.86;3.52;4.37;2.94
-Minas Gerais;5.03;4.86;5.21;8.7;4.02
-Espírito Santo;11.83;9.49;11.67;14.6;9.38
-Rio de Janeiro;5.32;5.75;7.41;10.24;9.53
-São Paulo;4.73;4.47;5.68;5.99;4.52
-Sul;4.63;4.65;3.96;5.34;2.69
-Paraná;6.67;8.2;6.84;8.93;4.76
-Santa Catarina;10.31;10.82;8.39;11.24;7.06
-Rio Grande do Sul;7.86;6.39;5.82;6.9;3.16
-Centro-Oeste;3.77;4.22;4.5;4.86;3.04
-Mato Grosso do Sul;10.75;11.12;13.99;8.16;5.75
-Mato Grosso;9.65;10.65;10.61;9.55;6.39
-Goiás;5.01;6.01;6.01;9.1;4.77
+﻿;coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%)
+;dinheiro, cartão dedébito ou crédito, ou cheque;telefone celular;documentos ouobjetos pessoais;carro, motocicletaou bicicleta;outro
+               brasil;1.8;1.68;2.01;2.63;1.46
+situação do domicílio;;;;;
+urbana;1.87;1.69;2.07;2.71;1.57
+rural;6.18;9.35;9.6;10.04;3.38
+grandes regiões e unidades da federação;;;;;
+norte;5.61;4.88;5.95;7.94;4.2
+rondônia;14.21;12.32;13.15;12.3;8.17
+acre;13.42;13.54;12.22;17.36;14.38
+amazonas;15.04;9.54;9.64;33.01;10.78
+roraima;14.79;20.16;19.02;20.21;13.74
+pará;10.42;9.35;11.43;13.72;7.4
+amapá;11.04;16.74;18.16;17.41;17.69
+tocantins;9.6;9.58;18.55;15.28;6.93
+nordeste;3.31;3.0;4.27;6.95;2.88
+maranhão;10.27;9.16;10.9;21.19;9.37
+piauí;15.66;14.71;20.67;15.71;11.35
+ceará;7.65;6.22;9.49;7.02;4.59
+rio grande do norte;10.28;10.12;14.02;19.64;9.7
+paraíba;11.97;13.57;24.3;33.19;9.3
+pernambuco;6.13;6.9;8.14;11.28;10.07
+alagoas;17.1;12.61;29.15;20.55;12.55
+sergipe;16.17;8.74;11.3;14.92;9.78
+bahia;6.23;5.2;8.02;13.39;5.58
+sudeste;3.06;2.86;3.52;4.37;2.94
+minas gerais;5.03;4.86;5.21;8.7;4.02
+espírito santo;11.83;9.49;11.67;14.6;9.38
+rio de janeiro;5.32;5.75;7.41;10.24;9.53
+são paulo;4.73;4.47;5.68;5.99;4.52
+sul;4.63;4.65;3.96;5.34;2.69
+paraná;6.67;8.2;6.84;8.93;4.76
+santa catarina;10.31;10.82;8.39;11.24;7.06
+rio grande do sul;7.86;6.39;5.82;6.9;3.16
+centro-oeste;3.77;4.22;4.5;4.86;3.04
+mato grosso do sul;10.75;11.12;13.99;8.16;5.75
+mato grosso;9.65;10.65;10.61;9.55;6.39
+goiás;5.01;6.01;6.01;9.1;4.77

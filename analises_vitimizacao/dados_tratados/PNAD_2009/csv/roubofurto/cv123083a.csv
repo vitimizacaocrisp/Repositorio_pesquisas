@@ -1,20 +1,20 @@
-﻿;Unnamed: 1_level_0;homens;mulheres;branca;preta/parda;preta/parda;preta/parda
-;;Unnamed: 2_level_1;Unnamed: 3_level_1;Unnamed: 4_level_1;Total;Preta;Parda
-Pará;4.39;4.76;5.17;6.11;4.96;8.75;5.24
-Região Metropolitana de Belém;3.19;3.71;4.43;4.97;3.45;9.53;3.56
-Ceará;4.35;4.93;4.64;5.83;4.5;15.65;4.28
-Região Metropolitana de Fortaleza;3.02;3.84;3.72;4.4;3.36;12.31;3.44
-Pernambuco;4.39;5.65;4.68;4.72;5.49;10.49;5.61
-Região Metropolitana de Recife;3.69;4.5;4.54;4.81;4.52;10.11;4.76
-Bahia;4.0;4.29;4.6;6.67;3.94;4.84;4.78
-Região Metropolitana de Salvador;3.18;3.74;3.86;5.39;3.38;4.64;4.06
-Minas Gerais;3.81;4.28;4.47;5.44;4.11;8.71;4.24
-Região Metropolitana de Belo Horizonte;3.71;4.92;4.83;5.42;4.73;11.06;5.31
-      Rio de Janeiro;4.05;4.4;5.04;5.03;5.4;9.77;5.92
-Região Metropolitana do Rio de Janeiro;4.28;4.78;5.3;5.14;6.02;10.85;6.59
-São Paulo;2.85;3.01;3.76;3.33;3.9;8.37;4.14
-Região Metropolitana de São Paulo;3.38;4.0;4.27;4.05;4.58;10.11;4.98
-       Paraná;3.8;4.22;5.08;4.25;5.71;14.6;6.49
-  Região Metropolitana de Curitiba;4.32;5.02;5.67;4.79;7.4;16.57;8.51
-      Rio Grande do Sul;3.87;4.42;4.57;4.35;6.93;10.7;8.28
-        Região Metropolitana de Porto Alegre;3.09;3.83;4.29;3.35;6.62;10.16;8.67
+﻿;unnamed: 1_level_0;homens;mulheres;branca;preta/parda;preta/parda;preta/parda
+;unnamed: 1_level_1;unnamed: 2_level_1;unnamed: 3_level_1;unnamed: 4_level_1;total;preta;parda
+pará;4.39;4.76;5.17;6.11;4.96;8.75;5.24
+região metropolitana de belém;3.19;3.71;4.43;4.97;3.45;9.53;3.56
+ceará;4.35;4.93;4.64;5.83;4.5;15.65;4.28
+região metropolitana de fortaleza;3.02;3.84;3.72;4.4;3.36;12.31;3.44
+pernambuco;4.39;5.65;4.68;4.72;5.49;10.49;5.61
+região metropolitana de recife;3.69;4.5;4.54;4.81;4.52;10.11;4.76
+bahia;4.0;4.29;4.6;6.67;3.94;4.84;4.78
+região metropolitana de salvador;3.18;3.74;3.86;5.39;3.38;4.64;4.06
+minas gerais;3.81;4.28;4.47;5.44;4.11;8.71;4.24
+região metropolitana de belo horizonte;3.71;4.92;4.83;5.42;4.73;11.06;5.31
+      rio de janeiro;4.05;4.4;5.04;5.03;5.4;9.77;5.92
+região metropolitana do rio de janeiro;4.28;4.78;5.3;5.14;6.02;10.85;6.59
+são paulo;2.85;3.01;3.76;3.33;3.9;8.37;4.14
+região metropolitana de são paulo;3.38;4.0;4.27;4.05;4.58;10.11;4.98
+       paraná;3.8;4.22;5.08;4.25;5.71;14.6;6.49
+  região metropolitana de curitiba;4.32;5.02;5.67;4.79;7.4;16.57;8.51
+      rio grande do sul;3.87;4.42;4.57;4.35;6.93;10.7;8.28
+        região metropolitana de porto alegre;3.09;3.83;4.29;3.35;6.62;10.16;8.67
