@@ -1,10 +1,8 @@
 ﻿;total(1);sexo;sexo;cor ou raça;cor ou raça
-;unnamed: 1_level_1;homens;mulheres;branca;preta/parda
+;total;homens;mulheres;branca;preta/parda
                brasil;0.0;1.26;1.68;2.04;1.43
-situação do domicílio;;;;;
 urbana;0.0;1.31;1.74;2.13;1.56
 rural;0.0;4.09;5.6;7.47;3.71
-grandes regiões e unidades da federação;;;;;
 norte;0.0;2.92;4.61;7.1;1.93
 rondônia;0.0;8.04;13.91;14.27;7.08
 acre;0.0;7.57;9.52;25.34;10.26

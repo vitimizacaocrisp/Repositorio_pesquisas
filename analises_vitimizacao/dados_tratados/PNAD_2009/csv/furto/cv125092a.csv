@@ -1,21 +1,17 @@
 ﻿;coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%);coeficientes de variação das estimativas de percentual de pessoas que foram furtadas de cada tipo de bem no último furto, na população de 10 anos ou mais de idade que foi vítima de furto, no período de referência de 365 dias (%)
 ;dinheiro, cartão dedébito ou crédito, ou cheque;telefone celular;documentos ou objetos pessoais;carro, motocicletaou bicicleta;outro
 total (1)(2);1.8;1.68;2.01;2.63;1.46
-sexo;;;;;
 homens;2.34;2.46;2.7;2.52;1.64
 mulheres;2.32;2.06;2.59;5.06;2.17
-cor ou raça;;;;;
 branca;2.44;2.49;2.67;3.41;2.02
 preta ou parda;2.48;2.18;2.77;3.53;1.87
 preta;5.63;5.58;6.55;8.06;4.49
 parda;2.65;2.35;3.01;3.57;2.06
-grupos de idade;;;;;
 10 a 24 anos;4.09;2.32;4.15;4.59;4.06
 25 a 34 anos;3.3;3.24;3.71;4.63;2.74
 35 a 39 anos;5.0;5.28;5.2;5.77;3.67
 40 a 49 anos;3.48;4.33;4.27;4.79;2.64
 50 anos ou mais;2.72;4.29;3.59;5.22;2.15
-nível de instrução;;;;;
 sem instrução;5.23;9.11;6.96;9.74;3.59
 fundamental incompleto ou equivalente;3.01;3.1;3.6;4.02;2.17
 fundamental completo ou equivalente;5.41;4.85;6.05;6.07;4.05
@@ -23,12 +19,9 @@ médio incompleto ou equivalente;6.35;4.22;6.5;8.26;5.75
 médio completo ou equivalente;3.05;3.01;3.61;4.34;2.81
 superior incompleto ou equivalente;5.8;4.49;6.25;9.63;5.65
 superior completo ou equivalente;4.2;4.81;4.48;7.89;3.9
-classes de rendimento mensal domiciliar per capita;;;;;
 total (3)(4);1.8;1.69;2.0;2.63;1.45
 sem rendimento a menos de 1/4 do salário mínimo (3) (5);5.95;6.61;7.72;9.73;4.98
 1/4 a menos de 1/2 salário mínimo (3);4.85;4.54;5.83;5.59;3.35
 1/2 a menos de 1 salário mínimo (3);3.5;3.22;4.28;4.25;2.91
 1 a menos de 2 salários mínimos (3) ;3.1;3.06;3.49;4.15;2.47
 2 salários mínimos ou mais (3) ;3.03;3.32;3.31;5.15;2.76
-fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;
-(1) inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) inclusive as pessoas com nível de instrução não determinado. (3) ex-;;;;;

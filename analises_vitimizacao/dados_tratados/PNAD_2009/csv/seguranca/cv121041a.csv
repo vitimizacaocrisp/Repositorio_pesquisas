@@ -1,10 +1,8 @@
 ﻿;total;grupos de idade;grupos de idade;grupos de idade;grupos de idade;grupos de idade;grupos de idade;grupos de idade
-;unnamed: 1_level_1;10 a 15 anos;16 a 24 anos;25 a 34 anos;35 a 49 anos;50 a 59 anos;60 a 69 anos;70 anos ou mais
+;total;10 a 15 anos;16 a 24 anos;25 a 34 anos;35 a 49 anos;50 a 59 anos;60 a 69 anos;70 anos ou mais
                brasil;0.69;1.12;0.91;0.91;0.84;1.19;1.33;1.67
-situação do domicílio;;;;;;;;
 urbana;0.86;1.23;1.11;1.18;0.99;1.32;1.58;1.82
 rural;3.25;3.76;3.77;3.47;3.39;3.84;3.82;4.26
-grandes regiões e unidades da federação;;;;;;;;
 norte;3.48;3.83;3.76;3.7;3.76;5.24;5.71;6.64
 rondônia;3.32;6.85;5.26;4.76;3.32;6.54;6.76;10.7
 acre;10.77;10.31;14.15;11.81;11.71;15.6;14.35;17.17

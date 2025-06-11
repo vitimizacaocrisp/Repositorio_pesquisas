@@ -1,10 +1,8 @@
 ﻿;coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que se sentiam seguras (%);coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que se sentiam seguras (%);coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que se sentiam seguras (%);coeficientes de variação das estimativas de percentual de pessoas que  se sentiam seguras no seu domícilio, na população de 10 anos ou mais de idade (%);coeficientes de variação das estimativas de percentual de pessoas que  se sentiam seguras no seu bairro, na população de 10 anos ou mais de idade (%);coeficientes de variação das estimativas de percentual de pessoas que  se sentiam seguras na sua cidade, na população de 10 anos ou mais de idade (%)
-;no seu domicílio;no seu bairro;na sua cidade;unnamed: 4_level_1;unnamed: 5_level_1;unnamed: 6_level_1
+;no seu domicílio;no seu bairro;na sua cidade;unnamed: 4_level_1;total;unnamed: 6_level_1
                brasil;0.32;0.46;0.69;0.29;0.45;0.69
-situação do domicílio;;;;;;
 urbana;0.63;0.72;0.86;0.31;0.47;0.7
 rural;2.84;2.88;3.25;0.69;1.08;1.49
-grandes regiões e unidades da federação;;;;;;
 norte;1.88;2.71;3.48;1.77;2.64;3.4
 rondônia;1.86;2.6;3.32;1.39;2.06;2.8
 acre;4.32;4.68;10.77;4.85;5.24;11.46
@@ -37,4 +35,3 @@ mato grosso do sul;1.65;2.06;3.06;1.71;2.08;3.21
 mato grosso;2.52;2.7;2.86;2.18;2.44;2.78
 goiás;1.24;1.8;2.19;1.21;1.79;2.21
 distrito federal;1.68;3.15;3.77;1.59;3.12;3.73
-fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;

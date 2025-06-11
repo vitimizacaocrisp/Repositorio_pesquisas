@@ -1,10 +1,8 @@
 ﻿;unnamed: 1_level_0;sem instrução;fundamental ou equivalente;fundamental ou equivalente;médio ou equivalente;médio ou equivalente;superior ou equivalente;superior ou equivalente
-;unnamed: 1_level_1;unnamed: 2_level_1;incompleto;completo;incompleto;completo;incompleto;completo
+;total;unnamed: 2_level_1;incompleto;completo;incompleto;completo;incompleto;completo
                brasil;0.1;1.25;0.45;0.8;0.81;0.7;1.42;1.68
-situação do domicílio;;;;;;;;
 urbana;0.53;1.47;0.72;0.97;1.01;0.83;1.5;1.74
 rural;2.75;3.52;2.79;3.88;3.97;4.26;6.4;6.52
-grandes regiões e unidades da federação;;;;;;;;
 norte;0.34;4.04;1.07;2.33;2.76;1.97;3.78;4.32
 rondônia;0.94;7.21;2.43;6.12;6.09;3.61;10.41;11.08
 acre;1.07;5.39;4.4;5.56;7.75;4.94;11.24;14.33

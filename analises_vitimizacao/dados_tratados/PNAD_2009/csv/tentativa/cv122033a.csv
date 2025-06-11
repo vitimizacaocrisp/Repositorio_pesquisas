@@ -1,10 +1,8 @@
 ﻿;total(1);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo);classes de rendimento mensal domiciliar per capita (salário mínimo)
-;unnamed: 1_level_1;menosde 1/4;1/4 a menosde 1/2;1/2 a menosde 1;1 a menosde 2;2 ou mais;semrendimento(2)
+;total;menosde 1/4;1/4 a menosde 1/2;1/2 a menosde 1;1 a menosde 2;2 ou mais;semrendimento(2)
                brasil;1.44;4.87;3.0;2.18;1.99;2.19;9.09
-situação do domicílio;;;;;;;
 urbana;1.43;4.99;3.02;2.22;2.04;2.21;9.74
 rural;5.49;10.61;9.41;7.76;8.41;10.76;21.94
-grandes regiões e unidades da federação;;;;;;;
 norte;4.95;12.44;7.53;5.92;5.22;5.49;21.33
 rondônia;8.82;32.51;18.32;10.35;12.5;13.7;52.65
 acre;15.85;37.09;29.21;18.97;16.2;13.11;55.05
@@ -37,4 +35,3 @@ mato grosso do sul;15.59;54.6;24.34;15.64;17.84;16.7;80.34
 mato grosso;6.53;37.76;23.73;12.06;10.06;9.03;59.05
 goiás;5.05;20.68;9.5;7.35;6.94;8.74;39.65
 distrito federal;5.51;23.18;14.57;9.35;9.02;8.03;32.38
-fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;;

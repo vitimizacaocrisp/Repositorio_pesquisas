@@ -1,10 +1,8 @@
 ﻿;total;local de ocorrência do último roubo;local de ocorrência do último roubo;local de ocorrência do último roubo;local de ocorrência do último roubo;local de ocorrência do último roubo
-;unnamed: 1_level_1;própria residência ou de terceiros;estabelecimento comercial;via pública;transporte coletivo;outro
+;total;própria residência ou de terceiros;estabelecimento comercial;via pública;transporte coletivo;outro
                brasil;1.44;3.44;3.92;1.61;4.14;
-situação do domicílio;;;;;;
 urbana;1.5;3.63;4.02;1.67;4.2;
 rural;9.87;11.53;16.75;11.86;23.2;
-grandes regiões e unidades da federação;;;;;;
 norte;3.76;7.09;9.69;3.93;10.53;
 rondônia;10.72;19.24;20.61;13.14;69.42;
 acre;12.42;22.9;25.07;18.5;54.6;

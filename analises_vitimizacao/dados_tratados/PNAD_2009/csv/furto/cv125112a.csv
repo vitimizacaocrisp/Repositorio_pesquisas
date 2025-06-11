@@ -1,21 +1,17 @@
 ﻿;coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último furto que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último furto que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último furto que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último furto que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último furto que foram vítimas, no período de referência de 365 dias (%);coeficientes de variação das estimativas de distribuição das pessoas de 10 anos ou mais de idade que não procuraram a polícia em decorrência do último furto que foram vítimas, no período de referência de 365 dias (%)
 ;total;motivo de não terem procurado a polícia em decorrência do último furto;motivo de não terem procurado a polícia em decorrência do último furto.1;motivo de não terem procurado a polícia em decorrência do último furto.2;motivo de não terem procurado a polícia em decorrência do último furto.3;motivo de não terem procurado a polícia em decorrência do último furto.4
 total (1)(2);0.0;2.442928364173709;2.366781460938505;2.459666233335182;3.2437101940910926;3.9251171159688343
-sexo;;;;;;
 homens;0.0;2.953907401684252;3.004963919194877;2.9551061252837485;4.405259746547625;4.954119956677116
 mulheres;0.0;3.2513269752073217;3.142526049381858;3.4509268347242994;4.214256138940661;5.127803441701289
-cor ou raça;;;;;;
 branca;0.0;3.4724058848968786;3.4942300669914115;3.387251799127518;5.016890460836307;5.6192778457530155
 preta ou parda;0.0;3.0808251527087775;3.1005010912817994;3.26233237062128;3.9658776672760494;4.945209671683245
 preta;0.0;6.6157986329869924;7.373470099044899;7.851354474693966;8.764731787175606;11.394274256857576
 parda;0.0;3.345372745443988;3.3380322516449414;3.4270331423496114;4.370506121858498;5.369233297931521
-grupos de idade;;;;;;
 10 a 24 anos;0.0;4.5351128263714475;3.9725738998914726;4.782580119392595;6.4412835228418315;7.126788390774474
 25 a 34 anos;0.0;4.3882972623983445;4.617831979966202;4.609102016655728;6.8281056328056815;7.267025881232853
 35 a 39 anos;0.0;6.315140063215019;7.055774957650047;6.65510635886636;9.180391157304816;10.858853128100115
 40 a 49 anos;0.0;4.679449202439127;5.543342727088651;5.154806995422446;6.899103966842196;7.903166335749981
 50 anos ou mais;0.0;4.37876219247515;4.501140668740139;4.4611421864251275;5.4742745127198225;7.178391954926012
-nível de instrução;;;;;;
 sem instrução;0.0;6.225547072794506;8.40844069227787;8.63845716751349;7.136490905572484;11.946885704254086
 fundamental incompleto ou equivalente;0.0;3.5112004204363405;3.7583382194063084;4.357446403007344;4.643850203484887;6.233715286533127
 fundamental completo ou equivalente;0.0;6.863268833372501;6.746252091194101;6.901263305880133;9.493874688575863;10.786146491557318
@@ -23,12 +19,9 @@ médio incompleto ou equivalente;0.0;7.214135766060705;6.905258931049532;6.64106
 médio completo ou equivalente;0.0;4.664179021190947;4.283518212524426;4.572618532600361;7.520961309671004;7.3799496791703625
 superior incompleto ou equivalente;0.0;10.080695101858439;8.705379372177205;8.295202692977945;14.950888334657904;13.738168347866553
 superior completo ou equivalente;0.0;7.961818728750428;6.983015224658598;6.90364755504679;13.588959400425669;10.760204873520633
-classes de rendimento mensal domiciliar per capita;;;;;;
 total (3)(4);0.0;2.4486426382647135;2.3730415854220426;2.4649679346595157;3.2490565995303133;3.9444678620478557
    sem rendimento a menos de 1/4 do salário mínimo (3)(5);0.0;6.6229080225973345;8.459336676471578;10.369654551082895;9.1364115161413;13.337833390298682
 1/4 a menos de 1/2 salário mínimo (3);0.0;5.522789431012879;5.492982271076401;6.028919141828802;7.859051621004168;9.723383068034225
 1/2 a menos de 1 salário mínimo (3);0.0;4.015529666937296;4.421880891890649;4.804032555088293;5.938783541564656;7.298863296786712
 1 a menos de 2 salários mínimos (3) ;0.0;4.474942488036984;4.5265237799149265;4.226298514384259;6.026815640927523;6.712346631536481
 2 salários mínimos ou mais (3) ;0.0;5.200282769582456;4.835981099952533;4.435039137432269;7.692706088536873;8.038506512857522
-fonte: ibge, diretoria de pesquisas, coordenação de trabalho e rendimento, pesquisa nacional por amostra de domicílios 2009.;;;;;;
-(1) inclusive as pessoas de cor ou raça amarela, indígena ou sem declaração. (2) inclusive as pessoas com nível de instrução não determinado. (3) ex-;;;;;;

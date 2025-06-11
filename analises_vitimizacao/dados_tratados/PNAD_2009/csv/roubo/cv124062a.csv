@@ -1,10 +1,8 @@
 ﻿;total;procura pela polícia em decorrência do último roubo;procura pela polícia em decorrência do último roubo
-;unnamed: 1_level_1;procuraram;não procuraram
+;total;procuraram;não procuraram
                brasil;0.0;1.13;1.06
-situação do domicílio;;;
 urbana;0.0;1.15;1.08
 rural;0.0;5.58;4.9
-grandes regiões e unidades da federação;;;
 norte;0.0;2.88;2.17
 rondônia;0.0;5.9;10.86
 acre;0.0;8.07;11.2

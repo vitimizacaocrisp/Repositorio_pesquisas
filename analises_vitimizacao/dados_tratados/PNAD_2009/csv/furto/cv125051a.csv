@@ -1,10 +1,8 @@
 ﻿;total;local de ocorrência do último furto;local de ocorrência do último furto;local de ocorrência do último furto;local de ocorrência do último furto;local de ocorrência do último furto
-;unnamed: 1_level_1;própria residência ou de terceiros;estabelecimento comercial;via pública;transportecoletivo;outro
+;total;própria residência ou de terceiros;estabelecimento comercial;via pública;transportecoletivo;outro
                brasil;1.64;2.15;3.21;2.46;4.63;3.68
-situação do domicílio;;;;;;
 urbana;1.76;2.26;3.29;2.55;4.66;3.96
 rural;4.97;6.11;13.52;9.99;31.84;11.94
-grandes regiões e unidades da federação;;;;;;
 norte;4.25;5.05;8.05;7.39;14.59;9.46
 rondônia;9.38;10.19;21.74;16.41;76.19;22.89
 acre;10.25;8.8;17.99;21.91;71.08;34.36
