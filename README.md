@@ -718,26 +718,26 @@ Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de ar
       </td>
     </tr>
     <tr>
-      <td><input type="checkbox"></td>
+      <td><input type="checkbox">✅</td>
       <td rowspan="3">Violência Escolar</td>
-      <td>Panorama da violência em escolas (2006)</td>
-      <td>violencia_escolas_2006, alunos_2006.csv, professores_2006.csv</td>
-      <td>Perspectivas de diferentes atores</td>
+      <td>Comparação entre percepção de alunos e professores(apenas alunos)</td>
+      <td>alunos_2006.csv, professores_2006.csv</td>
+      <td>Análise de divergências</td>
       <td>
-        <a href="analises_vitimizacao/analises/relatorio_alunos_escolas.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/escolas_2006.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/escolas_2006.ipynb">.ipynb</a>
+        <a href="analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/escolas_final_2006.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb">.ipynb</a>
       </td>
     </tr>
     <tr>
       <td><input type="checkbox">✅</td>
-      <td>Comparação entre percepção de alunos e professores</td>
-      <td>alunos_2006.csv, professores_2006.csv</td>
+      <td>Panorama da violência em escolas</td>
+      <td>alunos_2006.csv</td>
       <td>Análise de divergências</td>
       <td>
-        <a href="analises_vitimizacao/analises/alunos_2006.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/alunos_2006.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/alunos_2006.ipynb">.ipynb</a>
+        <a href="analises_vitimizacao/analises/relatorio_alunos_escolas.pdf">PDF</a>,
+        <a href="analises_vitimizacao/scripts/analises/escolas_2006.py">.py</a>,
+        <a href="analises_vitimizacao/scripts/analises/escolas_2006.ipynb">.ipynb</a>
       </td>
     </tr>
     <tr>
