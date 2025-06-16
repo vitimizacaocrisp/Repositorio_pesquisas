@@ -1,13 +1,15 @@
-# Repositório de Pesquisas em Segurança Pública
+## Sumário
+- [Introdução](#introdução)
 
+
+## Introdução
 Repositório organizado para análise de dados de vitimização, seguindo boas práticas de gestão da informação científica e reprodutibilidade.
 
-## Instruções
+## Instruçâo
 
-Drive: <a>https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing</a></br>
-baixe os arquivos do drive e os coloque em: /analises_vitimizacao/dados_brutos/</br>
-
-instale as dependencias do python mostradas em:
+°Drive: <a>https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing</a></br>
+°baixe os arquivos do drive e os coloque em: /analises_vitimizacao/dados_brutos/</br>
+°instale as dependencias do python mostradas em:
 ```text
 /analises_vitimizacao/pyproject.toml
 ```
@@ -43,6 +45,7 @@ instale as dependencias do python mostradas em:
     ├── dicionario_unificado.csv  # Variáveis padronizadas
     └── log_integracao.md         # Histórico de combinações
 ```
+
 
 ## 🌿 Branches
 ```text
@@ -774,6 +777,78 @@ Cada branch pode ter seu próprio .gitignore específico, ajustado ao tipo de ar
         <a href="analises_vitimizacao/scripts/analises/PNAD_1998.py">.py</a>,
         <a href="analises_vitimizacao/scripts/analises/PNAD_1998.ipynb">.ipynb</a>
       </td>
+    </tr>
+  </tbody>
+</table>
+
+## Descrição Tratamento
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome do Notebook</th>
+      <th>Arquivo(s) Usado(s)</th>
+      <th>Arquivo(s) Gerado(s)</th>
+      <th>O que foi feito</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>belo_horrizonte_2002.ipynb</b></td>
+      <td><code>indices_violencia.csv</code><br><code>Vitimizacao_UP_27.csv</code></td>
+      <td><code>belo_horrizonte_2002.csv</code><br><code>belo_horrizonte_2002.xlsx</code></td>
+      <td>Foi realizada a junção de dois arquivos CSV. Foram removidas 52 colunas completamente nulas do primeiro arquivo e 114 do segundo. Valores nulos em colunas numéricas foram substituídos por 0. Ao final, os dataframes tratados foram empilhados e exportados para os formatos CSV e XLSX.</td>
+    </tr>
+    <tr>
+      <td><b>escolas_2006.ipynb</b></td>
+      <td><code>alunos_2006.csv</code><br><code>professores_2006.csv</code></td>
+      <td><code>escolas_alunos_2006.csv</code><br><code>escolas_alunos_2006.xlsx</code><br><code>escolas_professores_2006.csv</code><br><code>escolas_professores_2006.xlsx</code></td>
+      <td>Dois conjuntos de dados (alunos e professores) foram carregados e tratados separadamente. Em ambos, os valores numéricos nulos foram preenchidos com 0, as colunas de texto e seus nomes foram convertidos para minúsculas e as colunas que continham apenas valores nulos ou "não" foram removidas. Os nomes das colunas foram padronizados usando um dicionário e, por fim, os dois dataframes foram salvos em formatos CSV e XLSX.</td>
+    </tr>
+    <tr>
+      <td><b>percepcao_medoMG_2008.ipynb</b></td>
+      <td><code>amostra_BH.xls</code><br><code>amostra_MG.xls</code><br><code>populacao_idade_sexo.csv</code></td>
+      <td><code>percepcao_medoMG.csv</code><br><code>percepcao_medoMG.xlsx</code></td>
+      <td>Três arquivos de diferentes fontes foram carregados. Em cada um deles, foram removidas linhas duplicadas e colunas completamente nulas. Os valores numéricos nulos foram preenchidos com 0. Após o tratamento individual, os três dataframes foram unificados em um único arquivo, que foi exportado para os formatos CSV e XLSX.</td>
+    </tr>
+    <tr>
+      <td><b>PNAD_2009.ipynb</b></td>
+      <td>Múltiplos arquivos <code>.xls</code> de diversas pastas (agressao, furto, roubo, etc.)</td>
+      <td>Múltiplos arquivos <code>.csv</code> e <code>.xlsx</code>, organizados em pastas por categoria (ex: <code>agressao.xlsx</code>, <code>furto.xlsx</code>)</td>
+      <td>O script processou um grande volume de arquivos <code>.xls</code> divididos em categorias. Para cada arquivo, os dados foram lidos, as colunas foram renomeadas para maior clareza, os nomes de colunas e índices foram padronizados para minúsculas e os dados foram convertidos para tipos numéricos. Os dataframes tratados foram exportados de duas maneiras: como arquivos individuais (CSV e XLSX) organizados em pastas por categoria e como um único arquivo XLSX por categoria, contendo múltiplas abas.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Descrição Analise
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome do Notebook</th>
+      <th>Arquivo(s) de Entrada</th>
+      <th>Arquivo(s) de Saída</th>
+      <th>Descrição do Processo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>escolas_2006.ipynb</b></td>
+      <td><code>escolas_alunos_2006.csv</code><br><code>escolas_professores_2006.csv</code></td>
+      <td><code>relatorio_alunos_escolas.pdf</code></td>
+      <td>O notebook carrega os dados tratados de alunos e professores. Realiza um pré-processamento para limpar e padronizar colunas específicas (como sexo, idade e raça/cor). Gera análises visuais, incluindo distribuição de alunos por idade, sexo e raça, e satisfação com o aprendizado. Ao final, compila todos os gráficos e análises textuais em um relatório consolidado em PDF.</td>
+    </tr>
+    <tr>
+      <td><b>percepcao_social.ipynb</b></td>
+      <td><code>belo_horrizonte_2002.xlsx</code><br><code>percepcao_medoMG.xlsx</code></td>
+      <td><code>relatorio_completo_percepcao_social.pdf</code></td>
+      <td>Este script combina dois conjuntos de dados sobre percepção de segurança (um de Belo Horizonte 2002 e outro de Minas Gerais). Limpa e prepara os dados combinados, focando em colunas como sexo, faixa etária e estrato do bairro. Gera análises sobre a percepção de risco de roubo, agressão e sequestro, segmentando por sexo, bairro e idade. Também cria uma matriz de correlação entre os tipos de risco e exporta todas as visualizações e tabelas para um relatório em PDF.</td>
+    </tr>
+    <tr>
+      <td><b>PNAD_2009.ipynb</b></td>
+      <td>Múltiplos arquivos <code>.xls</code> de diversas pastas (agressao, furto, etc.)</td>
+      <td>Múltiplos arquivos <code>.csv</code> e <code>.xlsx</code>, organizados em pastas por categoria (ex: <code>agressao.xlsx</code>)</td>
+      <td>O notebook carrega e trata um grande volume de arquivos <code>.xls</code> da PNAD 2009, organizados em subdiretórios por tipo de crime. Cada arquivo é processado para limpar o cabeçalho, renomear colunas e converter dados para formato numérico. Os dados tratados são então exportados em dois formatos: arquivos individuais (CSV e Excel) por tabela original e arquivos consolidados (Excel) por categoria, onde cada tabela se torna uma aba.</td>
     </tr>
   </tbody>
 </table>
