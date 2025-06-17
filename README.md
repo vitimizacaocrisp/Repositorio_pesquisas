@@ -1,13 +1,13 @@
 ## 📑 Sumário
 - [📌 Introdução](#Introdução)
-- [📂 Estrutura do Repositório](#EstruturadoRepositório)
+- [📂 Estrutura do Repositório](#Estrutura-do-Repositório)
 - [🚀 Começando](#Começando)
-- [🔁 Fluxo de Trabalho](#FluxodeTrabalho)
-- [🌿 Estratégia de Branches](#EstratégiadeBranches)
-- [⚙️ Visão Geral dos Scripts](#VisãoGeraldosScripts)
-- [📂 Metadados e Documentação Técnica](#MetadadoseDocumentaçãoTécnica)
-- [📊 Análises Possíveis e Dados Relevantes](#AnálisesPossíveiseDadosRelevantes)
-- [📁 Arquivos Buscados](#ArquivosBuscados)
+- [🔁 Fluxo de Trabalho](#Fluxo-de-Trabalho)
+- [🌿 Estratégia de Branches](#Estratégia-de-Branches)
+- [⚙️ Visão Geral dos Scripts](#Visão-Geral-dos-Scripts)
+- [📂 Metadados e Documentação Técnica](#Metadados-e-Documentação-Técnica)
+- [📊 Análises Possíveis e Dados Relevantes](#Análises-Possíveis-e-Dados-Relevantes)
+- [📁 Arquivos Buscados](#Arquivos-Buscados)
 
 
 
