@@ -1,23 +1,23 @@
 ## 📑 Sumário
 - [📌 Introdução](#Introdução)
-- [📂 Estrutura do Repositório](#estrutura-do-repositório)
-- [🚀 Começando](#começando)
-- [🔁 Fluxo de Trabalho](#fluxo-de-trabalho)
-- [🌿 Estratégia de Branches](#estratégia-de-branches)
-- [⚙️ Visão Geral dos Scripts](#visão-geral-dos-scripts)
-- [📂 Metadados e Documentação Técnica](#metadados-e-documentação-técnica)
-- [📊 Análises Possíveis e Dados Relevantes](#análises-possíveis-e-dados-relevantes)
-- [📁 Arquivos Buscados](#arquivos-buscados)
+- [📂 Estrutura do Repositório](#EstruturadoRepositório)
+- [🚀 Começando](#Começando)
+- [🔁 Fluxo de Trabalho](#FluxodeTrabalho)
+- [🌿 Estratégia de Branches](#EstratégiadeBranches)
+- [⚙️ Visão Geral dos Scripts](#VisãoGeraldosScripts)
+- [📂 Metadados e Documentação Técnica](#MetadadoseDocumentaçãoTécnica)
+- [📊 Análises Possíveis e Dados Relevantes](#AnálisesPossíveiseDadosRelevantes)
+- [📁 Arquivos Buscados](#ArquivosBuscados)
 
 
 
 ## Introdução
-Este repositório tem como objetivo centralizar, tratar e analisar dados de vitimização e percepção de segurança, com foco especial em pesquisas realizadas no Brasil. O projeto foi estruturado para garantir a gestão da informação científica e a reprodutibilidade das análises, seguindo as melhores práticas de organização de dados e código.
+<p>Este repositório tem como objetivo centralizar, tratar e analisar dados de vitimização e percepção de segurança, com foco especial em pesquisas realizadas no Brasil. O projeto foi estruturado para garantir a gestão da informação científica e a reprodutibilidade das análises, seguindo as melhores práticas de organização de dados e código.</p>>
 
 Aqui você encontrará desde os dados brutos e scripts de tratamento (ETL) até as análises estatísticas e relatórios finais.
 
 
-##📂 Estrutura do Repositório
+## Estrutura do Repositório
 O projeto está organizado da seguinte forma para separar claramente os dados, códigos e resultados:
 ```text
 /analises_vitimizacao
@@ -37,14 +37,16 @@ O projeto está organizado da seguinte forma para separar claramente os dados, c
     ├── por_fonte/
     └── dicionario_unificado.csv
 ```
-dados_brutos/: Contém os dados originais e imutáveis, conforme coletados.
-dados_tratados/: Armazena os dados após o processo de limpeza e tratamento, prontos para a análise.
-scripts/: Código-fonte dividido em tratamento (ETL) e analise (modelagem e visualização).
-analises/: Guarda os resultados finais, como relatórios (.pdf) e gráficos.
-documentos/: Documentação de apoio, como os questionários originais das pesquisas.
-metadados/: Dicionários de variáveis, logs de integração e documentação técnica.
+<ul>
+    <li>dados_brutos/: Contém os dados originais e imutáveis, conforme coletados.</li>
+    <li>dados_tratados/: Armazena os dados após o processo de limpeza e tratamento, prontos para a análise.</li>
+    <li>scripts/: Código-fonte dividido em tratamento (ETL) e analise (modelagem e visualização).</li>
+    <li>analises/: Guarda os resultados finais, como relatórios (.pdf) e gráficos.</li>
+    <li>documentos/: Documentação de apoio, como os questionários originais das pesquisas.</li>
+    <li>metadados/: Dicionários de variáveis, logs de integração e documentação técnica.</li>
+</ul>
 
-## 🚀 Começando
+## Começando
 Para configurar o ambiente e executar as análises, siga os passos abaixo:
 
 Clone o Repositório
@@ -52,7 +54,7 @@ Clone o Repositório
 git clone <https://github.com/vitimizacaocrisp/Repositorio_pesquisas>
 cd analises_vitimizacao
 ```
-Baixe os Dados Brutos
+Baixe os Dados Brutos</li>
 Os dados originais não estão no repositório para manter o tamanho gerenciável. Baixe-os do seguinte link:
 
 Drive: <https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing>
@@ -65,7 +67,7 @@ Todas as bibliotecas Python necessárias estão listadas no arquivo pyproject.to
 pip install -r requirements.txt
 ```
 
-## 🔁 Fluxo de Trabalho
+## Fluxo de Trabalho
 O fluxo de trabalho foi desenhado para ser claro e reprodutível:
 
 Dados Brutos: Os dados são inseridos na pasta dados_brutos/ e nunca são alterados.
@@ -74,13 +76,13 @@ Dados Tratados: Os datasets resultantes são salvos em dados_tratados/ nos forma
 Análise: Os scripts em scripts/analise/ utilizam os dados tratados para gerar visualizações e insights.
 Resultados: Relatórios (.pdf), dashboards e gráficos finais são salvos na pasta analises/.
 
-## 🌿 Estratégia de Branches
+## Estratégia de Branches
 O repositório é dividido em duas branches principais para organização dos tipos de scripts:
 
 notebook: Contém os arquivos .ipynb utilizados para análise exploratória, prototipagem e visualização interativa.
 script: Contém os arquivos .py otimizados para produção, automação e reprodutibilidade de código.
 
-## ⚙️ Visão Geral dos Scripts
+## Visão Geral dos Scripts
 
 <table>
   <thead>
@@ -96,7 +98,7 @@ script: Contém os arquivos .py otimizados para produção, automação e reprod
       <td><b>belo_horrizonte_2002.ipynb</b></td>
       <td><code>indices_violencia.csv</code><br><code>Vitimizacao_UP_27.csv</code></td>
       <td><code>belo_horrizonte_2002.csv</code><br><code>belo_horrizonte_2002.xlsx</code></td>
-      <td>Foi realizada a junção de dois arquivos CSV. Foram removidas 52 colunas completamente nulas do primeiro arquivo e 114 do segundo. Valores nulos em colunas numéricas foram substituídos por 0. Ao final, os dataframes tratados foram empilhados e exportados para os formatos CSV e XLSX.</td>
+      <td><p>Foi realizada a junção de dois arquivos CSV. Foram removidas 52 colunas completamente nulas do primeiro arquivo e 114 do segundo. Valores nulos em colunas numéricas foram substituídos por 0. Ao final, os dataframes tratados foram empilhados e exportados para os formatos CSV e XLSX.</p></td>
     </tr>
     <tr>
       <td><b>escolas_2006.ipynb</b></td>
@@ -133,7 +135,7 @@ script: Contém os arquivos .py otimizados para produção, automação e reprod
       <td><b>escolas_2006.ipynb</b></td>
       <td><code>escolas_alunos_2006.csv</code><br><code>escolas_professores_2006.csv</code></td>
       <td><code>relatorio_alunos_escolas.pdf</code></td>
-      <td>O notebook carrega os dados tratados de alunos e professores. Realiza um pré-processamento para limpar e padronizar colunas específicas (como sexo, idade e raça/cor). Gera análises visuais, incluindo distribuição de alunos por idade, sexo e raça, e satisfação com o aprendizado. Ao final, compila todos os gráficos e análises textuais em um relatório consolidado em PDF.</td>
+      <td><p>O notebook carrega os dados tratados de alunos e professores. Realiza um pré-processamento para limpar e padronizar colunas específicas (como sexo, idade e raça/cor). Gera análises visuais, incluindo distribuição de alunos por idade, sexo e raça, e satisfação com o aprendizado. Ao final, compila todos os gráficos e análises textuais em um relatório consolidado em PDF.</p></td>
     </tr>
     <tr>
       <td><b>percepcao_social.ipynb</b></td>
@@ -150,158 +152,96 @@ script: Contém os arquivos .py otimizados para produção, automação e reprod
   </tbody>
 </table>
 
-## 📂 Metadados e Documentação Técnica
+## Metadados e Documentação Técnica
 <ul>
     <li>Metadados por Fonte: Documentação detalhada sobre cada conjunto de dados.</li>
     <li>Dicionário de Variáveis: Arquivo dicionario_unificado.csv com descrição de todas as variáveis padronizadas.</li>
     <li>Log de Integração: Histórico de combinações e transformações de dados.</li>
 </ul>
 
-## 📂 Análises Possíveis e Dados Relevantes
+## Análises Possíveis e Dados Relevantes
 
-<table class="analysis-table">
-  <thead>
-    <tr>
-      <th>✔️</th>
-      <th>Categoria</th>
-      <th>Análise Possível</th>
-      <th>Dados Relevantes</th>
-      <th>Observações</th>
-      <th>Arquivos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td rowspan="3">Violência Urbana</td>
-      <td>Evolução dos índices de violência ao longo do tempo</td>
-      <td>indices_violencia.csv, totais2008ateMAIO.csv</td>
-      <td>Comparar anos diferentes</td>
-      <td>
-        <a href="analises_vitimizacao/analises/indices_violencia.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/indices_violencia.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/indices_violencia.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>Comparação entre tipos de crimes (agressão, furto, roubo)</td>
-      <td>agressao, furto, roubo, roubofurto</td>
-      <td>Pode-se analisar proporções entre crimes</td>
-      <td>
-        <a href="analises_vitimizacao/analises/agressao.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/agressao.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/agressao.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>Vítimização por unidades policiais</td>
-      <td>Vitimizacao_UP_27.csv, Vitimizacao_UP_27.xlsx</td>
-      <td>Dados em dois formatos para comparação</td>
-      <td>
-        <a href="analises_vitimizacao/analises/Vitimizacao_UP_27.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/Vitimizacao_UP_27.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/Vitimizacao_UP_27.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox">✅</td>
-      <td rowspan="2">Percepção Social</td>
-      <td>Medo e percepção de segurança em MG/BH</td>
-      <td>percepção_medo_MG_2008, segurança</td>
-      <td>Dados de 2008 podem estar desatualizados</td>
-        <td>
-        <a href="analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox">✅</td>
-      <td>Comparação entre amostras de BH e MG</td>
-      <td>amostra_BH.xls, amostra_MG.xls</td>
-      <td>Verificar compatibilidade dos dados</td>
-        <td>
-        <a href="analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>Demografia</td>
-      <td>Distribuição populacional por idade e sexo</td>
-      <td>populacao_idade_sexo.csv</td>
-      <td>Pode cruzar com dados de violência</td>
-      <td>
-        <a href="analises_vitimizacao/analises/populacao_idade_sexo.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/populacao_idade_sexo.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/populacao_idade_sexo.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox">✅</td>
-      <td rowspan="3">Violência Escolar</td>
-      <td>Comparação entre percepção de alunos e professores(apenas alunos)</td>
-      <td>alunos_2006.csv, professores_2006.csv</td>
-      <td>Análise de divergências</td>
-      <td>
-        <a href="analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/escolas_final_2006.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox">✅</td>
-      <td>Panorama da violência em escolas</td>
-      <td>alunos_2006.csv</td>
-      <td>Análise de divergências</td>
-      <td>
-        <a href="analises_vitimizacao/analises/relatorio_alunos_escolas.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/escolas_2006.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/escolas_2006.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>Metodologia da pesquisa escolar</td>
-      <td>roteiro_2006.csv</td>
-      <td>Entender como os dados foram coletados</td>
-      <td>
-        <a href="analises_vitimizacao/analises/roteiro_2006.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/roteiro_2006.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/roteiro_2006.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>Homicídios</td>
-      <td>Análise de homicídios tentados e consumados</td>
-      <td>Homicidios Tentado e Consumado(EN)</td>
-      <td>Verificar se dados estão em inglês</td>
-      <td>
-        <a href="analises_vitimizacao/analises/Homicidios_Tentado_e_Consumado.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/Homicidios_Tentado_e_Consumado.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/Homicidios_Tentado_e_Consumado.ipynb">.ipynb</a>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>Dados Socioeconômicos</td>
-      <td>Análise de indicadores PNAD</td>
-      <td>PNAD_1998, PNAD_2009</td>
-      <td>Grande intervalo temporal entre pesquisas</td>
-      <td>
-        <a href="analises_vitimizacao/analises/PNAD_1998.pdf">PDF</a>,
-        <a href="analises_vitimizacao/scripts/analises/PNAD_1998.py">.py</a>,
-        <a href="analises_vitimizacao/scripts/analises/PNAD_1998.ipynb">.ipynb</a>
-      </td>
-    </tr>
-  </tbody>
+<p>A tabela a seguir detalha o status dos projetos de análise, indicando quais já foram concluídos (✅), os dados utilizados, e os resultados gerados, além de análises futuras.</p>
+<table>
+    <thead>
+        <tr>
+            <th>✔️</th>
+            <th>Categoria</th>
+            <th>Análise</th>
+            <th>Dados Relevantes</th>
+            <th>Observações</th>
+            <th>Arquivos Gerados</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>✅</td>
+            <td><strong>Violência Escolar</strong></td>
+            <td>Panorama sobre o perfil e a percepção dos alunos e professores em escolas de Minas Gerais em 2006.</td>
+            <td>alunos_2006.csv, professores_2006.csv</td>
+            <td>A análise inclui distribuição demográfica (idade, sexo, raça), experiência docente e satisfação dos alunos.</td>
+            <td class="file-links">
+                <a href="analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf">PDF</a>,
+                <a href="analises_vitimizacao/scripts/analises/escolas_final_2006.py">.py</a>,
+                <a href="analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb">.ipynb</a>
+            </td>
+        </tr>
+        <tr>
+            <td>✅</td>
+            <td><strong>Percepção Social</strong></td>
+            <td>Percepção de risco de crimes (roubo, agressão, sequestro) em Belo Horizonte e Minas Gerais.</td>
+            <td>belo_horrizonte_2002.xlsx, percepcao_medoMG.xlsx</td>
+            <td>Os dados foram segmentados por sexo, tipo de bairro e faixa etária. A análise mostra como o medo é experienciado de forma diferente por cada grupo.</td>
+            <td class="file-links">
+                <a href="analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">PDF</a>,
+                <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
+                <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
+            </td>
+        </tr>
+        <tr>
+            <td>⬜</td>
+            <td><strong>Violência Urbana</strong></td>
+            <td>Evolução dos índices de violência ao longo do tempo.</td>
+            <td>indices_violencia.csv</td>
+            <td>Comparar diferentes anos para identificar tendências.</td>
+            <td>Links para arquivos de análise</td>
+        </tr>
+        <tr>
+            <td>⬜</td>
+            <td><strong>Violência Urbana</strong></td>
+            <td>Comparação entre tipos de crimes (agressão, furto, roubo).</td>
+            <td><code>agressao</code>, <code>furto</code>, <code>roubo</code></td>
+            <td>Analisar proporções para entender a natureza da criminalidade.</td>
+            <td>Links para arquivos de análise</td>
+        </tr>
+        <tr>
+            <td>⬜</td>
+            <td><strong>Demografia</strong></td>
+            <td>Distribuição populacional por idade e sexo.</td>
+            <td>populacao_idade_sexo.csv</td>
+            <td>Pode ser cruzado com dados de violência para análises mais profundas.</td>
+            <td>Links para arquivos de análise</td>
+        </tr>
+        <tr>
+            <td>⬜</td>
+            <td><strong>Homicídios</strong></td>
+            <td>Análise de homicídios tentados e consumados.</td>
+            <td>Homicidios Tentado e Consumado(EN)</td>
+            <td>Verificar se os dados precisam de tradução ou tratamento adicional.</td>
+            <td>Links para arquivos de análise</td>
+        </tr>
+        <tr>
+            <td>⬜</td>
+            <td><strong>Dados Socioeconômicos</strong></td>
+            <td>Análise de indicadores da Pesquisa Nacional por Amostra de Domicílios (PNAD).</td>
+            <td>PNAD_1998, PNAD_2009</td>
+            <td>O intervalo de 11 anos entre as pesquisas deve ser considerado na análise.</td>
+            <td>Links para arquivos de análise</td>
+        </tr>
+    </tbody>
 </table>
 
-## 📂 Arquivos Buscados
+## Arquivos Buscados
 
 <div class="security-tables">
 <h2>Tabela 1: Inventário de Projetos e Pesquisas Geradoras de Dados em Segurança Pública</h2>
