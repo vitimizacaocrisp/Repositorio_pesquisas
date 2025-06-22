@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositório de Análises de Vitimização - Dados Socioeconômicos (PNAD)</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Relatório Consolidado - Análise de Indicadores Socioeconômicos (PNAD)</h1>
+
+        <h2>Resumo da Análise Geral</h2>
+        <p>Esta análise explora os indicadores socioeconômicos da Pesquisa Nacional por Amostra de Domicílios (PNAD) de 1998 e 2009. O intervalo de 11 anos entre as pesquisas é um fator importante a ser considerado, pois permite observar mudanças significativas nas condições de vida da população brasileira ao longo de mais de uma década. Os dados da PNAD são cruciais para entender como fatores como renda, educação, condições de moradia e mercado de trabalho podem se correlacionar com a vitimização e a percepção de segurança.</p>
+
+        <h2 id="analise-pnad-comparacao">Comparação de Indicadores Socioeconômicos (PNAD 1998 vs. 2009)</h2>
+        <p>Abaixo, um espaço para gráficos que mostrarão a comparação de indicadores-chave da PNAD entre os anos de 1998 e 2009, destacando as mudanças socioeconômicas.</p>
+        <div class="chart-container">
+            <canvas id="pnadComparacaoChart"></canvas>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const primaryColor = '#2c3e50';
+                const textColor = '#34495e';
+
+                const ctx = document.getElementById('pnadComparacaoChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Gráfico de barras para comparação
+                    data: {
+                        labels: ['Renda Média Familiar', 'Taxa de Alfabetização', 'Acesso a Saneamento Básico'],
+                        datasets: [{
+                            label: 'PNAD 1998 (Exemplo)',
+                            data: [1500, 85, 60], // Dados de exemplo
+                            backgroundColor: 'rgba(52, 73, 94, 0.7)', // Cinza escuro
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }, {
+                            label: 'PNAD 2009 (Exemplo)',
+                            data: [2500, 92, 80], // Dados de exemplo
+                            backgroundColor: 'rgba(46, 204, 113, 0.7)', // Verde
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Comparação de Indicadores Socioeconômicos (PNAD 1998 vs. 2009 - Exemplo)',
+                                color: primaryColor,
+                                font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                            },
+                            legend: { display: true, labels: { color: textColor } }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Valor do Indicador', color: textColor },
+                                ticks: { color: textColor }
+                            },
+                            x: {
+                                title: { display: true, text: 'Indicador', color: textColor },
+                                ticks: { color: textColor }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,322 @@
+/* css/style.css (Versão Aprimorada 2.1 - com estilos de gráfico restaurados) */
+
+:root {
+    /* Colors: Paleta refinada para maior coesão e profissionalismo */
+    --primary-color: #2c3e50;         /* Azul escuro sóbrio (principal) */
+    --primary-dark-color: #1a242f;    /* Variação escura para hover e ênfase */
+    --accent-color: #3498db;          /* Cor de destaque para links e interações */
+    --text-color: #34495e;            /* Cinza grafite para corpo de texto */
+    --light-text-color: #7f8c8d;      /* Cinza claro para textos secundários */
+    --background-color: #f4f6f8;      /* Fundo geral (cinza muito claro) */
+    --container-background-color: #ffffff;
+    --border-color: #dfe4e8;          /* Cinza mais suave para bordas */
+    --table-header-bg: #e9edf0;       /* Fundo de cabeçalho de tabela */
+    --table-row-alt-bg: #f8f9fa;      /* Fundo de linha alternada (zebra) */
+    --code-background: #eef1f4;       /* Fundo para blocos de código */
+
+    /* Spacing */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    --spacing-xxl: 50px;
+
+    /* Borders and Shadows */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --box-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --box-shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --border-thin: 1px solid var(--border-color);
+    --border-medium: 2px solid var(--primary-color);
+
+    /* Typography: Fontes modernas e legíveis */
+    --font-family-serif: 'Georgia', 'Times New Roman', serif;
+    --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    --line-height: 1.7;
+    --font-size-base: 17px;
+    --font-size-lg: 1.3rem;
+    --font-size-xl: 2.2rem;
+    --font-size-xxl: 2.8rem;
+
+    /* Transitions */
+    --transition-speed: 0.3s;
+    --transition-timing-function: ease-in-out;
+}
+
+/* Reset básico e configurações globais */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    line-height: var(--line-height);
+    margin: 0;
+    padding: var(--spacing-md);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--font-size-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.container {
+    max-width: 1200px;
+    margin: var(--spacing-md) auto;
+    background: var(--container-background-color);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-md);
+    border: var(--border-thin);
+}
+
+/* Tipografia */
+h1, h2, h3 {
+    font-family: var(--font-family-serif);
+    color: var(--primary-color);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+h1 {
+    font-size: var(--font-size-xl);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: var(--spacing-sm);
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: var(--font-size-lg);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+    color: var(--primary-dark-color);
+}
+
+h3 {
+    font-size: 1.15rem;
+    color: var(--primary-dark-color);
+    border-bottom: none;
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+    text-align: justify;
+}
+
+/* Links */
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-speed) var(--transition-timing-function);
+}
+
+a:hover {
+    color: var(--primary-dark-color);
+    text-decoration: underline;
+}
+
+/* Listas */
+ul, ol {
+    list-style-position: outside;
+    padding-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+li {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Bloco de Código */
+pre {
+    background: var(--code-background);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    overflow-x: auto;
+    font-family: var(--font-family-mono);
+    font-size: 0.9em;
+    border: 1px solid var(--border-color);
+    margin: var(--spacing-md) 0;
+    color: var(--text-color);
+}
+
+/* Tabelas */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: var(--spacing-lg);
+    border: var(--border-thin);
+    border-radius: var(--border-radius-sm);
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+table, th, td {
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    color: var(--primary-dark-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+td {
+    border-top: var(--border-thin);
+    color: var(--text-color);
+}
+
+tr:nth-child(even) td {
+    background-color: var(--table-row-alt-bg);
+}
+
+.table-description-wide td:last-child {
+    width: 50%;
+    min-width: 350px;
+}
+
+.col-ano {
+    width: 80px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.col-checklist {
+    width: 50px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.file-links a {
+    display: inline-block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: var(--spacing-xl) 0;
+}
+
+
+/* INÍCIO - ESTILOS DE GRÁFICO RESTAURADOS */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: var(--spacing-lg);
+    background-color: var(--container-background-color);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--box-shadow-sm);
+    border: var(--border-thin);
+}
+/* FIM - ESTILOS DE GRÁFICO RESTAURADOS */
+
+
+/* =======================================
+   Media Queries para Responsividade Geral
+   ======================================= */
+
+/* Telas de tablet */
+@media (max-width: 1024px) {
+    .container {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    h1 {
+        font-size: var(--font-size-lg);
+    }
+    body {
+        font-size: 16px;
+    }
+}
+
+/* Telas de celular */
+@media (max-width: 767px) {
+    body {
+        padding: 0;
+        font-size: 15px;
+    }
+    .container {
+        max-width: 100%;
+        margin: 0;
+        padding: var(--spacing-md) var(--spacing-sm);
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    p {
+        text-align: left;
+    }
+    .table-responsive {
+        margin-left: calc(-1 * var(--spacing-sm));
+        margin-right: calc(-1 * var(--spacing-sm));
+        width: calc(100% + (2 * var(--spacing-sm)));
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+    }
+}
+
+
+/* =======================================
+   Media Queries para Gráficos (Tamanho Original Restaurado)
+   ======================================= */
+
+@media (min-width: 1600px) {
+    .chart-container {
+        height: 500px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .chart-container {
+        height: 350px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .chart-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-container {
+        height: 250px;
+        padding: var(--spacing-xs);
+    }
+}

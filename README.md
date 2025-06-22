@@ -1,24 +1,25 @@
-## 📑 Sumário
-- [📌 Introdução](#Introdução)
-- [📂 Estrutura do Repositório](#Estrutura-do-Repositório)
-- [🚀 Começando](#Começando)
-- [🔁 Fluxo de Trabalho](#Fluxo-de-Trabalho)
-- [🌿 Estratégia de Branches](#Estratégia-de-Branches)
-- [⚙️ Visão Geral dos Scripts](#Visão-Geral-dos-Scripts)
-- [📂 Metadados e Documentação Técnica](#Metadados-e-Documentação-Técnica)
-- [📊 Análises Possíveis e Dados Relevantes](#Análises-Possíveis-e-Dados-Relevantes)
-- [📁 Arquivos Buscados](#Arquivos-Buscados)
+# Repositório de Análises de Vitimização e Percepção de Segurança
 
+[Acessar Website](https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing)
 
+## Sumário
+- [Introdução](#introdução)
+- [Metodologia e Estrutura Técnica](#metodologia-e-estrutura-técnica)
+- [Descrição dos Scripts de Processamento e Análise](#descrição-dos-scripts-de-processamento-e-análise)
+- [Metadados e Documentação Técnica](#metadados-e-documentação-técnica)
+- [Projetos de Análise e Resultados](#projetos-de-análise-e-resultados)
+- [Fontes de Dados Utilizadas](#fontes-de-dados-utilizadas)
+- [Inventário de Pesquisas Relevantes](#inventário-de-pesquisas-relevantes)
 
 ## Introdução
-<p>Este repositório tem como objetivo centralizar, tratar e analisar dados de vitimização e percepção de segurança, com foco especial em pesquisas realizadas no Brasil. O projeto foi estruturado para garantir a gestão da informação científica e a reprodutibilidade das análises, seguindo as melhores práticas de organização de dados e código.</p>>
+O presente repositório tem por finalidade centralizar, processar e analisar dados de vitimização e percepção de segurança, com foco especial em pesquisas realizadas no Brasil. O projeto foi concebido para assegurar a gestão da informação científica e a reprodutibilidade das análises, em conformidade com as melhores práticas de organização de código e dados.
 
-Aqui você encontrará desde os dados brutos e scripts de tratamento (ETL) até as análises estatísticas e relatórios finais.
+Nesta plataforma, são disponibilizados desde os microdados brutos e scripts de tratamento (ETL) até as análises estatísticas e os relatórios consolidados.
 
+## Metodologia e Estrutura Técnica
 
-## Estrutura do Repositório
-O projeto está organizado da seguinte forma para separar claramente os dados, códigos e resultados:
+### Estrutura do Repositório
+O projeto está organizado na seguinte estrutura de diretórios para segregar de forma clara os dados, códigos e resultados:
 ```text
 /analises_vitimizacao
 ├── dados_brutos/
@@ -34,765 +35,179 @@ O projeto está organizado da seguinte forma para separar claramente os dados, c
 ├── documentos/
 │   └── "identificação_data_dataset"/
 └── metadados/
-    ├── por_fonte/
-    └── dicionario_unificado.csv
-```
-<ul>
-    <li>dados_brutos/: Contém os dados originais e imutáveis, conforme coletados.</li>
-    <li>dados_tratados/: Armazena os dados após o processo de limpeza e tratamento, prontos para a análise.</li>
-    <li>scripts/: Código-fonte dividido em tratamento (ETL) e analise (modelagem e visualização).</li>
-    <li>analises/: Guarda os resultados finais, como relatórios (.pdf) e gráficos.</li>
-    <li>documentos/: Documentação de apoio, como os questionários originais das pesquisas.</li>
-    <li>metadados/: Dicionários de variáveis, logs de integração e documentação técnica.</li>
-</ul>
-
-## Começando
-Para configurar o ambiente e executar as análises, siga os passos abaixo:
-
-Clone o Repositório
-```text
-git clone <https://github.com/vitimizacaocrisp/Repositorio_pesquisas>
-cd analises_vitimizacao
-```
-Baixe os Dados Brutos</li>
-Os dados originais não estão no repositório para manter o tamanho gerenciável. Baixe-os do seguinte link:
-
-Drive: <https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing>
-Organize os Dados
-Descompacte e coloque os arquivos baixados dentro da pasta /dados_brutos/.
-
-Instale as Dependências
-Todas as bibliotecas Python necessárias estão listadas no arquivo pyproject.toml. Instale-as com o pip:
-```text
-pip install -r requirements.txt
+├── por_fonte/
+└── dicionario_unificado.csv
 ```
 
-## Fluxo de Trabalho
-O fluxo de trabalho foi desenhado para ser claro e reprodutível:
+- **dados_brutos/**: Contém os dados originais e imutáveis, conforme foram coletados.
+- **dados_tratados/**: Armazena os dados após o processo de limpeza e tratamento, prontos para a análise.
+- **scripts/**: Abriga o código-fonte, dividido em tratamento (ETL) e análise (modelagem e visualização).
+- **analises/**: Guarda os resultados finais, como relatórios (.pdf) e gráficos.
+- **documentos/**: Inclui documentação de apoio, como os questionários originais das pesquisas.
+- **metadados/**: Contém dicionários de variáveis, logs de integração e outra documentação técnica.
 
-Dados Brutos: Os dados são inseridos na pasta dados_brutos/ e nunca são alterados.
-Tratamento (ETL): Os scripts na pasta scripts/tratamento/ são executados para limpar, padronizar e unificar os dados.
-Dados Tratados: Os datasets resultantes são salvos em dados_tratados/ nos formatos CSV e Excel.
-Análise: Os scripts em scripts/analise/ utilizam os dados tratados para gerar visualizações e insights.
-Resultados: Relatórios (.pdf), dashboards e gráficos finais são salvos na pasta analises/.
+### Acesso e Configuração do Ambiente
+Para replicar o ambiente e executar as análises, os seguintes passos são recomendados:
+1.  **Clonagem do Repositório:** O repositório pode ser clonado por meio do seguinte comando Git:
+    ```
+    git clone [https://github.com/vitimizacaocrisp/Repositorio_pesquisas](https://github.com/vitimizacaocrisp/Repositorio_pesquisas)
+    ```
+2.  **Acesso aos Dados Brutos:** Os dados originais, devido ao seu volume, não são versionados diretamente no repositório. O download pode ser realizado a partir do seguinte link:
+    [Acessar Dados no Google Drive](https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing)
+3.  **Organização dos Dados:** Os arquivos baixados devem ser descompactados e alocados na pasta `/dados_brutos/`.
+4.  **Instalação de Dependências:** As bibliotecas Python necessárias para a execução dos scripts estão listadas no arquivo `pyproject.toml`. A instalação pode ser feita com o pip, utilizando um arquivo `requirements.txt`.
+    ```
+    pip install -r requirements.txt
+    ```
 
-## Estratégia de Branches
-O repositório é dividido em duas branches principais para organização dos tipos de scripts:
+### Fluxo de Trabalho (Workflow)
+O fluxo de trabalho foi desenhado para garantir clareza e reprodutibilidade:
+- **Coleta e Armazenamento:** Os dados brutos são inseridos no diretório `dados_brutos/` e permanecem inalterados.
+- **Tratamento (ETL):** Scripts localizados em `scripts/tratamento/` são executados para limpar, padronizar e unificar os dados.
+- **Armazenamento de Dados Tratados:** Os datasets resultantes são salvos em `dados_tratados/`, nos formatos CSV e Excel.
+- **Análise:** Scripts em `scripts/analise/` utilizam os dados tratados para gerar modelagens, visualizações e insights.
+- **Resultados:** Relatórios, dashboards e gráficos finais são armazenados no diretório `analises/`.
 
-notebook: Contém os arquivos .ipynb utilizados para análise exploratória, prototipagem e visualização interativa.
-script: Contém os arquivos .py otimizados para produção, automação e reprodutibilidade de código.
+### Estratégia de Branches
+O repositório utiliza duas branches principais para diferentes finalidades de desenvolvimento:
+- **notebook:** Contém arquivos `.ipynb` (Jupyter Notebooks) utilizados para análise exploratória, prototipagem e desenvolvimento interativo.
+- **script:** Contém arquivos `.py` (Python scripts) otimizados para produção, automação e reprodutibilidade de código.
 
-## Visão Geral dos Scripts
+## Descrição dos Scripts de Processamento e Análise
+### Scripts de Tratamento
+| Nome do Notebook | Arquivo(s) de Entrada | Arquivo(s) de Saída | Descrição do Processo |
+| :--- | :--- | :--- | :--- |
+| **[belo_horrizonte_2002.ipynb](https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/tratamento/belo_horrizonte_2002.ipynb)** | `indices_violencia.csv`<br>`Vitimizacao_UP_27.csv` | `belo_horrizonte_2002.csv`<br>`belo_horrizonte_2002.xlsx` | Foi realizada a junção de dois arquivos CSV. Foram removidas 52 colunas completamente nulas do primeiro arquivo e 114 do segundo. Valores nulos em colunas numéricas foram substituídos por 0. Ao final, os dataframes tratados foram empilhados e exportados para os formatos CSV e XLSX. |
+| **[escolas_2006.ipynb](https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/tratamento/escolas_2006.ipynb)** | `alunos_2006.csv`<br>`professores_2006.csv` | `escolas_alunos_2006.csv`<br>`escolas_alunos_2006.xlsx`<br>`escolas_professores_2006.csv`<br>`escolas_professores_2006.xlsx` | Dois conjuntos de dados (alunos e professores) foram carregados e tratados separadamente. Em ambos, os valores numéricos nulos foram preenchidos com 0, as colunas de texto e seus nomes foram convertidos para minúsculas e as colunas que continham apenas valores nulos ou "não" foram removidas. Os nomes das colunas foram padronizados usando um dicionário e, por fim, os dois dataframes foram salvos em formatos CSV e XLSX. |
+| **[percepcao_medoMG_2008.ipynb](https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/tratamento/percepcao_medoMG_2008.ipynb)** | `amostra_BH.xls`<br>`amostra_MG.xls`<br>`populacao_idade_sexo.csv` | `percepcao_medoMG.csv`<br>`percepcao_medoMG.xlsx` | Três arquivos de diferentes fontes foram carregados. Em cada um deles, foram removidas linhas duplicadas e colunas completamente nulas. Os valores numéricos nulos foram preenchidos com 0. Após o tratamento individual, os três dataframes foram unificados em um único arquivo, que foi exportado para os formatos CSV e XLSX. |
+| **[PNAD_2009.ipynb](https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/tratamento/PNAD_2009.ipynb)** | Múltiplos arquivos `.xls` de diversas pastas (agressao, furto, roubo, etc.) | Múltiplos arquivos `.csv` e `.xlsx`, organizados em pastas por categoria (ex: `agressao.xlsx`, `furto.xlsx`) | O script processou um grande volume de arquivos `.xls` divididos em categorias. Para cada arquivo, os dados foram lidos, as colunas foram renomeadas para maior clareza, os nomes de colunas e índices foram padronizados para minúsculas e os dados foram convertidos para tipos numéricos. Os dataframes tratados foram exportados de duas maneiras: como arquivos individuais (CSV e XLSX) organizados em pastas por categoria e como um único arquivo XLSX por categoria, contendo múltiplas abas. |
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome do Notebook</th>
-      <th>Arquivo(s) Usado(s)</th>
-      <th>Arquivo(s) Gerado(s)</th>
-      <th>O que foi feito</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>belo_horrizonte_2002.ipynb</b></td>
-      <td><code>indices_violencia.csv</code><br><code>Vitimizacao_UP_27.csv</code></td>
-      <td><code>belo_horrizonte_2002.csv</code><br><code>belo_horrizonte_2002.xlsx</code></td>
-      <td><p>Foi realizada a junção de dois arquivos CSV. Foram removidas 52 colunas completamente nulas do primeiro arquivo e 114 do segundo. Valores nulos em colunas numéricas foram substituídos por 0. Ao final, os dataframes tratados foram empilhados e exportados para os formatos CSV e XLSX.</p></td>
-    </tr>
-    <tr>
-      <td><b>escolas_2006.ipynb</b></td>
-      <td><code>alunos_2006.csv</code><br><code>professores_2006.csv</code></td>
-      <td><code>escolas_alunos_2006.csv</code><br><code>escolas_alunos_2006.xlsx</code><br><code>escolas_professores_2006.csv</code><br><code>escolas_professores_2006.xlsx</code></td>
-      <td>Dois conjuntos de dados (alunos e professores) foram carregados e tratados separadamente. Em ambos, os valores numéricos nulos foram preenchidos com 0, as colunas de texto e seus nomes foram convertidos para minúsculas e as colunas que continham apenas valores nulos ou "não" foram removidas. Os nomes das colunas foram padronizados usando um dicionário e, por fim, os dois dataframes foram salvos em formatos CSV e XLSX.</td>
-    </tr>
-    <tr>
-      <td><b>percepcao_medoMG_2008.ipynb</b></td>
-      <td><code>amostra_BH.xls</code><br><code>amostra_MG.xls</code><br><code>populacao_idade_sexo.csv</code></td>
-      <td><code>percepcao_medoMG.csv</code><br><code>percepcao_medoMG.xlsx</code></td>
-      <td>Três arquivos de diferentes fontes foram carregados. Em cada um deles, foram removidas linhas duplicadas e colunas completamente nulas. Os valores numéricos nulos foram preenchidos com 0. Após o tratamento individual, os três dataframes foram unificados em um único arquivo, que foi exportado para os formatos CSV e XLSX.</td>
-    </tr>
-    <tr>
-      <td><b>PNAD_2009.ipynb</b></td>
-      <td>Múltiplos arquivos <code>.xls</code> de diversas pastas (agressao, furto, roubo, etc.)</td>
-      <td>Múltiplos arquivos <code>.csv</code> e <code>.xlsx</code>, organizados em pastas por categoria (ex: <code>agressao.xlsx</code>, <code>furto.xlsx</code>)</td>
-      <td>O script processou um grande volume de arquivos <code>.xls</code> divididos em categorias. Para cada arquivo, os dados foram lidos, as colunas foram renomeadas para maior clareza, os nomes de colunas e índices foram padronizados para minúsculas e os dados foram convertidos para tipos numéricos. Os dataframes tratados foram exportados de duas maneiras: como arquivos individuais (CSV e XLSX) organizados em pastas por categoria e como um único arquivo XLSX por categoria, contendo múltiplas abas.</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome do Notebook</th>
-      <th>Arquivo(s) de Entrada</th>
-      <th>Arquivo(s) de Saída</th>
-      <th>Descrição do Processo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>escolas_2006.ipynb</b></td>
-      <td><code>escolas_alunos_2006.csv</code><br><code>escolas_professores_2006.csv</code></td>
-      <td><code>relatorio_alunos_escolas.pdf</code></td>
-      <td><p>O notebook carrega os dados tratados de alunos e professores. Realiza um pré-processamento para limpar e padronizar colunas específicas (como sexo, idade e raça/cor). Gera análises visuais, incluindo distribuição de alunos por idade, sexo e raça, e satisfação com o aprendizado. Ao final, compila todos os gráficos e análises textuais em um relatório consolidado em PDF.</p></td>
-    </tr>
-    <tr>
-      <td><b>percepcao_social.ipynb</b></td>
-      <td><code>belo_horrizonte_2002.xlsx</code><br><code>percepcao_medoMG.xlsx</code></td>
-      <td><code>relatorio_completo_percepcao_social.pdf</code></td>
-      <td>Este script combina dois conjuntos de dados sobre percepção de segurança (um de Belo Horizonte 2002 e outro de Minas Gerais). Limpa e prepara os dados combinados, focando em colunas como sexo, faixa etária e estrato do bairro. Gera análises sobre a percepção de risco de roubo, agressão e sequestro, segmentando por sexo, bairro e idade. Também cria uma matriz de correlação entre os tipos de risco e exporta todas as visualizações e tabelas para um relatório em PDF.</td>
-    </tr>
-    <tr>
-      <td><b>PNAD_2009.ipynb</b></td>
-      <td>Múltiplos arquivos <code>.xls</code> de diversas pastas (agressao, furto, etc.)</td>
-      <td>Múltiplos arquivos <code>.csv</code> e <code>.xlsx</code>, organizados em pastas por categoria (ex: <code>agressao.xlsx</code>)</td>
-      <td>O notebook carrega e trata um grande volume de arquivos <code>.xls</code> da PNAD 2009, organizados em subdiretórios por tipo de crime. Cada arquivo é processado para limpar o cabeçalho, renomear colunas e converter dados para formato numérico. Os dados tratados são então exportados em dois formatos: arquivos individuais (CSV e Excel) por tabela original e arquivos consolidados (Excel) por categoria, onde cada tabela se torna uma aba.</td>
-    </tr>
-  </tbody>
-</table>
+### Scripts de Análise
+| Nome do Notebook | Arquivo(s) de Entrada | Arquivo(s) de Saída | Descrição do Processo |
+| :--- | :--- | :--- | :--- |
+| **[escolas_2006.ipynb](https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_2006.ipynb)** | `escolas_alunos_2006.csv`<br>`escolas_professores_2006.csv` | `relatorio_alunos_escolas.pdf` | O notebook carrega os dados tratados de alunos e professores. Realiza um pré-processamento para limpar e padronizar colunas específicas (como sexo, idade e raça/cor). Gera análises visuais, incluindo distribuição de alunos por idade, sexo e raça, e satisfação com o aprendizado. Ao final, compila todos os gráficos e análises textuais em um relatório consolidado em PDF. |
+| **[percepcao_social.ipynb](https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.ipynb)** | `belo_horrizonte_2002.xlsx`<br>`percepcao_medoMG.xlsx` | `relatorio_completo_percepcao_social.pdf` | Este script combina dois conjuntos de dados sobre percepção de segurança (um de Belo Horizonte 2002 e outro de Minas Gerais). Limpa e prepara os dados combinados, focando em colunas como sexo, faixa etária e estrato do bairro. Gera análises sobre a percepção de risco de roubo, agressão e sequestro, segmentando por sexo, bairro e idade. Também cria uma matriz de correlação entre os tipos de risco e exporta todas as visualizações e tabelas para um relatório em PDF. |
+| **[PNAD_2009.ipynb](https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.ipynb)** | Múltiplos arquivos `.xls` da PNAD 2009. | Múltiplos arquivos `.csv` e `.xlsx`, organizados por categoria. | O notebook carrega e trata um grande volume de arquivos `.xls` da PNAD 2009. Cada arquivo é processado para limpar cabeçalhos, renomear colunas e converter dados para formato numérico. Os dados tratados são exportados em dois formatos: arquivos individuais (CSV e Excel) e arquivos consolidados (Excel) por categoria, onde cada tabela original se torna uma aba. |
 
 ## Metadados e Documentação Técnica
-<ul>
-    <li>Metadados por Fonte: Documentação detalhada sobre cada conjunto de dados.</li>
-    <li>Dicionário de Variáveis: Arquivo dicionario_unificado.csv com descrição de todas as variáveis padronizadas.</li>
-    <li>Log de Integração: Histórico de combinações e transformações de dados.</li>
-</ul>
+- **Metadados por Fonte:** Documentação detalhada sobre a origem, o escopo e as características de cada conjunto de dados.
+- **Dicionário de Variáveis Unificado:** Arquivo `dicionario_unificado.csv` contendo a descrição padronizada de todas as variáveis utilizadas no projeto.
+- **Log de Integração:** Histórico detalhado das operações de combinação, transformação e enriquecimento de dados.
 
-## Análises Possíveis e Dados Relevantes
+## Projetos de Análise e Resultados
+A tabela a seguir detalha o status dos projetos de análise, indicando os concluídos (✅), os dados utilizados, os resultados gerados e as análises futuras planejadas (⬜).
 
-<p>A tabela a seguir detalha o status dos projetos de análise, indicando quais já foram concluídos (✅), os dados utilizados, e os resultados gerados, além de análises futuras.</p>
-<table>
-    <thead>
-        <tr>
-            <th>✔️</th>
-            <th>Categoria</th>
-            <th>Análise</th>
-            <th>Dados Relevantes</th>
-            <th>Observações</th>
-            <th>Arquivos Gerados</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>✅</td>
-            <td><strong>Violência Escolar</strong></td>
-            <td>Panorama sobre o perfil e a percepção dos alunos e professores em escolas de Minas Gerais em 2006.</td>
-            <td>alunos_2006.csv, professores_2006.csv</td>
-            <td>A análise inclui distribuição demográfica (idade, sexo, raça), experiência docente e satisfação dos alunos.</td>
-            <td class="file-links">
-                <a href="analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf">PDF</a>,
-                <a href="analises_vitimizacao/scripts/analises/escolas_final_2006.py">.py</a>,
-                <a href="analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb">.ipynb</a>
-            </td>
-        </tr>
-        <tr>
-            <td>✅</td>
-            <td><strong>Percepção Social</strong></td>
-            <td>Percepção de risco de crimes (roubo, agressão, sequestro) em Belo Horizonte e Minas Gerais.</td>
-            <td>belo_horrizonte_2002.xlsx, percepcao_medoMG.xlsx</td>
-            <td>Os dados foram segmentados por sexo, tipo de bairro e faixa etária. A análise mostra como o medo é experienciado de forma diferente por cada grupo.</td>
-            <td class="file-links">
-                <a href="analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">PDF</a>,
-                <a href="analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
-                <a href="analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
-            </td>
-        </tr>
-        <tr>
-            <td>⬜</td>
-            <td><strong>Violência Urbana</strong></td>
-            <td>Evolução dos índices de violência ao longo do tempo.</td>
-            <td>indices_violencia.csv</td>
-            <td>Comparar diferentes anos para identificar tendências.</td>
-            <td>Links para arquivos de análise</td>
-        </tr>
-        <tr>
-            <td>⬜</td>
-            <td><strong>Violência Urbana</strong></td>
-            <td>Comparação entre tipos de crimes (agressão, furto, roubo).</td>
-            <td><code>agressao</code>, <code>furto</code>, <code>roubo</code></td>
-            <td>Analisar proporções para entender a natureza da criminalidade.</td>
-            <td>Links para arquivos de análise</td>
-        </tr>
-        <tr>
-            <td>⬜</td>
-            <td><strong>Demografia</strong></td>
-            <td>Distribuição populacional por idade e sexo.</td>
-            <td>populacao_idade_sexo.csv</td>
-            <td>Pode ser cruzado com dados de violência para análises mais profundas.</td>
-            <td>Links para arquivos de análise</td>
-        </tr>
-        <tr>
-            <td>⬜</td>
-            <td><strong>Homicídios</strong></td>
-            <td>Análise de homicídios tentados e consumados.</td>
-            <td>Homicidios Tentado e Consumado(EN)</td>
-            <td>Verificar se os dados precisam de tradução ou tratamento adicional.</td>
-            <td>Links para arquivos de análise</td>
-        </tr>
-        <tr>
-            <td>⬜</td>
-            <td><strong>Dados Socioeconômicos</strong></td>
-            <td>Análise de indicadores da Pesquisa Nacional por Amostra de Domicílios (PNAD).</td>
-            <td>PNAD_1998, PNAD_2009</td>
-            <td>O intervalo de 11 anos entre as pesquisas deve ser considerado na análise.</td>
-            <td>Links para arquivos de análise</td>
-        </tr>
-    </tbody>
-</table>
+| Status | Categoria | Análise | Dados Relevantes | Observações | Arquivos Gerados |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| ✅ | **Violência Escolar** | Panorama sobre o perfil e a percepção de alunos e professores em escolas de Minas Gerais (2006). | `alunos_2006.csv`, `professores_2006.csv` | A análise inclui distribuição demográfica, experiência docente e satisfação discente. | [PDF](analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf), [.py](analises_vitimizacao/scripts/analises/escolas_final_2006.py), [.ipynb](analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb) |
+| ✅ | **Percepção Social** | Análise da percepção de risco de crimes (roubo, agressão, sequestro) em Belo Horizonte e Minas Gerais. | `belo_horrizonte_2002.xlsx`, `percepcao_medoMG.xlsx` | Os dados foram segmentados por sexo, tipo de bairro e faixa etária, revelando diferenças na experiência do medo. | [PDF](analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf), [.py](analises_vitimizacao/scripts/analises/percepcao_social.py), [.ipynb](analises_vitimizacao/scripts/analises/percepcao_social.ipynb) |
+| ⬜ | **Violência Urbana** | Evolução dos índices de violência ao longo do tempo. | `indices_violencia.csv` | Comparar diferentes anos para identificar tendências. | Links para arquivos de análise |
+| ⬜ | **Violência Urbana** | Análise comparativa entre tipos de crimes (agressão, furto, roubo). | `agressao`, `furto`, `roubo` | Analisar proporções para compreender a natureza da criminalidade. | Links para arquivos de análise |
+| ⬜ | **Demografia** | Distribuição populacional por idade e sexo. | `populacao_idade_sexo.csv` | Possibilidade de cruzamento com dados de violência para análises aprofundadas. | Links para arquivos de análise |
+| ⬜ | **Homicídios** | Análise de homicídios tentados e consumados. | `Homicidios Tentado e Consumado(ENELISE)` | Verificar necessidade de tratamento adicional dos dados. | Links para arquivos de análise |
+| ⬜ | **Dados Socioeconômicos** | Análise de indicadores da Pesquisa Nacional por Amostra de Domicílios (PNAD). | PNAD_1998, PNAD_2009 | O intervalo de 11 anos entre as pesquisas deve ser considerado na análise. | Links para arquivos de análise |
 
-## Arquivos Buscados
+## Fontes de Dados Utilizadas
+Esta seção detalha os arquivos de dados brutos utilizados, incluindo uma breve descrição do seu conteúdo principal.
 
-<div class="security-tables">
-<h2>Tabela 1: Inventário de Projetos e Pesquisas Geradoras de Dados em Segurança Pública</h2>
-<p>Esta tabela lista os principais projetos, serviços e pesquisas que resultaram na coleta de dados sobre vitimização e percepção de segurança, muitas vezes realizados por ou para instituições específicas.</p>
-<table class="security-table">
-    <thead>
-        <tr>
-            <th>Check List</th>
-            <th>Duração</th>
-            <th>Nome do serviço/breve descrição dos principais produtos/resultados</th>
-            <th>Nome do Contratante e país do serviço</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>✅</td>
-            <td>2002</td>
-            <td>Survey de Vitimização em Belo Horizonte</td>
-            <td>Belo Horizonte - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2005 - 2006</td>
-            <td>Pesquisa domiciliar de vitimização na cidade do Rio de Janeiro</td>
-            <td>Rio de Janeiro - Rio de Janeiro</td>
-        </tr>
-        <tr>
-            <td>✅</td>
-            <td>2005</td>
-            <td>Prevenção da violência nas escolas públicas de Belo Horizonte: caracterização das escolas e intervenções possíveis</td>
-            <td>Contagem - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2005</td>
-            <td>Pesquisa de vitimização nas cidades de Curitiba e Foz do Igraçu</td>
-            <td>Curitiba e Foz do Igraçu - Paraná</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2006</td>
-            <td>Violência nas escolas pública de Belo Horizonte e Região Metropolitana: caracterização do cenário, identificação de intervenções preventivas e capacitação para gestão local do problema</td>
-            <td>Região Metropolitana de Belo Horizonte - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2006</td>
-            <td>Survey de Vitimização na Região Metropolitana de Belo Horizonte</td>
-            <td>Região Metropolitana de Belo Horizonte - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2006</td>
-            <td>Diagnóstico da violência criminal no município de Itabira e construção do plano de segurança municipal com pesquisa de vitimização</td>
-            <td>Itabira - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2008</td>
-            <td>Diagnóstico de cultura cidadania no município de Belo Horizonte</td>
-            <td>Belo Horizonte - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2008</td>
-            <td>Pesquisa de percepção de medo em Minas Gerais</td>
-            <td>Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2008</td>
-            <td>Pesquisa Policiamento comunitário: a visão dos policiais</td>
-            <td>Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Diagnóstico da qualidade e efetividade de atendimento socioeducativo</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Estudo sobre saúde dos profissionais do Sistema de defesa social</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2009</td>
-            <td>Diagnóstico da violência criminal no município de Contagem e construção do Plano de segurança municipal e pesquisa de vitimização</td>
-            <td>Contagem - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2012</td>
-            <td>Pesquisa Nacional de Vitimização</td>
-            <td>Belo Horizonte - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2022</td>
-            <td>Plano de segurança e ordem pública e pesquisa de vitimização</td>
-            <td>Santa Bárbara – Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2023</td>
-            <td>Diagnóstico de Criminalidade, Plano municipal de segurança pública do município de Contagem e pesquisa de vitimização</td>
-            <td>Contagem - Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2023</td>
-            <td>Meta-análise de pesquisas de Vitimização em Minas Gerais e no Brasil</td>
-            <td>Minas Gerais</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2023</td>
-            <td>Diagnóstico da Segurança Pública em Minas Gerais: Pesquisa de Vitimização, Pesquisa de Qualidade de vida dos agentes de segurança, Mapeamento da articulação do Sistema de Justiça e dos Municípios com a segurança pública</td>
-            <td>Minas Gerais</td>
-        </tr>
-    </tbody>
-</table>
+| Nome do Arquivo (Caminho) | Planilha(s) no Arquivo | Descrição |
+| :--- | :--- | :--- |
+| `indices_violencia.csv` | N/A | Contém índices de violência referentes ao Survey de Vitimização em Belo Horizonte (2002). |
+| `Vitimizacao_UP_27.csv` | N/A | Contém dados de vitimização de uma unidade de pesquisa específica, como parte do Survey de Vitimização em Belo Horizonte (2002). |
+| `amostra_BH.xls` | Plan1, Plan2, Plan3, Plan4 | Contém amostras de dados coletadas em Belo Horizonte no âmbito do "Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã" (2008). |
+| `amostra_MG.xls` | Plan1 | Contém amostras de dados para o estado de Minas Gerais, coletadas para a "Pesquisa de percepção de medo em Minas Gerais" e a "Pesquisa Policiamento comunitário: a visão dos policiais" (2008). |
+| `populacao_idade_sexo.csv`| N/A | Contém dados demográficos da população brasileira (fonte: IBGE/PNAD), categorizados por idade e sexo. |
+| `alunos_2006.csv` | N/A | Contém dados de alunos coletados em 2006, referentes ao projeto "Violência nas escolas públicas de Belo Horizonte e Região Metropolitana". |
+| `professores_2006.csv` | N/A | Contém dados de professores coletados em 2006, relacionados ao mesmo projeto de violência nas escolas. |
+| `Homicidios Tentado e Consumado(ENELISE).xls`| Homicidios Consumado, Homicidios Tentado, etc. | Inclui dados sobre homicídios tentados e consumados em diversas cidades de Minas Gerais. |
+| Dados da PNAD 2009 | Múltiplas | Dados da Pesquisa Nacional por Amostra de Domicílios (2009), com 153.837 domicílios, organizados em subpastas por tipo de ocorrência (agressão, furto, roubo, etc.). |
 
-<hr>
+## Inventário de Pesquisas Relevantes em Segurança Pública
+### Tabela 1: Projetos e Pesquisas Geradoras de Dados
+Esta tabela lista os principais projetos e pesquisas que resultaram na coleta de dados sobre vitimização e percepção de segurança no Brasil.
 
-<h2>Tabela 2: Catálogo Detalhado de Pesquisas de Vitimização (Características Técnicas)</h2>
-<p>Esta tabela apresenta um panorama de diversas pesquisas de vitimização realizadas no Brasil, com detalhes sobre sua metodologia, abrangência e escopo temporal. <strong>Nota</strong>: Algumas informações podem estar incompletas ou necessitar de verificação nas fontes originais.</p>
+| Check List | Duração | Nome do serviço/breve descrição dos principais produtos/resultados | Nome do Contratante e país do serviço |
+| :--- | :--- | :--- | :--- |
+| ✅ | 2002 | Survey de Vitimização em Belo Horizonte | Belo Horizonte - Minas Gerais |
+| | 2005 - 2006 | Pesquisa domiciliar de vitimização na cidade do Rio de Janeiro | Rio de Janeiro - Rio de Janeiro |
+| ✅ | 2005 | Prevenção da violência nas escolas públicas de Belo Horizonte: caracterização das escolas e intervenções possíveis | Contagem - Minas Gerais |
+| | 2005 | Pesquisa de vitimização nas cidades de Curitiba e Foz do Igraçu | Curitiba e Foz do Igraçu - Paraná |
+| | 2006 | Violência nas escolas pública de Belo Horizonte e Região Metropolitana: caracterização do cenário, identificação de intervenções preventivas e capacitação para gestão local do problema | Região Metropolitana de Belo Horizonte - Minas Gerais |
+| | 2006 | Survey de Vitimização na Região Metropolitana de Belo Horizonte | Região Metropolitana de Belo Horizonte - Minas Gerais |
+| | 2006 | Diagnóstico da violência criminal no município de Itabira e construção do plano de segurança municipal com pesquisa de vitimização | Itabira - Minas Gerais |
+| | 2008 | Diagnóstico de cultura cidadania no município de Belo Horizonte | Belo Horizonte - Minas Gerais |
+| | 2008 | Pesquisa de percepção de medo em Minas Gerais | Minas Gerais |
+| | 2008 | Pesquisa Policiamento comunitário: a visão dos policiais | Minas Gerais |
+| | | Diagnóstico da qualidade e efetividade de atendimento socioeducativo | |
+| | | Estudo sobre saúde dos profissionais do Sistema de defesa social | |
+| | 2009 | Diagnóstico da violência criminal no município de Contagem e construção do Plano de segurança municipal e pesquisa de vitimização | Contagem - Minas Gerais |
+| | 2012 | Pesquisa Nacional de Vitimização | Belo Horizonte - Minas Gerais |
+| | 2022 | Plano de segurança e ordem pública e pesquisa de vitimização | Santa Bárbara – Minas Gerais |
+| | 2023 | Diagnóstico de Criminalidade, Plano municipal de segurança pública do município de Contagem e pesquisa de vitimização | Contagem - Minas Gerais |
+| | 2023 | Meta-análise de pesquisas de Vitimização em Minas Gerais e no Brasil | Minas Gerais |
+| | 2023 | Diagnóstico da Segurança Pública em Minas Gerais: Pesquisa de Vitimização, Pesquisa de Qualidade de vida dos agentes de segurança, Mapeamento da articulação do Sistema de Justiça e dos Municípios com a segurança pública | Minas Gerais |
 
-<table class="security-table">
-    <thead>
-        <tr>
-            <th>Check List</th>
-            <th>Ano</th>
-            <th>Pesquisa/Instituição Responsável</th>
-            <th>Abrangência</th>
-            <th>Período de Referência</th>
-            <th>Tamanho da Amostra</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>✅</td>
-            <td>1988</td>
-            <td>PNAD</td>
-            <td>Brasil</td>
-            <td>1 ano</td>
-            <td>81.628 domicílios</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>1992</td>
-            <td>Ilanud</td>
-            <td>Município do Rio de Janeiro e Município de São Paulo</td>
-            <td>5 anos</td>
-            <td>1.000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>1996</td>
-            <td>Ilanud</td>
-            <td>Município do Rio de Janeiro e Município de São Paulo</td>
-            <td>5 anos</td>
-            <td>1.000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>1996</td>
-            <td>Iser/PAHO</td>
-            <td>Município do Rio de Janeiro</td>
-            <td>5 anos</td>
-            <td>2.469 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>1996</td>
-            <td>ISER/FGV</td>
-            <td>Região Metropolitana do RJ</td>
-            <td>1 ano</td>
-            <td>1.126 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>1997</td>
-            <td>Ilanud</td>
-            <td>Município do Rio de Janeiro e Município de São Paulo</td>
-            <td>5 anos</td>
-            <td>2.400 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>1997/1998</td>
-            <td>O Povo e a PM</td>
-            <td>Distrito Federal</td>
-            <td>Toda a vida</td>
-            <td>2000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>1998</td>
-            <td>SEADE</td>
-            <td>SP - Região Metropolitana e municípios com mais de 50.000 habitantes</td>
-            <td>1 ano</td>
-            <td>14.000 domicílios</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>1999</td>
-            <td>USP</td>
-            <td>Região Metropolitana de SP</td>
-            <td>6 meses</td>
-            <td>1.000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2000</td>
-            <td>ISER</td>
-            <td>Baixada Fluminense - RJ</td>
-            <td>1 ano</td>
-            <td>1.389 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2001</td>
-            <td>CDHP - IBGE</td>
-            <td>Copacabana e Leme</td>
-            <td>1 ano</td>
-            <td>450 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2001</td>
-            <td>Universidade de Caxias do Sul</td>
-            <td>Caxias do Sul (RS)</td>
-            <td>Sem informação</td>
-            <td>Sem informação</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2001</td>
-            <td>GUTO - UNESP</td>
-            <td>Município de Marília - SP</td>
-            <td>Toda a vida</td>
-            <td>828 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2002</td>
-            <td>Módulo da PESB / DATAUFF</td>
-            <td>Brasil</td>
-            <td>Toda a Vida</td>
-            <td>2460 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2002</td>
-            <td>Ilanud/FIA/USP</td>
-            <td>São Paulo, Rio de Janeiro, Vitória e Recife (municípios)</td>
-            <td>5 anos</td>
-            <td>2.800 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2002</td>
-            <td>ISP / Viva Rio</td>
-            <td>Município do Rio de Janeiro</td>
-            <td>1 ano</td>
-            <td>765 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2002</td>
-            <td>CRISP</td>
-            <td>Município de Belo Horizonte</td>
-            <td>1 ano e 5 anos</td>
-            <td>4.000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2003</td>
-            <td>Instituto Futuro Brasil</td>
-            <td>Município de São Paulo</td>
-            <td>1 ano e 5 anos</td>
-            <td>5.000 domicílios</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2003</td>
-            <td>GUTO - UNESP</td>
-            <td>Município de Marília - SP</td>
-            <td>Toda a vida</td>
-            <td>Sem Informação</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2003</td>
-            <td>CPP / INSPER</td>
-            <td>Município de São Paulo</td>
-            <td>1 ano</td>
-            <td>5.000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2004</td>
-            <td>Prefeitura</td>
-            <td>Alvorada (RS)</td>
-            <td>1 ano</td>
-            <td>500 domicílios</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2005</td>
-            <td>IBPS - PMV</td>
-            <td>Rio de Janeiro</td>
-            <td>1 mês</td>
-            <td>1.100 entrevistados por telefone</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2005</td>
-            <td>CRISP/SSP-Curitiba</td>
-            <td>Curitiba</td>
-            <td>1 ano e 5 anos</td>
-            <td>3560 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2005</td>
-            <td>NEPP- PR</td>
-            <td>Foz do Iguaçu</td>
-            <td>1 ano e 5 anos</td>
-            <td>700 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2005</td>
-            <td>SENASP - SEGUP - UFPA/CCS</td>
-            <td>Região Metropolitana de Belém e 8 municípios do Interior</td>
-            <td>2 anos</td>
-            <td>2848 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2005/2006</td>
-            <td>NUPEVI / UERJ</td>
-            <td>Município do Rio de Janeiro</td>
-            <td>Toda vida e 1 ano</td>
-            <td>4.000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2006</td>
-            <td>CRISP</td>
-            <td>Região Metropolitana de Belo Horizonte</td>
-            <td>1 ano e 5 anos</td>
-            <td>6.220 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2006</td>
-            <td>SEADE /Bloco da PED</td>
-            <td>Região Metropolitana de SP</td>
-            <td>Sem informação</td>
-            <td>3.000 domicílios/mês</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2006</td>
-            <td>Pesquisa de Vitimização nas regiões do Orçamento Participativo</td>
-            <td>Regiões do Orçamento Participativo de Porto Alegre/RS</td>
-            <td>1 ano</td>
-            <td>1.404 domicílios</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2007</td>
-            <td>ISP</td>
-            <td>Região Metropolitana do RJ</td>
-            <td>1 ano e 5 anos</td>
-            <td>5.000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2007</td>
-            <td>CRISP</td>
-            <td>Município de Itabira - MG</td>
-            <td>1 ano e 5 anos</td>
-            <td>401 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2007</td>
-            <td>Prefeitura</td>
-            <td>Esteio /RS</td>
-            <td>23 meses</td>
-            <td>2.682 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2007/2008</td>
-            <td>Universidade Federal de Pelotas</td>
-            <td>Município de Pelotas - RS</td>
-            <td>1 ano e 5 anos</td>
-            <td>2918 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2008</td>
-            <td>GUTO - UNESP</td>
-            <td>Município de Marília - SP</td>
-            <td>Toda a vida</td>
-            <td>741 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2008</td>
-            <td>CPP / INSPER</td>
-            <td>Município de São Paulo</td>
-            <td>1 ano</td>
-            <td>2.967 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2008</td>
-            <td>UFGO</td>
-            <td>Região Metropolitana de Goiânia – GO</td>
-            <td>Sem informação</td>
-            <td>3200 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2008</td>
-            <td>Instituto Futuro Brasil</td>
-            <td>Município de São Paulo</td>
-            <td>1 ano e 5 anos</td>
-            <td>3.000 domicílios</td>
-        </tr>
-        <tr>
-            <td>✅</td>
-            <td>2008</td>
-            <td>Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã</td>
-            <td>Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas Gerais</td>
-            <td>Toda a vida</td>
-            <td>5.607 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2008</td>
-            <td>NEI/UFES</td>
-            <td>Grande Vitória (Serra, Cariacica, Viana, Vitória e Vila Velha)</td>
-            <td>12 meses e 05 anos</td>
-            <td>5.244 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2009</td>
-            <td>Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã</td>
-            <td>Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas Gerais</td>
-            <td>Toda a vida</td>
-            <td>5.067 entrevistados</td>
-        </tr>
-        <tr>
-            <td>✅</td>
-            <td>2009</td>
-            <td>PNAD</td>
-            <td>Brasil</td>
-            <td>1 ano</td>
-            <td>153.837 domicílios</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2009</td>
-            <td>Pesquisa de Vitimização de Canoas</td>
-            <td>Município de Canoas/RS</td>
-            <td>12 meses</td>
-            <td>1.568 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2010</td>
-            <td>Pesquisa de Vitimização no estado do Mato Groso FEC/DataUFF</td>
-            <td>Mato Grosso</td>
-            <td>12 meses</td>
-            <td>4.000 domicílios</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2010</td>
-            <td>Módulo da PCVAPSP IESP/UERJ</td>
-            <td>Brasil</td>
-            <td>&nbsp;</td>
-            <td>3.612 domicílios</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2010/2012</td>
-            <td>PNV/MJ</td>
-            <td>Brasil</td>
-            <td>1 ano e Toda a vida</td>
-            <td>78.008 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2012</td>
-            <td>Pesquisa de Vitimização Santa Catarina (DATAUFF/PMSC)</td>
-            <td>Santa Catarina</td>
-            <td>Sem Informação</td>
-            <td>400 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2013</td>
-            <td>CPP / INSPER</td>
-            <td>Município de São Paulo</td>
-            <td>1 ano</td>
-            <td>3.000 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2013</td>
-            <td>Representações Sociais sobre Violência e Criminalidade de Bagé</td>
-            <td>Bagé/RS</td>
-            <td>Sem Informação</td>
-            <td>408 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2015</td>
-            <td>Pesquisa sobre vitimização e percepção de risco entre profissionais da segurança (FBSP)</td>
-            <td>Profissionais de Segurança Pública registrados na Rede de Ensino à Distância da SENASP/MJ</td>
-            <td>Toda a carreira</td>
-            <td>10.323 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2015</td>
-            <td>(Em andamento) Observatório de Segurança Cidadã</td>
-            <td>Município de Novo Hamburgo</td>
-            <td>-</td>
-            <td>600 entrevistados</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>2015</td>
-            <td>(Em andamento) Pesquisa Distrital de Segurança (SSPPS)</td>
-            <td>Distrito Federal</td>
-            <td>-</td>
-            <td>19.537 domicílios</td>
-        </tr>
-    </tbody>
-</table>
+---
+### Tabela 2: Catálogo Detalhado de Pesquisas de Vitimização (Características Técnicas)
+Esta tabela apresenta um panorama de diversas pesquisas de vitimização realizadas no Brasil, com detalhes sobre sua metodologia, abrangência e escopo temporal. **Nota**: Algumas informações podem estar incompletas.
 
-</div>
+| Check List | Ano | Pesquisa/Instituição Responsável | Abrangência | Período de Referência | Tamanho da Amostra |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| ✅ | 1988 | PNAD | Brasil | 1 ano | 81.628 domicílios |
+| | 1992 | Ilanud | Município do Rio de Janeiro e Município de São Paulo | 5 anos | 1.000 entrevistados |
+| | 1996 | Ilanud | Município do Rio de Janeiro e Município de São Paulo | 5 anos | 1.000 entrevistados |
+| | 1996 | Iser/PAHO | Município do Rio de Janeiro | 5 anos | 2.469 entrevistados |
+| | 1996 | ISER/FGV | Região Metropolitana do RJ | 1 ano | 1.126 entrevistados |
+| | 1997 | Ilanud | Município do Rio de Janeiro e Município de São Paulo | 5 anos | 2.400 entrevistados |
+| | 1997/1998 | O Povo e a PM | Distrito Federal | Toda a vida | 2000 entrevistados |
+| | 1998 | SEADE | SP - Região Metropolitana e municípios com mais de 50.000 habitantes | 1 ano | 14.000 domicílios |
+| | 1999 | USP | Região Metropolitana de SP | 6 meses | 1.000 entrevistados |
+| | 2000 | ISER | Baixada Fluminense - RJ | 1 ano | 1.389 entrevistados |
+| | 2001 | CDHP - IBGE | Copacabana e Leme | 1 ano | 450 entrevistados |
+| | 2001 | Universidade de Caxias do Sul | Caxias do Sul (RS) | Sem informação | Sem informação |
+| | 2001 | GUTO - UNESP | Município de Marília - SP | Toda a vida | 828 entrevistados |
+| | 2002 | Módulo da PESB / DATAUFF | Brasil | Toda a Vida | 2460 entrevistados |
+| | 2002 | Ilanud/FIA/USP | São Paulo, Rio de Janeiro, Vitória e Recife (municípios) | 5 anos | 2.800 entrevistados |
+| | 2002 | ISP / Viva Rio | Município do Rio de Janeiro | 1 ano | 765 entrevistados |
+| | 2002 | CRISP | Município de Belo Horizonte | 1 ano e 5 anos | 4.000 entrevistados |
+| | 2003 | Instituto Futuro Brasil | Município de São Paulo | 1 ano e 5 anos | 5.000 domicílios |
+| | 2003 | GUTO - UNESP | Município de Marília - SP | Toda a vida | Sem Informação |
+| | 2003 | CPP / INSPER | Município de São Paulo | 1 ano | 5.000 entrevistados |
+| | 2004 | Prefeitura | Alvorada (RS) | 1 ano | 500 domicílios |
+| | 2005 | IBPS - PMV | Rio de Janeiro | 1 mês | 1.100 entrevistados por telefone |
+| | 2005 | CRISP/SSP-Curitiba | Curitiba | 1 ano e 5 anos | 3560 entrevistados |
+| | 2005 | NEPP- PR | Foz do Iguaçu | 1 ano e 5 anos | 700 entrevistados |
+| | 2005 | SENASP - SEGUP - UFPA/CCS | Região Metropolitana de Belém e 8 municípios do Interior | 2 anos | 2848 entrevistados |
+| | 2005/2006 | NUPEVI / UERJ | Município do Rio de Janeiro | Toda vida e 1 ano | 4.000 entrevistados |
+| | 2006 | CRISP | Região Metropolitana de Belo Horizonte | 1 ano e 5 anos | 6.220 entrevistados |
+| | 2006 | SEADE /Bloco da PED | Região Metropolitana de SP | Sem informação | 3.000 domicílios/mês |
+| | 2006 | Pesquisa de Vitimização nas regiões do Orçamento Participativo | Regiões do Orçamento Participativo de Porto Alegre/RS | 1 ano | 1.404 domicílios |
+| | 2007 | ISP | Região Metropolitana do RJ | 1 ano e 5 anos | 5.000 entrevistados |
+| | 2007 | CRISP | Município de Itabira - MG | 1 ano e 5 anos | 401 entrevistados |
+| | 2007 | Prefeitura | Esteio /RS | 23 meses | 2.682 entrevistados |
+| | 2007/2008 | Universidade Federal de Pelotas | Município de Pelotas - RS | 1 ano e 5 anos | 2918 entrevistados |
+| | 2008 | GUTO - UNESP | Município de Marília - SP | Toda a vida | 741 entrevistados |
+| | 2008 | CPP / INSPER | Município de São Paulo | 1 ano | 2.967 entrevistados |
+| | 2008 | UFGO | Região Metropolitana de Goiânia – GO | Sem informação | 3200 entrevistados |
+| | 2008 | Instituto Futuro Brasil | Município de São Paulo | 1 ano e 5 anos | 3.000 domicílios |
+| ✅ | 2008 | Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã | Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas Gerais | Toda a vida | 5.607 entrevistados |
+| | 2008 | NEI/UFES | Grande Vitória (Serra, Cariacica, Viana, Vitória e Vila Velha) | 12 meses e 05 anos | 5.244 entrevistados |
+| | 2009 | Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã | Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas Gerais | Toda a vida | 5.067 entrevistados |
+| ✅ | 2009 | PNAD | Brasil | 1 ano | 153.837 domicílios |
+| | 2009 | Pesquisa de Vitimização de Canoas | Município de Canoas/RS | 12 meses | 1.568 entrevistados |
+| | 2010 | Pesquisa de Vitimização no estado do Mato Groso FEC/DataUFF | Mato Grosso | 12 meses | 4.000 domicílios |
+| | 2010 | Módulo da PCVAPSP IESP/UERJ | Brasil | | 3.612 domicílios |
+| | 2010/2012 | PNV/MJ | Brasil | 1 ano e Toda a vida | 78.008 entrevistados |
+| | 2012 | Pesquisa de Vitimização Santa Catarina (DATAUFF/PMSC) | Santa Catarina | Sem Informação | 400 entrevistados |
+| | 2013 | CPP / INSPER | Município de São Paulo | 1 ano | 3.000 entrevistados |
+| | 2013 | Representações Sociais sobre Violência e Criminalidade de Bagé | Bagé/RS | Sem Informação | 408 entrevistados |
+| | 2015 | Pesquisa sobre vitimização e percepção de risco entre profissionais da segurança (FBSP) | Profissionais de Segurança Pública registrados na Rede de Ensino à Distância da SENASP/MJ | Toda a carreira | 10.323 entrevistados |
+| | 2015 | (Em andamento) Observatório de Segurança Cidadã | Município de Novo Hamburgo | - | 600 entrevistados |
+| | 2015 | (Em andamento) Pesquisa Distrital de Segurança (SSPPS) | Distrito Federal | - | 19.537 domicílios |
+
+---
+<p style="text-align: center; font-size: 0.9em; color: #7f8c8d;">
+    Repositório de Análises de Vitimização e Percepção de Segurança. <br>
+    Dados compilados e analisados para fins de pesquisa científica. <br>
+    &copy; 2025
+</p>

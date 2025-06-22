@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositório de Análises de Vitimização - Violência Urbana (Comparação de Crimes)</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Relatório Consolidado - Comparação entre Tipos de Crimes</h1>
+
+        <h2>Resumo da Análise Geral</h2>
+        <p>Este relatório visa comparar a ocorrência de diferentes tipos de crimes urbanos, como agressão, furto e roubo. A análise das proporções entre esses crimes é fundamental para compreender a natureza predominante da criminalidade em uma determinada área ou período. A identificação dos crimes mais frequentes pode orientar estratégias de segurança pública e alocação de recursos de forma mais eficaz.</p>
+
+        <h2 id="analise-tipos-crimes">Comparação de Ocorrências por Tipo de Crime</h2>
+        <p>Abaixo, um espaço para o gráfico que ilustrará a comparação entre as ocorrências de agressão, furto e roubo, mostrando suas proporções relativas.</p>
+        <div class="chart-container">
+            <canvas id="violenciaTiposCrimesChart"></canvas>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const primaryColor = '#2c3e50';
+                const textColor = '#34495e';
+
+                const ctx = document.getElementById('violenciaTiposCrimesChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Gráfico de barras para comparação
+                    data: {
+                        labels: ['Agressão', 'Furto', 'Roubo'],
+                        datasets: [{
+                            label: 'Número de Ocorrências (Exemplo)',
+                            data: [500, 1200, 800], // Dados de exemplo
+                            backgroundColor: ['#e74c3c', '#2980b9', '#f1c40f'], // Cores distintas
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Comparação de Ocorrências por Tipo de Crime (Exemplo)',
+                                color: primaryColor,
+                                font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                            },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Número de Ocorrências', color: textColor },
+                                ticks: { color: textColor }
+                            },
+                            x: {
+                                title: { display: true, text: 'Tipo de Crime', color: textColor },
+                                ticks: { color: textColor }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

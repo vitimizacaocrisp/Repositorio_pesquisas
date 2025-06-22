@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositório de Análises de Vitimização - Análise de Homicídios</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Relatório Consolidado - Análise de Homicídios (Tentados e Consumados)</h1>
+
+        <h2>Resumo da Análise Geral</h2>
+        <p>Este relatório se dedica à análise dos homicídios, tanto tentados quanto consumados, com base nos dados fornecidos pelo arquivo <code>Homicidios Tentado e Consumado(ENELISE).xls</code>. O estudo visa identificar padrões, como a distribuição geográfica das ocorrências (incluindo cidades específicas como Uberaba, Pouso Alegre e Juiz de Fora), o perfil das vítimas, tipos de armas mais utilizadas e a evolução temporal desses crimes. A complexidade dos dados requer atenção especial a possíveis necessidades de tradução ou tratamento adicional para garantir a acurácia das análises.</p>
+
+        <h2 id="analise-homicidios-tipos">Comparação de Homicídios Tentados vs. Consumados</h2>
+        <p>Abaixo, um espaço para o gráfico que comparará o número de homicídios tentados e consumados, oferecendo uma visão da gravidade e desfecho das ocorrências.</p>
+        <div class="chart-container">
+            <canvas id="homicidiosTiposChart"></canvas>
+        </div>
+
+        <h2 id="analise-homicidios-geografia">Distribuição Geográfica de Homicídios</h2>
+        <p>Este espaço será preenchido com gráficos ou mapas mostrando a distribuição de homicídios em diferentes localidades, como Uberaba, Pouso Alegre e Juiz de Fora.</p>
+        <div class="chart-container">
+            <canvas id="homicidiosGeografiaChart"></canvas>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const primaryColor = '#2c3e50';
+                const textColor = '#34495e';
+
+                // Gráfico de Homicídios Tentados vs. Consumados
+                const tiposHomicidiosCtx = document.getElementById('homicidiosTiposChart').getContext('2d');
+                new Chart(tiposHomicidiosCtx, {
+                    type: 'pie', // Gráfico de pizza para proporções
+                    data: {
+                        labels: ['Homicídios Consumados', 'Homicídios Tentados'],
+                        datasets: [{
+                            label: 'Número de Ocorrências (Exemplo)',
+                            data: [70, 30], // Dados de exemplo (70% consumado, 30% tentado)
+                            backgroundColor: ['#e74c3c', '#f1c40f'], // Vermelho para consumado, amarelo para tentado
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Proporção de Homicídios Consumados vs. Tentados (Exemplo)',
+                                color: primaryColor,
+                                font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                            },
+                            legend: { display: true, position: 'bottom', labels: { color: textColor } }
+                        }
+                    }
+                });
+
+                // Gráfico de Distribuição Geográfica de Homicídios
+                const geografiaHomicidiosCtx = document.getElementById('homicidiosGeografiaChart').getContext('2d');
+                new Chart(geografiaHomicidiosCtx, {
+                    type: 'bar', // Gráfico de barras para comparação geográfica
+                    data: {
+                        labels: ['Uberaba', 'Pouso Alegre', 'Juiz de Fora', 'Outras Cidades (Exemplo)'],
+                        datasets: [{
+                            label: 'Total de Homicídios (Exemplo)',
+                            data: [150, 80, 200, 300], // Dados de exemplo
+                            backgroundColor: ['#3498db', '#2ecc71', '#9b59b6', '#e67e22'],
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Distribuição Geográfica de Homicídios (Exemplo)',
+                                color: primaryColor,
+                                font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                            },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Número de Homicídios', color: textColor },
+                                ticks: { color: textColor }
+                            },
+                            x: {
+                                title: { display: true, text: 'Cidade', color: textColor },
+                                ticks: { color: textColor }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositório de Análises de Vitimização - Relatório de Percepção Social</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+    <style>
+        /* Estilos específicos para o heatmap, já que Chart.js não tem um tipo nativo */
+        .heatmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-md);
+            font-family: var(--font-family-sans);
+            box-shadow: var(--box-shadow-sm);
+        }
+        .heatmap-table th, .heatmap-table td {
+            border: 1px solid var(--border-color);
+            padding: var(--spacing-sm);
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--text-color);
+        }
+        .heatmap-table th {
+            background-color: var(--table-header-bg);
+            font-weight: bold;
+        }
+        /* Cores aproximadas da escala do heatmap do PDF (viridis/plasma-like) */
+        .color-0-3 { background-color: #440154; color: white; } /* roxo escuro */
+        .color-0-4 { background-color: #482878; color: white; }
+        .color-0-5 { background-color: #3e4989; color: white; }
+        .color-0-6 { background-color: #31688e; color: white; }
+        .color-0-7 { background-color: #26828e; color: white; }
+        .color-0-8 { background-color: #1f9e89; color: white; }
+        .color-0-9 { background-color: #6ece58; } /* verde claro */
+        .color-1-0 { background-color: #fde725; } /* amarelo */
+
+        /* Adicional para a escala de cores do heatmap */
+        .color-scale {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: var(--spacing-sm);
+            font-size: 0.8em;
+            color: var(--light-text-color);
+        }
+        .color-scale-item {
+            display: flex;
+            align-items: center;
+            margin-left: var(--spacing-sm);
+        }
+        .color-block {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Relatório de Percepção Social</h1>
+
+        <h2>Introdução e Objetivo da Análise</h2>
+        <p>Este relatório apresenta uma análise detalhada da percepção de segurança e risco de criminalidade em Minas Gerais, combinando dados de Belo Horizonte (2002) e outros dados de Minas Gerais. </p>
+        <p>O objetivo é compreender como diferentes grupos demográficos (sexo, idade e localização do bairro) percebem o risco de crimes como roubo, agressão e sequestro, e identificar padrões e correlações que possam informar políticas públicas de segurança. </p>
+
+        <h2 id="percepcao-sexo">1. Percepção Média de Risco por Sexo</h2>
+        <p>Esta seção analisa como homens e mulheres percebem o risco de diferentes tipos de crime: roubo, agressão e sequestro.  A tabela abaixo mostra os valores médios de percepção de risco para cada sexo e tipo de crime, enquanto o gráfico visualiza essas diferenças, tornando-as mais fáceis de comparar.  Geralmente, as mulheres tendem a ter uma percepção de risco mais elevada em todas as categorias de crime. </p>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sexo</th>
+                        <th>Risco Roubo</th>
+                        <th>Risco Agressão</th>
+                        <th>Risco Sequestro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Feminino</td>
+                        <td>1.05</td>
+                        <td>0.71</td>
+                        <td>0.41</td>
+                    </tr>
+                    <tr>
+                        <td>Masculino</td>
+                        <td>0.92</td>
+                        <td>0.59</td>
+                        <td>0.29</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="percepcaoSexoChart"></canvas>
+        </div>
+
+        <h2 id="percepcao-bairro">2. Percepção Média de Risco por Tipo de Bairro</h2>
+        <p>Aqui, examinamos como a percepção de risco varia entre diferentes tipos de bairros (por exemplo, bairros violentos, não violentos, etc.).  A tabela apresenta os valores médios de percepção de risco para roubo, agressão e sequestro em cada estrato de bairro.  O gráfico complementar ilustra visualmente essas variações, ajudando a identificar se a percepção de insegurança é maior em áreas consideradas mais problemáticas. </p>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estrato do Bairro</th>
+                        <th>Risco Roubo</th>
+                        <th>Risco Agressão</th>
+                        <th>Risco Sequestro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bairro não violento</td>
+                        <td>1.00</td>
+                        <td>0.66</td>
+                        <td>0.37</td>
+                    </tr>
+                    <tr>
+                        <td>Favela não violenta</td>
+                        <td>1.00</td>
+                        <td>0.67</td>
+                        <td>0.33</td>
+                    </tr>
+                    <tr>
+                        <td>Favela violenta</td>
+                        <td>0.88</td>
+                        <td>0.62</td>
+                        <td>0.29</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="percepcaoBairroChart"></canvas>
+        </div>
+
+        <h2 id="percepcao-idade">3. Percepção Média de Risco por Faixa de Idade</h2>
+        <p>Esta seção detalha como diferentes faixas etárias percebem o risco de ser vítima de crimes.  A tabela mostra a percepção média de risco para roubo, agressão e sequestro em cada faixa de idade.  O gráfico correspondente permite visualizar rapidamente quais grupos etários se sentem mais ou menos seguros em relação a cada tipo de crime, o que pode influenciar a criação de programas de segurança direcionados. </p>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Faixa de Idade</th>
+                        <th>Risco Roubo</th>
+                        <th>Risco Agressão</th>
+                        <th>Risco Sequestro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>41 anos ou mais</td>
+                        <td>1.02</td>
+                        <td>0.67</td>
+                        <td>0.36</td>
+                    </tr>
+                    <tr>
+                        <td>de 21 a 30 anos</td>
+                        <td>0.98</td>
+                        <td>0.68</td>
+                        <td>0.34</td>
+                    </tr>
+                    <tr>
+                        <td>de 31 a 40 anos</td>
+                        <td>1.00</td>
+                        <td>0.64</td>
+                        <td>0.33</td>
+                    </tr>
+                    <tr>
+                        <td>entre 15 e 20 anos</td>
+                        <td>0.91</td>
+                        <td>0.62</td>
+                        <td>0.41</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="percepcaoIdadeChart"></canvas>
+        </div>
+
+        <h2 id="correlacao-risco">4. Matriz de Correlação entre Percepções de Risco</h2>
+        <p>Esta matriz e o mapa de calor (heatmap) mostram a relação entre as percepções dos diferentes tipos de risco (roubo, agressão e sequestro).  Os números variam de -1 a 1: valores próximos de 1 indicam que, se uma pessoa teme um tipo de crime, ela provavelmente também temerá o outro (correlação positiva forte).  Valores próximos de 0 indicam pouca ou nenhuma relação.  Essa análise ajuda a entender se a sensação de insegurança é específica ou generalizada. </p>
+        <p>Abaixo, a representação da matriz de correlação:</p>
+        <div class="table-responsive">
+            <table class="heatmap-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>risco_roubo</th>
+                        <th>risco_agressao</th>
+                        <th>risco_sequestro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>risco_roubo</th>
+                        <td class="color-1-0">1.00</td>
+                        <td class="color-0-4">0.48</td>
+                        <td class="color-0-3">0.29</td>
+                    </tr>
+                    <tr>
+                        <th>risco_agressao</th>
+                        <td class="color-0-4">0.48</td>
+                        <td class="color-1-0">1.00</td>
+                        <td class="color-0-4">0.41</td>
+                    </tr>
+                    <tr>
+                        <th>risco_sequestro</th>
+                        <td class="color-0-3">0.29</td>
+                        <td class="color-0-4">0.41</td>
+                        <td class="color-1-0">1.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="color-scale">
+            Escala de Cores:
+            <div class="color-scale-item"><div class="color-block color-0-3"></div> 0.3</div>
+            <div class="color-scale-item"><div class="color-block color-0-4"></div> 0.4</div>
+            <div class="color-scale-item"><div class="color-block color-0-5"></div> 0.5</div>
+            <div class="color-scale-item"><div class="color-block color-0-6"></div> 0.6</div>
+            <div class="color-scale-item"><div class="color-block color-0-7"></div> 0.7</div>
+            <div class="color-scale-item"><div class="color-block color-0-8"></div> 0.8</div>
+            <div class="color-scale-item"><div class="color-block color-0-9"></div> 0.9</div>
+            <div class="color-scale-item"><div class="color-block color-1-0"></div> 1.0</div>
+        </div>
+
+        <h2 id="conclusoes">5. Resultados e Conclusões</h2>
+        <p>A análise dos dados de percepção de segurança revela insights importantes sobre como diferentes grupos demográficos e sociais experienciam o medo em relação à criminalidade.  A correlação positiva entre os tipos de risco sugere que a sensação de insegurança é um sentimento generalizado, não focado em um único tipo de crime. </p>
+        <p>Observou-se que a percepção de risco não é homogênea, apresentando variações significativas quando segmentada por sexo, faixa etária e estrato do bairro de residência.  Por exemplo, a análise por sexo indicou que o público feminino percebe maior risco de sequestro (média de 0.41) em comparação ao público masculino (média de 0.29).  Em relação aos bairros, os 'Bairros violentos' consistentemente mostram percepções de risco mais altas para todos os crimes.  Quanto à idade, as faixas etárias mais jovens, como 'de 10 a 20 anos', frequentemente exibem uma percepção de risco menor em comparação com grupos mais velhos. </p>
+        <p>Estes resultados sugerem a necessidade de políticas de segurança pública que sejam sensíveis a essas diferentes percepções, focando esforços em localidades e grupos que demonstram maior sensação de insegurança. </p>
+
+    </div>
+    <script src="../app.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cores base do seu CSS
+            const primaryColor = '#2c3e50';
+            const primaryDarkColor = '#1a242f';
+            const textColor = '#34495e';
+
+            // Cores dos gráficos baseadas nas imagens do PDF para consistência
+            const genderColors = ['#5a2b72', '#b34d4a']; // Roxo para Feminino, Salmão para Masculino
+            const neighborhoodColors = ['#69a28c', '#528e83', '#3d6c70']; // Tons de verde/azul para Bairro não violento, Favela não violenta, Favela violenta
+            const ageColors = ['#5a2b72', '#8e44ad', '#c0392b', '#e74c3c']; // Tons do vermelho/roxo para faixas etárias
+
+            // Helper para configurar opções comuns de título e legenda
+            function getChartOptions(titleText, showLegend = true) {
+                return {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: titleText,
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: {
+                            display: showLegend,
+                            labels: {
+                                color: textColor
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1.1, // Ajuste para melhor visualização da escala 0-1
+                            title: {
+                                display: true,
+                                text: 'Percepção Média do Risco (escala)',
+                                color: textColor
+                            },
+                            ticks: {
+                                color: textColor
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Tipo de Crime',
+                                color: textColor
+                            },
+                            ticks: {
+                                color: textColor
+                            }
+                        }
+                    }
+                };
+            }
+
+            // 1. Gráfico de Percepção Média de Risco por Sexo
+            const percepcaoSexoCtx = document.getElementById('percepcaoSexoChart').getContext('2d');
+            new Chart(percepcaoSexoCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Roubo', 'Agressão', 'Sequestro'],
+                    datasets: [
+                        {
+                            label: 'Feminino',
+                            data: [1.05, 0.71, 0.41],
+                            backgroundColor: genderColors[0],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Masculino',
+                            data: [0.92, 0.59, 0.29],
+                            backgroundColor: genderColors[1],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: getChartOptions('Percepção Média de Risco por Sexo')
+            });
+
+            // 2. Gráfico de Percepção Média de Risco por Tipo de Bairro
+            const percepcaoBairroCtx = document.getElementById('percepcaoBairroChart').getContext('2d');
+            new Chart(percepcaoBairroCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Roubo', 'Agressão', 'Sequestro'],
+                    datasets: [
+                        {
+                            label: 'Bairro não violento',
+                            data: [1.00, 0.66, 0.37],
+                            backgroundColor: neighborhoodColors[0],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Favela não violenta',
+                            data: [1.00, 0.67, 0.33],
+                            backgroundColor: neighborhoodColors[1],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Favela violenta',
+                            data: [0.88, 0.62, 0.29],
+                            backgroundColor: neighborhoodColors[2],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: getChartOptions('Percepção Média de Risco por Tipo de Bairro')
+            });
+
+            // 3. Gráfico de Percepção Média de Risco por Faixa de Idade
+            const percepcaoIdadeCtx = document.getElementById('percepcaoIdadeChart').getContext('2d');
+            new Chart(percepcaoIdadeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Roubo', 'Agressão', 'Sequestro'],
+                    datasets: [
+                        {
+                            label: '41 anos ou mais',
+                            data: [1.02, 0.67, 0.36],
+                            backgroundColor: ageColors[0],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'de 21 a 30 anos',
+                            data: [0.98, 0.68, 0.34],
+                            backgroundColor: ageColors[1],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'de 31 a 40 anos',
+                            data: [1.00, 0.64, 0.33],
+                            backgroundColor: ageColors[2],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'entre 15 e 20 anos',
+                            data: [0.91, 0.62, 0.41],
+                            backgroundColor: ageColors[3],
+                            borderColor: primaryDarkColor,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: getChartOptions('Percepção Média de Risco por Faixa de Idade')
+            });
+
+            // 4. Matriz de Correlação: já implementado como tabela HTML com classes de cor.
+            // Não há gráfico Chart.js nativo para heatmap.
+        });
+    </script>
+</body>
+</html>

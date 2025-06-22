@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositório de Análises de Vitimização - Violência Urbana (Índices)</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Relatório Consolidado - Evolução dos Índices de Violência Urbana</h1>
+
+        <h2>Resumo da Análise Geral</h2>
+        <p>Esta análise foca na evolução dos índices de violência urbana ao longo do tempo, utilizando o arquivo <code>indices_violencia.csv</code>. O objetivo é identificar tendências, picos ou quedas nas taxas de criminalidade, fornecendo uma base para entender a dinâmica da segurança pública em diferentes períodos. Os dados permitem uma visualização clara de como a violência se manifesta e se desenvolve, possibilitando a comparação entre distintos anos e a avaliação da efetividade de políticas de segurança.</p>
+
+        <h2 id="analise-indices-tempo">Evolução dos Índices de Violência ao Longo do Tempo</h2>
+        <p>Abaixo, um espaço para o gráfico que mostrará a evolução dos índices de violência. Esta visualização é crucial para observar tendências de longo prazo e identificar períodos de maior ou menor incidência criminal.</p>
+        <div class="chart-container">
+            <canvas id="violenciaIndicesTempoChart"></canvas>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const primaryColor = '#2c3e50';
+                const textColor = '#34495e';
+
+                const ctx = document.getElementById('violenciaIndicesTempoChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line', // Exemplo de gráfico de linha para evolução ao longo do tempo
+                    data: {
+                        labels: ['2000', '2001', '2002', '2003', '2004', '2005'], // Exemplo de anos
+                        datasets: [{
+                            label: 'Índice de Violência (Exemplo)',
+                            data: [100, 110, 95, 120, 115, 130], // Dados de exemplo
+                            borderColor: primaryColor,
+                            backgroundColor: 'rgba(44, 62, 80, 0.2)',
+                            fill: true,
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Evolução dos Índices de Violência (Dados de Exemplo)',
+                                color: primaryColor,
+                                font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                            },
+                            legend: { display: true, labels: { color: textColor } }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Valor do Índice', color: textColor },
+                                ticks: { color: textColor }
+                            },
+                            x: {
+                                title: { display: true, text: 'Ano', color: textColor },
+                                ticks: { color: textColor }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

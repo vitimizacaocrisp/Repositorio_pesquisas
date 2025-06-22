@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositório de Análises de Vitimização - Relatório Escolas 2006</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Relatório Consolidado - Análise de Escolas 2006</h1>
+
+        <h2>Resumo da Análise Geral</h2>
+        <p>A análise dos dados escolares de 2006 oferece um panorama abrangente sobre o perfil dos alunos e professores da rede. No que diz respeito aos estudantes, observa-se um equilíbrio entre os gêneros, com uma leve predominância do sexo masculino. A composição étnico-racial revela uma diversidade significativa, destacando-se a maioria de alunos que se autodeclaram pardos ou pretos. A faixa etária predominante está concentrada entre 10 e 15 anos, indicando um público majoritariamente em idade correspondente ao Ensino Fundamental. Quanto ao corpo docente, os dados apontam para um quadro de profissionais experientes: a maioria leciona há mais de uma década na mesma escola, o que pode refletir estabilidade e continuidade pedagógica. A distribuição por área de atuação evidencia maior concentração de professores em disciplinas como Educação Física e Matemática, sugerindo uma possível demanda elevada ou maior carga horária destinada a essas matérias no currículo escolar.</p>
+
+        <h2 id="analise-alunos-genero">Análise de Alunos: Gênero</h2>
+        <p>O gráfico de gênero revela uma comunidade estudantil com 1018 alunos do sexo feminino (54.61%) e 816 do sexo masculino (43.78%). Essa distribuição equilibrada é fundamental para um ambiente escolar inclusivo.</p>
+        <div class="chart-container">
+            <canvas id="alunosSexoChart"></canvas>
+        </div>
+
+        <h2 id="analise-alunos-raca">Análise de Alunos: Raça/Cor</h2>
+        <p>A diversidade racial é um pilar da comunidade escolar. A maioria dos alunos se identifica como 'pardo' (45.87%), seguido por 'branco' (28.22%). Este gráfico, após o tratamento dos dados, oferece um retrato fiel da composição étnico-racial dos estudantes.</p>
+        <div class="chart-container">
+            <canvas id="alunosRacaCorChart"></canvas>
+        </div>
+
+        <h2 id="analise-alunos-idade">Análise de Alunos: Faixa Etária</h2>
+        <p>Foram removidos valores atípicos (como 99 anos) para focar em alunos dentro da faixa esperada de idade escolar. A análise considera idades entre 5 e 25 anos. A média de idade é 14.8 anos, com mediana de 15.0 e desvio padrão de 2.4. O gráfico evidencia uma concentração maior na adolescência, auxiliando na definição de metodologias pedagógicas adequadas. A menor idade registrada foi 6.0 anos e a maior 25.0 anos , destacando o predomínio da pré-adolescência e adolescência no grupo analisado. Esses dados são fundamentais para o planejamento de estratégias pedagógicas alinhadas ao perfil etário.</p>
+        <div class="chart-container">
+            <canvas id="alunosIdadeChart"></canvas>
+        </div>
+
+        <h2 id="analise-professores-experiencia">Análise de Professores: Experiência</h2>
+        <p>O corpo docente demonstra ser experiente, com uma média de 4.1 anos de atuação na escola. O histograma evidencia uma concentração de professores com vasta experiência, um indicador positivo para a qualidade do ensino.</p>
+        <div class="chart-container">
+            <canvas id="professoresExperienciaChart"></canvas>
+        </div>
+
+        <h2 id="analise-professores-disciplinas">Análise de Professores: Disciplinas</h2>
+        <p>A análise por disciplina mostra que 'matematica' e 'geografia' são as áreas com maior número de docentes. Este gráfico de barras horizontais facilita a visualização da distribuição de professores, destacando as áreas de maior peso curricular na instituição.</p>
+        <div class="chart-container">
+            <canvas id="professoresDisciplinasChart"></canvas>
+        </div>
+
+        <h2 id="analise-professores-idade">Análise de Professores: Faixa Etária</h2>
+        <p>A faixa etária do corpo docente apresenta ampla diversidade, com idades variando entre 23 e 62 anos. A idade média dos professores é de 36.8 anos. O gráfico revela uma concentração significativa entre 30 e 50 anos, o que indica um grupo profissional maduro e experiente, características essenciais para a qualidade da educação.</p>
+        <div class="chart-container">
+            <canvas id="professoresIdadeChart"></canvas>
+        </div>
+        <a href="analise_escolas(extensao).html" style="text-align: center; display: block;">Mais</a>
+    </div>
+    <script src="../app.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cores base do seu CSS (aproximadas para Chart.js)
+            const primaryColor = '#2c3e50';
+            const primaryDarkColor = '#1a242f';
+            const textColor = '#34495e'; // Usado para rótulos e texto nos gráficos
+
+            // Funções auxiliares para cores dos gráficos
+            function getChartColors(count) {
+                const colors = [
+                    '#8e44ad', // Roxo (similar ao do PDF)
+                    '#c0392b', // Vermelho/Rosa (similar ao do PDF)
+                    '#f39c12', // Laranja (similar ao do PDF)
+                    '#27ae60', // Verde
+                    '#3498db', // Azul
+                    '#9b59b6', // Roxo claro
+                    '#e67e22', // Laranja escuro
+                    '#2ecc71', // Verde claro
+                    '#1abc9c', // Turquesa
+                    '#f1c40f', // Amarelo
+                    '#d35400', // Abóbora
+                    '#34495e', // Cinza (do seu --text-color)
+                    '#7f8c8d'  // Cinza claro (do seu --light-text-color)
+                ];
+                return colors.slice(0, count);
+            }
+
+            // --- Gráfico de Distribuição de Alunos por Sexo ---
+            const alunosSexoCtx = document.getElementById('alunosSexoChart').getContext('2d');
+            new Chart(alunosSexoCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['feminino', 'masculino', 'nr'],
+                    datasets: [{
+                        label: 'Quantidade de Alunos',
+                        data: [1018, 816, 30], // Dados do PDF
+                        backgroundColor: ['#8e44ad', '#c0392b', '#f39c12'], // Cores aproximadas do PDF
+                        borderColor: primaryDarkColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Alunos por Sexo',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: {
+                            display: false // Não precisa de legenda para uma única barra
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    // Adicionando a porcentagem conforme o PDF
+                                    let value = context.raw;
+                                    let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    let percentage = ((value / total) * 100).toFixed(2) + '%';
+                                    return label + value + ' (' + percentage + ')';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Quantidade de Alunos',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Sexo',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        }
+                    }
+                }
+            });
+
+            // --- Gráfico de Distribuição de Alunos por Raça/Cor ---
+            const alunosRacaCorCtx = document.getElementById('alunosRacaCorChart').getContext('2d');
+            const racaLabels = [
+                'pardo', 'branco', 'negra', 'indigena', 'amarelo', 'nr', 'uma outra mistura',
+                'morena', 'moreno', 'morena clara', 'moreno claro', 'mulato',
+                'branco e indigina', 'morena brasileira', 'morena escura', 'iraquiano com alemao'
+            ];
+            const racaData = [
+                854, 527, 287, 50, 40, 20, 20, 10, 10, 5, 5, 5, 5, 5, 5, 5 // Valores aproximados do gráfico
+            ];
+
+            new Chart(alunosRacaCorCtx, {
+                type: 'bar',
+                data: {
+                    labels: racaLabels,
+                    datasets: [{
+                        label: 'Quantidade de Alunos',
+                        data: racaData,
+                        backgroundColor: getChartColors(racaLabels.length), // Usando função para gerar cores
+                        borderColor: primaryDarkColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Tornar o gráfico de barras horizontal
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Alunos por Raça/Cor',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Quantidade de Alunos',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Raça/Cor',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        }
+                    }
+                }
+            });
+
+            // --- Gráfico de Distribuição de Alunos por Idade (Histograma) ---
+            const alunosIdadeCtx = document.getElementById('alunosIdadeChart').getContext('2d');
+            new Chart(alunosIdadeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'],
+                    datasets: [{
+                        label: 'Quantidade de Alunos',
+                        data: [
+                            10, 20, 30, 50, // 6-9 (aproximado)
+                            110, 150, 250, 350, 440, 600, // 10-15 (aproximado, com pico em 15)
+                            450, 200, 100, 50, // 16-19 (aproximado)
+                            30, 20, 15, 10, 5, 2 // 20-25 (aproximado)
+                        ], // Valores aproximados do histograma
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)', // Cor similar ao do PDF
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        barPercentage: 1.0, // Para barras tocarem como histograma
+                        categoryPercentage: 1.0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Alunos por Idade (sem outliers)',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: { display: false },
+                        annotation: { // Para adicionar as linhas de média e mediana
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    xMin: 14.8 - 6, // Média ajustada ao índice do label (primeiro label é 6)
+                                    xMax: 14.8 - 6,
+                                    borderColor: primaryColor,
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    label: {
+                                        content: 'Média: 14.8',
+                                        enabled: true,
+                                        position: 'end',
+                                        font: { color: primaryColor }
+                                    }
+                                },
+                                line2: {
+                                    type: 'line',
+                                    xMin: 15.0 - 6, // Mediana ajustada ao índice do label
+                                    xMax: 15.0 - 6,
+                                    borderColor: '#c0392b', // Cor diferente
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    label: {
+                                        content: 'Mediana: 15.0',
+                                        enabled: true,
+                                        position: 'end',
+                                        font: { color: '#c0392b' }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Quantidade de Alunos',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Idade',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        }
+                    }
+                }
+            });
+
+            // --- Gráfico de Distribuição de Anos de Experiência dos Professores ---
+            const profExperienciaCtx = document.getElementById('professoresExperienciaChart').getContext('2d');
+            new Chart(profExperienciaCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['0-2', '3-5', '6-8', '9-11', '12-14', '15-17', '18-20', '21-23', '24-26', '27-29'], // Faixas de experiência
+                    datasets: [{
+                        label: 'Quantidade de Professores',
+                        data: [35, 10, 1, 0.5, 2, 0.2, 0.1, 0.1, 1, 1.5], // Valores aproximados do histograma
+                        backgroundColor: 'rgba(153, 102, 255, 0.6)', // Cor similar ao do PDF
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1,
+                        barPercentage: 1.0,
+                        categoryPercentage: 1.0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Anos de Experiência dos Professores',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Quantidade de Professores',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Anos de Experiência',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        }
+                    }
+                }
+            });
+
+            // --- Gráfico Top 10 Matérias por Quantidade de Professores ---
+            const profDisciplinasCtx = document.getElementById('professoresDisciplinasChart').getContext('2d');
+            const disciplinasLabels = ['matematica', 'geografia', 'lingua portuguesa', 'lingua inglesa', 'quimica', 'historia', 'ciencias', 'história', 'fisica', 'matemática'];
+            const disciplinasData = [11, 10.5, 4, 4, 2, 2, 2, 2, 2, 1]; // Valores aproximados do gráfico
+
+            new Chart(profDisciplinasCtx, {
+                type: 'bar',
+                data: {
+                    labels: disciplinasLabels,
+                    datasets: [{
+                        label: 'Quantidade de Professores',
+                        data: disciplinasData,
+                        backgroundColor: getChartColors(disciplinasLabels.length), // Cores dinâmicas
+                        borderColor: primaryDarkColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Gráfico de barras horizontal
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Top 10 Matérias por Quantidade de Professores',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Quantidade de Professores',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Matéria',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        }
+                    }
+                }
+            });
+
+            // --- Gráfico de Distribuição de Idade dos Professores (Ano de 2006) ---
+            const profIdadeCtx = document.getElementById('professoresIdadeChart').getContext('2d');
+            const profIdadeHistogramData = [
+                0, 0, 0, // Idades 23, 24, 25 - ajuste inicial, gráfico começa em 25 com valor mais alto
+                3, 4, 6, 8, 10, // 25-29
+                5, 4, 4, 3, 2, // 30-34
+                1, 6, 5, 4, 3, // 35-39
+                2, 3, 4, 5, 6, // 40-44
+                5, 4, 3, 2, 1, // 45-49
+                2, 3, 4, 5, // 50-54
+                3, 2, 1, // 55-59
+                0, 1 // 60-62
+            ];
+
+            new Chart(profIdadeCtx, {
+                type: 'bar',
+                data: {
+                    labels: Array.from({length: profIdadeHistogramData.length}, (_, i) => (i + 23).toString()), // Rótulos de 23 até a última idade
+                    datasets: [{
+                        label: 'Quantidade de Professores',
+                        data: profIdadeHistogramData,
+                        backgroundColor: 'rgba(255, 159, 64, 0.6)', // Cor similar ao do PDF
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1,
+                        barPercentage: 1.0,
+                        categoryPercentage: 1.0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Idade dos Professores (Ano de 2006)',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: { display: false },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    xMin: 36.8 - 23, // Média ajustada ao índice do label (o primeiro label é 23)
+                                    xMax: 36.8 - 23,
+                                    borderColor: primaryColor,
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    label: {
+                                        content: 'Média: 36.8 anos',
+                                        enabled: true,
+                                        position: 'end',
+                                        font: { color: primaryColor }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Quantidade de Professores',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Idade',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

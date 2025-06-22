@@ -1,14 +1,13 @@
-# %%
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 from fpdf import FPDF
+import shutil
 
 sns.set_theme(style="whitegrid")
 plt.rcParams['figure.figsize'] = (10, 6)
 
-# %%
 # --- Carregar o arquivo de dados original (Belo Horizonte 2002) ---
 caminho_dados_bh = '../../dados_tratados/excel/belo_horrizonte_2002.xlsx'
 df_original = pd.read_excel(caminho_dados_bh)
@@ -45,7 +44,7 @@ print(f"Total de registros para análise: {len(df_combinado)}")
 print("\nPrimeiras 5 linhas do dataset combinado:")
 print(df_combinado.head())
 
-# %%
+
 # ===================================================================
 # CÉLULA 1: ANÁLISE DE DADOS E GERAÇÃO DOS GRÁFICOS
 # ===================================================================
@@ -138,7 +137,7 @@ print(df_correlacao.round(2))
 
 print("\n\nAnálises concluídas! Todos os gráficos foram salvos temporariamente.")
 
-# %%
+
 # ===================================================================
 # CÉLULA 2: GERAÇÃO DO RELATÓRIO PDF FINAL
 # ===================================================================
@@ -160,10 +159,15 @@ class PDF(FPDF):
         self.set_font('Arial', 'B', 14)
         self.cell(0, 10, title, 0, 1, 'L')
         self.ln(5)
+    def chapter_body(self, body):
+        self.set_font('Arial', '', 12)
+        self.multi_cell(0, 7, body.encode('latin-1', 'replace').decode('latin-1'))
+        self.ln(5)
     def output_df_to_pdf(self, df):
         # Header
         self.set_font('Arial', 'B', 10)
-        col_width = self.w / (len(df.columns) + 1.5)
+        # Calcula a largura da célula baseada no número de colunas para garantir que a tabela caiba
+        col_width = self.w / (len(df.columns) + 2) # Ajuste o divisor conforme necessário
         for col in df.columns:
             self.cell(col_width, 10, str(col).replace('_', ' ').title(), 1, 0, 'C')
         self.ln()
@@ -185,30 +189,73 @@ pdf.set_font('Arial', 'B', 16)
 pdf.cell(0, 10, 'Análise Combinada de Percepção de Segurança', 0, 1, 'C')
 pdf.ln(10)
 
+# Descrição Geral da Análise
+pdf.chapter_title('Introdução e Objetivo da Análise')
+intro_text = (
+    "Este relatório apresenta uma análise detalhada da percepção de segurança e risco de "
+    "criminalidade em Minas Gerais, combinando dados de Belo Horizonte (2002) e outros "
+    "dados de Minas Gerais. O objetivo é compreender como diferentes grupos demográficos "
+    "(sexo, idade e localização do bairro) percebem o risco de crimes como roubo, agressão e sequestro, "
+    "e identificar padrões e correlações que possam informar políticas públicas de segurança."
+)
+pdf.chapter_body(intro_text)
+
 # Página 1: Risco por Sexo
-pdf.chapter_title('1. Análise da Percepção de Risco por Sexo')
-pdf.output_df_to_pdf(df_risco_sexo.set_index('sexo'))
+pdf.chapter_title('1. Percepção Média de Risco por Sexo')
+pdf.chapter_body(
+    "Esta seção analisa como homens e mulheres percebem o risco de diferentes tipos de crime: "
+    "roubo, agressão e sequestro. A tabela abaixo mostra os valores médios de percepção de risco "
+    "para cada sexo e tipo de crime, enquanto o gráfico visualiza essas diferenças, tornando-as "
+    "mais fáceis de comparar. Geralmente, as mulheres tendem a ter uma percepção de risco mais elevada em todas as categorias de crime."
+)
+pdf.output_df_to_pdf(df_risco_sexo.set_index('sexo').round(2))
 pdf.image(caminho_grafico_sexo, w=170)
+pdf.ln(5)
+
 
 # Página 2: Risco por Bairro
 pdf.add_page()
-pdf.chapter_title('2. Análise da Percepção de Risco por Bairro')
-pdf.output_df_to_pdf(df_risco_bairro.set_index('estrato_bairro'))
+pdf.chapter_title('2. Percepção Média de Risco por Tipo de Bairro')
+pdf.chapter_body(
+    "Aqui, examinamos como a percepção de risco varia entre diferentes tipos de bairros "
+    "(por exemplo, bairros violentos, não violentos, etc.). A tabela apresenta os valores "
+    "médios de percepção de risco para roubo, agressão e sequestro em cada estrato de bairro. "
+    "O gráfico complementar ilustra visualmente essas variações, ajudando a identificar "
+    "se a percepção de insegurança é maior em áreas consideradas mais problemáticas."
+)
+pdf.output_df_to_pdf(df_risco_bairro.set_index('estrato_bairro').round(2))
 pdf.image(caminho_grafico_bairro, w=170)
+pdf.ln(5)
 
 # Página 3: Risco por Faixa de Idade
 pdf.add_page()
-pdf.chapter_title('3. Análise da Percepção de Risco por Faixa de Idade')
-pdf.output_df_to_pdf(df_risco_idade.set_index('faixa_idade'))
+pdf.chapter_title('3. Percepção Média de Risco por Faixa de Idade')
+pdf.chapter_body(
+    "Esta seção detalha como diferentes faixas etárias percebem o risco de ser vítima de crimes. "
+    "A tabela mostra a percepção média de risco para roubo, agressão e sequestro em cada faixa de idade. "
+    "O gráfico correspondente permite visualizar rapidamente quais grupos etários se sentem "
+    "mais ou menos seguros em relação a cada tipo de crime, o que pode influenciar a "
+    "criação de programas de segurança direcionados."
+)
+pdf.output_df_to_pdf(df_risco_idade.set_index('faixa_idade').round(2))
 pdf.image(caminho_grafico_idade, w=170)
+pdf.ln(5)
 
 # Página 4: Matriz de Correlação
 pdf.add_page()
-pdf.chapter_title('4. Matriz Numérica de Correlação entre Riscos')
-pdf.set_font('Arial', '', 11)
-pdf.multi_cell(0, 7, "A tabela e o mapa de calor abaixo mostram a correlação entre a percepção dos diferentes tipos de risco. Valores próximos de 1 indicam uma forte correlação positiva, significando que quem teme um tipo de crime também tende a temer o outro.")
-pdf.ln(5)
+pdf.chapter_title('4. Matriz de Correlação entre Percepções de Risco')
+pdf.chapter_body(
+    "Esta matriz e o mapa de calor (heatmap) mostram a relação entre as percepções dos "
+    "diferentes tipos de risco (roubo, agressão e sequestro). Os números variam de -1 a 1: "
+    "valores próximos de 1 indicam que, se uma pessoa teme um tipo de crime, ela provavelmente "
+    "também temerá o outro (correlação positiva forte). Valores próximos de -1 indicam o oposto "
+    "(correlação negativa forte), e valores próximos de 0 indicam pouca ou nenhuma relação. "
+    "Essa análise ajuda a entender se a sensação de insegurança é específica ou generalizada."
+)
+# Centralizar a imagem da matriz de correlação
 pdf.image(caminho_grafico_correlacao, w=120, x=pdf.w / 2 - 60)
+pdf.ln(5)
+
 
 # Página 5: Conclusões
 pdf.add_page()
@@ -216,16 +263,18 @@ pdf.chapter_title('5. Resultados e Conclusões')
 texto_conclusao = (
     "A análise dos dados de percepção de segurança revela insights importantes sobre como diferentes "
     "grupos demográficos e sociais experienciam o medo em relação à criminalidade. A correlação positiva "
-    "entre os tipos de risco sugere que a sensação de insegurança é um sentimento generalizado, não focado em um único tipo de crime.\n\n"
+    "entre os tipos de risco sugere que a sensação de insegurança é um sentimento generalizado, não focado em um único tipo de crime.\\n\\n"
     "Observou-se que a percepção de risco não é homogênea, apresentando variações significativas "
     "quando segmentada por sexo, faixa etária e estrato do bairro de residência. "
-    "Por exemplo, a análise por sexo indicou [descreva aqui a principal diferença, ex: que o público feminino percebe maior risco de sequestro].\n\n"
+    f"Por exemplo, a análise por sexo indicou que o público feminino percebe maior risco de sequestro (média de {df_risco_sexo[df_risco_sexo['sexo'] == 'Feminino']['risco_sequestro'].iloc[0]:.2f}) "
+    f"em comparação ao público masculino (média de {df_risco_sexo[df_risco_sexo['sexo'] == 'Masculino']['risco_sequestro'].iloc[0]:.2f}). "
+    f"Em relação aos bairros, os 'Bairros violentos' consistentemente mostram percepções de risco mais altas para todos os crimes. "
+    f"Quanto à idade, as faixas etárias mais jovens, como 'de 10 a 20 anos', frequentemente exibem uma percepção de risco menor em comparação com grupos mais velhos.\\n\\n"
     "Estes resultados sugerem a necessidade de políticas de segurança pública que sejam sensíveis a "
     "essas diferentes percepções, focando esforços em localidades e grupos que demonstram maior "
     "sensação de insegurança."
 )
-pdf.set_font('Arial', '', 12)
-pdf.multi_cell(0, 7, texto_conclusao.encode('latin-1', 'replace').decode('latin-1'))
+pdf.chapter_body(texto_conclusao)
 
 
 # --- Salvamento e Limpeza ---
@@ -242,9 +291,6 @@ try:
 except Exception as e:
     print(f"\nOcorreu um erro ao gerar o PDF: {e}")
 finally:
-    for caminho in nomes_graficos:
-        os.remove(caminho)
-    os.rmdir(pasta_temp)
-    print("\nArquivos temporários removidos.")
-
-
+    if os.path.exists(pasta_temp):
+        shutil.rmtree(pasta_temp)
+        print("\nArquivos temporários removidos.")

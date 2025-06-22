@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Consolidado - Análise de Alunos e Escolas</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Relatório Consolidado - Análise de Alunos e Escolas</h1>
+
+        <h2>Análise Gráfica de Dados de Alunos</h2>
+
+        <h3 id="distribuicao-idade">Distribuição de Alunos por Idade</h3>
+        <p>O gráfico de barras e linha sobreposto mostra a contagem de alunos por idade.  A análise da distribuição etária revela a concentração dos estudantes em determinadas faixas, possibilitando a identificação de picos de matrículas e a adequação de políticas para cada grupo. </p>
+        <div class="chart-container">
+            <canvas id="alunosIdadePDFChart"></canvas>
+        </div>
+
+        <h3 id="distribuicao-raca-cor-principal">Distribuição Principal de Alunos por Raça/Cor</h3>
+        <p>O primeiro gráfico de pizza exibe a proporção das principais categorias de raça/cor declaradas, com uma categoria 'Outros' que agrupa as demais.  Oferece uma visão geral da diversidade racial. </p>
+        <div class="chart-container">
+            <canvas id="alunosRacaCorPrincipalPDFChart"></canvas>
+        </div>
+
+        <h3 id="detalhamento-outras-racas">Detalhamento das Demais Categorias de Raça/Cor</h3>
+        <p>O segundo gráfico de pizza detalha a composição da categoria 'Outros', permitindo uma análise mais aprofundada da diversidade, incluindo grupos minoritários. </p>
+        <div class="chart-container">
+            <canvas id="alunosRacaCorDetalhePDFChart"></canvas>
+        </div>
+
+        <h3 id="distribuicao-sexo">Distribuição de Alunos por Sexo</h3>
+        <p>Este gráfico de barras ilustra a distribuição de alunos por sexo.  A análise da proporção é fundamental para entender a dinâmica de gênero no ambiente escolar e promover a equidade. </p>
+        <div class="chart-container">
+            <canvas id="alunosSexoPDFChart"></canvas>
+        </div>
+
+        <h3 id="satisfacao-aprendizado">Satisfação dos Alunos com o Aprendizado</h3>
+        <p>O gráfico de barras horizontais apresenta os níveis de satisfação dos alunos.  A avaliação da satisfação discente é um indicador crucial da qualidade do ensino, sinalizando pontos fortes e áreas que necessitam de melhoria. </p>
+        <div class="chart-container">
+            <canvas id="alunosSatisfacaoPDFChart"></canvas>
+        </div>
+        <a href="analise_escolas_2006.html" style="text-align: center; display: block;">Voltar</a>
+
+    </div>
+    <script src="../app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const primaryColor = '#2c3e50';
+            const primaryDarkColor = '#1a242f';
+            const textColor = '#34495e';
+
+            function getChartColors(count) {
+                const colors = [
+                    '#8e44ad', '#c0392b', '#f39c12', '#27ae60', '#3498db',
+                    '#9b59b6', '#e67e22', '#2ecc71', '#1abc9c', '#f1c40f',
+                    '#d35400', '#34495e', '#7f8c8d', '#FF6384', '#36A2EB',
+                    '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+                ];
+                return colors.slice(0, count);
+            }
+
+           // --- Gráfico de Distribuição de Alunos por Idade (PDF) ---
+            const alunosIdadePDFCtx = document.getElementById('alunosIdadePDFChart').getContext('2d');
+            new Chart(alunosIdadePDFCtx, {
+                type: 'bar', // Mantemos 'bar' como tipo principal
+                data: {
+                    labels: ['9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: 'Contagem de Alunos', // Rótulo da barra
+                            data: [0, 0, 100, 195, 225, 290, 290, 200, 240, 98, 40, 20, 100, 245, 200, 95, 40], // Valores aproximados do PDF
+                            backgroundColor: [
+                                '#a9cce3', '#7fb3d5', '#5499c7', '#2980b9', '#1f618d', // Tons de azul para idades mais jovens
+                                '#f5cba7', '#f0b27a', '#eb984e', '#e67e22', '#d35400', // Tons de laranja para idades intermediárias
+                                '#cb4335', '#a93226', '#884ea0', '#6c3483', '#512e5f', // Tons de vermelho/roxo para idades mais velhas
+                                '#212f3c', '#1b2631' // Tons escuros para as últimas idades
+                            ],
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1
+                        },
+                        {
+                            type: 'line',
+                            label: 'Picos de Matrículas', // Rótulo para a linha
+                            // Ajuste da linha para seguir os pontos altos das barras ou representar a tendência
+                            data: [0, 0, 0, 0, 0, 290, 290, 200, 240, 98, 40, 20, 100, 245, 200, 95, 40], // Linha ajustada para refletir a tendência e picos
+                            fill: false,
+                            borderColor: 'black',
+                            tension: 0.1,
+                            pointRadius: 5,
+                            pointBackgroundColor: 'black',
+                            pointBorderColor: 'black'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Alunos por Idade',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: textColor
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Contagem',
+                                color: textColor
+                            },
+                            ticks: {
+                                color: textColor,
+                                stepSize: 50
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Idade',
+                                color: textColor
+                            },
+                            ticks: {
+                                color: textColor
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+            // --- Gráfico de Distribuição Principal de Alunos por Raça/Cor (PDF) ---
+            const alunosRacaCorPrincipalPDFCtx = document.getElementById('alunosRacaCorPrincipalPDFChart').getContext('2d');
+            new Chart(alunosRacaCorPrincipalPDFCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['pardo', 'branco', 'negra', 'indigena', 'amarelo', 'Outros'],
+                    datasets: [{
+                        data: [47.8, 29.7, 15.2, 3.1, 1.3, 2.9], // Valores do PDF
+                        backgroundColor: getChartColors(6), // Ajuste para 6 cores
+                        borderColor: 'white',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição Principal por Raça/Cor',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                color: textColor
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    return label + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // --- Gráfico de Detalhamento das Demais Categorias de Raça/Cor (PDF) ---
+            const alunosRacaCorDetalhePDFCtx = document.getElementById('alunosRacaCorDetalhePDFChart').getContext('2d');
+            new Chart(alunosRacaCorDetalhePDFCtx, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        'morena', 'moreno', 'morena clara', 'mulato', 'moreno claro',
+                        'branco e indigina', 'morena brasileira', 'morena escura', 'iraquiano com alemão'
+                    ],
+                    datasets: [{
+                        data: [36.8, 21.1, 10.5, 5.3, 5.3, 5.3, 5.3, 5.3, 5.3], // Valores do PDF
+                        backgroundColor: getChartColors(9), // Ajuste para 9 cores
+                        borderColor: 'white',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Detalhamento das Demais Categorias de Raça/Cor',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                color: textColor
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    return label + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // --- Gráfico de Distribuição de Alunos por Sexo (PDF) ---
+            const alunosSexoPDFCtx = document.getElementById('alunosSexoPDFChart').getContext('2d');
+            new Chart(alunosSexoPDFCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['feminino', 'masculino'],
+                    datasets: [{
+                        label: 'Contagem',
+                        data: [900, 750], // Valores aproximados do PDF
+                        backgroundColor: ['#34495e', '#2ecc71'], // Cores similares ao PDF
+                        borderColor: primaryDarkColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Alunos por Sexo',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Contagem',
+                                color: textColor
+                            },
+                            ticks: { color: textColor, stepSize: 200 }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Sexo',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        }
+                    }
+                }
+            });
+
+            // --- Gráfico de Satisfação dos Alunos com o Aprendizado (PDF) ---
+            const alunosSatisfacaoPDFCtx = document.getElementById('alunosSatisfacaoPDFChart').getContext('2d');
+            new Chart(alunosSatisfacaoPDFCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['estou satisfeito', 'estou pouco satisfeito', 'estou insatisfeito'],
+                    datasets: [{
+                        label: 'Contagem',
+                        data: [1000, 550, 100], // Valores aproximados do PDF
+                        backgroundColor: ['#8e44ad', '#c0392b', '#f39c12'], // Cores similares ao PDF
+                        borderColor: primaryDarkColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Gráfico de barras horizontal
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Satisfação dos Alunos com o Aprendizado',
+                            color: primaryColor,
+                            font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Contagem',
+                                color: textColor
+                            },
+                            ticks: { color: textColor, stepSize: 200 }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Nível de Satisfação',
+                                color: textColor
+                            },
+                            ticks: { color: textColor }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

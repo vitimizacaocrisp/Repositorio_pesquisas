@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositório de Análises de Vitimização - Demografia (Distribuição Populacional)</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Relatório Consolidado - Distribuição Populacional por Idade e Sexo</h1>
+
+        <h2>Resumo da Análise Geral</h2>
+        <p>Esta análise utiliza dados demográficos detalhados da população, segmentados por idade e sexo, a partir do arquivo <code>populacao_idade_sexo.csv</code>. O objetivo é compreender a estrutura populacional, que pode ser crucial para cruzar com dados de violência e outras análises mais aprofundadas. A distribuição etária e de gênero pode revelar vulnerabilidades específicas ou padrões comportamentais em diferentes grupos demográficos, auxiliando no planejamento de intervenções direcionadas.</p>
+
+        <h2 id="analise-demografia-idade-sexo">Distribuição Populacional por Idade e Sexo</h2>
+        <p>Abaixo, um espaço para o gráfico que mostrará a distribuição da população por faixas etárias e gênero, fornecendo insights sobre a estrutura demográfica.</p>
+        <div class="chart-container">
+            <canvas id="demografiaIdadeSexoChart"></canvas>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const primaryColor = '#2c3e50';
+                const textColor = '#34495e';
+
+                const ctx = document.getElementById('demografiaIdadeSexoChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Gráfico de barras agrupadas ou empilhadas
+                    data: {
+                        labels: ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61+'],
+                        datasets: [{
+                            label: 'Masculino (Exemplo)',
+                            data: [1000, 1500, 2000, 1800, 1200, 800, 500],
+                            backgroundColor: 'rgba(41, 128, 185, 0.7)', // Azul
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }, {
+                            label: 'Feminino (Exemplo)',
+                            data: [950, 1450, 2100, 1900, 1300, 850, 600],
+                            backgroundColor: 'rgba(231, 76, 60, 0.7)', // Vermelho
+                            borderColor: primaryColor,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Distribuição Populacional por Idade e Sexo (Exemplo)',
+                                color: primaryColor,
+                                font: { size: 16, family: 'Georgia, Times New Roman, serif' }
+                            },
+                            legend: { display: true, labels: { color: textColor } }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                stacked: true, // Para barras empilhadas
+                                title: { display: true, text: 'Número de Pessoas', color: textColor },
+                                ticks: { color: textColor }
+                            },
+                            x: {
+                                stacked: true, // Para barras empilhadas
+                                title: { display: true, text: 'Faixa Etária', color: textColor },
+                                ticks: { color: textColor }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
