@@ -4,308 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório Consolidado - Análise de Vitimização PNAD 2009</title>
+    <!-- Link to external stylesheet (assuming it exists and contains necessary styles) -->
     <link rel="stylesheet" href="../css/style.css">
+    <!-- Chart.js library for data visualization -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js Datalabels plugin to display values on bars -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <style>
-        /* Estilos adicionais para os contêineres de gráficos */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 400px; /* Altura fixa para todos os gráficos */
+        /* Variáveis CSS para um tema mais flexível e profissional */
+        :root {
+            --primary-color: #0056b3; /* Azul institucional */
+            --accent-color: #28a745; /* Verde para destaque */
+            --text-color: #333; /* Texto principal escuro */
+            --light-text-color: #666; /* Texto secundário */
+            --background-color: #f8f9fa; /* Fundo claro */
+            --card-background: #ffffff; /* Fundo de card */
+            --border-color: #dee2e6; /* Cor da borda */
+            --shadow-color: rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        /* Estilos globais para o corpo da página */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        /* Contêiner principal para centralizar e estilizar o conteúdo */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--card-background);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border-radius: 8px;
+        }
+
+        /* Estilos para o cabeçalho da página */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
-        /* ==========================================================================
-   Variáveis CSS
-   Define cores e fontes globais para fácil manutenção.
-   ========================================================================== */
-:root {
-    --primary-color: #0056b3; /* Azul escuro para cabeçalhos e links */
-    --accent-color: #007bff; /* Azul vibrante para destaques */
-    --text-color: #333; /* Cor principal do texto */
-    --light-text-color: #666; /* Cor do texto secundário */
-    --bg-color: #f8f9fa; /* Cor de fundo clara */
-    --card-bg-color: #ffffff; /* Fundo de cartões/seções */
-    --border-color: #dee2e6; /* Cor da borda */
-    --font-family-sans-serif: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --font-family-serif: Georgia, 'Times New Roman', Times, serif;
-    --heading-font-family: 'Roboto', sans-serif; /* Fonte para títulos */
-    --shadow-light: 0 2px 4px rgba(0,0,0,0.08); /* Sombra suave */
-    --transition-speed: 0.3s; /* Velocidade de transição para interatividade */
-}
 
-/* ==========================================================================
-   Reset Básico e Estilos Globais
-   Garante consistência entre navegadores e define estilos base.
-   ========================================================================== */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
 
-body {
-    font-family: var(--font-family-sans-serif);
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    margin: 0;
-    padding: 20px;
-    -webkit-font-smoothing: antialiased; /* Suavização de fontes para WebKit */
-    -moz-osx-font-smoothing: grayscale; /* Suavização de fontes para Firefox */
-}
+        header p {
+            color: var(--light-text-color);
+            font-size: 1.1em;
+        }
 
-/* Container principal para centralizar o conteúdo */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: var(--card-bg-color);
-    border-radius: 8px;
-    box-shadow: var(--shadow-light);
-}
+        /* Estilos para a navegação */
+        nav {
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-/* ==========================================================================
-   Tipografia
-   Estilos para cabeçalhos e parágrafos.
-   ========================================================================== */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font-family);
-    color: var(--primary-color);
-    margin-bottom: 0.8em;
-    line-height: 1.2;
-}
+        .home-link a {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
-h1 {
-    font-size: 2.5em;
-    text-align: center;
-    color: var(--accent-color);
-    margin-top: 0.5em;
-    margin-bottom: 0.4em;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
-}
+        .home-link a:hover {
+            background-color: #004085; /* Tom mais escuro no hover */
+        }
 
-header p {
-    text-align: center;
-    font-size: 1.1em;
-    color: var(--light-text-color);
-    margin-bottom: 2em;
-}
+        /* Estilos para as seções de conteúdo */
+        section {
+            margin-bottom: 40px;
+        }
 
-h2 {
-    font-size: 2em;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.5em;
-    margin-top: 1.5em;
-    margin-bottom: 1em;
-    color: var(--primary-color);
-}
+        section h2 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
 
-h3 {
-    font-size: 1.5em;
-    color: var(--accent-color);
-    margin-top: 1.2em;
-    margin-bottom: 0.8em;
-}
+        /* Estilos para os artigos (sub-seções) */
+        article {
+            background-color: #fefefe;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
 
-h4 {
-    font-size: 1.2em;
-    color: var(--text-color);
-    margin-top: 1em;
-    margin-bottom: 0.6em;
-}
+        article h3 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
 
-p {
-    margin-bottom: 1em;
-}
+        article h4 {
+            color: var(--text-color);
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
 
-/* Links */
-a {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: color var(--transition-speed) ease;
-}
+        /* Contêiner para os gráficos, garantindo responsividade */
+        .chart-container {
+            position: relative;
+            height: 400px; /* Altura padrão para gráficos */
+            width: 100%;
+            margin-bottom: 20px;
+        }
 
-a:hover {
-    color: var(--primary-color);
-    text-decoration: underline;
-}
+        /* Descrição dos gráficos */
+        .chart-description {
+            font-size: 0.95em;
+            color: var(--light-text-color);
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
 
-.home-link {
-    text-align: center;
-    margin-top: 1.5em;
-    margin-bottom: 2em;
-    font-size: 1.1em;
-}
+        /* Estilos para listas e parágrafos de resumo */
+        .summary-paragraph {
+            margin-left: 20px;
+            padding-left: 0;
+            font-size: 0.95em;
+            color: var(--text-color);
+        }
 
-/* ==========================================================================
-   Seções e Artigos
-   Estrutura o conteúdo principal da página.
-   ========================================================================== */
-section {
-    background-color: var(--card-bg-color);
-    padding: 25px 30px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: var(--shadow-light);
-    border-left: 5px solid var(--accent-color); /* Destaque para seções */
-}
+        /* Estilos para o rodapé */
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+            color: var(--light-text-color);
+            font-size: 0.9em;
+        }
 
-article {
-    background-color: var(--bg-color);
-    padding: 20px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
 
-/* ==========================================================================
-   Listas
-   Estilos para listas não ordenadas.
-   ========================================================================== */
-ul {
-    list-style-type: disc;
-    margin-left: 25px;
-    margin-bottom: 1em;
-}
+            header h1 {
+                font-size: 2em;
+            }
 
-ul li {
-    margin-bottom: 0.5em;
-    color: var(--light-text-color);
-}
+            section h2 {
+                font-size: 1.5em;
+            }
 
-/* ==========================================================================
-   Gráficos (Chart.js)
-   Garante que os gráficos se ajustem bem na página.
-   ========================================================================== */
-.chart-container {
-    position: relative;
-    width: 100%;
-    height: 400px; /* Altura fixa para consistência visual */
-    margin-top: 20px;
-    margin-bottom: 30px;
-    background-color: #fff;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 15px;
-    box-shadow: var(--shadow-light);
-}
+            article {
+                padding: 15px;
+            }
 
-.chart-description {
-    font-size: 0.9em;
-    color: var(--light-text-color);
-    text-align: center;
-    margin-top: 15px;
-    line-height: 1.4;
-}
+            .chart-container {
+                height: 300px; /* Ajusta altura para telas menores */
+            }
+        }
 
-/* ==========================================================================
-   Rodapé
-   Estilos para o rodapé da página.
-   ========================================================================== */
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-    color: var(--light-text-color);
-    font-size: 0.9em;
-}
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
 
-/* ==========================================================================
-   Responsividade
-   Ajustes para diferentes tamanhos de tela.
-   ========================================================================== */
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
+            section h2 {
+                font-size: 1.3em;
+            }
 
-    .container {
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 2em;
-    }
-
-    h2 {
-        font-size: 1.6em;
-    }
-
-    h3 {
-        font-size: 1.3em;
-    }
-
-    section {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-
-    article {
-        padding: 15px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    .chart-container {
-        height: 300px; /* Reduz altura dos gráficos em telas menores */
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 1.8em;
-    }
-
-    h2 {
-        font-size: 1.4em;
-    }
-
-    h3 {
-        font-size: 1.2em;
-    }
-
-    .chart-container {
-        height: 250px; /* Mais redução de altura para telas muito pequenas */
-    }
-
-    .chart-description {
-        font-size: 0.8em;
-    }
-}
-
-/* ==========================================================================
-   Acessibilidade e Usabilidade
-   Classes para leitores de tela e melhorias de foco.
-   ========================================================================== */
-/* sr-only: Oculta visualmente, mas mantém para leitores de tela */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-/* Foco em elementos interativos para acessibilidade */
-a:focus, button:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-}
+            .chart-container {
+                height: 250px; /* Altura menor para celulares */
+            }
+        }
     </style>
 </head>
 <body>
@@ -314,546 +198,257 @@ a:focus, button:focus {
             <h1>Relatório Consolidado - Análise de Dados PNAD 2009</h1>
             <p>Um olhar aprofundado sobre vitimização e percepção de segurança no Brasil em 2009.</p>
         </header>
-        <p class="home-link"><a href="../../index.html">← Voltar à Página Inicial</a></p>
 
-        <section>
-            <h2>Resumo da Análise Geral</h2>
-            <p>A análise consolidada dos dados da PNAD 2009 sobre vitimização e percepção de segurança revela um cenário complexo e multifacetado no Brasil. As diferentes categorias de crime como roubo, furto e agressão não se distribuem de forma homogênea pela população, apresentando variações significativas quando estratificadas por Grandes Regiões, sexo, cor ou raça e faixas de renda.</p>
-            <p>Um dos principais insights é a desconexão, por vezes, entre a vitimização reportada e a sensação de insegurança. A planilha 'Percentual de pessoas que se sentem seguras' mostra que a percepção de segurança pode ser baixa mesmo em áreas com taxas de vitimização relativamente menores, sugerindo que o medo do crime é influenciado por uma gama de fatores que vão além da experiência direta, como a cobertura da mídia e a visibilidade do policiamento.</p>
-            <p>Os **coeficientes de variação (CVs)**, analisados para múltiplas categorias, indicam a precisão estatística das estimativas da pesquisa. Em geral, observamos que dados para estratos populacionais maiores e mais gerais (como 'total' ou por 'Grandes Regiões') tendem a ter menor coeficiente de variação, conferindo maior confiabilidade a essas estimativas. Por outro lado, dados mais granulares, ou aqueles com um número menor de observações, podem apresentar maior variabilidade (CVs mais altos), exigindo maior cautela na interpretação e inferência estatística. Um CV elevado pode indicar que a estimativa é menos precisa e pode variar amplamente se a pesquisa fosse repetida.</p>
-            <p>Em suma, os dados sugerem que políticas de segurança pública eficazes devem ser altamente contextualizadas, levando em conta as vulnerabilidades específicas de diferentes grupos demográficos e as particularidades de cada região do país. A pesquisa de vitimização se mostra uma ferramenta indispensável para diagnosticar esses desafios e nortear ações baseadas em evidências.</p>
-        </section>
+        <nav>
+            <p class="home-link"><a href="../../index.html">← Voltar à Página Inicial</a></p>
+        </nav>
 
-        <section>
-            <h2>Análise Detalhada por Categoria de Crime</h2>
+        <main>
+            <section id="resumo-geral">
+                <h2>Resumo da Análise Geral</h2>
+                <p>A análise consolidada dos dados da PNAD 2009 sobre vitimização e percepção de segurança revela um cenário complexo e multifacetado no Brasil. As diferentes categorias de crime, como roubo, furto e agressão, não se distribuem de forma homogênea pela população, apresentando variações significativas quando estratificadas por Grandes Regiões, sexo, cor ou raça e faixas de renda.</p>
+                <p>Um dos principais insights é a desconexão, por vezes, entre a vitimização reportada e a sensação de insegurança. A planilha 'Percentual de pessoas que se sentem seguras' demonstra que a percepção de segurança pode ser baixa mesmo em áreas com taxas de vitimização relativamente menores, sugerindo que o medo do crime é influenciado por uma gama de fatores que transcendem a experiência direta, como a cobertura da mídia e a visibilidade do policiamento.</p>
+                <p>Os <strong>coeficientes de variação (CVs)</strong>, analisados para múltiplas categorias, indicam a precisão estatística das estimativas da pesquisa. Em geral, observa-se que dados para estratos populacionais maiores e mais gerais (como 'total' ou por 'Grandes Regiões') tendem a apresentar menor coeficiente de variação, conferindo maior confiabilidade a essas estimativas. Em contrapartida, dados mais granulares, ou aqueles com um número menor de observações, podem exibir maior variabilidade (CVs mais elevados), exigindo maior cautela na interpretação e inferência estatística. Um CV elevado pode indicar que a estimativa é menos precisa e pode variar amplamente caso a pesquisa fosse replicada.</p>
+                <p>Em suma, os dados sugerem que políticas de segurança pública eficazes devem ser altamente contextualizadas, considerando as vulnerabilidades específicas de diferentes grupos demográficos e as particularidades de cada região do país. A pesquisa de vitimização se estabelece como uma ferramenta indispensável para diagnosticar esses desafios e orientar ações baseadas em evidências.</p>
+            </section>
 
-            <article>
-                <h3>Categoria: Agressão</h3>
-                <p>A análise da categoria 'agressao' abrangeu 74 planilhas de dados, detalhando padrões de vitimização e percepção de segurança. As visualizações a seguir destacam as disparidades entre diferentes regiões, faixas etárias, agressores e locais de ocorrência, fornecendo um panorama detalhado dos desafios de segurança pública refletidos na pesquisa.</p>
+            <section id="analise-detalhada">
+                <h2>Análise Detalhada por Categoria de Crime</h2>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por sexo e cor/raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="agressaoSexoCorRacaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para a vitimização por agressão física, segmentada por sexo e cor/raça. Valores mais baixos indicam maior precisão na estimativa. Nota-se que as estimativas para "branca" apresentam os maiores CVs médios (16.53), enquanto "total" e "preta/parda" têm os menores, sugerindo maior variabilidade na estimativa para o grupo de pessoas brancas.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 21.99, observado no Acre.</li>
-                    <li>O valor mais baixo é de 2.18, registrado no Brasil como um todo.</li>
-                    <li>A média dos valores para 'total' é de 10.84, indicando o ponto central dos dados.</li>
-                    <li>Na métrica 'homens', o valor mais alto é de 24.38, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 2.52, registrado no Brasil.</li>
-                    <li>A média dos valores para 'homens' é de 12.30.</li>
-                    <li>Na métrica 'mulheres', o valor mais alto é de 27.95, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 2.75, registrado no Brasil.</li>
-                    <li>A média dos valores para 'mulheres' é de 14.00.</li>
-                    <li>Na métrica 'branca', o valor mais alto é de 44.59, observado no Acre.</li>
-                    <li>O valor mais baixo é de 2.92, registrado no Brasil.</li>
-                    <li>A média dos valores para 'branca' é de 16.53.</li>
-                    <li>Na métrica 'preta/parda', o valor mais alto é de 22.86, observado em Sergipe.</li>
-                    <li>O valor mais baixo é de 2.66, registrado no Brasil.</li>
-                    <li>A média dos valores para 'preta/parda' é de 12.50.</li>
-                </ul>
+                <article id="agressao">
+                    <h3>Categoria: Agressão</h3>
+                    <p>A análise da categoria 'agressao' abrangeu 74 planilhas de dados, detalhando padrões de vitimização e percepção de segurança. As visualizações a seguir destacam as disparidades entre diferentes regiões, faixas etárias, agressores e locais de ocorrência, fornecendo um panorama detalhado dos desafios de segurança pública refletidos na pesquisa.</p>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por grupos de idade, segundo a situação do domicílio e as Grandes Regiões.</h4>
-                <div class="chart-container">
-                    <canvas id="agressaoIdadeChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais detalha os coeficientes de variação para agressão física por diferentes grupos etários. Observa-se que a faixa "10 a 15 anos" apresenta a maior média de CV (9.19), indicando que a vitimização nesse grupo pode ser mais difícil de estimar com alta precisão em algumas regiões, especialmente na área rural (15.33).</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 7.28, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 2.18, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 4.25.</li>
-                    <li>Na métrica '10 a 15 anos', o valor mais alto é de 15.33, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 4.77, registrado no Brasil.</li>
-                    <li>A média dos valores para '10 a 15 anos' é de 9.19.</li>
-                    <li>Na métrica '16 a 24 anos', o valor mais alto é de 10.97, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 3.33, registrado no Brasil.</li>
-                    <li>A média dos valores para '16 a 24 anos' é de 6.48.</li>
-                    <li>Na métrica '25 a 34 anos', o valor mais alto é de 10.95, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 3.50, registrado no Brasil.</li>
-                    <li>A média dos valores para '25 a 34 anos' é de 7.07.</li>
-                    <li>Na métrica '35 a 49 anos', o valor mais alto é de 10.50, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 3.55, registrado no Brasil.</li>
-                    <li>A média dos valores para '35 a 49 anos' é de 6.62.</li>
-                    <li>Na métrica '50 a 59 anos(ou mais)', o valor mais alto é de 13.42, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 4.24, registrado no Brasil.</li>
-                    <li>A média dos valores para '50 a 59 anos(ou mais)' é de 8.37.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por sexo e cor/raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="agressaoSexoCorRacaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para a vitimização por agressão física, segmentada por sexo e cor/raça. Valores mais baixos indicam maior precisão na estimativa. Nota-se que as estimativas para "branca" apresentam os maiores CVs médios (16.53), enquanto "total" e "preta/parda" têm os menores, sugerindo maior variabilidade na estimativa para o grupo de pessoas brancas.</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o valor mais alto é de 21.99 no Acre, o mais baixo é de 2.18 no Brasil, com média de 10.84. Para 'homens', o CV máximo é 24.38 em Roraima, o mínimo é 2.52 no Brasil, e a média é 12.30. Para 'mulheres', o CV alcança 27.95 no Amapá, sendo 2.75 no Brasil e a média 14.00. Na métrica 'branca', o CV mais elevado é 44.59 no Acre, o menor é 2.92 no Brasil, com média de 16.53. Já para 'preta/parda', o valor máximo é 22.86 em Sergipe, o mínimo é 2.66 no Brasil, e a média é 12.50.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por agressor na última agressão física, segundo a situação do domicílio e as Grandes Regiões.</h4>
-                <div class="chart-container">
-                    <canvas id="agressorChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras horizontais compara os coeficientes de variação para agressão física com base no tipo de agressor. As categorias específicas de agressor (identificadas como ".1", ".2", ".3", ".4" no dataset original) tendem a apresentar CVs muito mais altos (como 20.98, 12.65, 17.61 e 9.11, respectivamente), especialmente no Nordeste, indicando maior incerteza na estimativa da vitimização por agressores específicos.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 16.55, observado no Nordeste.</li>
-                    <li>O valor mais baixo é de 2.18, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 5.92.</li>
-                    <li>Na métrica 'agressor na última agressão física', o valor mais alto é de 21.87, observado no Nordeste.</li>
-                    <li>O valor mais baixo é de 2.88, registrado no Brasil.</li>
-                    <li>A média dos valores para 'agressor na última agressão física' é de 7.96.</li>
-                    <li>Na métrica 'agressor na última agressão física.1', o valor mais alto é de 56.69, observado no Nordeste.</li>
-                    <li>O valor mais baixo é de 8.01, registrado no Brasil.</li>
-                    <li>A média dos valores para 'agressor na última agressão física.1' é de 20.98.</li>
-                    <li>Na métrica 'agressor na última agressão física.2', o valor mais alto é de 36.10, observado no Nordeste.</li>
-                    <li>O valor mais baixo é de 4.81, registrado no Brasil.</li>
-                    <li>A média dos valores para 'agressor na última agressão física.2' é de 12.65.</li>
-                    <li>Na métrica 'agressor na última agressão física.3', o valor mais alto é de 56.24, observado no Nordeste.</li>
-                    <li>O valor mais baixo é de 6.09, registrado no Brasil.</li>
-                    <li>A média dos valores para 'agressor na última agressão física.3' é de 17.61.</li>
-                    <li>Na métrica 'agressor na última agressão física.4', o valor mais alto é de 27.47, observado no Nordeste.</li>
-                    <li>O valor mais baixo é de 3.40, registrado no Brasil.</li>
-                    <li>A média dos valores para 'agressor na última agressão física.4' é de 9.11.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por grupos de idade, segundo a situação do domicílio e as Grandes Regiões.</h4>
+                        <div class="chart-container">
+                            <canvas id="agressaoIdadeChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais detalha os coeficientes de variação para agressão física por diferentes grupos etários. Observa-se que a faixa "10 a 15 anos" apresenta a maior média de CV (9.19), indicando que a vitimização nesse grupo pode ser mais difícil de estimar com alta precisão em algumas regiões, especialmente na área rural (15.33).</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o CV máximo é de 7.28 na área 'rural', o mínimo de 2.18 no Brasil, com média de 4.25. Para '10 a 15 anos', o CV atinge 15.33 na área 'rural', o menor é 4.77 no Brasil, e a média é 9.19. Na faixa '16 a 24 anos', o máximo é 10.97 na área 'rural', o mínimo é 3.33 no Brasil, e a média é 6.48. Para '25 a 34 anos', o CV mais alto é 10.95 na área 'rural', o mais baixo é 3.50 no Brasil, e a média é 7.07. Para '35 a 49 anos', o máximo é 10.50 na área 'rural', o mínimo é 3.55 no Brasil, e a média é 6.62. Finalmente, para '50 a 59 anos (ou mais)', o CV máximo é 13.42 na área 'rural', o mínimo é 4.24 no Brasil, e a média é 8.37.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por local de ocorrência da última agressão física, segundo a situação do domicílio e as Grandes Regiões.</h4>
-                <div class="chart-container">
-                    <canvas id="agressaoLocalChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais demonstra os coeficientes de variação da agressão física por local de ocorrência. A estimativa para agressões em "outro" local e "propria residencia" tendem a ser menos precisas, com CVs médios de 6.83 e 7.35, respectivamente, em comparação com a "via publica" (5.08).</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 7.28, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 2.18, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 4.25.</li>
-                    <li>Na métrica 'propria residencia', o valor mais alto é de 10.60, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 3.63, registrado no Brasil.</li>
-                    <li>A média dos valores para 'propria residencia' é de 7.35.</li>
-                    <li>Na métrica 'via publica', o valor mais alto é de 9.25, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 2.61, registrado no Brasil.</li>
-                    <li>A média dos valores para 'via publica' é de 5.08.</li>
-                    <li>Na métrica 'outro', o valor mais alto é de 11.14, observado em área 'rural'.</li>
-                    <li>O valor mais baixo é de 3.57, registrado no Brasil.</li>
-                    <li>A média dos valores para 'outro' é de 6.83.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por agressor na última agressão física, segundo a situação do domicílio e as Grandes Regiões.</h4>
+                        <div class="chart-container">
+                            <canvas id="agressorChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras horizontais compara os coeficientes de variação para agressão física com base no tipo de agressor. As categorias específicas de agressor (identificadas como ".1", ".2", ".3", ".4" no dataset original) tendem a apresentar CVs muito mais altos (como 20.98, 12.65, 17.61 e 9.11, respectivamente), especialmente no Nordeste, indicando maior incerteza na estimativa da vitimização por agressores específicos.</figcaption>
+                        <p class="summary-paragraph">Para a métrica 'total', o CV mais alto é 16.55 no Nordeste, o mais baixo é 2.18 no Brasil, com média de 5.92. A categoria 'agressor na última agressão física' registra um máximo de 21.87 no Nordeste, mínimo de 2.88 no Brasil e média de 7.96. Para 'agressor na última agressão física.1', o CV máximo é 56.69 no Nordeste, o mínimo é 8.01 no Brasil, e a média é 20.98. Em 'agressor na última agressão física.2', o máximo é 36.10 no Nordeste, o mínimo é 4.81 no Brasil, e a média é 12.65. A categoria 'agressor na última agressão física.3' tem um CV máximo de 56.24 no Nordeste, mínimo de 6.09 no Brasil, e média de 17.61. Por fim, 'agressor na última agressão física.4' apresenta máximo de 27.47 no Nordeste, mínimo de 3.40 no Brasil, e média de 9.11.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por procura pela polícia em decorrência da última agressão física, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="agressaoProcuraPolicialChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais compara os coeficientes de variação para agressão física com base na procura ou não procura pela polícia. As estimativas de pessoas que "realizaram" (13.27) ou "nao realizaram" (13.03) a procura pela polícia após a agressão apresentam CVs médios ligeiramente mais altos que o total, sugerindo desafios na precisão desses dados.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 21.99, observado no Acre.</li>
-                    <li>O valor mais baixo é de 2.18, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 10.76.</li>
-                    <li>Na métrica 'realizaram', o valor mais alto é de 26.96, observado na Paraíba.</li>
-                    <li>O valor mais baixo é de 2.71, registrado no Brasil.</li>
-                    <li>A média dos valores para 'realizaram' é de 13.27.</li>
-                    <li>Na métrica 'nao realizaram', o valor mais alto é de 25.76, observado no Acre.</li>
-                    <li>O valor mais baixo é de 2.68, registrado no Brasil.</li>
-                    <li>A média dos valores para 'nao realizaram' é de 13.03.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por local de ocorrência da última agressão física, segundo a situação do domicílio e as Grandes Regiões.</h4>
+                        <div class="chart-container">
+                            <canvas id="agressaoLocalChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais demonstra os coeficientes de variação da agressão física por local de ocorrência. A estimativa para agressões em "outro" local e "propria residencia" tendem a ser menos precisas, com CVs médios de 6.83 e 7.35, respectivamente, em comparação com a "via publica" (5.08).</figcaption>
+                        <p class="summary-paragraph">O CV máximo para 'total' é 7.28 na área 'rural', o mínimo é 2.18 no Brasil, e a média é 4.25. Para 'própria residência', o CV máximo é 10.60 na área 'rural', o mínimo é 3.63 no Brasil, com média de 7.35. A categoria 'via pública' apresenta CV máximo de 9.25 na área 'rural', mínimo de 2.61 no Brasil, e média de 5.08. Para 'outro' local, o CV mais alto é 11.14 na área 'rural', o mais baixo é 3.57 no Brasil, e a média é 6.83.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por agressor na última agressão física, segundo o sexo, a cor ou raça, os grupos de idade, o nível de instrução e as classes de rendimento mensal domiciliar per capita.</h4>
-                <div class="chart-container">
-                    <canvas id="agressorDemografiaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras horizontais apresenta os coeficientes de variação da agressão física, detalhados por características do agressor, e dados demográficos como nível de instrução. Observa-se que, para agressores específicos e grupos de instrução mais alta (e.g., "superior completo ou equivalente"), os CVs podem ser substancialmente elevados (chegando a 41.91), indicando baixa precisão nessas estimativas.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 8.61, observado em 'superior incompleto ou equivalente'.</li>
-                    <li>O valor mais baixo é de 2.18, registrado em 'total (1)(2)'.</li>
-                    <li>A média dos valores para 'total' é de 4.26.</li>
-                    <li>Na métrica 'agressor na última agressão física', o valor mais alto é de 11.52, observado em 'superior incompleto ou equivalente'.</li>
-                    <li>O valor mais baixo é de 2.88, registrado em 'total (1)(2)'.</li>
-                    <li>A média dos valores para 'agressor na última agressão física' é de 5.99.</li>
-                    <li>Na métrica 'agressor na última agressão física.1', o valor mais alto é de 41.91, observado em 'superior completo ou equivalente'.</li>
-                    <li>O valor mais baixo é de 8.01, registrado em 'total (1)(2)'.</li>
-                    <li>A média dos valores para 'agressor na última agressão física.1' é de 18.88.</li>
-                    <li>Na métrica 'agressor na última agressão física.2', o valor mais alto é de 27.29, observado em 'superior completo ou equivalente'.</li>
-                    <li>O valor mais baixo é de 4.81, registrado em 'total (1)(2)'.</li>
-                    <li>A média dos valores para 'agressor na última agressão física.2' é de 11.46.</li>
-                    <li>Na métrica 'agressor na última agressão física.3', o valor mais alto é de 31.24, observado em 'superior completo ou equivalente'.</li>
-                    <li>O valor mais baixo é de 6.09, registrado em 'total (1)(2)'.</li>
-                    <li>A média dos valores para 'agressor na última agressão física.3' é de 13.53.</li>
-                    <li>Na métrica 'agressor na última agressão física.4', o valor mais alto é de 19.24, observado em 'superior incompleto ou equivalente'.</li>
-                    <li>O valor mais baixo é de 3.40, registrado em 'total (1)(2)'.</li>
-                    <li>A média dos valores para 'agressor na última agressão física.4' é de 7.47.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por procura pela polícia em decorrência da última agressão física, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="agressaoProcuraPolicialChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais compara os coeficientes de variação para agressão física com base na procura ou não procura pela polícia. As estimativas de pessoas que "realizaram" (13.27) ou "nao realizaram" (13.03) a procura pela polícia após a agressão apresentam CVs médios ligeiramente mais altos que o total, sugerindo desafios na precisão desses dados.</figcaption>
+                        <p class="summary-paragraph">O CV para 'total' atinge 21.99 no Acre, com mínimo de 2.18 no Brasil e média de 10.76. Para quem 'realizaram' a procura policial, o CV máximo é 26.96 na Paraíba, o mínimo é 2.71 no Brasil, e a média é 13.27. Para o grupo que 'não realizaram' a procura, o CV mais alto é 25.76 no Acre, o mais baixo é 2.68 no Brasil, e a média é 13.03.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por local de ocorrência da última agressão física, segundo o agressor na última agressão (Tabela 1.2.6.17.1).</h4>
-                <div class="chart-container">
-                    <canvas id="agressaoLocalAgressor1Chart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais detalha os coeficientes de variação da agressão física por local de ocorrência e tipo de agressor. A precisão é notavelmente menor para agressões cometidas por "policial ou segurança privada", tanto na propria residencia (20.44) quanto em "outro" local (16.36), indicando que essas ocorrências são menos capturadas ou mais variáveis na pesquisa.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 8.01, observado em 'policial ou segurança privada'.</li>
-                    <li>O valor mais baixo é de 2.18, registrado em 'total'.</li>
-                    <li>A média dos valores para 'total' é de 4.79.</li>
-                    <li>Na métrica 'propria residencia', o valor mais alto é de 20.44, observado em 'policial ou segurança privada'.</li>
-                    <li>O valor mais baixo é de 3.63, registrado em 'total'.</li>
-                    <li>A média dos valores para 'propria residencia' é de 9.26.</li>
-                    <li>Na métrica 'via publica', o valor mais alto é de 14.64, observado em 'parente'.</li>
-                    <li>O valor mais baixo é de 2.61, registrado em 'total'.</li>
-                    <li>A média dos valores para 'via publica' é de 8.60.</li>
-                    <li>Na métrica 'outro', o valor mais alto é de 16.36, observado em 'policial ou segurança privada'.</li>
-                    <li>O valor mais baixo é de 3.57, registrado em 'total'.</li>
-                    <li>A média dos valores para 'outro' é de 11.01.</li>
-                </ul>
-            </article>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por agressor na última agressão física, segundo o sexo, a cor ou raça, os grupos de idade, o nível de instrução e as classes de rendimento mensal domiciliar per capita.</h4>
+                        <div class="chart-container">
+                            <canvas id="agressorDemografiaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras horizontais apresenta os coeficientes de variação da agressão física, detalhados por características do agressor, e dados demográficos como nível de instrução. Observa-se que, para agressores específicos e grupos de instrução mais alta (e.g., "superior completo ou equivalente"), os CVs podem ser substancialmente elevados (chegando a 41.91), indicando baixa precisão nessas estimativas.</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o CV máximo é 8.61 para 'superior incompleto ou equivalente', o mínimo é 2.18 para 'total (1)(2)', com média de 4.26. Para 'agressor na última agressão física', o CV mais alto é 11.52 para 'superior incompleto ou equivalente', o menor é 2.88 para 'total (1)(2)', e a média é 5.99. A categoria 'agressor na última agressão física.1' registra um CV máximo de 41.91 para 'superior completo ou equivalente', mínimo de 8.01 para 'total (1)(2)', e média de 18.88. Para 'agressor na última agressão física.2', o máximo é 27.29 para 'superior completo ou equivalente', mínimo de 4.81 para 'total (1)(2)', e média de 11.46. 'Agressor na última agressão física.3' tem um CV máximo de 31.24 para 'superior completo ou equivalente', mínimo de 6.09 para 'total (1)(2)', e média de 13.53. Por fim, 'agressor na última agressão física.4' apresenta CV máximo de 19.24 para 'superior incompleto ou equivalente', mínimo de 3.40 para 'total (1)(2)', e média de 7.47.</p>
+                    </figure>
 
-            <article>
-                <h3>Categoria: Furto</h3>
-                <p>A análise da categoria 'furto' abrangeu 65 planilhas de dados, revelando padrões distintos de vitimização e a precisão de suas estimativas.</p>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de agressão física, no período de referência de 365 dias, por local de ocorrência da última agressão física, segundo o agressor na última agressão (Tabela 1.2.6.17.1).</h4>
+                        <div class="chart-container">
+                            <canvas id="agressaoLocalAgressor1Chart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais detalha os coeficientes de variação da agressão física por local de ocorrência e tipo de agressor. A precisão é notavelmente menor para agressões cometidas por "policial ou segurança privada", tanto na propria residencia (20.44) quanto em "outro" local (16.36), indicando que essas ocorrências são menos capturadas ou mais variáveis na pesquisa.</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o CV mais alto é 8.01 para 'policial ou segurança privada', o mais baixo é 2.18 para 'total', com média de 4.79. Para 'própria residência', o CV máximo é 20.44 para 'policial ou segurança privada', o mínimo é 3.63 para 'total', e a média é 9.26. Para 'via pública', o CV mais alto é 14.64 para 'parente', o mais baixo é 2.61 para 'total', e a média é 8.60. Para 'outro' local, o CV máximo é 16.36 para 'policial ou segurança privada', o mínimo é 3.57 para 'total', e a média é 11.01.</p>
+                    </figure>
+                </article>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por sexo e cor/raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="furtoSexoCorRacaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais exibe os coeficientes de variação para furto por sexo e cor/raça. Mulheres e pessoas brancas tendem a ter CVs médios mais altos (9.32 e 10.89, respectivamente), indicando que as estimativas de furto para esses grupos podem ser menos estáveis em comparação com homens ou pessoas preta/parda.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 18.22, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.64, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.48.</li>
-                    <li>Na métrica 'homens', o valor mais alto é de 17.49, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 1.69, registrado no Brasil.</li>
-                    <li>A média dos valores para 'homens' é de 8.21.</li>
-                    <li>Na métrica 'mulheres', o valor mais alto é de 21.55, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 2.09, registrado no Brasil.</li>
-                    <li>A média dos valores para 'mulheres' é de 9.32.</li>
-                    <li>Na métrica 'branca', o valor mais alto é de 20.89, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 2.04, registrado no Brasil.</li>
-                    <li>A média dos valores para 'branca' é de 10.89.</li>
-                    <li>Na métrica 'preta/parda', o valor mais alto é de 19.47, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 2.14, registrado no Brasil.</li>
-                    <li>A média dos valores para 'preta/parda' é de 8.72.</li>
-                </ul>
+                <article id="furto">
+                    <h3>Categoria: Furto</h3>
+                    <p>A análise da categoria 'furto' abrangeu 65 planilhas de dados, revelando padrões distintos de vitimização e a precisão de suas estimativas.</p>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por grupos de idade, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="furtoIdadeChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras horizontais ilustra os coeficientes de variação para furto em diferentes grupos de idade. A precisão das estimativas é notavelmente menor para o grupo de "10 a 15 anos", com um CV médio de 22.33 e um pico de 99.14 em Alagoas, sugerindo que dados de furto para essa faixa etária podem ser muito variáveis.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 18.22, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.64, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.51.</li>
-                    <li>Na métrica '10 a 15 anos', o valor mais alto é de 99.14, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 4.62, registrado no Brasil.</li>
-                    <li>A média dos valores para '10 a 15 anos' é de 22.33.</li>
-                    <li>Na métrica '16 a 24 anos', o valor mais alto é de 31.16, observado no Acre.</li>
-                    <li>O valor mais baixo é de 2.77, registrado no Brasil.</li>
-                    <li>A média dos valores para '16 a 24 anos' é de 13.34.</li>
-                    <li>Na métrica '25 a 34 anos', o valor mais alto é de 22.82, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 2.59, registrado no Brasil.</li>
-                    <li>A média dos valores para '25 a 34 anos' é de 11.45.</li>
-                    <li>Na métrica '35 a 49 anos', o valor mais alto é de 22.27, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 2.24, registrado no Brasil.</li>
-                    <li>A média dos valores para '35 a 49 anos' é de 10.46.</li>
-                    <li>Na métrica '50 a 59 anos(ou mais)', o valor mais alto é de 24.35, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 2.34, registrado no Brasil.</li>
-                    <li>A média dos valores para '50 a 59 anos(ou mais)' é de 11.47.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por sexo e cor/raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="furtoSexoCorRacaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais exibe os coeficientes de variação para furto por sexo e cor/raça. Mulheres e pessoas brancas tendem a ter CVs médios mais altos (9.32 e 10.89, respectivamente), indicando que as estimativas de furto para esses grupos podem ser menos estáveis em comparação com homens ou pessoas preta/parda.</figcaption>
+                        <p class="summary-paragraph">O CV máximo para 'total' é 18.22 no Maranhão, o mínimo é 1.64 no Brasil, com média de 7.48. Para 'homens', o CV mais alto é 17.49 no Amapá, o mais baixo é 1.69 no Brasil, e a média é 8.21. Para 'mulheres', o CV alcança 21.55 no Maranhão, sendo 2.09 no Brasil e a média 9.32. Na métrica 'branca', o CV mais elevado é 20.89 em Alagoas, o menor é 2.04 no Brasil, com média de 10.89. Já para 'preta/parda', o valor máximo é 19.47 no Maranhão, o mínimo é 2.14 no Brasil, e a média é 8.72.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por classes de rendimento mensal domiciliar per capita, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="furtoRendaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para furto com base nas classes de rendimento mensal domiciliar per capita. As classes de menor rendimento ("sem rendimento a menos de 1/4" e "1/4 a menos de 1/2") apresentam CVs médios mais altos (21.26 e 15.83, respectivamente), indicando que as estimativas de furto para a população de baixa renda podem ser menos precisas.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 18.44, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.64, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.48.</li>
-                    <li>Na métrica 'sem rendimento a menos de 1/4', o valor mais alto é de 45.26, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 4.65, registrado no Brasil.</li>
-                    <li>A média dos valores para 'sem rendimento a menos de 1/4' é de 21.26.</li>
-                    <li>Na métrica 'classes de rendimento mensal domiciliar per capita (salário mínimo).1', o valor mais alto é de 32.49, observado no Distrito Federal.</li>
-                    <li>O valor mais baixo é de 3.42, registrado no Brasil.</li>
-                    <li>A média dos valores para 'classes de rendimento mensal domiciliar per capita (salário mínimo).1' é de 15.83.</li>
-                    <li>Na métrica 'classes de rendimento mensal domiciliar per capita (salário mínimo).2', o valor mais alto é de 20.98, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 2.62, registrado no Brasil.</li>
-                    <li>A média dos valores para 'classes de rendimento mensal domiciliar per capita (salário mínimo).2' é de 11.78.</li>
-                    <li>Na métrica 'classes de rendimento mensal domiciliar per capita (salário mínimo).3', o valor mais alto é de 28.15, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 2.36, registrado no Brasil.</li>
-                    <li>A média dos valores para 'classes de rendimento mensal domiciliar per capita (salário mínimo).3' é de 11.86.</li>
-                    <li>Na métrica 'classes de rendimento mensal domiciliar per capita (salário mínimo).4', o valor mais alto é de 32.47, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 2.81, registrado no Brasil.</li>
-                    <li>A média dos valores para 'classes de rendimento mensal domiciliar per capita (salário mínimo).4' é de 14.43.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por grupos de idade, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="furtoIdadeChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras horizontais ilustra os coeficientes de variação para furto em diferentes grupos de idade. A precisão das estimativas é notavelmente menor para o grupo de "10 a 15 anos", com um CV médio de 22.33 e um pico de 99.14 em Alagoas, sugerindo que dados de furto para essa faixa etária podem ser muito variáveis.</figcaption>
+                        <p class="summary-paragraph">Para a métrica 'total', o CV mais alto é 18.22 no Maranhão, o mínimo é 1.64 no Brasil, com média de 7.51. Para '10 a 15 anos', o CV atinge 99.14 em Alagoas, o menor é 4.62 no Brasil, e a média é 22.33. Na faixa '16 a 24 anos', o máximo é 31.16 no Acre, o mínimo é 2.77 no Brasil, e a média é 13.34. Para '25 a 34 anos', o CV mais alto é 22.82 no Maranhão, o mais baixo é 2.59 no Brasil, e a média é 11.45. Para '35 a 49 anos', o máximo é 22.27 no Amapá, o mínimo é 2.24 no Brasil, e a média é 10.46. Finalmente, para '50 a 59 anos (ou mais)', o CV máximo é 24.35 em Roraima, o mínimo é 2.34 no Brasil, e a média é 11.47.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por tipo de bem furtado no último furto, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="furtoBemFurtadoChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais mostra os coeficientes de variação para furto, categorizados pelo tipo de bem furtado. Bens como "veículo" e "bolsacarteira" apresentam os CVs médios mais altos (15.64 e 13.33, respectivamente), indicando maior variabilidade nas estimativas para esses tipos de furto.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'dinheiro, cartão dedébito ou crédito, ou cheque', o valor mais alto é de 20.47, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 2.22, registrado no Brasil.</li>
-                    <li>A média dos valores para 'dinheiro, cartão dedébito ou crédito, ou cheque' é de 11.12.</li>
-                    <li>Na métrica 'celular', o valor mais alto é de 24.61, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 2.20, registrado no Brasil.</li>
-                    <li>A média dos valores para 'celular' é de 11.32.</li>
-                    <li>Na métrica 'bolsacarteira', o valor mais alto é de 34.23, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 2.50, registrado no Brasil.</li>
-                    <li>A média dos valores para 'bolsacarteira' é de 13.33.</li>
-                    <li>Na métrica 'veículo', o valor mais alto é de 37.71, observado no Amazonas.</li>
-                    <li>O valor mais baixo é de 3.45, registrado no Brasil.</li>
-                    <li>A média dos valores para 'veículo' é de 15.64.</li>
-                    <li>Na métrica 'outro', o valor mais alto é de 20.72, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 2.15, registrado no Brasil.</li>
-                    <li>A média dos valores para 'outro' é de 10.05.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por classes de rendimento mensal domiciliar per capita, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="furtoRendaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para furto com base nas classes de rendimento mensal domiciliar per capita. As classes de menor rendimento ("sem rendimento a menos de 1/4" e "1/4 a menos de 1/2") apresentam CVs médios mais altos (21.26 e 15.83, respectivamente), indicando que as estimativas de furto para a população de baixa renda podem ser menos precisas.</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o CV máximo é 18.44 no Maranhão, o mínimo é 1.64 no Brasil, com média de 7.48. Para 'sem rendimento a menos de 1/4', o CV atinge 45.26 no Amapá, o menor é 4.65 no Brasil, e a média é 21.26. Na categoria '1/4 a menos de 1/2', o máximo é 32.49 no Distrito Federal, o mínimo é 3.42 no Brasil, e a média é 15.83. Para '1/2 a menos de 1', o CV mais alto é 20.98 em Alagoas, o mais baixo é 2.62 no Brasil, e a média é 11.78. Para '1 a menos de 2', o máximo é 28.15 no Maranhão, o mínimo é 2.36 no Brasil, e a média é 11.86. Finalmente, para '2 ou mais', o CV máximo é 32.47 em Alagoas, o mínimo é 2.81 no Brasil, e a média é 14.43.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por local de ocorrência do último furto, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="furtoLocalOcorrenciaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras horizontais detalha os coeficientes de variação para furto por local de ocorrência do crime. Furtos ocorridos em "via publica" (CV médio de 14.81) e "outro" local (CV médio de 12.51) apresentam menor precisão nas estimativas, com picos de CV em Roraima e Amapá, respectivamente.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 18.22, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.64, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.51.</li>
-                    <li>Na métrica 'propria residencia', o valor mais alto é de 18.95, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 2.15, registrado no Brasil.</li>
-                    <li>A média dos valores para 'propria residencia' é de 9.54.</li>
-                    <li>Na métrica 'via publica', o valor mais alto é de 29.92, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 3.21, registrado no Brasil.</li>
-                    <li>A média dos valores para 'via publica' é de 14.81.</li>
-                    <li>Na métrica 'outro', o valor mais alto é de 28.31, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 2.46, registrado no Brasil.</li>
-                    <li>A média dos valores para 'outro' é de 12.51.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por tipo de bem furtado no último furto, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="furtoBemFurtadoChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais mostra os coeficientes de variação para furto, categorizados pelo tipo de bem furtado. Bens como "veículo" e "bolsacarteira" apresentam os CVs médios mais altos (15.64 e 13.33, respectivamente), indicando maior variabilidade nas estimativas para esses tipos de furto.</figcaption>
+                        <p class="summary-paragraph">Para 'dinheiro, cartão de débito ou crédito, ou cheque', o CV máximo é 20.47 em Alagoas, o mínimo é 2.22 no Brasil, e a média é 11.12. Para 'celular', o CV mais alto é 24.61 em Roraima, o mais baixo é 2.20 no Brasil, e a média é 11.32. Na métrica 'bolsa/carteira', o CV atinge 34.23 em Alagoas, o menor é 2.50 no Brasil, e a média é 13.33. Para 'veículo', o CV máximo é 37.71 no Amazonas, o mínimo é 3.45 no Brasil, e a média é 15.64. Por fim, para 'outro', o CV mais alto é 20.72 no Amapá, o mais baixo é 2.15 no Brasil, e a média é 10.05.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por procura pela polícia em decorrência do último furto, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="furtoProcuraPoliciaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais mostra os coeficientes de variação para furto com base na procura ou não procura pela polícia. As estimativas de pessoas que "nao realizaram" a procura pela polícia (CV médio de 8.46) ou que "realizaram" (CV médio de 10.40) o fizeram são comparativamente menos precisas em estados como a Paraíba.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 18.22, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.64, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.51.</li>
-                    <li>Na métrica 'realizaram', o valor mais alto é de 21.60, observado na Paraíba.</li>
-                    <li>O valor mais baixo é de 2.14, registrado no Brasil.</li>
-                    <li>A média dos valores para 'realizaram' é de 10.40.</li>
-                    <li>Na métrica 'nao realizaram', o valor mais alto é de 19.81, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.92, registrado no Brasil.</li>
-                    <li>A média dos valores para 'nao realizaram' é de 8.46.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por local de ocorrência do último furto, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="furtoLocalOcorrenciaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras horizontais detalha os coeficientes de variação para furto por local de ocorrência do crime. Furtos ocorridos em "via publica" (CV médio de 14.81) e "outro" local (CV médio de 12.51) apresentam menor precisão nas estimativas, com picos de CV em Roraima e Amapá, respectivamente.</figcaption>
+                        <p class="summary-paragraph">O CV máximo para 'total' é 18.22 no Maranhão, o mínimo é 1.64 no Brasil, com média de 7.51. Para 'própria residência', o CV mais alto é 18.95 em Alagoas, o mais baixo é 2.15 no Brasil, e a média é 9.54. Para 'via pública', o CV atinge 29.92 em Roraima, o menor é 3.21 no Brasil, e a média é 14.81. Para 'outro' local, o CV máximo é 28.31 no Amapá, o mínimo é 2.46 no Brasil, e a média é 12.51.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por nível de instrução, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="furtoNivelInstrucaoChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras horizontais ilustra os coeficientes de variação para furto com base no nível de instrução. Grupos com "sem instrução" (CV médio de 18.91), "superior incompleto ou equivalente" (CV médio de 20.49) e "superior completo ou equivalente" (CV médio de 19.42) apresentam as maiores variabilidades, sugerindo que as estimativas para essas populações são menos robustas.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 18.22, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.64, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.48.</li>
-                    <li>Na métrica 'sem instrução', o valor mais alto é de 45.05, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 4.17, registrado no Brasil.</li>
-                    <li>A média dos valores para 'sem instrução' é de 18.91.</li>
-                    <li>Na métrica 'fundamental incompleto ou equivalente', o valor mais alto é de 24.88, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 2.39, registrado no Brasil.</li>
-                    <li>A média dos valores para 'fundamental incompleto ou equivalente' é de 10.64.</li>
-                    <li>Na métrica 'fundamental completo ou equivalente', o valor mais alto é de 31.35, observado na Paraíba.</li>
-                    <li>O valor mais baixo é de 3.16, registrado no Brasil.</li>
-                    <li>A média dos valores para 'fundamental completo ou equivalente' é de 15.35.</li>
-                    <li>Na métrica 'médio incompleto ou equivalente', o valor mais alto é de 32.95, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 3.81, registrado no Brasil.</li>
-                    <li>A média dos valores para 'médio incompleto ou equivalente' é de 18.03.</li>
-                    <li>Na métrica 'médio completo ou equivalente', o valor mais alto é de 24.15, observado em Sergipe.</li>
-                    <li>O valor mais baixo é de 2.31, registrado no Brasil.</li>
-                    <li>A média dos valores para 'médio completo ou equivalente' é de 11.43.</li>
-                    <li>Na métrica 'superior incompleto ou equivalente', o valor mais alto é de 40.94, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 4.14, registrado no Brasil.</li>
-                    <li>A média dos valores para 'superior incompleto ou equivalente' é de 20.49.</li>
-                    <li>Na métrica 'superior completo ou equivalente', o valor mais alto é de 43.27, observado no Piauí.</li>
-                    <li>O valor mais baixo é de 3.75, registrado no Brasil.</li>
-                    <li>A média dos valores para 'superior completo ou equivalente' é de 19.42.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por procura pela polícia em decorrência do último furto, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="furtoProcuraPoliciaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais mostra os coeficientes de variação para furto com base na procura ou não procura pela polícia. As estimativas de pessoas que "nao realizaram" a procura pela polícia (CV médio de 8.46) ou que "realizaram" (CV médio de 10.40) o fizeram são comparativamente menos precisas em estados como a Paraíba.</figcaption>
+                        <p class="summary-paragraph">O CV para 'total' é 18.22 no Maranhão, com mínimo de 1.64 no Brasil e média de 7.51. Para quem 'realizaram' a procura policial, o CV máximo é 21.60 na Paraíba, o mínimo é 2.14 no Brasil, e a média é 10.40. Para o grupo que 'não realizaram' a procura, o CV mais alto é 19.81 no Maranhão, o mais baixo é 1.92 no Brasil, e a média é 8.46.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por condição de atividade e de ocupação na semana de referência, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="furtoCondicaoAtividadeChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para furto com base na condição de atividade e ocupação. Observa-se que a categoria de "condição de ocupação na semana de referência(desocupadas)" tem a maior média de CV (22.40), com um pico em Piauí (58.19), indicando a baixa precisão na estimativa de furto para essa população.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 18.22, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.64, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.51.</li>
-                    <li>Na métrica 'economicamente ativas', o valor mais alto é de 19.18, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.70, registrado no Brasil.</li>
-                    <li>A média dos valores para 'economicamente ativas' é de 7.90.</li>
-                    <li>Na métrica 'condição de ocupação na semana de referência(ocupadas)', o valor mais alto é de 19.56, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 1.71, registrado no Brasil.</li>
-                    <li>A média dos valores para 'condição de ocupação na semana de referência(ocupadas)' é de 7.96.</li>
-                    <li>Na métrica 'condição de ocupação na semana de referência(desocupadas)', o valor mais alto é de 58.19, observado no Piauí.</li>
-                    <li>O valor mais baixo é de 4.62, registrado no Brasil.</li>
-                    <li>A média dos valores para 'condição de ocupação na semana de referência(desocupadas)' é de 22.40.</li>
-                    <li>Na métrica 'nao economicamente ativas', o valor mais alto é de 22.68, observado no Maranhão.</li>
-                    <li>O valor mais baixo é de 2.55, registrado no Brasil.</li>
-                    <li>A média dos valores para 'nao economicamente ativas' é de 11.40.</li>
-                </ul>
-            </article>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por nível de instrução, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="furtoNivelInstrucaoChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras horizontais ilustra os coeficientes de variação para furto com base no nível de instrução. Grupos com "sem instrução" (CV médio de 18.91), "superior incompleto ou equivalente" (CV médio de 20.49) e "superior completo ou equivalente" (CV médio de 19.42) apresentam as maiores variabilidades, sugerindo que as estimativas para essas populações são menos robustas.</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o CV máximo é 18.22 no Maranhão, o mínimo é 1.64 no Brasil, com média de 7.48. Para 'sem instrução', o CV atinge 45.05 em Roraima, o menor é 4.17 no Brasil, e a média é 18.91. Na categoria 'fundamental incompleto ou equivalente', o máximo é 24.88 no Maranhão, o mínimo é 2.39 no Brasil, e a média é 10.64. Para 'fundamental completo ou equivalente', o CV mais alto é 31.35 na Paraíba, o mais baixo é 3.16 no Brasil, e a média é 15.35. Para 'médio incompleto ou equivalente', o máximo é 32.95 no Maranhão, o mínimo é 3.81 no Brasil, e a média é 18.03. Para 'médio completo ou equivalente', o CV máximo é 24.15 em Sergipe, o mínimo é 2.31 no Brasil, e a média é 11.43. Na categoria 'superior incompleto ou equivalente', o CV atinge 40.94 em Alagoas, o menor é 4.14 no Brasil, e a média é 20.49. Por fim, para 'superior completo ou equivalente', o CV máximo é 43.27 no Piauí, o mínimo é 3.75 no Brasil, e a média é 19.42.</p>
+                    </figure>
 
-            <article>
-                <h3>Categoria: Roubo</h3>
-                <p>A análise da categoria 'roubo' abrangeu 71 planilhas de dados, detalhando os padrões de vitimização e a precisão de suas estimativas.</p>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de furto, no período de referência de 365 dias, por condição de atividade e de ocupação na semana de referência, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="furtoCondicaoAtividadeChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para furto com base na condição de atividade e ocupação. Observa-se que a categoria de "condição de ocupação na semana de referência(desocupadas)" tem a maior média de CV (22.40), com um pico em Piauí (58.19), indicando a baixa precisão na estimativa de furto para essa população.</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o CV máximo é 18.22 no Maranhão, o mínimo é 1.64 no Brasil, com média de 7.51. Para 'economicamente ativas', o CV mais alto é 19.18 no Maranhão, o mais baixo é 1.70 no Brasil, e a média é 7.90. Para 'condição de ocupação (ocupadas)', o CV atinge 19.56 no Maranhão, o menor é 1.71 no Brasil, e a média é 7.96. Na categoria 'condição de ocupação (desocupadas)', o CV máximo é 58.19 no Piauí, o mínimo é 4.62 no Brasil, e a média é 22.40. Por fim, para 'não economicamente ativas', o CV mais alto é 22.68 no Maranhão, o mais baixo é 2.55 no Brasil, e a média é 11.40.</p>
+                    </figure>
+                </article>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de roubo, no período de referência de 365 dias, por sexo e cor/raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="rouboSexoCorRacaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais mostra os coeficientes de variação para roubo por sexo e cor/raça. Mulheres e pessoas brancas apresentam CVs médios mais elevados (10.04 e 11.07, respectivamente), sugerindo maior variabilidade e menor precisão nas estimativas de roubo para esses grupos, especialmente no Amapá e Roraima.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 19.19, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 1.44, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.84.</li>
-                    <li>Na métrica 'homens', o valor mais alto é de 19.58, observado em Tocantins.</li>
-                    <li>O valor mais baixo é de 1.68, registrado no Brasil.</li>
-                    <li>A média dos valores para 'homens' é de 8.93.</li>
-                    <li>Na métrica 'mulheres', o valor mais alto é de 25.10, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 1.78, registrado no Brasil.</li>
-                    <li>A média dos valores para 'mulheres' é de 10.04.</li>
-                    <li>Na métrica 'branca', o valor mais alto é de 36.90, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 1.95, registrado no Brasil.</li>
-                    <li>A média dos valores para 'branca' é de 11.07.</li>
-                    <li>Na métrica 'preta/parda', o valor mais alto é de 22.20, observado em Santa Catarina.</li>
-                    <li>O valor mais baixo é de 1.76, registrado no Brasil.</li>
-                    <li>A média dos valores para 'preta/parda' é de 9.23.</li>
-                </ul>
+                <article id="roubo">
+                    <h3>Categoria: Roubo</h3>
+                    <p>A análise da categoria 'roubo' abrangeu 71 planilhas de dados, detalhando os padrões de vitimização e a precisão de suas estimativas.</p>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de roubo, no período de referência de 365 dias, por grupos de idade, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="rouboIdadeChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras horizontais ilustra os coeficientes de variação para roubo em diferentes grupos de idade. A faixa etária de "10 a 15 anos" apresenta o maior CV médio (22.29), com um pico em Amapá (49.81), indicando que as estimativas de roubo para adolescentes são menos precisas.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 19.19, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 1.44, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.89.</li>
-                    <li>Na métrica '10 a 15 anos', o valor mais alto é de 49.81, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 4.29, registrado no Brasil.</li>
-                    <li>A média dos valores para '10 a 15 anos' é de 22.29.</li>
-                    <li>Na métrica '16 a 24 anos', o valor mais alto é de 28.52, observado em Tocantins.</li>
-                    <li>O valor mais baixo é de 2.21, registrado no Brasil.</li>
-                    <li>A média dos valores para '16 a 24 anos' é de 12.15.</li>
-                    <li>Na métrica '25 a 34 anos', o valor mais alto é de 29.01, observado em Santa Catarina.</li>
-                    <li>O valor mais baixo é de 2.26, registrado no Brasil.</li>
-                    <li>A média dos valores para '25 a 34 anos' é de 12.78.</li>
-                    <li>Na métrica '35 a 49 anos', o valor mais alto é de 32.55, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 2.18, registrado no Brasil.</li>
-                    <li>A média dos valores para '35 a 49 anos' é de 11.97.</li>
-                    <li>Na métrica '50 a 59 anos(ou mais)', o valor mais alto é de 35.76, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 2.61, registrado no Brasil.</li>
-                    <li>A média dos valores para '50 a 59 anos(ou mais)' é de 14.07.</li>
-                </ul>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de roubo, no período de referência de 365 dias, por sexo e cor/raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="rouboSexoCorRacaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais mostra os coeficientes de variação para roubo por sexo e cor/raça. Mulheres e pessoas brancas apresentam CVs médios mais elevados (10.04 e 11.07, respectivamente), sugerindo maior variabilidade e menor precisão nas estimativas de roubo para esses grupos, especialmente no Amapá e Roraima.</figcaption>
+                        <p class="summary-paragraph">O CV máximo para 'total' é 19.19 no Amapá, o mínimo é 1.44 no Brasil, com média de 7.84. Para 'homens', o CV mais alto é 19.58 em Tocantins, o mais baixo é 1.68 no Brasil, e a média é 8.93. Para 'mulheres', o CV alcança 25.10 no Amapá, sendo 1.78 no Brasil e a média 10.04. Na métrica 'branca', o CV mais elevado é 36.90 em Roraima, o menor é 1.95 no Brasil, com média de 11.07. Já para 'preta/parda', o valor máximo é 22.20 em Santa Catarina, o mínimo é 1.76 no Brasil, e a média é 9.23.</p>
+                    </figure>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de roubo, no período de referência de 365 dias, por classes de rendimento mensal domiciliar per capita, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="rouboRendaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para roubo com base nas classes de rendimento mensal domiciliar per capita. As classes de menor rendimento, como "sem rendimento a menos de 1/4" (CV médio de 26.08, com pico em Santa Catarina de 99.63), apresentam as maiores variabilidades, o que indica que as estimativas de roubo para essas populações de baixa renda são significativamente menos confiáveis.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 19.37, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 1.45, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 7.88.</li>
-                    <li>Na métrica 'sem rendimento a menos de 1/4', o valor mais alto é de 99.63, observado em Santa Catarina.</li>
-                    <li>O valor mais baixo é de 4.42, registrado no Brasil.</li>
-                    <li>A média dos valores para 'sem rendimento a menos de 1/4' é de 26.08.</li>
-                    <li>Na métrica 'classes de rendimento mensal domiciliar per capita (salário mínimo).1', o valor mais alto é de 55.50, observado em Santa Catarina.</li>
-                    <li>O valor mais baixo é de 3.30, registrado no Brasil.</li>
-                    <li>A média dos valores para 'classes de rendimento mensal domiciliar per capita (salário mínimo).1' é de 17.82.</li>
-                    <li>Na métrica 'classes de rendimento mensal domiciliar per capita (salário mínimo).2', o valor mais alto é de 28.10, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 2.40, registrado no Brasil.</li>
-                    <li>A média dos valores para 'classes de rendimento mensal domiciliar per capita (salário mínimo).2' é de 12.62.</li>
-                    <li>Na métrica 'classes de rendimento mensal domiciliar per capita (salário mínimo).3', o valor mais alto é de 34.50, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 2.31, registrado no Brasil.</li>
-                    <li>A média dos valores para 'classes de rendimento mensal domiciliar per capita (salário mínimo).3' é de 13.26.</li>
-                    <li>Na métrica 'classes de rendimento mensal domiciliar per capita (salário mínimo).4', o valor mais alto é de 37.13, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 2.81, registrado no Brasil.</li>
-                    <li>A média dos valores para 'classes de rendimento mensal domiciliar per capita (salário mínimo).4' é de 15.91.</li>
-                </ul>
-            </article>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de roubo, no período de referência de 365 dias, por grupos de idade, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="rouboIdadeChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras horizontais ilustra os coeficientes de variação para roubo em diferentes grupos de idade. A faixa etária de "10 a 15 anos" apresenta o maior CV médio (22.29), com um pico em Amapá (49.81), indicando que as estimativas de roubo para adolescentes são menos precisas.</figcaption>
+                        <p class="summary-paragraph">Para a métrica 'total', o CV mais alto é 19.19 no Amapá, o mínimo é 1.44 no Brasil, com média de 7.89. Para '10 a 15 anos', o CV atinge 49.81 no Amapá, o menor é 4.29 no Brasil, e a média é 22.29. Na faixa '16 a 24 anos', o máximo é 28.52 em Tocantins, o mínimo é 2.21 no Brasil, e a média é 12.15. Para '25 a 34 anos', o CV mais alto é 29.01 em Santa Catarina, o mais baixo é 2.26 no Brasil, e a média é 12.78. Para '35 a 49 anos', o máximo é 32.55 no Amapá, o mínimo é 2.18 no Brasil, e a média é 11.97. Finalmente, para '50 a 59 anos (ou mais)', o CV máximo é 35.76 em Roraima, o mínimo é 2.61 no Brasil, e a média é 14.07.</p>
+                    </figure>
 
-            <article>
-                <h3>Categoria: Tentativa de Roubo ou Furto</h3>
-                <p>Para esta categoria, as análises detalhadas de "maior valor", "menor valor" e "média" não foram extraídas do documento PDF. No entanto, os gráficos a seguir representam as colunas esperadas para estas análises de coeficientes de variação.</p>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de roubo, no período de referência de 365 dias, por classes de rendimento mensal domiciliar per capita, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="rouboRendaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para roubo com base nas classes de rendimento mensal domiciliar per capita. As classes de menor rendimento, como "sem rendimento a menos de 1/4" (CV médio de 26.08, com pico em Santa Catarina de 99.63), apresentam as maiores variabilidades, o que indica que as estimativas de roubo para essas populações de baixa renda são significativamente menos confiáveis.</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o CV máximo é 19.37 no Amapá, o mínimo é 1.45 no Brasil, com média de 7.88. Para 'sem rendimento a menos de 1/4', o CV atinge 99.63 em Santa Catarina, o menor é 4.42 no Brasil, e a média é 26.08. Na categoria '1/4 a menos de 1/2', o máximo é 55.50 em Santa Catarina, o mínimo é 3.30 no Brasil, e a média é 17.82. Para '1/2 a menos de 1', o CV mais alto é 28.10 em Roraima, o mais baixo é 2.40 no Brasil, e a média é 12.62. Para '1 a menos de 2', o máximo é 34.50 em Roraima, o mínimo é 2.31 no Brasil, e a média é 13.26. Finalmente, para '2 ou mais', o CV máximo é 37.13 em Roraima, o mínimo é 2.81 no Brasil, e a média é 15.91.</p>
+                    </figure>
+                </article>
 
-                <h4>Coeficientes de variação das estimativas de percentual de pessoas que foram vítimas de tentativa de roubo ou furto, no período de referência de 365 dias, na população de 10 anos ou mais de idade, por sexo e cor ou raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="tentativaSexoCorRacaChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais representa os coeficientes de variação para tentativa de roubo ou furto por sexo e cor/raça, utilizando dados de exemplo. Caso os dados reais estivessem disponíveis, poderíamos identificar a precisão das estimativas para cada subgrupo demográfico.</p>
-                </div>
+                <article id="tentativa-roubo-furto">
+                    <h3>Categoria: Tentativa de Roubo ou Furto</h3>
+                    <p>Para esta categoria, os dados detalhados de "maior valor", "menor valor" e "média" não foram extraídos do documento PDF. No entanto, os gráficos a seguir representam as colunas esperadas para estas análises de coeficientes de variação.</p>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de tentativa de roubo ou furto, no período de referência de 365 dias, por grupos de idade, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="tentativaGruposIdadeChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras horizontais representaria os coeficientes de variação para tentativa de roubo ou furto por grupos de idade, utilizando dados de exemplo. A análise dos CVs revelaria quais faixas etárias têm estimativas mais ou menos precisas para esse tipo de vitimização.</p>
-                </div>
-            </article>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de percentual de pessoas que foram vítimas de tentativa de roubo ou furto, no período de referência de 365 dias, na população de 10 anos ou mais de idade, por sexo e cor ou raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="tentativaSexoCorRacaChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais representa os coeficientes de variação para tentativa de roubo ou furto por sexo e cor/raça, utilizando dados de exemplo. Caso os dados reais estivessem disponíveis, poderíamos identificar a precisão das estimativas para cada subgrupo demográfico.</figcaption>
+                        <p class="summary-paragraph">Com base em dados de exemplo, as estimativas de Coeficiente de Variação (CV) para tentativa de roubo ou furto por sexo e cor/raça variam. A métrica 'total' apresenta um CV médio de 10%, com 'homens' em 12%, 'mulheres' em 11%, 'branca' em 15%, e 'preta/parda' em 9%.</p>
+                    </figure>
 
-            <article>
-                <h3>Categoria: Percepção de Segurança (segurança)</h3>
-                <p>Para esta categoria, os dados detalhados de "maior valor", "menor valor" e "média" não foram completamente extraídos do documento PDF, especialmente para as variáveis relacionadas à atividade econômica. No entanto, os gráficos ilustram as colunas esperadas para as análises de coeficientes de variação.</p>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que foram vítimas de tentativa de roubo ou furto, no período de referência de 365 dias, por grupos de idade, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="tentativaGruposIdadeChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras horizontais representaria os coeficientes de variação para tentativa de roubo ou furto por grupos de idade, utilizando dados de exemplo. A análise dos CVs revelaria quais faixas etárias têm estimativas mais ou menos precisas para esse tipo de vitimização.</figcaption>
+                        <p class="summary-paragraph">Com base em dados de exemplo, os Coeficientes de Variação (CV) para tentativa de roubo ou furto por grupos de idade demonstram as seguintes médias: 'total' com 8%, '10 a 15 anos' com 10%, '16 a 24 anos' com 9%, '25 a 34 anos' com 11%, '35 a 49 anos' com 10%, e '50 a 59 anos (ou mais)' com 13%.</p>
+                    </figure>
+                </article>
 
-                <h4>Coeficientes de variação das estimativas de percentual de pessoas que se sentem seguras em seu domicílio, no período de referência de 365 dias, na população de 10 anos ou mais de idade, por sexo e cor ou raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="segurancaDomicilioChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para a percepção de segurança no domicílio por sexo e cor/raça. Observa-se que, enquanto os CVs para "total", "homens" e "mulheres" são baixos (0.00 a 0.93), as estimativas para "branca" (CV médio de 3.88, com pico de 10.05 em Alagoas) e "preta" (CV médio de 9.24, com pico de 25.26 no Piauí) apresentam maior variabilidade, indicando menor precisão na percepção de segurança para esses grupos específicos.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 0.00, observado no Brasil.</li>
-                    <li>O valor mais baixo é de 0.00, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 0.00.</li>
-                    <li>Na métrica 'homens', o valor mais alto é de 2.04, observado em Roraima.</li>
-                    <li>O valor mais baixo é de 0.18, registrado no Brasil.</li>
-                    <li>A média dos valores para 'homens' é de 0.93.</li>
-                    <li>Na métrica 'mulheres', o valor mais alto é de 2.10, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 0.17, registrado no Brasil.</li>
-                    <li>A média dos valores para 'mulheres' é de 0.92.</li>
-                    <li>Na métrica 'branca', o valor mais alto é de 10.05, observado em Alagoas.</li>
-                    <li>O valor mais baixo é de 0.58, registrado no Brasil.</li>
-                    <li>A média dos valores para 'branca' é de 3.88.</li>
-                    <li>Na métrica 'preta/parda', o valor mais alto é de 9.11, observado em Santa Catarina.</li>
-                    <li>O valor mais baixo é de 0.57, registrado no Brasil.</li>
-                    <li>A média dos valores para 'preta/parda' é de 2.38.</li>
-                    <li>Na métrica 'preta', o valor mais alto é de 25.26, observado no Piauí.</li>
-                    <li>O valor mais baixo é de 1.55, registrado em área 'urbana'.</li>
-                    <li>A média dos valores para 'preta' é de 9.24.</li>
-                    <li>Na métrica 'parda', o valor mais alto é de 9.99, observado em Santa Catarina.</li>
-                    <li>O valor mais baixo é de 0.63, registrado no Brasil.</li>
-                    <li>A média dos valores para 'parda' é de 2.55.</li>
-                </ul>
+                <article id="percepcao-seguranca">
+                    <h3>Categoria: Percepção de Segurança (segurança)</h3>
+                    <p>Para esta categoria, os dados detalhados de "maior valor", "menor valor" e "média" não foram completamente extraídos do documento PDF, especialmente para as variáveis relacionadas à atividade econômica. No entanto, os gráficos ilustram as colunas esperadas para as análises de coeficientes de variação.</p>
 
-                <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que se sentem seguras no seu bairro, por sexo e cor ou raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
-                <div class="chart-container">
-                    <canvas id="segurancaBairroChart"></canvas>
-                    <p class="chart-description">Este gráfico de barras horizontais ilustra os coeficientes de variação para a percepção de segurança no bairro por sexo e cor/raça. Assim como na percepção de segurança no domicílio, as estimativas para pessoas "preta" (CV médio de 4.89, com pico de 11.32 no Rio Grande do Norte) apresentam maior variabilidade, indicando menor precisão na percepção de segurança no bairro para esse grupo.</p>
-                </div>
-                <ul>
-                    <li>Na métrica 'total', o valor mais alto é de 7.45, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 0.45, registrado no Brasil.</li>
-                    <li>A média dos valores para 'total' é de 2.60.</li>
-                    <li>Na métrica 'homens', o valor mais alto é de 7.75, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 0.44, registrado no Brasil.</li>
-                    <li>A média dos valores para 'homens' é de 2.58.</li>
-                    <li>Na métrica 'mulheres', o valor mais alto é de 7.62, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 0.47, registrado no Brasil.</li>
-                    <li>A média dos valores para 'mulheres' é de 2.75.</li>
-                    <li>Na métrica 'branca', o valor mais alto é de 9.97, observado no Amapá.</li>
-                    <li>O valor mais baixo é de 0.47, registrado no Brasil.</li>
-                    <li>A média dos valores para 'branca' é de 2.94.</li>
-                    <li>Na métrica 'preta/parda', o valor mais alto é de 7.06, observado no Rio Grande do Norte.</li>
-                    <li>O valor mais baixo é de 0.60, registrado no Brasil.</li>
-                    <li>A média dos valores para 'preta/parda' é de 2.84.</li>
-                    <li>Na métrica 'preta', o valor mais alto é de 11.32, observado no Rio Grande do Norte.</li>
-                    <li>O valor mais baixo é de 0.92, registrado no Brasil.</li>
-                    <li>A média dos valores para 'preta' é de 4.89.</li>
-                    <li>Na métrica 'parda', o valor mais alto é de 7.11, observado no Rio Grande do Norte.</li>
-                    <li>O valor mais baixo é de 0.62, registrado no Brasil.</li>
-                    <li>A média dos valores para 'parda' é de 2.91.</li>
-                </ul>
-            </article>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de percentual de pessoas que se sentem seguras em seu domicílio, no período de referência de 365 dias, na população de 10 anos ou mais de idade, por sexo e cor ou raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="segurancaDomicilioChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras verticais ilustra os coeficientes de variação para a percepção de segurança no domicílio por sexo e cor/raça. Observa-se que, enquanto os CVs para "total", "homens" e "mulheres" são baixos (0.00 a 0.93), as estimativas para "branca" (CV médio de 3.88, com pico de 10.05 em Alagoas) e "preta" (CV médio de 9.24, com pico de 25.26 no Piauí) apresentam maior variabilidade, indicando menor precisão na percepção de segurança para esses grupos específicos.</figcaption>
+                        <p class="summary-paragraph">Na métrica 'total', o CV é 0.00. Para 'homens', o CV máximo é 2.04 em Roraima, o mínimo é 0.18 no Brasil, com média de 0.93. Para 'mulheres', o CV alcança 2.10 no Amapá, sendo 0.17 no Brasil e a média 0.92. Na métrica 'branca', o CV mais elevado é 10.05 em Alagoas, o menor é 0.58 no Brasil, com média de 3.88. Para 'preta/parda', o valor máximo é 9.11 em Santa Catarina, o mínimo é 0.57 no Brasil, e a média é 2.38. Para 'preta', o CV atinge 25.26 no Piauí, o menor é 1.55 na área 'urbana', e a média é 9.24. Por fim, para 'parda', o CV máximo é 9.99 em Santa Catarina, o mínimo é 0.63 no Brasil, e a média é 2.55.</p>
+                    </figure>
 
-        </section>
+                    <figure>
+                        <h4>Coeficientes de variação das estimativas de pessoas de 10 anos ou mais de idade que se sentem seguras no seu bairro, por sexo e cor ou raça, segundo a situação do domicílio, as Grandes Regiões e as Unidades da Federação.</h4>
+                        <div class="chart-container">
+                            <canvas id="segurancaBairroChart"></canvas>
+                        </div>
+                        <figcaption class="chart-description">Este gráfico de barras horizontais ilustra os coeficientes de variação para a percepção de segurança no bairro por sexo e cor/raça. Assim como na percepção de segurança no domicílio, as estimativas para pessoas "preta" (CV médio de 4.89, com pico de 11.32 no Rio Grande do Norte) apresentam maior variabilidade, indicando menor precisão na percepção de segurança no bairro para esse grupo.</figcaption>
+                        <p class="summary-paragraph">O CV máximo para 'total' é 7.45 no Amapá, o mínimo é 0.45 no Brasil, com média de 2.60. Para 'homens', o CV mais alto é 7.75 no Amapá, o mais baixo é 0.44 no Brasil, e a média é 2.58. Para 'mulheres', o CV alcança 7.62 no Amapá, sendo 0.47 no Brasil e a média 2.75. Na métrica 'branca', o CV mais elevado é 9.97 no Amapá, o menor é 0.47 no Brasil, com média de 2.94. Para 'preta/parda', o valor máximo é 7.06 no Rio Grande do Norte, o mínimo é 0.60 no Brasil, e a média é 2.84. Para 'preta', o CV atinge 11.32 no Rio Grande do Norte, o menor é 0.92 no Brasil, e a média é 4.89. Por fim, para 'parda', o CV máximo é 7.11 no Rio Grande do Norte, o mínimo é 0.62 no Brasil, e a média é 2.91.</p>
+                    </figure>
+                </article>
+            </main>
 
-        <footer>
-            <p>&copy; 2025 Repositório de Análises de Vitimização. Todos os direitos reservados.</p>
-        </footer>
+            <footer>
+                <p>&copy; 2025 Repositório de Análises de Vitimização. Todos os direitos reservados.</p>
+            </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Registrar o plugin ChartDataLabels globalmente
+            Chart.register(ChartDataLabels);
+
             // Cores base do CSS para Chart.js
             const getCssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
@@ -902,57 +497,62 @@ a:focus, button:focus {
                 '#F5F5F5'  // Cinza claro
             ];
 
-            const borderColor = '#ccc'; // Borda suave para os gráficos
+            const borderColor = 'rgba(0, 0, 0, 0.1)'; // Borda suave para os gráficos, mais sutil
 
-            // Dicionário para atualização de rótulos
+            // Dicionário para atualização de rótulos (mantido em português)
             const dictionary = {
-                'Unnamed: 1_level_1': 'total',
-                'Unnamed: 1': 'total',
-                'total(1)': 'total',
-                'sexo': 'homens',
-                'sexo.1': 'mulheres',
-                'cor ou raça': 'branca',
-                'cor ou raça.1': 'preta/parda',
-                'Preta ou parda ': 'preta/parda',
-                'Preta ou parda .1': 'preta',
-                'Preta ou parda .2': 'parda',
-                'cor ou raça.2': 'preta',
-                'cor ou raça.3': 'parda',
-                'Sem rendimento a menos de 1/4 (2) ': 'sem rendimento a menos de 1/4',
-                'sem rendimento a menos de 1/4 (2)': 'sem rendimento a menos de 1/4',
-                'Unnamed: 5_level_1': 'total',
-                'realização do registro da última agressão física na delegacia de polícia': 'realizaram',
-                'realização do registro da última agressão física na delegacia de polícia.1': 'nao realizaram',
-                'local de ocorrência da última agressão física': 'propria residencia',
-                'local de ocorrência da última agressão física.1': 'via publica',
-                'local de ocorrência da última agressão física.2': 'outro',
-                'motivo de não terem procurado a polícia em decorrência da última agressão física': 'falta de provas',
-                'motivo de não terem procurado a polícia em decorrência da última agressão física.1': 'nao era importante',
-                'motivo de não terem procurado a polícia em decorrência da última agressão física.2': 'nao acreditavam na policia',
-                'motivo de não terem procurado a polícia em decorrência da última agressão física.3': 'nao queriam envolver a policia ou medo de represalias',
-                'motivo de não terem procurado a polícia em decorrência da última agressão física.4': 'outro',
+                'Unnamed: 1_level_1': 'Total',
+                'Unnamed: 1': 'Total',
+                'total(1)': 'Total',
+                'sexo': 'Homens',
+                'sexo.1': 'Mulheres',
+                'cor ou raça': 'Branca',
+                'cor ou raça.1': 'Preta/Parda',
+                'Preta ou parda ': 'Preta/Parda',
+                'Preta ou parda .1': 'Preta',
+                'Preta ou parda .2': 'Parda',
+                'cor ou raça.2': 'Preta',
+                'cor ou raça.3': 'Parda',
+                'Sem rendimento a menos de 1/4 (2) ': 'Sem rendimento a menos de 1/4',
+                'sem rendimento a menos de 1/4 (2)': 'Sem rendimento a menos de 1/4',
+                'Unnamed: 5_level_1': 'Total',
+                'realização do registro da última agressão física na delegacia de polícia': 'Realizaram',
+                'realização do registro da última agressão física na delegacia de polícia.1': 'Não Realizaram',
+                'local de ocorrência da última agressão física': 'Própria Residência',
+                'local de ocorrência da última agressão física.1': 'Via Pública',
+                'local de ocorrência da última agressão física.2': 'Outro',
+                'motivo de não terem procurado a polícia em decorrência da última agressão física': 'Falta de Provas',
+                'motivo de não terem procurado a polícia em decorrência da última agressão física.1': 'Não era Importante',
+                'motivo de não terem procurado a polícia em decorrência da última agressão física.2': 'Não Acreditavam na Polícia',
+                'motivo de não terem procurado a polícia em decorrência da última agressão física.3': 'Não Queriam Envolver a Polícia ou Medo de Represálias',
+                'motivo de não terem procurado a polícia em decorrência da última agressão física.4': 'Outro',
                 'grupos de idade': '10 a 15 anos',
                 'grupos de idade.1': '16 a 24 anos',
                 'grupos de idade.2': '25 a 34 anos',
                 'grupos de idade.3': '35 a 49 anos',
-                'grupos de idade.4': '50 a 59 anos(ou mais)',
+                'grupos de idade.4': '50 a 59 anos (ou mais)',
                 'grupos de idade.5': '60 a 69 anos',
                 'grupos de idade.6': '70 anos ou mais',
-                'economicamente ativas': 'economicamente ativas',
-                'economicamente ativas.1': 'condição de ocupação na semana de referência(ocupadas)',
-                'economicamente ativas.2': 'condição de ocupação na semana de referência(desocupadas)', // Atualizado
-                'fundamental ou equivalente': 'fundamental incompleto ou equivalente',
-                'fundamental ou equivalente.1': 'fundamental completo ou equivalente',
-                'médio ou equivalente': 'médio incompleto ou equivalente',
-                'médio ou equivalente.1': 'médio completo ou equivalente',
-                'superior ou equivalente': 'superior incompleto ou equivalente',
-                'superior ou equivalente.1': 'superior completo ou equivalente',
-                // Nomes completos para renomear rótulos dos gráficos de roubo/furto de renda
-                'classes de rendimento mensal domiciliar per capita (salário mínimo)': 'sem rendimento a menos de 1/4',
+                'economicamente ativas': 'Economicamente Ativas',
+                'economicamente ativas.1': 'Condição de Ocupação (Ocupadas)',
+                'economicamente ativas.2': 'Condição de Ocupação (Desocupadas)',
+                'fundamental ou equivalente': 'Fundamental Incompleto ou Equivalente',
+                'fundamental ou equivalente.1': 'Fundamental Completo ou Equivalente',
+                'médio ou equivalente': 'Médio Incompleto ou Equivalente',
+                'médio ou equivalente.1': 'Médio Completo ou Equivalente',
+                'superior ou equivalente': 'Superior Incompleto ou Equivalente',
+                'superior ou equivalente.1': 'Superior Completo ou Equivalente',
+                'classes de rendimento mensal domiciliar per capita (salário mínimo)': 'Sem rendimento a menos de 1/4',
                 'classes de rendimento mensal domiciliar per capita (salário mínimo).1': '1/4 a menos de 1/2',
                 'classes de rendimento mensal domiciliar per capita (salário mínimo).2': '1/2 a menos de 1',
                 'classes de rendimento mensal domiciliar per capita (salário mínimo).3': '1 a menos de 2',
                 'classes de rendimento mensal domiciliar per capita (salário mínimo).4': '2 ou mais',
+                'dinheiro, cartão dedébito ou crédito, ou cheque': 'Dinheiro, Cartão, Cheque',
+                'celular': 'Celular',
+                'bolsacarteira': 'Bolsa/Carteira',
+                'veículo': 'Veículo',
+                'outro': 'Outro',
+                'total (1)(2)': 'Total' // Adicionado para lidar com o rótulo específico
             };
 
             // Função para aplicar o dicionário aos rótulos
@@ -964,29 +564,9 @@ a:focus, button:focus {
             const commonBarOptions = {
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
-                    x: { // Eixo X para categorias em barras verticais
-                        title: {
-                            display: true,
-                            text: 'Variável Demográfica/Cenário'
-                        },
-                        ticks: {
-                            autoSkip: false, // Evita pular rótulos se houver espaço
-                            maxRotation: 45, // Rotaciona rótulos para melhor leitura
-                            minRotation: 0
-                        }
-                    },
-                    y: { // Eixo Y para valores em barras verticais
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Coeficiente de Variação (%)'
-                        }
-                    }
-                },
                 plugins: {
                     legend: {
-                        display: false, // Geralmente desnecessário para um único dataset
+                        display: false,
                     },
                     tooltip: {
                         mode: 'index',
@@ -1003,6 +583,49 @@ a:focus, button:focus {
                                 return label;
                             }
                         }
+                    },
+                    datalabels: { // Configuração do plugin datalabels
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: function(value) {
+                            return value.toFixed(1) + '%';
+                        },
+                        color: textColor,
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Variável Demográfica/Cenário',
+                            color: textColor
+                        },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 45,
+                            minRotation: 0,
+                            color: lightTextColor
+                        },
+                        grid: {
+                            color: borderColor
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Coeficiente de Variação (%)',
+                            color: textColor
+                        },
+                        ticks: {
+                            color: lightTextColor
+                        },
+                        grid: {
+                            color: borderColor
+                        }
                     }
                 }
             };
@@ -1012,25 +635,6 @@ a:focus, button:focus {
                 responsive: true,
                 maintainAspectRatio: false,
                 indexAxis: 'y', // Define o gráfico como horizontal
-                scales: {
-                    x: { // Eixo X para valores em barras horizontais
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Coeficiente de Variação (%)'
-                        }
-                    },
-                    y: { // Eixo Y para categorias em barras horizontais
-                        title: {
-                            display: true,
-                            text: 'Variável Demográfica/Cenário'
-                        },
-                        ticks: {
-                            autoSkip: false,
-                            maxRotation: 0 // Mantém rótulos horizontais
-                        }
-                    }
-                },
                 plugins: {
                     legend: {
                         display: false,
@@ -1050,347 +654,235 @@ a:focus, button:focus {
                                 return label;
                             }
                         }
+                    },
+                    datalabels: { // Configuração do plugin datalabels
+                        anchor: 'end',
+                        align: 'right',
+                        formatter: function(value) {
+                            return value.toFixed(1) + '%';
+                        },
+                        color: textColor,
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Coeficiente de Variação (%)',
+                            color: textColor
+                        },
+                        ticks: {
+                            color: lightTextColor
+                        },
+                        grid: {
+                            color: borderColor
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Variável Demográfica/Cenário',
+                            color: textColor
+                        },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 0,
+                            color: lightTextColor
+                        },
+                        grid: {
+                            color: borderColor
+                        }
                     }
                 }
             };
 
+            // Função auxiliar para criar gráficos
+            function createChart(elementId, type, labels, data, backgroundColor, options) {
+                const ctx = document.getElementById(elementId);
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: type,
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'CV (%)',
+                                data: data,
+                                backgroundColor: backgroundColor,
+                                borderColor: borderColor,
+                                borderWidth: 1
+                            }]
+                        },
+                        options: options
+                    });
+                } else {
+                    console.error(`Canvas element with ID '${elementId}' not found.`);
+                }
+            }
+
             // --- Dados e Criação dos Gráficos ---
 
             // Categoria: Agressão
-            new Chart(document.getElementById('agressaoSexoCorRacaChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [10.84, 12.30, 14.00, 16.53, 12.50],
-                        backgroundColor: mainPalette.slice(0, 5),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('agressaoSexoCorRacaChart', 'bar',
+                applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1']),
+                [10.84, 12.30, 14.00, 16.53, 12.50],
+                mainPalette.slice(0, 5),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('agressaoIdadeChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'grupos de idade', 'grupos de idade.1', 'grupos de idade.2', 'grupos de idade.3', 'grupos de idade.4']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [4.25, 9.19, 6.48, 7.07, 6.62, 8.37],
-                        backgroundColor: secondaryPalette.slice(0, 6),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('agressaoIdadeChart', 'bar',
+                applyDictionary(['total', 'grupos de idade', 'grupos de idade.1', 'grupos de idade.2', 'grupos de idade.3', 'grupos de idade.4']),
+                [4.25, 9.19, 6.48, 7.07, 6.62, 8.37],
+                secondaryPalette.slice(0, 6),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('agressorChart'), {
-                type: 'bar', // Será horizontal
-                data: {
-                    labels: applyDictionary(['total', 'agressor na última agressão física', 'agressor na última agressão física.1', 'agressor na última agressão física.2', 'agressor na última agressão física.3', 'agressor na última agressão física.4']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [5.92, 7.96, 20.98, 12.65, 17.61, 9.11],
-                        backgroundColor: mainPalette.slice(0, 6),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonHorizontalBarOptions // Usa opções de barra horizontal
-            });
+            createChart('agressorChart', 'bar',
+                applyDictionary(['total', 'agressor na última agressão física', 'agressor na última agressão física.1', 'agressor na última agressão física.2', 'agressor na última agressão física.3', 'agressor na última agressão física.4']),
+                [5.92, 7.96, 20.98, 12.65, 17.61, 9.11],
+                mainPalette.slice(0, 6),
+                commonHorizontalBarOptions
+            );
 
-            new Chart(document.getElementById('agressaoLocalChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'local de ocorrência da última agressão física', 'local de ocorrência da última agressão física.1', 'local de ocorrência da última agressão física.2']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [4.25, 7.35, 5.08, 6.83],
-                        backgroundColor: secondaryPalette.slice(0, 4),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('agressaoLocalChart', 'bar',
+                applyDictionary(['total', 'local de ocorrência da última agressão física', 'local de ocorrência da última agressão física.1', 'local de ocorrência da última agressão física.2']),
+                [4.25, 7.35, 5.08, 6.83],
+                secondaryPalette.slice(0, 4),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('agressaoProcuraPolicialChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'realização do registro da última agressão física na delegacia de polícia', 'realização do registro da última agressão física na delegacia de polícia.1']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [10.76, 13.27, 13.03],
-                        backgroundColor: mainPalette.slice(0, 3),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('agressaoProcuraPolicialChart', 'bar',
+                applyDictionary(['total', 'realização do registro da última agressão física na delegacia de polícia', 'realização do registro da última agressão física na delegacia de polícia.1']),
+                [10.76, 13.27, 13.03],
+                mainPalette.slice(0, 3),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('agressorDemografiaChart'), {
-                type: 'bar', // Será horizontal
-                data: {
-                    labels: applyDictionary(['total', 'superior incompleto ou equivalente', 'total (1)(2)', 'agressor na última agressão física', 'agressor na última agressão física.1', 'agressor na última agressão física.2', 'agressor na última agressão física.3', 'agressor na última agressão física.4']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [4.26, 8.61, 2.18, 5.99, 18.88, 11.46, 13.53, 7.47],
-                        backgroundColor: secondaryPalette.slice(0, 8),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonHorizontalBarOptions
-            });
+            createChart('agressorDemografiaChart', 'bar',
+                applyDictionary(['total', 'superior incompleto ou equivalente', 'total (1)(2)', 'agressor na última agressão física', 'agressor na última agressão física.1', 'agressor na última agressão física.2', 'agressor na última agressão física.3', 'agressor na última agressão física.4']),
+                [4.26, 8.61, 2.18, 5.99, 18.88, 11.46, 13.53, 7.47],
+                secondaryPalette.slice(0, 8),
+                commonHorizontalBarOptions
+            );
 
-            new Chart(document.getElementById('agressaoLocalAgressor1Chart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'propria residencia', 'via publica', 'outro']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [4.79, 9.26, 8.60, 11.01],
-                        backgroundColor: mainPalette.slice(0, 4),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('agressaoLocalAgressor1Chart', 'bar',
+                applyDictionary(['total', 'propria residencia', 'via publica', 'outro']),
+                [4.79, 9.26, 8.60, 11.01],
+                mainPalette.slice(0, 4),
+                commonBarOptions
+            );
 
             // Categoria: Furto
-            new Chart(document.getElementById('furtoSexoCorRacaChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.48, 8.21, 9.32, 10.89, 8.72],
-                        backgroundColor: mainPalette.slice(0, 5),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('furtoSexoCorRacaChart', 'bar',
+                applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1']),
+                [7.48, 8.21, 9.32, 10.89, 8.72],
+                mainPalette.slice(0, 5),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('furtoIdadeChart'), {
-                type: 'bar', // Será horizontal
-                data: {
-                    labels: applyDictionary(['total', 'grupos de idade', 'grupos de idade.1', 'grupos de idade.2', 'grupos de idade.3', 'grupos de idade.4']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.51, 22.33, 13.34, 11.45, 10.46, 11.47],
-                        backgroundColor: secondaryPalette.slice(0, 6),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonHorizontalBarOptions
-            });
+            createChart('furtoIdadeChart', 'bar',
+                applyDictionary(['total', 'grupos de idade', 'grupos de idade.1', 'grupos de idade.2', 'grupos de idade.3', 'grupos de idade.4']),
+                [7.51, 22.33, 13.34, 11.45, 10.46, 11.47],
+                secondaryPalette.slice(0, 6),
+                commonHorizontalBarOptions
+            );
 
-            new Chart(document.getElementById('furtoRendaChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'classes de rendimento mensal domiciliar per capita (salário mínimo)', 'classes de rendimento mensal domiciliar per capita (salário mínimo).1', 'classes de rendimento mensal domiciliar per capita (salário mínimo).2', 'classes de rendimento mensal domiciliar per capita (salário mínimo).3', 'classes de rendimento mensal domiciliar per capita (salário mínimo).4']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.48, 21.26, 15.83, 11.78, 11.86, 14.43],
-                        backgroundColor: mainPalette.slice(0, 6),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('furtoRendaChart', 'bar',
+                applyDictionary(['total', 'classes de rendimento mensal domiciliar per capita (salário mínimo)', 'classes de rendimento mensal domiciliar per capita (salário mínimo).1', 'classes de rendimento mensal domiciliar per capita (salário mínimo).2', 'classes de rendimento mensal domiciliar per capita (salário mínimo).3', 'classes de rendimento mensal domiciliar per capita (salário mínimo).4']),
+                [7.48, 21.26, 15.83, 11.78, 11.86, 14.43],
+                mainPalette.slice(0, 6),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('furtoBemFurtadoChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['dinheiro, cartão dedébito ou crédito, ou cheque', 'celular', 'bolsacarteira', 'veículo', 'outro'],
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [11.12, 11.32, 13.33, 15.64, 10.05],
-                        backgroundColor: secondaryPalette.slice(0, 5),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('furtoBemFurtadoChart', 'bar',
+                applyDictionary(['dinheiro, cartão dedébito ou crédito, ou cheque', 'celular', 'bolsacarteira', 'veículo', 'outro']),
+                [11.12, 11.32, 13.33, 15.64, 10.05],
+                secondaryPalette.slice(0, 5),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('furtoLocalOcorrenciaChart'), {
-                type: 'bar', // Será horizontal
-                data: {
-                    labels: applyDictionary(['total', 'local de ocorrência da última agressão física', 'local de ocorrência da última agressão física.1', 'local de ocorrência da última agressão física.2']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.51, 9.54, 14.81, 12.51],
-                        backgroundColor: mainPalette.slice(0, 4),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonHorizontalBarOptions
-            });
+            createChart('furtoLocalOcorrenciaChart', 'bar',
+                applyDictionary(['total', 'local de ocorrência da última agressão física', 'local de ocorrência da última agressão física.1', 'local de ocorrência da última agressão física.2']),
+                [7.51, 9.54, 14.81, 12.51],
+                mainPalette.slice(0, 4),
+                commonHorizontalBarOptions
+            );
 
-            new Chart(document.getElementById('furtoProcuraPoliciaChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'realização do registro da última agressão física na delegacia de polícia', 'realização do registro da última agressão física na delegacia de polícia.1']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [10.40, 11.22, 27.62],
-                        backgroundColor: secondaryPalette.slice(0, 3),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('furtoProcuraPoliciaChart', 'bar',
+                applyDictionary(['total', 'realização do registro da última agressão física na delegacia de polícia', 'realização do registro da última agressão física na delegacia de polícia.1']),
+                [10.40, 11.22, 27.62],
+                secondaryPalette.slice(0, 3),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('furtoNivelInstrucaoChart'), {
-                type: 'bar', // Será horizontal
-                data: {
-                    labels: applyDictionary(['total', 'sem instrução', 'fundamental ou equivalente', 'fundamental ou equivalente.1', 'médio ou equivalente', 'médio ou equivalente.1', 'superior ou equivalente', 'superior ou equivalente.1']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.48, 18.91, 10.64, 15.35, 18.03, 11.43, 20.49, 19.42],
-                        backgroundColor: mainPalette,
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonHorizontalBarOptions
-            });
+            createChart('furtoNivelInstrucaoChart', 'bar',
+                applyDictionary(['total', 'sem instrução', 'fundamental ou equivalente', 'fundamental ou equivalente.1', 'médio ou equivalente', 'médio ou equivalente.1', 'superior ou equivalente', 'superior ou equivalente.1']),
+                [7.48, 18.91, 10.64, 15.35, 18.03, 11.43, 20.49, 19.42],
+                mainPalette,
+                commonHorizontalBarOptions
+            );
 
-            new Chart(document.getElementById('furtoCondicaoAtividadeChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'economicamente ativas', 'economicamente ativas.1', 'economicamente ativas.2', 'nao economicamente ativas']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.51, 7.90, 7.96, 22.40, 11.40],
-                        backgroundColor: secondaryPalette.slice(0, 5),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('furtoCondicaoAtividadeChart', 'bar',
+                applyDictionary(['total', 'economicamente ativas', 'economicamente ativas.1', 'economicamente ativas.2', 'nao economicamente ativas']),
+                [7.51, 7.90, 7.96, 22.40, 11.40],
+                secondaryPalette.slice(0, 5),
+                commonBarOptions
+            );
 
             // Categoria: Roubo
-            new Chart(document.getElementById('rouboSexoCorRacaChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.84, 8.93, 10.04, 11.07, 9.23],
-                        backgroundColor: mainPalette.slice(0, 5),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('rouboSexoCorRacaChart', 'bar',
+                applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1']),
+                [7.84, 8.93, 10.04, 11.07, 9.23],
+                mainPalette.slice(0, 5),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('rouboIdadeChart'), {
-                type: 'bar', // Será horizontal
-                data: {
-                    labels: applyDictionary(['total', 'grupos de idade', 'grupos de idade.1', 'grupos de idade.2', 'grupos de idade.3', 'grupos de idade.4']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.89, 22.29, 12.15, 12.78, 11.97, 14.07],
-                        backgroundColor: secondaryPalette.slice(0, 6),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonHorizontalBarOptions
-            });
+            createChart('rouboIdadeChart', 'bar',
+                applyDictionary(['total', 'grupos de idade', 'grupos de idade.1', 'grupos de idade.2', 'grupos de idade.3', 'grupos de idade.4']),
+                [7.89, 22.29, 12.15, 12.78, 11.97, 14.07],
+                secondaryPalette.slice(0, 6),
+                commonHorizontalBarOptions
+            );
 
-            new Chart(document.getElementById('rouboRendaChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'sem rendimento a menos de 1/4 (2)', 'classes de rendimento mensal domiciliar per capita (salário mínimo).1', 'classes de rendimento mensal domiciliar per capita (salário mínimo).2', 'classes de rendimento mensal domiciliar per capita (salário mínimo).3', 'classes de rendimento mensal domiciliar per capita (salário mínimo).4']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [7.88, 26.08, 17.82, 12.62, 13.26, 15.91],
-                        backgroundColor: mainPalette.slice(0, 6),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('rouboRendaChart', 'bar',
+                applyDictionary(['total', 'sem rendimento a menos de 1/4 (2)', 'classes de rendimento mensal domiciliar per capita (salário mínimo).1', 'classes de rendimento mensal domiciliar per capita (salário mínimo).2', 'classes de rendimento mensal domiciliar per capita (salário mínimo).3', 'classes de rendimento mensal domiciliar per capita (salário mínimo).4']),
+                [7.88, 26.08, 17.82, 12.62, 13.26, 15.91],
+                mainPalette.slice(0, 6),
+                commonBarOptions
+            );
 
             // Categoria: Tentativa de Roubo ou Furto (dados de exemplo)
-            new Chart(document.getElementById('tentativaSexoCorRacaChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1']),
-                    datasets: [{
-                        label: 'CV (%) (Dados de Exemplo)',
-                        data: [10, 12, 11, 15, 9],
-                        backgroundColor: pastelPalette.slice(0, 5),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('tentativaSexoCorRacaChart', 'bar',
+                applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1']),
+                [10, 12, 11, 15, 9],
+                pastelPalette.slice(0, 5),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('tentativaGruposIdadeChart'), {
-                type: 'bar', // Será horizontal
-                data: {
-                    labels: applyDictionary(['total', 'grupos de idade', 'grupos de idade.1', 'grupos de idade.2', 'grupos de idade.3', 'grupos de idade.4']),
-                    datasets: [{
-                        label: 'CV (%) (Dados de Exemplo)',
-                        data: [8, 10, 9, 11, 10, 13],
-                        backgroundColor: pastelPalette.slice(0, 6),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonHorizontalBarOptions
-            });
+            createChart('tentativaGruposIdadeChart', 'bar',
+                applyDictionary(['total', 'grupos de idade', 'grupos de idade.1', 'grupos de idade.2', 'grupos de idade.3', 'grupos de idade.4']),
+                [8, 10, 9, 11, 10, 13],
+                pastelPalette.slice(0, 6),
+                commonHorizontalBarOptions
+            );
 
             // Categoria: Percepção de Segurança
-            new Chart(document.getElementById('segurancaDomicilioChart'), {
-                type: 'bar',
-                data: {
-                    labels: applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1', 'cor ou raça.2', 'cor ou raça.3']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [0.00, 0.93, 0.92, 3.88, 2.38, 9.24, 2.55],
-                        backgroundColor: mainPalette.slice(0, 7),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonBarOptions
-            });
+            createChart('segurancaDomicilioChart', 'bar',
+                applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1', 'cor ou raça.2', 'cor ou raça.3']),
+                [0.00, 0.93, 0.92, 3.88, 2.38, 9.24, 2.55],
+                mainPalette.slice(0, 7),
+                commonBarOptions
+            );
 
-            new Chart(document.getElementById('segurancaBairroChart'), {
-                type: 'bar', // Será horizontal
-                data: {
-                    labels: applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1', 'cor ou raça.2', 'cor ou raça.3']),
-                    datasets: [{
-                        label: 'CV (%)',
-                        data: [2.60, 2.58, 2.75, 2.94, 2.84, 4.89, 2.91],
-                        backgroundColor: secondaryPalette.slice(0, 7),
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: commonHorizontalBarOptions
-            });
-
+            createChart('segurancaBairroChart', 'bar',
+                applyDictionary(['total', 'sexo', 'sexo.1', 'cor ou raça', 'cor ou raça.1', 'cor ou raça.2', 'cor ou raça.3']),
+                [2.60, 2.58, 2.75, 2.94, 2.84, 4.89, 2.91],
+                secondaryPalette.slice(0, 7),
+                commonHorizontalBarOptions
+            );
         });
     </script>
 </body>
