@@ -5,3 +5,4 @@
 .env.*
 
 analises_vitimizacao/dados_brutos/*
+analises_vitimizacao/analises/temp_images/*
