@@ -15,5 +15,6 @@ dependencies = [
     "openpyxl",
     "os",
     "fpdf",
-    "xlsxwriter"
+    "xlsxwriter",
+    "squarify"
 ]
