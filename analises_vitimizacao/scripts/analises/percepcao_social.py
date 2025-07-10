@@ -1,3 +1,4 @@
+# %%
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -11,7 +12,8 @@ plt.rcParams['figure.figsize'] = (10, 6)
 # --- Carregar o arquivo de dados original (Belo Horizonte 2002) ---
 caminho_dados_bh = '../../dados_tratados/excel/belo_horrizonte_2002.xlsx'
 df_original = pd.read_excel(caminho_dados_bh)
-print(f"Dados de Belo Horizonte (2002) carregados. Total de {len(df_original)} registros.")
+print(
+    f"Dados de Belo Horizonte (2002) carregados. Total de {len(df_original)} registros.")
 
 # --- Carregar o novo arquivo de dados (Minas Gerais) ---
 caminho_dados_mg = '../../dados_tratados/excel/percepcao_medoMG.xlsx'
@@ -45,6 +47,7 @@ print("\nPrimeiras 5 linhas do dataset combinado:")
 print(df_combinado.head())
 
 
+# %%
 # ===================================================================
 # CÉLULA 1: ANÁLISE DE DADOS E GERAÇÃO DOS GRÁFICOS
 # ===================================================================
@@ -58,14 +61,16 @@ if not os.path.exists(pasta_temp):
 
 df_analise = df_combinado
 colunas_risco = ['risco_roubo', 'risco_agressao', 'risco_sequestro']
-nomes_graficos = [] 
+nomes_graficos = []
 
 # --- Análise 1: Percepção de Risco por Sexo ---
 print("--> Gerando Análise de Risco por Sexo...")
 df_risco_sexo = df_analise.groupby('sexo')[colunas_risco].mean().reset_index()
-df_risco_sexo_melted = df_risco_sexo.melt(id_vars='sexo', var_name='tipo_risco', value_name='percepcao_media_risco')
+df_risco_sexo_melted = df_risco_sexo.melt(
+    id_vars='sexo', var_name='tipo_risco', value_name='percepcao_media_risco')
 plt.figure(figsize=(12, 7))
-sns.barplot(data=df_risco_sexo_melted, x='tipo_risco', y='percepcao_media_risco', hue='sexo', palette='magma')
+sns.barplot(data=df_risco_sexo_melted, x='tipo_risco',
+            y='percepcao_media_risco', hue='sexo', palette='magma')
 plt.title('Percepção Média de Risco por Sexo', fontsize=16, fontweight='bold')
 plt.xlabel('Tipo de Crime', fontsize=12)
 plt.ylabel('Percepção Média de Risco (escala)', fontsize=12)
@@ -81,11 +86,15 @@ print("--> Tabela e Gráfico de Risco por Sexo prontos.")
 
 # --- Análise 2: Percepção de Risco por Bairro ---
 print("\n--> Gerando Análise de Risco por Bairro...")
-df_risco_bairro = df_analise.groupby('estrato_bairro')[colunas_risco].mean().reset_index()
-df_risco_bairro_melted = df_risco_bairro.melt(id_vars='estrato_bairro', var_name='tipo_risco', value_name='percepcao_media_risco')
+df_risco_bairro = df_analise.groupby('estrato_bairro')[
+    colunas_risco].mean().reset_index()
+df_risco_bairro_melted = df_risco_bairro.melt(
+    id_vars='estrato_bairro', var_name='tipo_risco', value_name='percepcao_media_risco')
 plt.figure(figsize=(12, 7))
-sns.barplot(data=df_risco_bairro_melted, x='tipo_risco', y='percepcao_media_risco', hue='estrato_bairro', palette='crest')
-plt.title('Percepção Média de Risco por Tipo de Bairro', fontsize=16, fontweight='bold')
+sns.barplot(data=df_risco_bairro_melted, x='tipo_risco',
+            y='percepcao_media_risco', hue='estrato_bairro', palette='crest')
+plt.title('Percepção Média de Risco por Tipo de Bairro',
+          fontsize=16, fontweight='bold')
 plt.xlabel('Tipo de Crime', fontsize=12)
 plt.ylabel('Percepção Média de Risco (escala)', fontsize=12)
 plt.xticks(ticks=[0, 1, 2], labels=['Roubo', 'Agressão', 'Sequestro'])
@@ -100,11 +109,15 @@ print("--> Tabela e Gráfico de Risco por Bairro prontos.")
 
 # --- Análise 3: Percepção de Risco por Faixa de Idade ---
 print("\n--> Gerando Análise de Risco por Faixa de Idade...")
-df_risco_idade = df_analise.groupby('faixa_idade')[colunas_risco].mean().reset_index()
-df_risco_idade_melted = df_risco_idade.melt(id_vars='faixa_idade', var_name='tipo_risco', value_name='percepcao_media_risco')
+df_risco_idade = df_analise.groupby(
+    'faixa_idade')[colunas_risco].mean().reset_index()
+df_risco_idade_melted = df_risco_idade.melt(
+    id_vars='faixa_idade', var_name='tipo_risco', value_name='percepcao_media_risco')
 plt.figure(figsize=(12, 7))
-sns.barplot(data=df_risco_idade_melted, x='tipo_risco', y='percepcao_media_risco', hue='faixa_idade', palette='rocket')
-plt.title('Percepção Média de Risco por Faixa de Idade', fontsize=16, fontweight='bold')
+sns.barplot(data=df_risco_idade_melted, x='tipo_risco',
+            y='percepcao_media_risco', hue='faixa_idade', palette='rocket')
+plt.title('Percepção Média de Risco por Faixa de Idade',
+          fontsize=16, fontweight='bold')
 plt.xlabel('Tipo de Crime', fontsize=12)
 plt.ylabel('Percepção Média de Risco (escala)', fontsize=12)
 plt.xticks(ticks=[0, 1, 2], labels=['Roubo', 'Agressão', 'Sequestro'])
@@ -122,12 +135,15 @@ print("\n--> Gerando Matriz de Correlação...")
 df_correlacao = df_analise[colunas_risco].corr()
 
 plt.figure(figsize=(8, 6))
-sns.heatmap(df_correlacao, annot=True, cmap='viridis', fmt=".2f", linewidths=.5)
-plt.title('Matriz de Correlação entre Percepções de Risco', fontsize=16, fontweight='bold')
+sns.heatmap(df_correlacao, annot=True,
+            cmap='viridis', fmt=".2f", linewidths=.5)
+plt.title('Matriz de Correlação entre Percepções de Risco',
+          fontsize=16, fontweight='bold')
 plt.xticks(rotation=45)
 plt.yticks(rotation=0)
 plt.tight_layout()
-caminho_grafico_correlacao = os.path.join(pasta_temp, 'grafico_matriz_correlacao.png')
+caminho_grafico_correlacao = os.path.join(
+    pasta_temp, 'grafico_matriz_correlacao.png')
 plt.savefig(caminho_grafico_correlacao)
 nomes_graficos.append(caminho_grafico_correlacao)
 plt.close()
@@ -138,6 +154,7 @@ print(df_correlacao.round(2))
 print("\n\nAnálises concluídas! Todos os gráficos foram salvos temporariamente.")
 
 
+# %%
 # ===================================================================
 # CÉLULA 2: GERAÇÃO DO RELATÓRIO PDF FINAL
 # ===================================================================
@@ -145,31 +162,41 @@ print("\n\nAnálises concluídas! Todos os gráficos foram salvos temporariament
 print("Iniciando a montagem do relatório em PDF...")
 
 # Classe PDF personalizada com funções de ajuda
+
+
 class PDF(FPDF):
     def header(self):
         self.set_font('Arial', 'B', 12)
         data_hoje = pd.to_datetime('today').strftime('%d de %B de %Y')
-        self.cell(0, 10, f'Relatório de Percepção Social - {data_hoje}', 0, 1, 'C')
+        self.cell(
+            0, 10, f'Relatório de Percepção Social - {data_hoje}', 0, 1, 'C')
         self.ln(5)
+
     def footer(self):
         self.set_y(-15)
         self.set_font('Arial', 'I', 8)
         self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'C')
+
     def chapter_title(self, title):
         self.set_font('Arial', 'B', 14)
         self.cell(0, 10, title, 0, 1, 'L')
         self.ln(5)
+
     def chapter_body(self, body):
         self.set_font('Arial', '', 12)
-        self.multi_cell(0, 7, body.encode('latin-1', 'replace').decode('latin-1'))
+        self.multi_cell(0, 7, body.encode(
+            'latin-1', 'replace').decode('latin-1'))
         self.ln(5)
+
     def output_df_to_pdf(self, df):
         # Header
         self.set_font('Arial', 'B', 10)
         # Calcula a largura da célula baseada no número de colunas para garantir que a tabela caiba
-        col_width = self.w / (len(df.columns) + 2) # Ajuste o divisor conforme necessário
+        # Ajuste o divisor conforme necessário
+        col_width = self.w / (len(df.columns) + 2)
         for col in df.columns:
-            self.cell(col_width, 10, str(col).replace('_', ' ').title(), 1, 0, 'C')
+            self.cell(col_width, 10, str(col).replace(
+                '_', ' ').title(), 1, 0, 'C')
         self.ln()
         # Body
         self.set_font('Arial', '', 10)
@@ -181,6 +208,7 @@ class PDF(FPDF):
                 self.cell(col_width, 10, str(value), 1, 0, 'C')
             self.ln()
         self.ln(5)
+
 
 # Iniciar PDF
 pdf = PDF()
@@ -281,7 +309,8 @@ pdf.chapter_body(texto_conclusao)
 pasta_analises = os.path.join('..', '..', 'analises')
 if not os.path.exists(pasta_analises):
     os.makedirs(pasta_analises)
-caminho_arquivo_pdf = os.path.join(pasta_analises, "relatorio_completo_percepcao_social.pdf")
+caminho_arquivo_pdf = os.path.join(
+    pasta_analises, "relatorio_completo_percepcao_social.pdf")
 
 try:
     pdf.output(caminho_arquivo_pdf)

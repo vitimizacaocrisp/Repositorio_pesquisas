@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Código - Análise de Percepção Social</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --background-color: #f8f9fa;
+            --container-bg-color: #ffffff;
+            --text-color: #333;
+            --light-text-color: #666;
+            --border-color: #dddddd;
+            --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --font-family-sans: 'Helvetica', 'Arial', sans-serif;
+            --font-family-serif: 'Georgia', 'Times New Roman', serif;
+            --font-family-mono: 'Courier New', 'monospace';
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+        body {
+            font-family: var(--font-family-sans);
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: var(--spacing-md);
+        }
+        .container {
+            max-width: 900px;
+            margin: var(--spacing-lg) auto;
+            background-color: var(--container-bg-color);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow-sm);
+        }
+        h1, h2 {
+            font-family: var(--font-family-serif);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--light-text-color);
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: var(--spacing-md);
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        code {
+            font-family: var(--font-family-mono);
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Análise de Percepção Social de Segurança</h1>
+
+        <h2>Introdução e Objetivo do Script</h2>
+        <p>Este script tem como objetivo analisar a percepção social sobre segurança e risco de criminalidade. Para isso, ele combina dois conjuntos de dados (um de Belo Horizonte 2002 e outro mais amplo de Minas Gerais), realiza análises comparativas por demografia (sexo, idade, bairro) e gera um relatório consolidado em PDF com gráficos e tabelas explicativas.</p>
+
+        <h2 id="celula-1">Célula 1: Carregamento e Combinação dos Dados</h2>
+        <p>Nesta primeira etapa, o script carrega dois arquivos Excel distintos. Em seguida, ele renomeia as colunas do primeiro DataFrame para padronização e os combina em um único DataFrame usando <code>pd.concat</code>. Por fim, realiza uma limpeza, removendo registros que não possuem informações essenciais para a análise.</p>
+        <pre><code>
+# Célula 1: Carregamento e Combinação dos Dados
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+from fpdf import FPDF
+import shutil
+
+# --- Carregar os dados ---
+df_original = pd.read_excel('../../dados_tratados/excel/belo_horrizonte_2002.xlsx')
+df_mg = pd.read_excel('../../dados_tratados/excel/percepcao_medoMG.xlsx')
+
+# --- Renomear e Combinar ---
+df_original.rename(columns=colunas_renomeadas, inplace=True)
+df_combinado = pd.concat([df_original, df_mg], ignore_index=True)
+
+# --- Limpeza ---
+colunas_essenciais = ['sexo', 'faixa_idade', 'estrato_bairro']
+df_combinado.dropna(subset=colunas_essenciais, inplace=True)
+        </code></pre>
+
+        <h2 id="celula-2">Célula 2: Análise de Dados e Geração de Gráficos</h2>
+        <p>Esta célula é o coração da análise. Ela agrupa os dados combinados para calcular a percepção média de risco e gera quatro visualizações principais para entender os padrões:</p>
+        <ul>
+            <li><strong>Gráfico 1:</strong> Percepção de Risco por Sexo (gráfico de barras).</li>
+            <li><strong>Gráfico 2:</strong> Percepção de Risco por Estrato do Bairro (gráfico de barras).</li>
+            <li><strong>Gráfico 3:</strong> Percepção de Risco por Faixa de Idade (gráfico de barras).</li>
+            <li><strong>Gráfico 4:</strong> Matriz de Correlação entre os diferentes tipos de risco (heatmap).</li>
+        </ul>
+        <p>Cada gráfico é salvo em uma pasta temporária para uso posterior no relatório.</p>
+        <pre><code>
+# Célula 2: Análise de Dados e Geração de Gráficos
+pasta_temp = 'temp_graficos'
+os.makedirs(pasta_temp, exist_ok=True)
+nomes_graficos = []
+
+# --- Análise 1: Percepção de Risco por Sexo ---
+df_risco_sexo = df_analise.groupby('sexo')[colunas_risco].mean()
+# ... (código para gerar o gráfico de barras) ...
+plt.savefig(os.path.join(pasta_temp, 'grafico_risco_sexo.png'))
+plt.close()
+
+# --- (Código semelhante para as outras análises) ---
+
+# --- Análise 4: Matriz de Correlação ---
+df_correlacao = df_analise[colunas_risco].corr()
+# ... (código para gerar o heatmap) ...
+plt.savefig(os.path.join(pasta_temp, 'grafico_matriz_correlacao.png'))
+plt.close()
+        </code></pre>
+
+        <h2 id="celula-3">Célula 3: Geração do Relatório PDF</h2>
+        <p>Esta célula finaliza o processo, compilando todas as análises em um relatório PDF. Uma classe <code>PDF</code> customizada é definida para formatar o documento. O script então cria o PDF, adicionando uma introdução, seguida por uma página para cada análise. Cada página contém um título, um texto explicativo, a tabela de dados correspondente e o gráfico visual. Por fim, uma página de conclusões é adicionada, e o arquivo PDF é salvo no diretório de análises. A pasta de gráficos temporários é removida ao final do processo.</p>
+        <pre><code>
+# Célula 3: Geração do Relatório PDF
+class PDF(FPDF):
+    # ... (definição da classe com header, footer, etc.) ...
+    def output_df_to_pdf(self, df):
+        # ... (lógica para imprimir um DataFrame como tabela no PDF) ...
+
+# --- Iniciar PDF ---
+pdf = PDF()
+pdf.add_page()
+# ... (adiciona introdução) ...
+
+# --- Página 1: Risco por Sexo ---
+pdf.chapter_title('1. Percepção Média de Risco por Sexo')
+pdf.chapter_body("...")
+pdf.output_df_to_pdf(df_risco_sexo)
+pdf.image(caminho_grafico_sexo, w=170)
+
+# --- (Repete para as outras seções) ---
+
+# --- Página 5: Conclusões ---
+pdf.add_page()
+pdf.chapter_title('5. Resultados e Conclusões')
+pdf.chapter_body("...")
+
+# --- Salvamento e Limpeza ---
+pdf.output("relatorio_completo_percepcao_social.pdf")
+shutil.rmtree(pasta_temp)
+        </code></pre>
+    </div>
+</body>
+</html>

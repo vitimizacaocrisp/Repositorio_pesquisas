@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Código - Tratamento de Dados de Vitimização</title>
+    <style>
+        /* Estilos gerais baseados no exemplo fornecido */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --background-color: #f8f9fa;
+            --container-bg-color: #ffffff;
+            --text-color: #333;
+            --light-text-color: #666;
+            --border-color: #dddddd;
+            --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --font-family-sans: 'Helvetica', 'Arial', sans-serif;
+            --font-family-serif: 'Georgia', 'Times New Roman', serif;
+            --font-family-mono: 'Courier New', 'monospace';
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+
+        body {
+            font-family: var(--font-family-sans);
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: var(--spacing-md);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: var(--spacing-lg) auto;
+            background-color: var(--container-bg-color);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow-sm);
+        }
+
+        .home-link {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .home-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .home-link a:hover {
+            text-decoration: underline;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-family-serif);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+
+        h1 { font-size: 2.2em; }
+        h2 { font-size: 1.8em; }
+        h3 { 
+            font-size: 1.4em;
+            border-bottom: 1px dashed var(--border-color);
+            color: var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--light-text-color);
+        }
+
+        /* Estilos para blocos de código */
+        pre {
+            background-color: #2d2d2d; /* Fundo escuro para código */
+            color: #f8f8f2; /* Texto claro */
+            padding: var(--spacing-md);
+            border-radius: 5px;
+            overflow-x: auto; /* Adiciona scroll horizontal se o código for muito longo */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        code {
+            font-family: var(--font-family-mono);
+            font-size: 0.95em;
+        }
+
+        /* Estilos para a saída do código */
+        .code-output {
+            background-color: #f1f1f1;
+            border-left: 5px solid var(--border-color);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-family-mono);
+            font-size: 0.9em;
+            white-space: pre-wrap; /* Para quebrar linhas longas na saída */
+            word-wrap: break-word;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../../../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Visualização de Código Python - Tratamento de Dados</h1>
+
+        <h2>Introdução e Objetivo do Script</h2>
+        <p>Este documento detalha um script Python projetado para carregar, limpar, tratar e unificar dados de vitimização e violência de Belo Horizonte. O objetivo é preparar um conjunto de dados coeso e limpo para análises futuras.</p>
+
+        <h2 id="celula-1">Célula 1: Importar as bibliotecas necessárias</h2>
+        <p>A primeira etapa consiste em importar todas as bibliotecas que serão utilizadas no script: <strong>pandas</strong> para manipulação de dados, <strong>numpy</strong> para operações numéricas, <strong>os</strong> para interagir com o sistema de arquivos e <strong>openpyxl</strong> para exportar dados para o formato Excel.</p>
+        <pre><code>
+# Célula 1: Importar as bibliotecas necessárias
+import pandas as pd
+import numpy as np
+import os
+import openpyxl
+        </code></pre>
+
+        <h2 id="celula-3">Célula 3: Definir os caminhos para os arquivos</h2>
+        <p>Aqui, são definidos os caminhos dos arquivos de entrada (os datasets brutos) e o diretório onde os dados tratados serão salvos. Isso facilita a manutenção e a reutilização do código.</p>
+        <pre><code>
+# Célula 3: Definir os caminhos para os arquivos
+
+# Caminho para o arquivo original que você quer ler
+caminho_arquivo_original = '../../dados_brutos/belo_horrizonte_2002/csv/indices_violencia.csv'
+caminho_arquivo_original_2 = '../../dados_brutos/belo_horrizonte_2002/csv/Vitimizacao_UP_27.csv'
+
+# Caminho da pasta onde o novo arquivo será salvo
+caminho_saida = '../../dados_tratados'
+        </code></pre>
+
+        <h2 id="celula-4">Célula 4: Carregar os dados do arquivo CSV</h2>
+        <p>Esta célula é responsável por carregar os dois arquivos CSV em DataFrames do pandas. Inclui um tratamento de erro robusto que tenta ler os arquivos com codificação UTF-8 e, se falhar, tenta novamente com Latin-1. Valores que representam "nulo" (como "NA", "null", etc.) são automaticamente convertidos para NaN. Ao final, exibe uma amostra e informações de cada DataFrame carregado.</p>
+        <pre><code>
+# Célula 4: Carregar os dados do arquivo CSV
+
+print("Tentando carregar o arquivo...")
+try:
+    # Tenta carregar o arquivo com codificação
+    df = pd.read_csv(caminho_arquivo_original, na_values=[
+                     "", " ", "NA", "NaN", "nan", "null", "NULL", "None"], sep=",", encoding='utf-8')
+    df2 = pd.read_csv(caminho_arquivo_original_2, na_values=[
+                      "", " ", "NA", "NaN", "nan", "null", "NULL", "None"], sep=",", encoding='utf-8')
+    print("Arquivo CSV carregado com sucesso")
+except Exception as e:
+    print(f"Erro ao ler com UTF-8: {e}")
+    try:
+        df = pd.read_csv(caminho_arquivo_original, na_values=[
+                         "", " ", "NA", "NaN", "nan", "null", "NULL", "None"], sep=",", encoding='latin1')
+        df2 = pd.read_csv(caminho_arquivo_original_2, na_values=[
+                          "", " ", "NA", "NaN", "nan", "null", "NULL", "None"], sep=",", encoding='latin1')
+        print("Arquivo CSV carregado com sucesso usando codificação 'latin1'!")
+    except Exception as e_latin1:
+        print(f"ERRO: Falha ao carregar o arquivo. Verifique o caminho e o separador.")
+        print(f"Erro detalhado: {e_latin1}")
+        df = None
+        df2 = None
+
+# Se o DataFrame foi carregado, exibe as primeiras 5 linhas e as informações
+if df is not None:
+    print("\n--- AMOSTRA DOS DADOS (5 PRIMEIRAS LINHAS) ---")
+    df.head()
+    df.info()
+    print("\n--- AMOSTRA DOS DADOS (5 PRIMEIRAS LINHAS) ---")
+    df2.head()
+    df2.info()
+        </code></pre>
+        <h3>Saída Esperada:</h3>
+        <div class="code-output">Tentando carregar o arquivo...
+Arquivo CSV carregado com sucesso usando codificação 'latin1'!
+
+--- AMOSTRA DOS DADOS (5 PRIMEIRAS LINHAS) ---
+[Saída do df.head() e df.info()]
+
+--- AMOSTRA DOS DADOS (5 PRIMEIRAS LINHAS) ---
+[Saída do df2.head() e df2.info()]
+        </div>
+
+        <h2 id="celula-5">Célula 5: Limpeza Inicial dos Dados</h2>
+        <p>Esta é uma etapa crucial de pré-processamento. O código realiza várias tarefas de limpeza em ambos os DataFrames (df e df2), como remover linhas duplicadas, eliminar colunas que são inteiramente nulas e preencher valores ausentes em colunas numéricas com zero. Mensagens informativas são impressas para cada ação realizada.</p>
+        <pre><code>
+# CÉLULA 5 - LIMPEZA INICIAL
+
+# Substituir strings vazias por NaN e remover colunas 100% nulas
+# ... (código de tratamento inicial) ...
+
+# ETAPA 1 - TRATAMENTO DE 'df'
+if 'df' in locals() and df is not None:
+    print("\n--- INÍCIO DO TRATAMENTO DE 'df' ---")
+    # Remover duplicatas, colunas nulas e preencher nulos numéricos
+    # ... (código de tratamento para df) ...
+    print("\n--- INFO DE 'df' ---")
+    df.info()
+    print("--- FIM DO TRATAMENTO DE 'df' ---\n")
+else:
+    print("⚠️ 'df' não encontrado. Etapa de tratamento ignorada.\n")
+
+# ETAPA 2 - TRATAMENTO DE 'df2'
+if 'df2' in locals() and df2 is not None:
+    print("--- INÍCIO DO TRATAMENTO DE 'df2' ---")
+    # Remover duplicatas, colunas nulas e preencher nulos numéricos
+    # ... (código de tratamento para df2) ...
+    print("\n--- INFO DE 'df2' ---")
+    df2.info()
+    print("--- FIM DO TRATAMENTO DE 'df2' ---")
+else:
+    print("⚠️ 'df2' não encontrado. Etapa de tratamento ignorada.")
+        </code></pre>
+        <h3>Saída Esperada:</h3>
+        <div class="code-output">--- INÍCIO DO TRATAMENTO DE 'df' ---
+✅ 'df': X linha(s) duplicada(s) removida(s).
+✅ 'df': Y coluna(s) completamente nula(s) removida(s).
+✅ 'df': Valores nulos em colunas numéricas preenchidos com 0.
+--- INFO DE 'df' ---
+[Saída do df.info()]
+--- FIM DO TRATAMENTO DE 'df' ---
+
+--- INÍCIO DO TRATAMENTO DE 'df2' ---
+[Mensagens de tratamento para df2]
+--- FIM DO TRATAMENTO DE 'df2' ---
+        </div>
+
+        <h2 id="celula-6">Célula 6: Unir os DataFrames</h2>
+        <p>Após a limpeza individual, os dois DataFrames (df e df2) são combinados em um único DataFrame final (df_final) usando a função <code>pd.concat</code>. Esta função empilha os DataFrames um sobre o outro. O índice é reiniciado para garantir que seja contínuo no novo DataFrame.</p>
+        <pre><code>
+# Célula 6: Unir os DataFrames
+
+df_final = None # Inicializa a variável para evitar erros
+
+if 'df' in locals() and df is not None and 'df2' in locals() and df2 is not None:
+    print("Unindo os DataFrames 'df' e 'df2'...")
+    try:
+        # empilha os dois dataframes.
+        df_final = pd.concat([df, df2], ignore_index=True)
+        print("✅ DataFrames unidos com sucesso!")
+        print("\n--- INFORMAÇÕES GERAIS DO DATAFRAME FINAL ---")
+        df_final.info()
+    except Exception as e:
+        print(f"❌ Ocorreu um erro ao unir os DataFrames: {e}")
+else:
+    print("⚠️ Um ou ambos os DataFrames não foram carregados. Etapa de união pulada.")
+        </code></pre>
+        <h3>Saída Esperada:</h3>
+        <div class="code-output">Unindo os DataFrames 'df' e 'df2'...
+✅ DataFrames unidos com sucesso!
+
+--- INFORMAÇÕES GERAIS DO DATAFRAME FINAL ---
+[Saída do df_final.info()]
+        </div>
+
+        <h2 id="celula-7">Célula 7: Exportar o DataFrame Final</h2>
+        <p>A etapa final do script é salvar o DataFrame tratado e unificado em dois formatos diferentes: CSV e Excel. O código primeiro verifica se os diretórios de saída existem e os cria se necessário. Em seguida, exporta o `df_final` para os respectivos arquivos, imprimindo mensagens de sucesso ou erro para cada operação.</p>
+        <pre><code>
+# Célula 7: Exportar o DataFrame Final (CSV e Excel)
+
+# Cria o diretório de saída se ele não existir
+if not os.path.exists(f"{caminho_saida}/csv"):
+    os.makedirs(f"{caminho_saida}/csv")
+if not os.path.exists(f"{caminho_saida}/excel"):
+    os.makedirs(f"{caminho_saida}/excel")
+
+if df_final is not None:
+    # --- 1. EXPORTAR PARA CSV ---
+    try:
+        caminho_arquivo_csv_completo = os.path.join(f"{caminho_saida}/csv", 'belo_horrizonte_2002.csv')
+        df_final.to_csv(caminho_arquivo_csv_completo, index=False, sep=';', encoding='utf-8')
+        print(f"✅ SUCESSO! Arquivo CSV salvo em: '{caminho_arquivo_csv_completo}'")
+    except Exception as e:
+        print(f"❌ ERRO ao salvar o arquivo CSV: {e}")
+
+    # --- 2. EXPORTAR PARA EXCEL ---
+    try:
+        caminho_arquivo_excel_completo = os.path.join(f"{caminho_saida}/excel", 'belo_horrizonte_2002.xlsx')
+        df_final.to_excel(caminho_arquivo_excel_completo, index=False, engine='openpyxl')
+        print(f"✅ SUCESSO! Arquivo Excel salvo em: '{caminho_arquivo_excel_completo}'")
+    except Exception as e:
+        print(f"❌ ERRO ao salvar o arquivo Excel: {e}")
+else:
+    print("⚠️ O DataFrame final ('df_final') não existe. A etapa de exportação foi pulada.")
+        </code></pre>
+        <h3>Saída Esperada:</h3>
+        <div class="code-output">✅ SUCESSO! Arquivo CSV salvo em:
+'../../dados_tratados/csv/belo_horrizonte_2002.csv'
+------------------------------
+✅ SUCESSO! Arquivo Excel salvo em:
+'../../dados_tratados/excel/belo_horrizonte_2002.xlsx'
+        </div>
+    </div>
+    <script src="../../app.js"></script>
+</body>
+</html>

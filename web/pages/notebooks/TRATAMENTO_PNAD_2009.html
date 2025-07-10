@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Código - Tratamento de Dados PNAD 2009</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --background-color: #f8f9fa;
+            --container-bg-color: #ffffff;
+            --text-color: #333;
+            --light-text-color: #666;
+            --border-color: #dddddd;
+            --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --font-family-sans: 'Helvetica', 'Arial', sans-serif;
+            --font-family-serif: 'Georgia', 'Times New Roman', serif;
+            --font-family-mono: 'Courier New', 'monospace';
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+        body {
+            font-family: var(--font-family-sans);
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: var(--spacing-md);
+        }
+        .container {
+            max-width: 900px;
+            margin: var(--spacing-lg) auto;
+            background-color: var(--container-bg-color);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow-sm);
+        }
+        .home-link {
+            margin-bottom: var(--spacing-lg);
+        }
+        .home-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .home-link a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3 {
+            font-family: var(--font-family-serif);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+        h1 { font-size: 2.2em; }
+        h2 { font-size: 1.8em; }
+        h3 {
+            font-size: 1.4em;
+            border-bottom: 1px dashed var(--border-color);
+            color: var(--secondary-color);
+        }
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--light-text-color);
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: var(--spacing-md);
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        code {
+            font-family: var(--font-family-mono);
+            font-size: 0.95em;
+        }
+        .code-output {
+            background-color: #f1f1f1;
+            border-left: 5px solid var(--border-color);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-family-mono);
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../../../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Visualização de Código Python - Tratamento de Dados PNAD 2009</h1>
+
+        <h2>Introdução e Objetivo do Script</h2>
+        <p>Este script robusto foi projetado para processar um grande volume de dados da PNAD 2009. Ele localiza automaticamente arquivos de dados em subdiretórios categorizados (agressão, furto, roubo, etc.), carrega, limpa e padroniza cada um. O objetivo final é exportar os dados limpos em uma estrutura de pastas organizada, tanto em formato CSV quanto Excel.</p>
+
+        <h2 id="celula-1">Célula 1: Importar as bibliotecas necessárias</h2>
+        <p>Importa as bibliotecas necessárias: <strong>pandas</strong> e <strong>numpy</strong> para manipulação de dados, <strong>os</strong> para interagir com o sistema de arquivos, <strong>xlsxwriter</strong> para funcionalidades avançadas de Excel e <strong>glob</strong> para encontrar arquivos que correspondem a um padrão específico.</p>
+        <pre><code>
+# Célula 1: Importar as bibliotecas necessárias
+import pandas as pd
+import numpy as np
+import os
+import openpyxl
+import xlsxwriter
+import glob
+        </code></pre>
+
+        <h2 id="celula-2">Célula 2: Mapeamento de Arquivos e Função de Processamento</h2>
+        <p>Esta célula define a lógica central do script. Primeiro, utiliza <code>glob</code> para criar listas de todos os arquivos <code>.xls</code> dentro de subpastas temáticas (agressão, furto, etc.). Em seguida, define a função <code>processar_arquivo</code>, que itera sobre uma lista de arquivos, lê cada planilha, trata cabeçalhos de múltiplas linhas, renomeia e padroniza colunas, limpa os dados e os converte para formato numérico.</p>
+        <pre><code>
+# Célula 2: Mapeamento de Arquivos e Função de Processamento
+caminho_pasta = '../../dados_brutos/PNAD_2009'
+
+agressao = glob.glob(os.path.join(caminho_pasta, 'agressao/*.xls'), recursive=True)
+# ... (glob para outras categorias) ...
+
+def processar_arquivo(tipo):
+    dados = {}
+    for arquivo in tipo:
+        try:
+            # ... (lógica de leitura e tratamento do excel) ...
+            dados[df_nome] = pd.read_excel(...)
+            # ... (lógica de limpeza e padronização) ...
+            print(f"[OK] Excel {df_nome}")
+        except Exception as e:
+            print(f"[ERRO] Excel {arquivo}: {e}")
+    return dados
+
+dados_agressao = processar_arquivo(agressao)
+dados_furto = processar_arquivo(furto)
+# ... (execução para outras categorias) ...
+        </code></pre>
+
+        <h2 id="celula-3">Célula 3: Agrupamento e Verificação dos Dados</h2>
+        <p>Todos os dicionários de dados processados (um para cada categoria) são agrupados em um dicionário principal chamado <code>todos_dados</code>. Isso organiza todos os DataFrames limpos em uma única estrutura, prontos para a exportação. Uma verificação é feita exibindo informações de um dos DataFrames para confirmar o sucesso do processamento.</p>
+        <pre><code>
+# Célula 3: Agrupamento e Verificação dos Dados
+todos_dados = {
+    'agressao': dados_agressao,
+    'furto': dados_furto,
+    'roubo': dados_roubo,
+    'roubofurto': dados_roubofurto,
+    'seguranca': dados_seguranca,
+    'tentativa': dados_tentativa
+}
+
+print(todos_dados['agressao']['cv126011a'].info())
+print(todos_dados['agressao']['cv126011a'].head())
+        </code></pre>
+
+        <h2 id="celula-4">Célula 4: Função para Exportação Organizada</h2>
+        <p>Define a função <code>exportar_dados_organizados</code>. Essa função navega pela estrutura do dicionário <code>todos_dados</code> e salva cada DataFrame individualmente em seu próprio arquivo CSV e Excel. Crucialmente, ela recria a estrutura de pastas original (csv/agressao, xlsx/agressao, etc.) no diretório de dados tratados, mantendo a organização.</p>
+        <pre><code>
+# Célula 4: Função para Exportação Organizada
+def exportar_dados_organizados(dicionario_principal, pasta_base='../../dados_tratados/PNAD_2009'):
+    print(f"Iniciando a exportação para a pasta base: '{pasta_base}'")
+    for categoria, dicionario_dataframes in dicionario_principal.items():
+        # ... (criação de diretórios de saída) ...
+        for nome_df, df in dicionario_dataframes.items():
+            # ... (lógica para salvar em CSV) ...
+            # ... (lógica para salvar em XLSX) ...
+    print(f"\n[SUCESSO] Exportação de todos os dados concluída!")
+        </code></pre>
+
+        <h2 id="celula-5">Célula 5: Função para Exportação Consolidada</h2>
+        <p>Define uma segunda função de exportação, <code>exportar_categorias_em_abas</code>. Em vez de criar múltiplos arquivos, esta função cria um único arquivo Excel para cada categoria (e.g., <code>agressao.xlsx</code>). Dentro desse arquivo, cada DataFrame daquela categoria é salvo como uma aba (planilha) separada, facilitando a consulta de dados relacionados.</p>
+        <pre><code>
+# Célula 5: Função para Exportação Consolidada
+def exportar_categorias_em_abas(dados_aninhados, pasta_saida='../../dados_tratados/PNAD_2009'):
+    print(f"Iniciando a exportação por categoria para a pasta: '{pasta_saida}'")
+    for categoria, dicionario_dataframes in dados_aninhados.items():
+        caminho_arquivo_xlsx = os.path.join(pasta_saida, f"{categoria}.xlsx")
+        with pd.ExcelWriter(caminho_arquivo_xlsx, engine='xlsxwriter') as writer:
+            for nome_aba, df in dicionario_dataframes.items():
+                df.to_excel(writer, sheet_name=nome_aba, index=True)
+                print(f"  -> Aba '{nome_aba}' salva.")
+    print(f"\n[SUCESSO] Exportação por categoria concluída!")
+        </code></pre>
+
+        <h2 id="celula-6">Célula 6: Execução da Exportação</h2>
+        <p>A etapa final do script, onde as duas funções de exportação definidas anteriormente são chamadas com o dicionário <code>todos_dados</code>. Isso inicia o processo de salvar todos os dados tratados nos formatos e estruturas desejados.</p>
+        <pre><code>
+# Célula 6: Execução da Exportação
+exportar_dados_organizados(todos_dados)
+exportar_categorias_em_abas(todos_dados)
+        </code></pre>
+        <h3>Saída Esperada:</h3>
+        <div class="code-output">Iniciando a exportação para a pasta base: '../../dados_tratados/PNAD_2009'
+--- Exportando categoria: AGRESSAO ---
+  [OK] CSV salvo: ../../dados_tratados/PNAD_2009/csv/agressao/cv126011a.csv
+  [OK] XLSX salvo: ../../dados_tratados/PNAD_2009/xlsx/agressao/cv126011a.xlsx
+...
+[SUCESSO] Exportação de todos os dados concluída!
+
+Iniciando a exportação por categoria para a pasta: '../../dados_tratados/PNAD_2009'
+--- Criando arquivo para a categoria: AGRESSAO ---
+Arquivo: ../../dados_tratados/PNAD_2009/agressao.xlsx
+  -> Aba 'cv126011a' salva.
+...
+[SUCESSO] Exportação por categoria concluída!
+        </div>
+    </div>
+        <script src="../../app.js"></script>
+</body>
+</html>

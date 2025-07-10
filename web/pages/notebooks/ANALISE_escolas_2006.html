@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Código - Análise de Dados Escolares 2006</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --background-color: #f8f9fa;
+            --container-bg-color: #ffffff;
+            --text-color: #333;
+            --light-text-color: #666;
+            --border-color: #dddddd;
+            --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --font-family-sans: 'Helvetica', 'Arial', sans-serif;
+            --font-family-serif: 'Georgia', 'Times New Roman', serif;
+            --font-family-mono: 'Courier New', 'monospace';
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+        body {
+            font-family: var(--font-family-sans);
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: var(--spacing-md);
+        }
+        .container {
+            max-width: 900px;
+            margin: var(--spacing-lg) auto;
+            background-color: var(--container-bg-color);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow-sm);
+        }
+        h1, h2 {
+            font-family: var(--font-family-serif);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--light-text-color);
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: var(--spacing-md);
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        code {
+            font-family: var(--font-family-mono);
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Análise de Dados Escolares 2006</h1>
+
+        <h2>Introdução e Objetivo do Script</h2>
+        <p>Este script realiza uma análise exploratória dos dados tratados sobre alunos e professores de escolas em 2006. O objetivo é extrair insights sobre o perfil demográfico da comunidade escolar, gerar visualizações claras e consolidar os achados em um relatório final em PDF.</p>
+
+        <h2 id="celula-1">Célula 1: Configuração Inicial</h2>
+        <p>Define os caminhos de saída para o relatório e para uma pasta temporária onde os gráficos serão salvos. Garante que esses diretórios existam antes de prosseguir.</p>
+        <pre><code>
+# Célula 1: Configuração Inicial
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+from fpdf import FPDF
+import shutil
+from IPython.display import display
+
+output_dir = '../../analises/'
+temp_img_dir = os.path.join(output_dir, 'temp_images/')
+
+os.makedirs(output_dir, exist_ok=True)
+os.makedirs(temp_img_dir, exist_ok=True)
+        </code></pre>
+
+        <h2 id="celula-2">Célula 2: Carregamento dos Dados</h2>
+        <p>Carrega os datasets de alunos e professores, que já foram previamente tratados, a partir de arquivos CSV, armazenando-os em um dicionário para fácil acesso.</p>
+        <pre><code>
+# Célula 2: Carregamento dos Dados
+caminho = '../../dados_tratados/csv/'
+dados = {
+    'alunos': pd.read_csv(caminho + 'escolas_alunos_2006.csv', sep=';', encoding='utf-8'),
+    'professores': pd.read_csv(caminho + 'escolas_professores_2006.csv', sep=';', encoding='utf-8'),
+}
+        </code></pre>
+
+        <h2 id="celula-3">Célula 3: Pré-processamento Final</h2>
+        <p>Executa uma última etapa de limpeza e padronização nos dados. Para os alunos, consolida as informações de raça/cor e remove colunas vazias. Para os professores, também remove colunas zeradas para otimizar a análise.</p>
+        <pre><code>
+# Célula 3: Pré-processamento Final
+# --- Processar Alunos ---
+dados['alunos'].columns = dados['alunos'].columns.str.lower().str.strip()
+# ... (lógica de tratamento de raça/cor) ...
+dados['alunos'] = dados['alunos'].loc[:, ~(dados['alunos'] == 0).all()]
+
+# --- Processar Professores ---
+dados['professores'].columns = dados['professores'].columns.str.lower().str.strip()
+# ... (renomeação e limpeza) ...
+dados['professores'] = dados['professores'].loc[:, ~(dados['professores'] == 0).all()]
+        </code></pre>
+
+        <h2 id="celula-4">Célula 4: Análise e Geração de Gráficos</h2>
+        <p>Esta é a célula central da análise. Ela utiliza as bibliotecas Seaborn e Matplotlib para gerar uma série de gráficos que exploram diferentes facetas dos dados. Para cada gráfico, um texto de análise é preparado para ser incluído no relatório. Os gráficos gerados incluem:</p>
+        <ul>
+            <li>Distribuição de Alunos por Sexo e por Raça/Cor.</li>
+            <li>Distribuição de Alunos por Idade, com tratamento de outliers.</li>
+            <li>Distribuição da Experiência (em anos) dos Professores.</li>
+            <li>Top 10 Matérias com maior quantidade de professores.</li>
+            <li>Distribuição de Idade dos Professores.</li>
+        </ul>
+        <pre><code>
+# Célula 4: Análise e Geração de Gráficos
+sns.set_theme(style="whitegrid", palette="viridis")
+pdf_content = []
+
+# --- Análise de Alunos ---
+# ... (código para gerar gráfico de sexo) ...
+pdf_content.append({'title': 'Análise de Alunos: Gênero', ...})
+
+# ... (código para gerar gráfico de raça) ...
+pdf_content.append({'title': 'Análise de Alunos: Raça/Cor', ...})
+
+# ... (código para gerar outros gráficos) ...
+        </code></pre>
+
+        <h2 id="celula-5">Célula 5: Exportação do Relatório em PDF</h2>
+        <p>Define uma classe `PDF` customizada (herdando de `FPDF`) para estruturar o relatório com cabeçalho, rodapé e seções de capítulo. O script então cria uma instância dessa classe, adiciona uma página de resumo geral e, em seguida, itera sobre o conteúdo gerado na célula anterior para adicionar uma página para cada análise, contendo título, o gráfico correspondente e o texto analítico.</p>
+        <pre><code>
+# Célula 5: Exportação do Relatório em PDF
+class PDF(FPDF):
+    # ... (definição da classe com header, footer, etc.) ...
+
+# --- Gerar o PDF ---
+pdf = PDF()
+pdf_filename = os.path.join(output_dir, 'relatorio_final_escolas_2006.pdf')
+
+# Adiciona a página de resumo inicial
+resumo_analise = """..."""
+pdf.add_summary_page("Resumo da Análise Geral", resumo_analise)
+
+# Adiciona as seções de análise com gráficos
+for item in pdf_content:
+    full_image_path = os.path.join(temp_img_dir, item['image'])
+    pdf.add_analysis_section(item['title'], full_image_path, item['analysis'])
+
+pdf.output(pdf_filename)
+        </code></pre>
+
+        <h2 id="celula-6">Célula 6: Limpeza Final</h2>
+        <p>Após a criação bem-sucedida do relatório em PDF, esta célula final remove a pasta de imagens temporárias para manter o ambiente de trabalho limpo.</p>
+        <pre><code>
+# Célula 6: Limpeza Final
+try:
+    shutil.rmtree(temp_img_dir)
+    print(f"Pasta temporária '{temp_img_dir}' foi apagada com sucesso.")
+except OSError as e:
+    print(f"Erro ao apagar a pasta temporária: {e}")
+        </code></pre>
+    </div>
+</body>
+</html>

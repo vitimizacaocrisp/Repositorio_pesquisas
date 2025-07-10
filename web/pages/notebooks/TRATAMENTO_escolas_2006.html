@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Código - Tratamento de Dados de Violência nas Escolas 2006</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --background-color: #f8f9fa;
+            --container-bg-color: #ffffff;
+            --text-color: #333;
+            --light-text-color: #666;
+            --border-color: #dddddd;
+            --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --font-family-sans: 'Helvetica', 'Arial', sans-serif;
+            --font-family-serif: 'Georgia', 'Times New Roman', serif;
+            --font-family-mono: 'Courier New', 'monospace';
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+        body {
+            font-family: var(--font-family-sans);
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: var(--spacing-md);
+        }
+        .container {
+            max-width: 900px;
+            margin: var(--spacing-lg) auto;
+            background-color: var(--container-bg-color);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow-sm);
+        }
+        .home-link {
+            margin-bottom: var(--spacing-lg);
+        }
+        .home-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .home-link a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3 {
+            font-family: var(--font-family-serif);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+        h1 { font-size: 2.2em; }
+        h2 { font-size: 1.8em; }
+        h3 {
+            font-size: 1.4em;
+            border-bottom: 1px dashed var(--border-color);
+            color: var(--secondary-color);
+        }
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--light-text-color);
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: var(--spacing-md);
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        code {
+            font-family: var(--font-family-mono);
+            font-size: 0.95em;
+        }
+        .code-output {
+            background-color: #f1f1f1;
+            border-left: 5px solid var(--border-color);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-family-mono);
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../../../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Visualização de Código Python - Tratamento de Dados de Violência nas Escolas 2006</h1>
+
+        <h2>Introdução e Objetivo do Script</h2>
+        <p>Este script é projetado para carregar, limpar e padronizar dados de uma pesquisa sobre violência em escolas realizada em 2006. Ele processa dois arquivos distintos, um contendo respostas de alunos e outro de professores. O objetivo é renomear as colunas para um formato padronizado, realizar limpezas específicas e exportar os dois conjuntos de dados tratados para análise futura.</p>
+
+        <h2 id="celula-1">Célula 1: Importar as bibliotecas necessárias</h2>
+        <p>A primeira célula importa as bibliotecas padrão para manipulação de dados: <strong>pandas</strong>, <strong>numpy</strong>, <strong>os</strong> e <strong>openpyxl</strong>.</p>
+        <pre><code>
+# Célula 1: Importar as bibliotecas necessárias
+import pandas as pd
+import numpy as np
+import os
+import openpyxl
+        </code></pre>
+
+        <h2 id="celula-2">Célula 2: Dicionários de Renomeação de Colunas</h2>
+        <p>Dois dicionários grandes, <code>dicionario_completo_de_nomes</code> (para alunos) e <code>dicionario_professores</code>, são definidos aqui. Eles mapeiam os nomes originais das colunas dos questionários (em português e muitas vezes longos) para nomes de variáveis padronizados, curtos e em minúsculas (snake_case), facilitando a manipulação dos dados.</p>
+        <pre><code>
+# Célula 2: Dicionários de Renomeação de Colunas
+dicionario_completo_de_nomes = {
+    'NOME DA ESCOLA': 'nome_escola',
+    # ... (muitas outras colunas) ...
+    'uso uso de crack': 'uso_crack'
+}
+dicionario_professores = {
+    'NOME DA ESCOLA': 'nome_escola',
+    # ... (muitas outras colunas) ...
+    'DIGITADOR': 'digitador'
+}
+        </code></pre>
+
+        <h2 id="celula-3">Célula 3: Função de Carregamento e Limpeza</h2>
+        <p>Esta célula define o caminho para a pasta dos dados brutos e a função <code>carregar_dados(arquivo)</code>. Esta função é responsável por ler um arquivo CSV, substituir diversos tipos de valores nulos por NaN, preencher valores numéricos nulos com 0, converter todas as colunas de texto e nomes de colunas para minúsculas, e remover colunas que são inteiramente vazias ou contêm apenas valores irrelevantes.</p>
+        <pre><code>
+# Célula 3: Função de Carregamento e Limpeza
+caminho_pasta = '../../dados_brutos/violencia_escolas_2006/'
+
+def carregar_dados(arquivo):
+    try:
+        dados = pd.read_csv(...)
+        # ... (código de tratamento e limpeza) ...
+        print(f"[OK] CSV '{arquivo}' carregado.")
+    except Exception as e:
+        print(f"[ERRO] Ao ler o arquivo CSV '{arquivo}': {e}")
+    return dados
+        </code></pre>
+
+        <h2 id="celula-4">Célula 4: Tratamento Específico e Execução</h2>
+        <p>Define uma função auxiliar <code>tratar_raca_cor</code> para consolidar informações de raça/cor de múltiplas colunas em uma só. Em seguida, o script carrega os dados de alunos e professores usando a função da célula anterior, aplica a renomeação de colunas com os dicionários, e realiza tratamentos específicos, como corrigir um erro de digitação na coluna de tempo de docência e aplicar a função de tratamento de raça/cor.</p>
+        <pre><code>
+# Célula 4: Tratamento Específico e Execução
+def tratar_raca_cor(df):
+    # ... (lógica para unificar colunas de raça/cor) ...
+    return df
+
+dados = {
+    'alunos': carregar_dados(caminho_pasta + 'alunos_2006.csv'),
+    'professores': carregar_dados(caminho_pasta + 'professores_2006.csv')
+}
+
+dados['alunos'].rename(columns=dicionario_completo_de_nomes, inplace=True)
+dados['professores'].rename(columns=dicionario_professores, inplace=True)
+
+# ... (tratamentos específicos para professores e chamada de tratar_raca_cor) ...
+        </code></pre>
+
+        <h2 id="celula-5">Célula 5: Verificação dos Dados</h2>
+        <p>Após o tratamento, esta célula imprime as primeiras linhas (<code>.head()</code>) e as informações gerais (<code>.info()</code>) de ambos os DataFrames (alunos e professores) para permitir uma verificação rápida da estrutura e dos tipos de dados.</p>
+        <pre><code>
+# Célula 5: Verificação dos Dados
+print(dados['alunos'].head())
+print(dados['alunos'].info())
+print(dados['professores'].head())
+print(dados['professores'].info())
+        </code></pre>
+
+        <h2 id="celula-6">Célula 6: Exportar os DataFrames Finais</h2>
+        <p>A etapa final do script. Ela cria os diretórios de saída ('csv' e 'excel') se não existirem. Em seguida, salva cada um dos DataFrames tratados (alunos e professores) em ambos os formatos, resultando em quatro arquivos finais: <code>escolas_alunos_2006.csv</code>, <code>escolas_alunos_2006.xlsx</code>, <code>escolas_professores_2006.csv</code>, e <code>escolas_professores_2006.xlsx</code>.</p>
+        <pre><code>
+# Célula 6: Exportar os DataFrames Finais
+caminho_saida = '../../dados_tratados'
+# ... (criação das pastas de saída) ...
+
+if dados['alunos'] is not None and dados['professores'] is not None:
+    # --- EXPORTAR ALUNOS (CSV e Excel) ---
+    try:
+        dados['alunos'].to_csv(...)
+        dados['alunos'].to_excel(...)
+    except Exception as e:
+        print(f"❌ ERRO: {e}")
+
+    # --- EXPORTAR PROFESSORES (CSV e Excel) ---
+    try:
+        dados['professores'].to_csv(...)
+        dados['professores'].to_excel(...)
+    except Exception as e:
+        print(f"❌ ERRO: {e}")
+else:
+    print("⚠️ DataFrame não existe. Exportação pulada.")
+        </code></pre>
+        <h3>Saída Esperada:</h3>
+        <div class="code-output">✅ SUCESSO! Arquivo CSV salvo em:
+'../../dados_tratados/csv/escolas_alunos_2006.csv'
+------------------------------
+✅ SUCESSO! Arquivo Excel salvo em:
+'../../dados_tratados/excel/escolas_alunos_2006.xlsx'
+
+✅ SUCESSO! Arquivo CSV salvo em:
+'../../dados_tratados/csv/escolas_professores_2006.csv'
+------------------------------
+✅ SUCESSO! Arquivo Excel salvo em:
+'../../dados_tratados/excel/escolas_professores_2006.xlsx'
+        </div>
+    </div>
+        <script src="../../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Código - Tratamento de Dados de Percepção de Medo MG 2008</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --background-color: #f8f9fa;
+            --container-bg-color: #ffffff;
+            --text-color: #333;
+            --light-text-color: #666;
+            --border-color: #dddddd;
+            --box-shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --font-family-sans: 'Helvetica', 'Arial', sans-serif;
+            --font-family-serif: 'Georgia', 'Times New Roman', serif;
+            --font-family-mono: 'Courier New', 'monospace';
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+        body {
+            font-family: var(--font-family-sans);
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: var(--spacing-md);
+        }
+        .container {
+            max-width: 900px;
+            margin: var(--spacing-lg) auto;
+            background-color: var(--container-bg-color);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow-sm);
+        }
+        .home-link {
+            margin-bottom: var(--spacing-lg);
+        }
+        .home-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .home-link a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3 {
+            font-family: var(--font-family-serif);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+        h1 { font-size: 2.2em; }
+        h2 { font-size: 1.8em; }
+        h3 {
+            font-size: 1.4em;
+            border-bottom: 1px dashed var(--border-color);
+            color: var(--secondary-color);
+        }
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--light-text-color);
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: var(--spacing-md);
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        code {
+            font-family: var(--font-family-mono);
+            font-size: 0.95em;
+        }
+        .code-output {
+            background-color: #f1f1f1;
+            border-left: 5px solid var(--border-color);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-family-mono);
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="home-link"><a href="../../../index.html">← Voltar à Página Inicial</a></p>
+
+        <h1>Visualização de Código Python - Tratamento de Dados de Percepção de Medo MG 2008</h1>
+
+        <h2>Introdução e Objetivo do Script</h2>
+        <p>Este script Python foi desenvolvido para carregar, limpar e unificar três conjuntos de dados distintos relacionados à pesquisa de percepção de medo em Minas Gerais no ano de 2008. O objetivo é consolidar os dados de amostras de Belo Horizonte, de Minas Gerais e dados populacionais para criar um único dataset coeso e pronto para análise.</p>
+
+        <h2 id="celula-1">Célula 1: Importar as bibliotecas necessárias</h2>
+        <p>A primeira etapa consiste em importar as bibliotecas essenciais para o script: <strong>pandas</strong> para manipulação de dados, <strong>numpy</strong> para operações numéricas, <strong>os</strong> para interagir com o sistema de arquivos e <strong>openpyxl</strong> para a manipulação de arquivos Excel.</p>
+        <pre><code>
+# Célula 1: Importar as bibliotecas necessárias
+import pandas as pd
+import numpy as np
+import os
+import openpyxl
+        </code></pre>
+
+        <h2 id="celula-2">Célula 2: Definir os caminhos para os arquivos</h2>
+        <p>Aqui, são especificados os caminhos para os três arquivos de dados brutos (dois arquivos Excel e um CSV) e o diretório de saída onde o arquivo consolidado será salvo.</p>
+        <pre><code>
+# Célula 2: Definir os caminhos para os arquivos
+caminho_arquivo_original = '../../dados_brutos/percepcao_medo_MG_2008/amostra_BH.xls'
+caminho_arquivo_original_2 = '../../dados_brutos/percepcao_medo_MG_2008/amostra_MG.xls'
+caminho_arquivo_original_3 = '../../dados_brutos/percepcao_medo_MG_2008/populacao_idade_sexo.csv'
+
+caminho_saida = '../../dados_tratados'
+        </code></pre>
+
+        <h2 id="celula-3">Célula 3: Carregar os dados</h2>
+        <p>Esta célula carrega os três arquivos em DataFrames do pandas. Ela inclui um tratamento de erro que primeiro tenta carregar os arquivos com a codificação 'utf-8' e, se falhar, tenta novamente com 'latin1'. Valores nulos são padronizados para NaN durante a leitura.</p>
+        <pre><code>
+# Célula 3: Carregar os dados
+print("Tentando carregar o arquivo...")
+try:
+    df = pd.read_excel(caminho_arquivo_original, na_values=["", " ", "NA", "NaN", "nan", "null", "NULL", "None"])
+    df2 = pd.read_excel(caminho_arquivo_original_2, na_values=["", " ", "NA", "NaN", "nan", "null", "NULL", "None"])
+    df3 = pd.read_csv(caminho_arquivo_original_3, na_values=["", " ", "NA", "NaN", "nan", "null", "NULL", "None"], encoding='utf-8')
+    print("Arquivo carregado com sucesso")
+except Exception as e:
+    print(f"Erro ao ler com UTF-8: {e}")
+    try:
+        df = pd.read_excel(caminho_arquivo_original, na_values=["", " ", "NA", "NaN", "nan", "null", "NULL", "None"])
+        df2 = pd.read_excel(caminho_arquivo_original_2, na_values=["", " ", "NA", "NaN", "nan", "null", "NULL", "None"])
+        df3 = pd.read_csv(caminho_arquivo_original_3, na_values=["", " ", "NA", "NaN", "nan", "null", "NULL", "None"], sep=';', skiprows=4, encoding='latin1')
+        print("Arquivo carregado com sucesso usando codificação 'latin1'!")
+    except Exception as e_latin1:
+        print(f"ERRO: Falha ao carregar o arquivo.")
+        df = None
+        df2 = None
+        df3 = None
+        </code></pre>
+
+        <h2 id="celula-4">Célula 4: Limpeza Inicial dos Dados</h2>
+        <p>Esta etapa crucial de pré-processamento define uma função <code>tratar_df</code> que executa várias tarefas de limpeza: remove linhas duplicadas, elimina colunas que são inteiramente nulas e preenche valores ausentes em colunas numéricas com zero. A função é então aplicada a cada um dos três DataFrames carregados.</p>
+        <pre><code>
+# CÉLULA 4 - LIMPEZA INICIAL
+def tratar_df(df, nome='df'):
+    if df is not None:
+        print(f"\n--- INÍCIO DO TRATAMENTO DE '{nome}' ---")
+        # ... (código de tratamento) ...
+        print(f"--- FIM DO TRATAMENTO DE '{nome}' ---\n")
+    else:
+        print(f"⚠️ '{nome}' não encontrado. Etapa de tratamento ignorada.\n")
+
+tratar_df(df, 'df')
+tratar_df(df2, 'df2')
+tratar_df(df3, 'df3')
+        </code></pre>
+        <h3>Saída Esperada:</h3>
+        <div class="code-output">--- INÍCIO DO TRATAMENTO DE 'df' ---
+✅ 'df': X linha(s) duplicada(s) removida(s).
+✅ 'df': Y coluna(s) completamente nula(s) removida(s).
+✅ 'df': Valores nulos em colunas numéricas preenchidos com 0.
+--- FIM DO TRATAMENTO DE 'df' ---
+
+[Mensagens de tratamento para df2 e df3]
+        </div>
+
+        <h2 id="celula-5">Célula 5: Unir os DataFrames</h2>
+        <p>Após a limpeza individual, os três DataFrames são combinados em um único DataFrame final (<code>df_final</code>) usando a função <code>pd.concat</code>, que os empilha verticalmente. O índice é reiniciado para garantir a continuidade.</p>
+        <pre><code>
+# Célula 5: Unir os DataFrames
+df_final = None
+if 'df' in locals() and df is not None and 'df2' in locals() and df2 is not None and 'df3' in locals() and df3 is not None:
+    print("Unindo os DataFrames 'df', 'df2' e 'df3'...")
+    try:
+        df_final = pd.concat([df, df2, df3], ignore_index=True)
+        print("✅ DataFrames unidos com sucesso!")
+        df_final.info()
+    except Exception as e:
+        print(f"❌ Ocorreu um erro ao unir os DataFrames: {e}")
+else:
+    print("⚠️ Um ou mais DataFrames não foram carregados. Etapa de união pulada.")
+        </code></pre>
+
+        <h2 id="celula-6">Célula 6: Exportar o DataFrame Final</h2>
+        <p>A etapa final do script salva o DataFrame consolidado em formatos CSV e Excel. O código verifica se o diretório de saída existe, criando-o se necessário, e então exporta o <code>df_final</code>.</p>
+        <pre><code>
+# Célula 6: Exportar o DataFrame Final (CSV e Excel)
+if not os.path.exists(f"{caminho_saida}/csv"):
+    os.makedirs(f"{caminho_saida}/csv")
+if not os.path.exists(f"{caminho_saida}/excel"):
+    os.makedirs(f"{caminho_saida}/excel")
+
+if df_final is not None:
+    try:
+        caminho_csv = os.path.join(f"{caminho_saida}/csv", 'percepcao_medoMG.csv')
+        df_final.to_csv(caminho_csv, index=False, sep=';', encoding='utf-8')
+        print(f"✅ SUCESSO! Arquivo CSV salvo em: '{caminho_csv}'")
+    except Exception as e:
+        print(f"❌ ERRO ao salvar o arquivo CSV: {e}")
+
+    try:
+        caminho_excel = os.path.join(f"{caminho_saida}/excel", 'percepcao_medoMG.xlsx')
+        df_final.to_excel(caminho_excel, index=False, engine='openpyxl')
+        print(f"✅ SUCESSO! Arquivo Excel salvo em: '{caminho_excel}'")
+    except Exception as e:
+        print(f"❌ ERRO ao salvar o arquivo Excel: {e}")
+else:
+    print("⚠️ O DataFrame final ('df_final') não existe. A etapa de exportação foi pulada.")
+        </code></pre>
+    </div>
+        <script src="../../app.js"></script>
+</body>
+</html>
