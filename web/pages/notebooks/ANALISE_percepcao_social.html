@@ -40,6 +40,17 @@ df_original = pd.read_excel('../../dados_tratados/excel/belo_horrizonte_2002.xls
 df_mg = pd.read_excel('../../dados_tratados/excel/percepcao_medoMG.xlsx')
 
 # --- Renomear e Combinar ---
+colunas_renomeadas = {
+    'Sexo': 'sexo',
+    'faixas de idade': 'faixa_idade',
+    'Estado civil': 'estado_civil',
+    'cor ou raça': 'cor_raca',
+    'curso mais elevado frequentado': 'escolaridade',
+    'ESTRATO': 'estrato_bairro',
+    'Risco de roubo (grande, médio e pequeno)': 'risco_roubo',
+    'Risco de agressão': 'risco_agressao',
+    'Risco de sequestro': 'risco_sequestro'
+}
 df_original.rename(columns=colunas_renomeadas, inplace=True)
 df_combinado = pd.concat([df_original, df_mg], ignore_index=True)
 
@@ -62,19 +73,59 @@ df_combinado.dropna(subset=colunas_essenciais, inplace=True)
 pasta_temp = 'temp_graficos'
 os.makedirs(pasta_temp, exist_ok=True)
 nomes_graficos = []
+df_analise = df_combinado
+colunas_risco = ['risco_roubo', 'risco_agressao', 'risco_sequestro']
 
 # --- Análise 1: Percepção de Risco por Sexo ---
-df_risco_sexo = df_analise.groupby('sexo')[colunas_risco].mean()
-# ... (código para gerar o gráfico de barras) ...
-plt.savefig(os.path.join(pasta_temp, 'grafico_risco_sexo.png'))
+df_risco_sexo = df_analise.groupby('sexo')[colunas_risco].mean().reset_index()
+df_risco_sexo_melted = df_risco_sexo.melt(
+    id_vars='sexo', var_name='tipo_risco', value_name='percepcao_media_risco')
+plt.figure(figsize=(12, 7))
+sns.barplot(data=df_risco_sexo_melted, x='tipo_risco',
+            y='percepcao_media_risco', hue='sexo', palette='magma')
+plt.title('Percepção Média de Risco por Sexo', fontsize=16, fontweight='bold')
+caminho_grafico_sexo = os.path.join(pasta_temp, 'grafico_risco_sexo.png')
+plt.savefig(caminho_grafico_sexo)
 plt.close()
 
-# --- (Código semelhante para as outras análises) ---
+# --- Análise 2: Percepção de Risco por Bairro ---
+df_risco_bairro = df_analise.groupby('estrato_bairro')[
+    colunas_risco].mean().reset_index()
+df_risco_bairro_melted = df_risco_bairro.melt(
+    id_vars='estrato_bairro', var_name='tipo_risco', value_name='percepcao_media_risco')
+plt.figure(figsize=(12, 7))
+sns.barplot(data=df_risco_bairro_melted, x='tipo_risco',
+            y='percepcao_media_risco', hue='estrato_bairro', palette='crest')
+plt.title('Percepção Média de Risco por Tipo de Bairro',
+          fontsize=16, fontweight='bold')
+caminho_grafico_bairro = os.path.join(pasta_temp, 'grafico_risco_bairro.png')
+plt.savefig(caminho_grafico_bairro)
+plt.close()
+
+# --- Análise 3: Percepção de Risco por Faixa de Idade ---
+df_risco_idade = df_analise.groupby(
+    'faixa_idade')[colunas_risco].mean().reset_index()
+df_risco_idade_melted = df_risco_idade.melt(
+    id_vars='faixa_idade', var_name='tipo_risco', value_name='percepcao_media_risco')
+plt.figure(figsize=(12, 7))
+sns.barplot(data=df_risco_idade_melted, x='tipo_risco',
+            y='percepcao_media_risco', hue='faixa_idade', palette='rocket')
+plt.title('Percepção Média de Risco por Faixa de Idade',
+          fontsize=16, fontweight='bold')
+caminho_grafico_idade = os.path.join(pasta_temp, 'grafico_risco_idade.png')
+plt.savefig(caminho_grafico_idade, bbox_inches='tight')
+plt.close()
 
 # --- Análise 4: Matriz de Correlação ---
 df_correlacao = df_analise[colunas_risco].corr()
-# ... (código para gerar o heatmap) ...
-plt.savefig(os.path.join(pasta_temp, 'grafico_matriz_correlacao.png'))
+plt.figure(figsize=(8, 6))
+sns.heatmap(df_correlacao, annot=True,
+            cmap='viridis', fmt=".2f", linewidths=.5)
+plt.title('Matriz de Correlação entre Percepções de Risco',
+          fontsize=16, fontweight='bold')
+caminho_grafico_correlacao = os.path.join(
+    pasta_temp, 'grafico_matriz_correlacao.png')
+plt.savefig(caminho_grafico_correlacao)
 plt.close()
         </code></pre>
 
@@ -83,32 +134,57 @@ plt.close()
         <pre><code>
 # Célula 3: Geração do Relatório PDF
 class PDF(FPDF):
-    # ... (definição da classe com header, footer, etc.) ...
+    def header(self):
+        self.set_font('Arial', 'B', 12)
+        data_hoje = pd.to_datetime('today').strftime('%d de %B de %Y')
+        self.cell(
+            0, 10, f'Relatório de Percepção Social - {data_hoje}', 0, 1, 'C')
+        self.ln(5)
+
+    def footer(self):
+        self.set_y(-15)
+        self.set_font('Arial', 'I', 8)
+        self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'C')
+
+    def chapter_title(self, title):
+        self.set_font('Arial', 'B', 14)
+        self.cell(0, 10, title, 0, 1, 'L')
+        self.ln(5)
+
+    def chapter_body(self, body):
+        self.set_font('Arial', '', 12)
+        self.multi_cell(0, 7, body.encode(
+            'latin-1', 'replace').decode('latin-1'))
+        self.ln(5)
+
     def output_df_to_pdf(self, df):
-        # ... (lógica para imprimir um DataFrame como tabela no PDF) ...
+        self.set_font('Arial', 'B', 10)
+        col_width = self.w / (len(df.columns) + 2)
+        for col in df.columns:
+            self.cell(col_width, 10, str(col).replace(
+                '_', ' ').title(), 1, 0, 'C')
+        self.ln()
+        self.set_font('Arial', '', 10)
+        for index, row in df.iterrows():
+            for col in df.columns:
+                value = row[col]
+                if isinstance(value, float):
+                    value = f'{value:.2f}'
+                self.cell(col_width, 10, str(value), 1, 0, 'C')
+            self.ln()
+        self.ln(5)
 
 # --- Iniciar PDF ---
 pdf = PDF()
 pdf.add_page()
-# ... (adiciona introdução) ...
-
-# --- Página 1: Risco por Sexo ---
-pdf.chapter_title('1. Percepção Média de Risco por Sexo')
-pdf.chapter_body("...")
-pdf.output_df_to_pdf(df_risco_sexo)
-pdf.image(caminho_grafico_sexo, w=170)
-
-# --- (Repete para as outras seções) ---
-
-# --- Página 5: Conclusões ---
-pdf.add_page()
-pdf.chapter_title('5. Resultados e Conclusões')
-pdf.chapter_body("...")
+pdf.chapter_title('Introdução e Objetivo da Análise')
+# ... (adiciona textos, tabelas e imagens ao PDF) ...
 
 # --- Salvamento e Limpeza ---
 pdf.output("relatorio_completo_percepcao_social.pdf")
 shutil.rmtree(pasta_temp)
         </code></pre>
     </div>
+    <script src="../../app.js"></script>
 </body>
 </html>

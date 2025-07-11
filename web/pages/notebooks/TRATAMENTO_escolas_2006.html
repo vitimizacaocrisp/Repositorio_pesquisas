@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualização de Código - Tratamento de Dados de Violência nas Escolas 2006</title>
-        <link rel="stylesheet" href="../../css/style.css">
+    <title>Visualização de Código - Tratamento de Dados Escolas 2006</title>
+    <link rel="stylesheet" href="../../css/style.css">
     <style>
         pre {
             background-color: #2d2d2d;
@@ -19,14 +19,13 @@
 <body>
     <div class="container">
         <p class="home-link"><a href="../../../index.html">← Voltar à Página Inicial</a></p>
-
-        <h1>Visualização de Código Python - Tratamento de Dados de Violência nas Escolas 2006</h1>
+        <h1>Tratamento de Dados - Escolas 2006</h1>
 
         <h2>Introdução e Objetivo do Script</h2>
-        <p>Este script é projetado para carregar, limpar e padronizar dados de uma pesquisa sobre violência em escolas realizada em 2006. Ele processa dois arquivos distintos, um contendo respostas de alunos e outro de professores. O objetivo é renomear as colunas para um formato padronizado, realizar limpezas específicas e exportar os dois conjuntos de dados tratados para análise futura.</p>
+        <p>Este script executa um pipeline completo de tratamento e limpeza para os dados sobre violência em escolas do ano de 2006, preparando-os para análise. O processo abrange dois conjuntos de dados distintos (alunos e professores), aplicando-lhes um dicionário de renomeação de colunas, executando funções de limpeza personalizadas e, finalmente, exportando os dados tratados para os formatos CSV e Excel.</p>
 
-        <h2 id="celula-1">Célula 1: Importar as bibliotecas necessárias</h2>
-        <p>A primeira célula importa as bibliotecas padrão para manipulação de dados: <strong>pandas</strong>, <strong>numpy</strong>, <strong>os</strong> e <strong>openpyxl</strong>.</p>
+        <h2 id="celula-1">Célula 1: Importação de Bibliotecas</h2>
+        <p>A primeira célula importa as bibliotecas Python essenciais para a execução do script, incluindo <code>pandas</code> e <code>numpy</code> para a manipulação de dados, <code>os</code> para operações de sistema de arquivos e <code>openpyxl</code> para a escrita de arquivos Excel.</p>
         <pre><code>
 # Célula 1: Importar as bibliotecas necessárias
 import pandas as pd
@@ -35,46 +34,46 @@ import os
 import openpyxl
         </code></pre>
 
-        <h2 id="celula-2">Célula 2: Dicionários de Renomeação de Colunas</h2>
-        <p>Dois dicionários grandes, <code>dicionario_completo_de_nomes</code> (para alunos) e <code>dicionario_professores</code>, são definidos aqui. Eles mapeiam os nomes originais das colunas dos questionários (em português e muitas vezes longos) para nomes de variáveis padronizados, curtos e em minúsculas (snake_case), facilitando a manipulação dos dados.</p>
+        <h2 id="celula-2">Célula 2: Dicionários para Renomeação de Colunas</h2>
+        <p>Esta seção define dois grandes dicionários, um para os dados dos alunos e outro para os dos professores. Esses dicionários são a chave para a padronização dos dados, mapeando os nomes de colunas originais (longos e baseados em perguntas) para nomes novos, curtos e em formato <em>snake_case</em>, facilitando a programação e a análise subsequente.</p>
         <pre><code>
-# Célula 2: Dicionários de Renomeação de Colunas
+# Dicionário para dados dos alunos
 dicionario_completo_de_nomes = {
     'NOME DA ESCOLA': 'nome_escola',
-    # ... (muitas outras colunas) ...
+    'Quantos anos você tem?': 'idade',
+    'Qual a sua raça, ou cor?': 'raca_cor',
+    # ... e muitos outros mapeamentos ...
     'uso uso de crack': 'uso_crack'
 }
+dicionario_completo_de_nomes = {
+    k.lower(): v for k, v in dicionario_completo_de_nomes.items()}
+
+# Dicionário para dados dos professores
 dicionario_professores = {
     'NOME DA ESCOLA': 'nome_escola',
-    # ... (muitas outras colunas) ...
+    'Ano de nascimento': 'ano_nascimento',
+    'Qual matéria leciona nesta escola': 'materia_lecionada',
+    # ... e muitos outros mapeamentos ...
     'DIGITADOR': 'digitador'
 }
+dicionario_professores = {
+    k.lower(): v for k, v in dicionario_professores.items()}
         </code></pre>
 
-        <h2 id="celula-3">Célula 3: Função de Carregamento e Limpeza</h2>
-        <p>Esta célula define o caminho para a pasta dos dados brutos e a função <code>carregar_dados(arquivo)</code>. Esta função é responsável por ler um arquivo CSV, substituir diversos tipos de valores nulos por NaN, preencher valores numéricos nulos com 0, converter todas as colunas de texto e nomes de colunas para minúsculas, e remover colunas que são inteiramente vazias ou contêm apenas valores irrelevantes.</p>
+        <h2 id="celula-3">Célula 3: Funções de Carregamento e Tratamento</h2>
+        <p>O coração da lógica de processamento reside aqui. Uma função principal, <code>carregar_dados</code>, é definida para ler um arquivo CSV, padronizar todo o texto para minúsculas, preencher valores numéricos ausentes com 0 e remover colunas irrelevantes ou completamente vazias. Uma segunda função, <code>tratar_raca_cor</code>, é criada para consolidar as respostas sobre raça/cor em uma única coluna. Ao final, o script aplica essas funções e dicionários aos arquivos de alunos e professores, além de fazer correções manuais específicas, como ajustar o tempo de experiência dos professores e o tipo de dado do ano de nascimento.</p>
         <pre><code>
-# Célula 3: Função de Carregamento e Limpeza
 caminho_pasta = '../../dados_brutos/violencia_escolas_2006/'
 
 def carregar_dados(arquivo):
-    try:
-        dados = pd.read_csv(...)
-        # ... (código de tratamento e limpeza) ...
-        print(f"[OK] CSV '{arquivo}' carregado.")
-    except Exception as e:
-        print(f"[ERRO] Ao ler o arquivo CSV '{arquivo}': {e}")
+    # ... (lógica de carregamento e limpeza geral) ...
     return dados
-        </code></pre>
 
-        <h2 id="celula-4">Célula 4: Tratamento Específico e Execução</h2>
-        <p>Define uma função auxiliar <code>tratar_raca_cor</code> para consolidar informações de raça/cor de múltiplas colunas em uma só. Em seguida, o script carrega os dados de alunos e professores usando a função da célula anterior, aplica a renomeação de colunas com os dicionários, e realiza tratamentos específicos, como corrigir um erro de digitação na coluna de tempo de docência e aplicar a função de tratamento de raça/cor.</p>
-        <pre><code>
-# Célula 4: Tratamento Específico e Execução
 def tratar_raca_cor(df):
-    # ... (lógica para unificar colunas de raça/cor) ...
+    # ... (lógica para consolidar a coluna de raça/cor) ...
     return df
 
+# Carregando e aplicando as transformações
 dados = {
     'alunos': carregar_dados(caminho_pasta + 'alunos_2006.csv'),
     'professores': carregar_dados(caminho_pasta + 'professores_2006.csv')
@@ -83,57 +82,60 @@ dados = {
 dados['alunos'].rename(columns=dicionario_completo_de_nomes, inplace=True)
 dados['professores'].rename(columns=dicionario_professores, inplace=True)
 
-# ... (tratamentos específicos para professores e chamada de tratar_raca_cor) ...
-        </code></pre>
+# Tratamentos específicos
+dados['professores']['tempo_como_professor_na_escola'] = dados['professores']['tempo_como_professor_na_escola']/10
+dados['professores'] = dados['professores'].astype({'ano_nascimento': 'int64'})
 
-        <h2 id="celula-5">Célula 5: Verificação dos Dados</h2>
-        <p>Após o tratamento, esta célula imprime as primeiras linhas (<code>.head()</code>) e as informações gerais (<code>.info()</code>) de ambos os DataFrames (alunos e professores) para permitir uma verificação rápida da estrutura e dos tipos de dados.</p>
+dados['alunos'] = tratar_raca_cor(dados['alunos'])
+dados['professores'] = tratar_raca_cor(dados['professores'])
+        </code></pre>
+        
+        <h2 id="celula-4">Célula 4: Verificação dos Dados Tratados</h2>
+        <p>Esta célula serve como um ponto de verificação. Ela exibe as primeiras linhas (<code>.head()</code>) e as informações gerais (<code>.info()</code>) de ambos os DataFrames (alunos e professores) após o tratamento, permitindo inspecionar se a limpeza e a renomeação foram aplicadas corretamente.</p>
         <pre><code>
-# Célula 5: Verificação dos Dados
 print(dados['alunos'].head())
 print(dados['alunos'].info())
 print(dados['professores'].head())
 print(dados['professores'].info())
         </code></pre>
 
-        <h2 id="celula-6">Célula 6: Exportar os DataFrames Finais</h2>
-        <p>A etapa final do script. Ela cria os diretórios de saída ('csv' e 'excel') se não existirem. Em seguida, salva cada um dos DataFrames tratados (alunos e professores) em ambos os formatos, resultando em quatro arquivos finais: <code>escolas_alunos_2006.csv</code>, <code>escolas_alunos_2006.xlsx</code>, <code>escolas_professores_2006.csv</code>, e <code>escolas_professores_2006.xlsx</code>.</p>
+        <h2 id="celula-5">Célula 5: Exportação dos Arquivos Finais</h2>
+        <p>Como etapa final, o script garante que os diretórios de destino existam e, em seguida, exporta os DataFrames de alunos e professores, agora limpos e padronizados, para dois formatos diferentes: CSV (com separador ';') e Excel (.xlsx), salvando-os na pasta <code>dados_tratados</code>.</p>
         <pre><code>
-# Célula 6: Exportar os DataFrames Finais
+# Célula 7: Exportar o DataFrame Final (CSV e Excel)
+
 caminho_saida = '../../dados_tratados'
-# ... (criação das pastas de saída) ...
+
+# Cria os diretórios de saída se eles não existirem
+if not os.path.exists(f"{caminho_saida}/csv"):
+    os.makedirs(f"{caminho_saida}/csv")
+if not os.path.exists(f"{caminho_saida}/excel"):
+    os.makedirs(f"{caminho_saida}/excel")
 
 if dados['alunos'] is not None and dados['professores'] is not None:
-    # --- EXPORTAR ALUNOS (CSV e Excel) ---
+    # --- EXPORTAR DADOS DOS ALUNOS ---
     try:
-        dados['alunos'].to_csv(...)
-        dados['alunos'].to_excel(...)
+        # Salva em CSV
+        dados['alunos'].to_csv(os.path.join(f"{caminho_saida}/csv", 'escolas_alunos_2006.csv'), index=False, sep=';', encoding='utf-8')
+        # Salva em Excel
+        dados['alunos'].to_excel(os.path.join(f"{caminho_saida}/excel", 'escolas_alunos_2006.xlsx'), index=False, engine='openpyxl')
+        print("✅ SUCESSO! Arquivos dos alunos salvos.")
     except Exception as e:
-        print(f"❌ ERRO: {e}")
+        print(f"❌ ERRO ao salvar os arquivos dos alunos: {e}")
 
-    # --- EXPORTAR PROFESSORES (CSV e Excel) ---
+    # --- EXPORTAR DADOS DOS PROFESSORES ---
     try:
-        dados['professores'].to_csv(...)
-        dados['professores'].to_excel(...)
+        # Salva em CSV
+        dados['professores'].to_csv(os.path.join(f"{caminho_saida}/csv", 'escolas_professores_2006.csv'), index=False, sep=';', encoding='utf-8')
+        # Salva em Excel
+        dados['professores'].to_excel(os.path.join(f"{caminho_saida}/excel", 'escolas_professores_2006.xlsx'), index=False, engine='openpyxl')
+        print(f"✅ SUCESSO! Arquivos dos professores salvos.")
     except Exception as e:
-        print(f"❌ ERRO: {e}")
+        print(f"❌ ERRO ao salvar os arquivos dos professores: {e}")
 else:
-    print("⚠️ DataFrame não existe. Exportação pulada.")
+    print("⚠️ DataFrames não existem. A exportação foi pulada.")
         </code></pre>
-        <h3>Saída Esperada:</h3>
-        <div class="code-output">✅ SUCESSO! Arquivo CSV salvo em:
-'../../dados_tratados/csv/escolas_alunos_2006.csv'
-------------------------------
-✅ SUCESSO! Arquivo Excel salvo em:
-'../../dados_tratados/excel/escolas_alunos_2006.xlsx'
-
-✅ SUCESSO! Arquivo CSV salvo em:
-'../../dados_tratados/csv/escolas_professores_2006.csv'
-------------------------------
-✅ SUCESSO! Arquivo Excel salvo em:
-'../../dados_tratados/excel/escolas_professores_2006.xlsx'
-        </div>
     </div>
-        <script src="../../app.js"></script>
+    <script src="../../app.js"></script>
 </body>
 </html>
