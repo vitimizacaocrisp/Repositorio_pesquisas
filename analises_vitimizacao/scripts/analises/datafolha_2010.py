@@ -940,154 +940,263 @@ salvar_grafico('Índice de Vitimização por Escolaridade',
 
 # %%
 
-# --- CÓDIGO INICIAL ---
+# --- CONFIGURAÇÃO INICIAL E ESTRUTURA DE DADOS ---
+
 output_logo_dir = '../../logo/'
-os.makedirs(output_logo_dir, exist_ok=True)
-graficos = sorted([f for f in os.listdir(temp_img_dir) if f.endswith('.png')])
-secao_graficos = {
-    "Distribuição por Escolaridade": "Perfil Demográfico",
-    "Distribuição por Estado Civil": "Perfil Demográfico",
-    "Distribuição por Raça/Cor": "Perfil Demográfico",
-    "Distribuição por Religião": "Perfil Demográfico",
-    "Distribuição de Idade de Todos os Residentes": "Distribuição de Idade e Renda",
-    "Distribuição de Renda Familiar": "Distribuição de Idade e Renda",
-    "Boxplot da Renda Familiar": "Distribuição de Idade e Renda",
-    "Renda Familiar por Nível de Escolaridade": "Escolaridade e Renda",
-    "Percepção da Criminalidade por Raça-Cor": "Percepções sobre Criminalidade",
-    "Nível de Confiança na Polícia Militar": "Percepções sobre Criminalidade",
-    "Medo de ser Assaltado(a) na Vizinhança": "Percepções sobre Criminalidade",
-    "Medo de Assalto por Escolaridade": "Percepções sobre Criminalidade",
-    "Ranking de Vitimização": "Vitimização",
-    "Índice de Vitimização por Escolaridade": "Vitimização",
-    "Mapa de Calor de Correlação": "Análise de Correlações"
-}
-pdf = FPDF()
-pdf.set_auto_page_break(auto=True, margin=15)
 
-# --- CAPA ---
-pdf.add_page()
-logo_url = "https://cesecseguranca.com.br/wp-content/uploads/2016/04/LOGO-CRISP.png"
-response = requests.get(logo_url)
-logo_img = Image.open(BytesIO(response.content))
-logo_path = os.path.join(output_logo_dir, "crisp_logo.png")
-logo_img.save(logo_path)
-pdf.image(logo_path, x=65, y=20, w=80)
-pdf.set_font("Helvetica", 'B', 18)
-pdf.ln(85)
-pdf.cell(0, 10, "Relatório de Análise -", ln=True, align='C')
-pdf.cell(0, 10, "Pesquisa Nacional de Vitimização", ln=True, align='C')
-pdf.set_font("Helvetica", '', 13)
-pdf.cell(0, 10, "(PM 643283 A - Tipo I)", ln=True, align='C')
-pdf.ln(5)
-pdf.set_font("Helvetica", '', 11)
-pdf.cell(0, 10, "Projeto PM3283 - Dados coletados em Abril/2010",
-         ln=True, align='C')
-pdf.ln(15)
-pdf.set_font("Helvetica", 'I', 10)
-pdf.cell(0, 10, f"{datetime.today().strftime('%d/%m/%Y')}", ln=True, align='C')
+os.makedirs(output_dir, exist_ok=True)
 
-# --- SUMÁRIO DINÂMICO ---
-pdf.add_page()
-pdf.set_font("Helvetica", 'B', 16)
-pdf.cell(0, 10, "Sumário", ln=True)
-todos_graficos = sorted(
-    [f for f in os.listdir(temp_img_dir) if f.endswith('.png')])
-titulos_sumario = []
-for item in Descricoes:
-    # Usa o título como chave
-    secao = secao_graficos.get(item['titulo'], "Análise Geral")
-    titulos_sumario.append(secao)
-
-# Remover duplicatas mantendo a ordem de execução
-for idx, secao in enumerate(dict.fromkeys(titulos_sumario), start=1):
-    pdf.set_font("Helvetica", '', 12)
-    pdf.cell(0, 10, f"{idx}. {secao}", ln=True)
-
-# --- NOVA SEÇÃO DE RESUMO E ANÁLISE ---
-pdf.add_page()
-pdf.set_font("Helvetica", 'B', 16)
-pdf.cell(0, 10, "Resumo Executivo da Análise", ln=True)
-pdf.ln(5)
-
-# Resumo
-pdf.set_font("Helvetica", 'B', 12)
-pdf.cell(0, 10, "1. Resumo da Análise", ln=True)
-pdf.set_font("Helvetica", '', 12)
-texto_resumo = (
-    "Este relatório apresenta uma análise detalhada dos dados da Pesquisa Nacional de Vitimização, coletados em abril de 2010. "
-    "A análise explora o perfil demográfico dos entrevistados, suas percepções sobre a criminalidade e segurança, a confiança "
-    "nas instituições policiais e as experiências diretas de vitimização. Foram utilizadas técnicas de visualização de dados "
-    "para identificar padrões, correlações e distribuições, cruzando informações demográficas com as de vitimização para gerar insights aprofundados."
-)
-pdf.multi_cell(0, 7, texto_resumo)
-pdf.ln(5)
-
-# Principais Achados
-pdf.set_font("Helvetica", 'B', 12)
-pdf.cell(0, 10, "2. Principais Achados", ln=True)
-pdf.set_font("Helvetica", '', 12)
-achados = [
-    "Perfil Demográfico: A amostra é predominantemente composta por pessoas que se declaram católicas, casadas, da cor branca e com ensino fundamental incompleto.",
-    "Vitimização Comum: O furto de objetos pessoais foi o tipo de vitimização mais relatado entre os participantes, indicando a prevalência de crimes patrimoniais de menor gravidade.",
-    "Percepção de Segurança: Há uma percepção de insegurança disseminada, com uma parcela significativa dos entrevistados relatando medo de ser assaltado na própria vizinhança. Essa percepção, no entanto, varia entre diferentes grupos de escolaridade.",
-    "Confiança Institucional: O nível de confiança na Polícia Militar é moderado, com a categoria 'Confia um Pouco' sendo a mais frequente, o que aponta para uma relação ambivalente da população com a instituição.",
-    "Correlação Socioeconômica: A análise confirma uma forte correlação entre o nível de escolaridade e a renda familiar, onde maiores graus de instrução estão associados a maiores faixas de renda."
+# -------------------------------------------------------------------------
+#   INFORMAÇÕES DOS GRÁFICOS EXTRAÍDAS DO PDF DE EXEMPLO
+#   !! SUBSTITUA OS NOMES DOS ARQUIVOS .PNG PELOS SEUS !!
+# -------------------------------------------------------------------------
+graficos_info = [
+    {
+        "id_grafico": "Gráfico 1A: Perfil por Sexo (Barras)",
+        "caminho": Descricoes[0]['caminho'],
+        "objetivo": "Comparar a variabilidade (inconstância) das estimativas de vitimização entre homens e mulheres para cada tipo de crime principal.",
+        "o_que_mostra": "O gráfico exibe barras agrupadas por tipo de crime. Dentro de cada grupo, compara-se o Coeficiente de Variação (CV) médio para 'homens' e 'mulheres'. Barras mais altas indicam maior instabilidade e dispersão nos dados para aquele grupo.",
+        "analise": "A análise deste gráfico permite identificar se há um sexo cuja vitimização é estimada com menos consistência. Por exemplo, pode-se observar se o CV para mulheres vítimas de agressão é maior que para homens, sugerindo uma variação regional mais acentuada nos dados desse grupo, o que exige cautela ao generalizar os dados nacionais."
+    },
+    {
+        "id_grafico": "Gráfico 1B: Perfil por Cor/Raça (Barras)",
+        "caminho": Descricoes[1]['caminho'],
+        "objetivo": "Comparar a variabilidade das estimativas de vitimização entre os perfis de cor/raça ('branca' e 'preta/parda') para cada tipo de crime.",
+        "o_que_mostra": "Similar ao gráfico anterior, este agrupa por crime e compara o CV médio para os grupos 'branca' e 'preta/parda'. A altura da barra representa a instabilidade da estimativa.",
+        "analise": "Este gráfico é crucial para analisar disparidades raciais na consistência dos dados. É comum observar um CV sistematicamente mais elevado para a população 'preta/parda', indicando que as estimativas de vitimização para este grupo são mais heterogêneas entre as localidades, o que pode mascarar realidades locais distintas."
+    },
+    {
+        "id_grafico": "Gráfico 2: Perfil por Faixa Etária (Linhas)",
+        "caminho": Descricoes[2]['caminho'],
+        "objetivo": "Analisar como a variabilidade das estimativas de vitimização se comporta através das diferentes faixas etárias para cada tipo de crime.",
+        "o_que_mostra": "O gráfico apresenta a tendência da variabilidade (CV médio) ao longo de várias faixas etárias. Cada linha representa um tipo de crime. Picos na linha indicam maior instabilidade para aquela faixa etária.",
+        "analise": "As linhas revelam picos de instabilidade em idades específicas. Frequentemente, a faixa de '16 a 24 anos' exibe o maior CV, especialmente para roubos, refletindo maior variação geográfica na vitimização desse grupo. A tendência pode mostrar se a confiabilidade dos dados aumenta ou diminui com a idade."
+    },
+    {
+        "id_grafico": "Gráfico 3: Motivos para Não Registrar Ocorrência (Barras Empilhadas)",
+        "caminho": Descricoes[3]['caminho'],
+        "objetivo": "Revelar e comparar a distribuição percentual dos motivos que levaram as vítimas a não procurarem a polícia, distinguindo por tipo de crime.",
+        "o_que_mostra": "Cada barra horizontal (100%) representa um tipo de crime. Os segmentos coloridos mostram a proporção de cada motivo. O tamanho do segmento indica sua importância relativa.",
+        "analise": "A análise aponta para diferentes barreiras de acesso à justiça. Para furtos, o motivo 'não era importante' tende a dominar, sugerindo baixa percepção de dano. Para agressões, 'medo de represálias' ou 'não acreditavam na polícia' podem ter maior peso, indicando uma falha de confiança ou segurança no sistema."
+    },
+    {
+        "id_grafico": "Gráfico 4A: Heatmap Comparativo por Sexo",
+        "caminho": Descricoes[4]['caminho'],
+        "objetivo": "Fornecer uma visualização rápida da intensidade da variabilidade dos dados para cada combinação de tipo de crime e sexo.",
+        "o_que_mostra": "Uma matriz onde linhas são os crimes e colunas são os sexos. A cor de cada célula indica a magnitude do CV, com cores mais intensas significando maior variabilidade. O valor numérico exato está anotado na célula.",
+        "analise": "O heatmap permite identificar rapidamente os 'pontos quentes'. Por exemplo, a célula 'Agressão-Mulheres' pode ter a cor mais intensa, indicando que esta é a combinação com a estimativa mais instável em todo o conjunto de dados, sendo um ponto crítico para análise."
+    },
+    {
+        "id_grafico": "Gráfico 4B: Heatmap Comparativo por Cor/Raça",
+        "caminho": Descricoes[5]['caminho'],
+        "objetivo": "Fornecer uma visualização rápida da intensidade da variabilidade dos dados para cada combinação de tipo de crime e cor/raça.",
+        "o_que_mostra": "Uma matriz onde linhas são os crimes e colunas são os grupos de cor/raça. A cor de cada célula indica a magnitude do CV, com cores mais intensas significando maior variabilidade.",
+        "analise": "Este heatmap expõe qual crime apresenta maior instabilidade de dados para qual grupo racial. Uma célula como 'Roubo Preta/Parda' com valor elevado sugere que as médias nacionais para este cruzamento devem ser interpretadas com extrema cautela, pois não representam bem as diversas realidades regionais."
+    },
+    {
+        "id_grafico": "Gráfico 5: Heatmap de Correlação (Crime de Agressão)",
+        "caminho": Descricoes[6]['caminho'],
+        "objetivo": "Investigar se a variabilidade nas estimativas de vitimização por agressão dos diferentes perfis demográficos se movem em conjunto.",
+        "o_que_mostra": "A matriz exibe o coeficiente de correlação (de 1 a 1) entre os CVs de todos os pares de perfis. Cores quentes (próximas de 1) indicam correlação positiva; cores frias (próximas de 1) indicam correlação negativa.",
+        "analise": "Uma correlação positiva forte (ex: > 0.7) entre 'homens' e 'mulheres' significa que, nas regiões onde a estimativa para homens é instável, a para mulheres também tende a ser. Isso pode sugerir que fatores geográficos, e não apenas o perfil, causam a instabilidade dos dados de agressão."
+    },
+    {
+        "id_grafico": "Gráfico 6: Distribuição com Boxplot",
+        "caminho": Descricoes[7]['caminho'],
+        "objetivo": "Comparar a distribuição completa (mediana, quartis, outliers) do CV 'Total' entre os tipos de crime.",
+        "o_que_mostra": "Cada 'caixa' representa um tipo de crime. A linha na caixa é a mediana; a altura da caixa é a dispersão dos 50% centrais dos dados; as hastes indicam o alcance geral e pontos isolados são outliers.",
+        "analise": "O boxplot vai além da média. Pode revelar que, embora 'Roubo' tenha uma média de CV similar a 'Furto', sua 'caixa' é muito mais alta, indicando maior inconsistência e dispersão nos dados. Outliers apontam para UFs com variabilidade excepcionalmente alta."
+    },
+    {
+        "id_grafico": "Gráfico 7C: Radar Comparativo por Sexo + Cor/Raça",
+        "caminho": Descricoes[8]['caminho'],
+        "objetivo": "Unificar a análise visual da variabilidade das estimativas de vitimização combinando os fatores de sexo e cor/raça, permitindo observar perfis interseccionais.",
+        "o_que_mostra": "O gráfico exibe um radar com quatro perfis combinados: 'Homem Branco', 'Homem Preto/Pardo', 'Mulher Branca' e 'Mulher Preta/Parda'. Para cada tipo de crime, é desenhado um polígono cuja forma reflete a distribuição da variabilidade das estimativas entre esses perfis. Perfis com maior distância do centro apresentam maior instabilidade.",
+        "analise": "Esse radar interseccional permite identificar, de forma integrada, quais perfis demográficos estão mais sujeitos à instabilidade nas estatísticas de vitimização. Por exemplo, se o polígono de 'Agressão' se estende mais no eixo 'Mulher Preta/Parda', isso indica que as estimativas para esse perfil são mais variáveis, destacando a necessidade de abordagens políticas e analíticas interseccionais."
+    },
+    {
+        "id_grafico": "Gráfico 8A: Ranking de Perfis por Sexo",
+        "caminho": Descricoes[9]['caminho'],
+        "objetivo": "Classificar os perfis de sexo com base na sua variabilidade de dados média, agregando os resultados de todos os crimes.",
+        "o_que_mostra": "Um gráfico de barras horizontais simples onde a barra mais longa pertence ao perfil de sexo cuja estimativa de vitimização é, na média geral, a mais instável.",
+        "analise": "Este gráfico fornece uma conclusão direta sobre qual sexo tem os dados mais heterogêneos no geral. A diferença no comprimento das barras quantifica essa disparidade na confiabilidade média das estimativas."
+    },
+    {
+        "id_grafico": "Gráfico 8B: Ranking de Perfis por Cor/Raça",
+        "caminho": Descricoes[10]['caminho'],
+        "objetivo": "Classificar os perfis de cor/raça com base na sua variabilidade de dados média, agregando os resultados de todos os crimes.",
+        "o_que_mostra": "Um gráfico de barras horizontais simples onde a barra mais longa pertence ao perfil de cor/raça cuja estimativa de vitimização é, na média geral, a mais instável.",
+        "analise": "O ranking agregado por raça geralmente evidencia a maior vulnerabilidade estatística da população 'preta/parda'. A barra significativamente maior para este grupo indica que as políticas públicas baseadas em dados agregados podem não atender adequadamente às suas necessidades específicas."
+    },
+    {
+        "id_grafico": "Gráfico 9A: Comparativo Homens vs. Mulheres (Dumbbell)",
+        "caminho": Descricoes[11]['caminho'],
+        "objetivo": "Isolar e comparar diretamente a diferença na variabilidade das estimativas entre homens e mulheres para cada tipo de crime.",
+        "o_que_mostra": "Para cada crime, dois pontos são plotados (um para homens, outro para mulheres). Uma linha conecta os pontos, destacando a magnitude da diferença ('gap') entre os sexos.",
+        "analise": "O dumbbell plot é excelente para visualizar o 'gap' de instabilidade. O crime com a linha de conexão mais longa indica uma diferença muito acentuada na confiabilidade dos dados entre homens e mulheres, sinalizando a necessidade de análises aprofundadas."
+    },
+    {
+        "id_grafico": "Gráfico 9B: Comparativo Branca vs. Preta/Parda (Dumbbell)",
+        "caminho": Descricoes[12]['caminho'],
+        "objetivo": "Isolar e comparar diretamente a diferença na variabilidade das estimativas entre os grupos de cor/raça para cada tipo de crime.",
+        "o_que_mostra": "Para cada crime, dois pontos são plotados (um para 'branca', outro para 'preta/parda'). Uma linha conecta os pontos, evidenciando a disparidade racial na consistência dos dados.",
+        "analise": "Este gráfico expõe a desigualdade na precisão dos dados. Se o ponto 'preta/parda' estiver consistentemente à direita do ponto 'branca', isso indica uma fragilidade estrutural na coleta ou na homogeneidade dos dados para esse grupo."
+    },
+    {
+        "id_grafico": "Gráfico 10: Variação Geográfica (Facet Grid)",
+        "caminho": Descricoes[13]['caminho'],
+        "objetivo": "Desagregar a análise nacional para investigar como o perfil de variabilidade das vítimas de agressão se comporta em cada Unidade da Federação (UF).",
+        "o_que_mostra": "Uma grade de múltiplos mini-gráficos de barras. Cada mini-gráfico representa uma UF, mostrando os CVs para cada perfil. Permite comparar os padrões locais com a média nacional.",
+        "analise": "A análise por UF é fundamental para a ação local. Pode-se identificar que, embora a média nacional do CV para 'homens' seja baixa, em uma UF específica ela seja a mais alta, indicando que as estratégias de segurança e de coleta de dados devem ser regionalizadas."
+    }
 ]
-for achado in achados:
-    pdf.multi_cell(0, 7, f"- {achado}")
-    pdf.ln(2)
-pdf.ln(5)
-
-# Previsão e Recomendações
-pdf.set_font("Helvetica", 'B', 12)
-pdf.cell(0, 10, "3. Previsão e Recomendações", ln=True)
-pdf.set_font("Helvetica", '', 12)
-texto_previsao = (
-    "Com base nos dados de 2010, a previsão é que, na ausência de intervenções eficazes, as tendências de vitimização por crimes patrimoniais e a desconfiança parcial nas instituições de segurança persistam. As desigualdades socioeconômicas, evidenciadas pela relação entre renda e escolaridade, provavelmente continuarão a ser um fator influente nos padrões de criminalidade e percepção de segurança.\n\n"
-    "Recomenda-se o foco em políticas de segurança pública que fortaleçam o policiamento comunitário para reconstruir a confiança e em estratégias de prevenção focadas nos tipos de crimes mais comuns, como o furto. Além disso, investimentos em educação são cruciais como medida de longo prazo para mitigar as vulnerabilidades socioeconômicas que se correlacionam com a criminalidade."
-)
-pdf.multi_cell(0, 7, texto_previsao)
-# --- FIM DA NOVA SEÇÃO ---
 
 
-# --- INSERIR GRÁFICOS ---
-pdf.set_font("Helvetica", '', 11)
-for item in Descricoes:
-    titulo = item['titulo']
-    descricao = item['descricao']
-    caminho = item['caminho']
+class PDF(FPDF):
+    def header(self):
+        if self.page_no() > 2:
+            self.set_font('Helvetica', 'B', 15)
+            self.set_text_color(40, 40, 40)
+            self.cell(
+                0, 8, 'Relatório de Análise de Criminalidade no Brasil - 2010', 0, 1, 'C')
+            self.set_font('Helvetica', '', 11)
+            self.set_text_color(100, 100, 100)
+            self.cell(
+                0, 6, 'Estudo da variabilidade nas estimativas de vitimização', 0, 1, 'C')
+            self.ln(5)
+            self.set_draw_color(180, 180, 180)
+            self.set_line_width(0.3)
+            self.line(self.l_margin, self.get_y(),
+                      self.w - self.r_margin, self.get_y())
+            self.ln(7)
 
-    # Busca a seção pelo título do gráfico
-    secao = secao_graficos.get(titulo, "Análise Detalhada")
+    def footer(self):
+        if self.page_no() > 2:
+            self.set_y(-15)
+            self.set_font('Helvetica', 'I', 8)
+            self.cell(0, 10, f'Página {self.page_no()}', 0, 0, 'R')
 
+# --- FUNÇÃO AUXILIAR PARA ESCREVER SEÇÕES ---
+
+
+def write_section(pdf, title, content):
+    if title:
+        pdf.set_font('Helvetica', 'B', 11)
+        pdf.cell(0, 7, title, ln=True)
+    pdf.set_font('Helvetica', '', 11)
+    pdf.multi_cell(0, 5, content)
+    pdf.ln(4)
+
+# --- FUNÇÃO: ADICIONAR CAPA ---
+
+
+def add_capa(pdf):
+    pdf.add_page()
+    logo_url = "https://cesecseguranca.com.br/wp-content/uploads/2016/04/LOGO-CRISP.png"
+    response = requests.get(logo_url)
+    logo_img = Image.open(BytesIO(response.content))
+    logo_path = os.path.join(output_logo_dir, "crisp_logo.png")
+    logo_img.save(logo_path)
+    pdf.image(logo_path, x=65, y=20, w=80)
+
+    pdf.set_font("Helvetica", 'B', 18)
+    pdf.ln(85)
+    pdf.cell(0, 10, "Relatório de Análise -", ln=True, align='C')
+    pdf.cell(0, 10, "Pesquisa Nacional de Vitimização", ln=True, align='C')
+    pdf.set_font("Helvetica", '', 13)
+    pdf.cell(0, 10, "(PM 643283 A - Tipo I)", ln=True, align='C')
+    pdf.ln(5)
+    pdf.set_font("Helvetica", '', 11)
+    pdf.cell(0, 10, "Projeto PM3283 - Dados coletados em Abril/2010",
+             ln=True, align='C')
+    pdf.ln(15)
+    pdf.set_font("Helvetica", 'I', 10)
+    pdf.cell(0, 10, f"{datetime.today().strftime('%d/%m/%Y')}",
+             ln=True, align='C')
+
+# --- FUNÇÃO: ADICIONAR SUMÁRIO ---
+
+
+def add_sumario(pdf, graficos_info):
     pdf.add_page()
     pdf.set_font("Helvetica", 'B', 16)
-    pdf.cell(0, 10, secao, ln=True)
-    pdf.ln(5)
+    pdf.cell(0, 10, "Sumário", ln=True, align='C')
+    pdf.ln(10)
+    for idx, item in enumerate(graficos_info, start=1):
+        pdf.set_font("Helvetica", '', 12)
+        pdf.cell(0, 8, f"{idx}. {item['id_grafico']}", ln=True)
 
-    # Título do gráfico
-    pdf.set_font("Helvetica", 'B', 12)
-    pdf.multi_cell(0, 10, titulo, align='L')
-    pdf.ln(1)
+# --- FUNÇÃO: ADICIONAR PÁGINA DE GRÁFICO ---
+
+
+def add_grafico(pdf, item):
+    pdf.add_page()
+
+    # Título da seção
+    write_section(pdf, item['id_grafico'], "")
+
+    # Descrição textual
+    write_section(pdf, "Objetivo:", item['objetivo'])
+    write_section(pdf, "O que o Gráfico Mostra:", item['o_que_mostra'])
+    write_section(pdf, "Análise do Gráfico:", item['analise'])
 
     # Imagem
-    pdf.image(caminho, w=180)
+    if os.path.exists(item['caminho']):
+        pdf.image(item['caminho'], x=30, y=135, w=150)
+    else:
+        pdf.set_y(135)
+        pdf.set_font('Helvetica', 'B', 12)
+        pdf.multi_cell(
+            0, 10, f"ERRO: Imagem não encontrada:\n{item['caminho']}", border=1, align='C')
 
-    # Descrição
-    pdf.set_font("Helvetica", '', 11)
-    pdf.multi_cell(0, 10, f"Descrição: {descricao}", align='L')
-    pdf.ln(5)
+# --- FUNÇÃO: ADICIONAR ANÁLISE FINAL ---
 
-# Salvar PDF
+
+def add_analise_consolidada(pdf):
+    pdf.add_page()
+    pdf.set_y(25)
+    pdf.set_font('Helvetica', 'B', 16)
+    pdf.cell(0, 10, "Análise Geral Consolidada", ln=True, align='C')
+    pdf.ln(10)
+    texto_final = (
+        "A análise consolidada dos gráficos revela uma narrativa complexa sobre a estabilidade das estimativas de vitimização no Brasil. "
+        "O Coeficiente de Variação (CV) indica o grau de imprecisão dos dados, servindo como um importante indicador para a confiabilidade das estatísticas de criminalidade.\n\n"
+        "A separação da análise por sexo e cor/raça deixa claro que a variabilidade não é uniforme. Perfis demográficos específicos apresentam consistentemente CVs mais elevados, o que pode mascarar realidades locais diversas.\n\n"
+        "Destaca-se o gráfico interseccional (7C), que evidencia que perfis como 'Mulher Preta/Parda' podem apresentar maior instabilidade nas estatísticas em vários tipos de crime. Isso reforça a necessidade de abordagens que considerem as intersecções sociais.\n\n"
+        "Em suma, os dados demonstram heterogeneidade significativa, e políticas públicas devem ser sensíveis a essas múltiplas dimensões para promover justiça e segurança mais eficazes."
+    )
+    write_section(pdf, "", texto_final)
+
+
+# --- INICIALIZAÇÃO DO PDF ---
+pdf = PDF()
+pdf.set_auto_page_break(auto=True, margin=15)
+
+# --- EXECUÇÃO DAS ETAPAS ---
+add_capa(pdf)
+add_sumario(pdf, graficos_info)
+
+for item in graficos_info:
+    add_grafico(pdf, item)
+
+add_analise_consolidada(pdf)
+
+
+# --- SALVAR PDF ---
 try:
-    caminho_final_pdf = '../../analises/Relatorio_Analise_Vitimizacao_CRISP.pdf'
-    os.makedirs(os.path.dirname(caminho_final_pdf), exist_ok=True)
+    # 'Relatorio_Analise_Vitimizacao_CRISP'
+    caminho_final_pdf = os.path.join(
+        output_dir, 'Relatorio_Analise_Vitimizacao_CRISP.pdf')
     pdf.output(caminho_final_pdf)
     print(f"Relatório PDF gerado com sucesso em: {caminho_final_pdf}")
 
-    # --- Limpeza dos arquivos temporários ---
-    os.remove(logo_path)
-    for item in Descricoes:
-        os.remove(item['caminho'])
+    try:
+        shutil.rmtree(output_logo_dir)
+    except Exception as e:
+        print(f"Erro ao remover a pasta {output_logo_dir}: {e}")
+    try:
+        shutil.rmtree(temp_img_dir)
+    except Exception as e:
+        print(f"Erro ao remover a pasta {temp_img_dir}: {e}")
 except Exception as e:
     print(f"Erro ao salvar o PDF: {e}")
