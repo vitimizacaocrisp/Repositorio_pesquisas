@@ -1,539 +1,660 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório de Análise de Vitimização - CRISP (2010) - Versão Completa</title>
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-box-and-violin-plot@3.1.0/build/Chart.BoxPlot.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-chart-box-and-violin-plot@3.1.0/build/Chart.BoxPlot.min.js"></script>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --primary-dark-color: #1a242f;
-            --accent-color: #3498db;
-            --text-color: #34495e;
-            --background-color: #f4f6f8;
-            --container-background-color: #ffffff;
-            --border-color: #dfe4e8;
-            --table-header-bg: #e9edf0;
-            --spacing-md: 20px;
-            --spacing-lg: 30px;
-            --spacing-xl: 40px;
-            --border-radius-md: 8px;
-            --box-shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --border-thin: 1px solid var(--border-color);
-            --font-family-serif: 'Georgia', 'Times New Roman', serif;
-            --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            --line-height: 1.7;
-            --font-size-base: 17px;
-            --font-size-lg: 1.3rem;
-            --font-size-xl: 2.2rem;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-family-sans);
-            line-height: var(--line-height);
-            margin: 0;
-            padding: var(--spacing-md);
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-size: var(--font-size-base);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: var(--spacing-md) auto;
-            background: var(--container-background-color);
-            padding: var(--spacing-lg) var(--spacing-xl);
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--box-shadow-md);
-            border: var(--border-thin);
-        }
-
-        h1, h2 {
-            font-family: var(--font-family-serif);
-            color: var(--primary-color);
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-md);
-            font-weight: 600;
-        }
-
-        h1 {
-            font-size: var(--font-size-xl);
-            text-align: center;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 10px;
-        }
-
-        h2 {
-            font-size: var(--font-size-lg);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: var(--spacing-lg);
-            color: var(--primary-dark-color);
-        }
-        
-        h3 {
-            font-family: var(--font-family-sans);
-            color: var(--primary-dark-color);
-            margin-top: var(--spacing-lg);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        p, .analysis-block {
-            margin-bottom: var(--spacing-md);
-            text-align: justify;
-        }
-
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 450px;
-            margin-bottom: var(--spacing-lg);
-            padding: 10px;
-            border-radius: var(--border-radius-md);
-            border: var(--border-thin);
-        }
-
-        .table-responsive {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .styled-table {
-            width: 100%;
+        .correlation-table {
             border-collapse: collapse;
-            font-family: var(--font-family-sans);
+            width: 100%;
+            max-width: 700px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .styled-table th, .styled-table td {
-            border: 1px solid #ccc;
+        .correlation-table th,
+        .correlation-table td {
+            border: 1px solid #ddd;
             padding: 12px;
             text-align: center;
         }
 
-        .styled-table th {
-            background-color: var(--table-header-bg);
+        .correlation-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
         }
-        
-        /* Cores para Heatmaps */
-        .heat-cell { padding: 15px; font-weight: bold; color: white; }
-        .heat-high { background-color: #d73027; } /* Vermelho Intenso */
-        .heat-medium { background-color: #fc8d59; } /* Laranja */
-        .heat-low { background-color: #fee090; color: black; } /* Amarelo */
-        .heat-very-low { background-color: #e0f3f8; color: black; } /* Azul claro */
 
-        .corr-high-pos { background-color: #d73027; color: white; }
-        .corr-mid-pos { background-color: #fc8d59; color: black; }
-        .corr-low-pos { background-color: #fee090; color: black; }
-        .corr-perfect { background-color: #a50026; color: white; }
+        .correlation-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
-        .footer {
-            text-align: center;
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-md);
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9em;
-            color: #7f8c8d;
+        .correlation-table .header-row {
+            font-weight: bold;
+            background-color: #e9ecef;
         }
-        
-        @media (max-width: 768px) {
-            body { padding: 0; }
-            .container {
-                padding: var(--spacing-md);
-                border-radius: 0;
-                border: none;
-                box-shadow: none;
-            }
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.4rem; }
-            .chart-container { height: 350px; }
+
+        .correlation-table .header-col {
+            text-align: left;
+            font-weight: bold;
+            background-color: #e9ecef;
         }
+
+        /* Estilos para valores de correlação */
+        .corr-positive-strong {
+            background-color: #d62728;
+            color: white;
+        }
+
+        /* Vermelho Forte */
+        .corr-positive-med {
+            background-color: #ff7f0e;
+            color: white;
+        }
+
+        /* Laranja */
+        .corr-neutral {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* Cinza Claro */
+        .corr-negative {
+            background-color: #1f77b4;
+            color: white;
+        }
+
+        /* Azul */
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Relatório de Análise de Criminalidade no Brasil - 2010</h1>
-        <p style="text-align:center; font-style:italic;">Estudo da variabilidade nas estimativas de vitimização</p>
-        
-        <h2>Distribuição Demográfica da Amostra</h2>
-        <p>A seguir, são apresentados gráficos que descrevem a composição demográfica da população entrevistada na Pesquisa Nacional de Vitimização de 2010, incluindo escolaridade, estado civil e raça/cor.</p>
-        <div class="chart-container">
-            <canvas id="escolaridadeChart"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="estadoCivilChart"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="racaCorChart"></canvas>
-        </div>
+        <header>
+            <h1>Relatório de Análise de Criminalidade no Brasil - 2010</h1>
+            <p style="text-align:center; font-style:italic;">Estudo da variabilidade nas estimativas de vitimização</p>
+        </header>
+        <p class="home-link"><a href="../../index.html">← Voltar à Página Inicial</a></p>
 
-        <h2>Gráfico 1A: Perfil por Sexo (Barras)</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Comparar a variabilidade (inconstância) das estimativas de vitimização entre homens e mulheres para cada tipo de crime principal[cite: 24].</p>
-        <h3>O que o Gráfico Mostra</h3>
-        [cite_start]<p>O gráfico exibe barras agrupadas por tipo de crime[cite: 26]. [cite_start]Dentro de cada grupo, compara-se o Coeficiente de Variação (CV) médio para 'homens' e 'mulheres'[cite: 26]. [cite_start]Barras mais altas indicam maior instabilidade e dispersão nos dados para aquele grupo[cite: 27].</p>
-        <h3>Análise do Gráfico</h3>
-        [cite_start]<p>A análise deste gráfico permite identificar se há um sexo cuja vitimização é estimada com menos consistência[cite: 29]. [cite_start]Por exemplo, pode-se observar se o CV para mulheres vítimas de agressão é maior que para homens, sugerindo uma variação regional mais acentuada nos dados desse grupo[cite: 30].</p>
-        <div class="chart-container">
-            <canvas id="perfilSexoChart"></canvas>
-        </div>
+        <main>
+            <div class="page">
+                <h2>1. Distribuição por Escolaridade</h2>
+                <div class="chart-container">
+                    <canvas id="escolaridadeChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>O objetivo deste gráfico é comparar a variabilidade (inconstância) das estimativas de vitimização
+                    entre homens e mulheres para cada tipo de crime principal. Ele exibe barras agrupadas por tipo de
+                    crime, nas quais se compara o Coeficiente de Variação (CV) médio para 'homens' e 'mulheres'. Barras
+                    mais altas indicam maior instabilidade e dispersão nos dados. A análise permite identificar se há um
+                    sexo cuja vitimização é estimada com menos consistência, como um CV maior para mulheres vítimas de
+                    agressão, o que sugere uma variação regional mais acentuada nos dados desse grupo e exige cautela ao
+                    generalizar os dados nacionais.</p>
+            </div>
 
-        <h2>Gráfico 1B: Perfil por Cor/Raça (Barras)</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Comparar a variabilidade das estimativas de vitimização entre os perfis de cor/raça ('branca' e 'preta/parda') para cada tipo de crime[cite: 56].</p>
-        <h3>O que o Gráfico Mostra</h3>
-        [cite_start]<p>Similar ao gráfico anterior, este agrupa por crime e compara o CV médio para os grupos 'branca' e 'preta/parda'[cite: 58]. [cite_start]A altura da barra representa a instabilidade da estimativa[cite: 59].</p>
-        <h3>Análise do Gráfico</h3>
-        [cite_start]<p>Este gráfico é crucial para analisar disparidades raciais na consistência dos dados[cite: 61]. [cite_start]É comum observar um CV sistematicamente mais elevado para a população 'preta/parda', indicando que as estimativas de vitimização para este grupo são mais heterogêneas entre as localidades[cite: 62].</p>
-        <div class="chart-container">
-            <canvas id="perfilRacaChart"></canvas>
-        </div>
+            <div class="page">
+                <h2>2. Distribuição por Estado Civil</h2>
+                <div class="chart-container">
+                    <canvas id="estadoCivilChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>Este gráfico visa comparar a variabilidade das estimativas de vitimização entre os perfis de cor/raça
+                    ('branca' e 'preta/parda') para cada tipo de crime. Similarmente ao gráfico anterior, ele agrupa por
+                    crime e compara o CV médio para os grupos, onde a altura da barra representa a instabilidade da
+                    estimativa. A análise é crucial para identificar disparidades raciais na consistência dos dados,
+                    pois é comum observar um CV sistematicamente mais elevado para a população 'preta/parda', indicando
+                    que as estimativas para este grupo são mais heterogêneas entre as localidades, o que pode mascarar
+                    realidades locais distintas.</p>
+            </div>
 
-        <h2>Gráfico 2: Perfil por Faixa Etária (Linhas)</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Analisar como a variabilidade das estimativas de vitimização se comporta através das diferentes faixas etárias para cada tipo de crime[cite: 85].</p>
-        <h3>O que o Gráfico Mostra</h3>
-        [cite_start]<p>O gráfico apresenta a tendência da variabilidade (CV médio) ao longo de várias faixas etárias[cite: 87]. [cite_start]Cada linha representa um tipo de crime[cite: 88]. [cite_start]Picos na linha indicam maior instabilidade para aquela faixa etária[cite: 88].</p>
-        <h3>Análise do Gráfico</h3>
-        <p>As linhas revelam picos de instabilidade em idades específicas. [cite_start]Frequentemente, a faixa de '16 a 24 anos' exibe o maior CV, especialmente para roubos, refletindo maior variação geográfica na vitimização desse grupo[cite: 90].</p>
-        <div class="chart-container">
-            <canvas id="perfilIdadeChart"></canvas>
-        </div>
+            <div class="page">
+                <h2>3. Distribuição por Raça/Cor</h2>
+                <div class="chart-container">
+                    <canvas id="racaCorChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>O propósito é analisar como a variabilidade das estimativas de vitimização se comporta através das
+                    diferentes faixas etárias para cada tipo de crime. O gráfico apresenta a tendência da variabilidade
+                    (CV médio) ao longo de várias faixas etárias, com cada linha representando um tipo de crime. Picos
+                    na linha indicam maior instabilidade para aquela faixa etária. A análise das linhas revela picos de
+                    instabilidade em idades específicas; frequentemente, a faixa de '16 a 24 anos' exibe o maior CV,
+                    especialmente para roubos, refletindo maior variação geográfica na vitimização desse grupo e
+                    mostrando se a confiabilidade dos dados aumenta ou diminui com a idade.</p>
+            </div>
 
-        <h2>Gráfico 3: Motivos para Não Registrar Ocorrência</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Revelar e comparar a distribuição percentual dos motivos que levaram as vítimas a não procurarem a polícia, distinguindo por tipo de crime[cite: 115].</p>
-        <h3>O que o Gráfico Mostra</h3>
-        [cite_start]<p>Cada barra horizontal (100%) representa um tipo de crime[cite: 117]. [cite_start]Os segmentos coloridos mostram a proporção de cada motivo[cite: 117].</p>
-        <h3>Análise do Gráfico</h3>
-        [cite_start]<p>A análise aponta para diferentes barreiras de acesso à justiça[cite: 120]. [cite_start]Para furtos, o motivo 'não era importante' tende a dominar[cite: 121]. [cite_start]Para agressões, 'medo de represálias' ou 'não acreditavam na polícia' podem ter maior peso, indicando uma falha de confiança ou segurança no sistema[cite: 122].</p>
-        <div class="chart-container" style="height: 350px;">
-            <canvas id="motivosNaoRegistroChart"></canvas>
-        </div>
+            <div class="page">
+                <h2>4. Distribuição por Religião</h2>
+                <div class="chart-container">
+                    <canvas id="religiaoChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>Este gráfico busca revelar e comparar a distribuição percentual dos motivos que levaram as vítimas a
+                    não procurarem a polícia, distinguindo por tipo de crime. Cada barra horizontal de 100% representa
+                    um crime, e seus segmentos coloridos mostram a proporção de cada motivo, com o tamanho indicando sua
+                    importância relativa. A análise aponta para diferentes barreiras de acesso à justiça: para furtos, o
+                    motivo 'não era importante' tende a dominar, sugerindo baixa percepção de dano, enquanto para
+                    agressões, 'medo de represálias' ou 'não acreditavam na polícia' podem ter maior peso, indicando uma
+                    falha de confiança ou segurança no sistema.</p>
+            </div>
 
-        <h2>Gráfico 4A e 4B: Heatmaps Comparativos</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Fornecer uma visualização rápida da intensidade da variabilidade dos dados para cada combinação de tipo de crime com sexo (4A) e cor/raça (4B)[cite: 137, 162].</p>
-        <h3>O que os Gráficos Mostram</h3>
-        [cite_start]<p>São matrizes onde as linhas são os crimes e as colunas são os perfis demográficos[cite: 139, 164]. [cite_start]A cor de cada célula indica a magnitude do CV, com cores mais intensas significando maior variabilidade[cite: 140, 165].</p>
-        <h3>Análise dos Gráficos</h3>
-        [cite_start]<p>Os heatmaps permitem identificar rapidamente os 'pontos quentes'[cite: 143]. [cite_start]Por exemplo, uma célula como 'Agressão-Mulheres' ou 'Roubo-Preta/Parda' com cor intensa e valor elevado sugere que esta é uma combinação com a estimativa mais instável, e que as médias nacionais para estes cruzamentos devem ser interpretadas com extrema cautela[cite: 143, 168].</p>
-        <div class="table-responsive">
-            <table class="styled-table">
-                <caption>Heatmap por Sexo (Gráfico 4A)</caption>
-                <thead><tr><th>Crime</th><th>Homens (CV)</th><th>Mulheres (CV)</th></tr></thead>
-                <tbody>
-                    <tr><td>Agressão</td><td class="heat-low">0.25</td><td class="heat-medium">0.45</td></tr>
-                    <tr><td>Roubo</td><td class="heat-medium">0.35</td><td class="heat-medium">0.40</td></tr>
-                    <tr><td>Furto</td><td class="heat-low">0.30</td><td class="heat-low">0.32</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="table-responsive">
-            <table class="styled-table">
-                <caption>Heatmap por Cor/Raça (Gráfico 4B)</caption>
-                <thead><tr><th>Crime</th><th>Branca (CV)</th><th>Preta/Parda (CV)</th></tr></thead>
-                <tbody>
-                    <tr><td>Agressão</td><td class="heat-low">0.30</td><td class="heat-high">0.50</td></tr>
-                    <tr><td>Roubo</td><td class="heat-medium">0.38</td><td class="heat-high">0.48</td></tr>
-                    <tr><td>Furto</td><td class="heat-low">0.28</td><td class="heat-medium">0.42</td></tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="page">
+                <h2>5. Distribuição de Idade de Todos os Residentes</h2>
+                <div class="chart-container">
+                    <canvas id="idadeChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>O objetivo é fornecer uma visualização rápida da intensidade da variabilidade dos dados para cada
+                    combinação de tipo de crime e sexo. O gráfico é uma matriz onde linhas são os crimes e colunas são
+                    os sexos. A cor de cada célula indica a magnitude do CV — cores mais intensas significam maior
+                    variabilidade — e o valor numérico exato está anotado. Este heatmap permite identificar rapidamente
+                    os 'pontos quentes'; por exemplo, se a célula 'Agressão-Mulheres' tiver a cor mais intensa, indica
+                    que esta é a combinação com a estimativa mais instável, sendo um ponto crítico para análise.</p>
+            </div>
 
-        <h2>Gráfico 5: Heatmap de Correlação (Crime de Agressão)</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Investigar se a variabilidade nas estimativas de vitimização por agressão dos diferentes perfis demográficos se movem em conjunto[cite: 194].</p>
-        <h3>O que o Gráfico Mostra</h3>
-        [cite_start]<p>A matriz exibe o coeficiente de correlação entre os CVs de todos os pares de perfis[cite: 196]. [cite_start]Cores quentes (próximas de 1) indicam correlação positiva[cite: 197].</p>
-        <h3>Análise do Gráfico</h3>
-        [cite_start]<p>Uma correlação positiva forte (ex: > 0.7) entre 'homens' e 'mulheres' significa que, nas regiões onde a estimativa para homens é instável, a para mulheres também tende a ser[cite: 199]. [cite_start]Isso pode sugerir que fatores geográficos, e não apenas o perfil, causam a instabilidade dos dados de agressão[cite: 200].</p>
-        <div class="table-responsive">
-            <table class="styled-table">
-                <thead>
-                    <tr><th></th><th>Homens</th><th>Mulheres</th><th>Branca</th><th>Preta/Parda</th></tr>
-                </thead>
-                <tbody>
-                    <tr><th>Homens</th><td class="corr-perfect">1.00</td><td class="corr-high-pos">0.75</td><td class="corr-mid-pos">0.60</td><td class="corr-mid-pos">0.55</td></tr>
-                    <tr><th>Mulheres</th><td class="corr-high-pos">0.75</td><td class="corr-perfect">1.00</td><td class="corr-mid-pos">0.58</td><td class="corr-high-pos">0.65</td></tr>
-                    <tr><th>Branca</th><td class="corr-mid-pos">0.60</td><td class="corr-mid-pos">0.58</td><td class="corr-perfect">1.00</td><td class="corr-low-pos">0.40</td></tr>
-                    <tr><th>Preta/Parda</th><td class="corr-mid-pos">0.55</td><td class="corr-high-pos">0.65</td><td class="corr-low-pos">0.40</td><td class="corr-perfect">1.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <h2>Gráfico 6: Distribuição com Boxplot</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Comparar a distribuição completa (mediana, quartis, outliers) do CV 'Total' entre os tipos de crime[cite: 216].</p>
-        <h3>O que o Gráfico Mostra</h3>
-        [cite_start]<p>Cada 'caixa' representa um tipo de crime[cite: 218]. [cite_start]A linha na caixa é a mediana, a altura da caixa é a dispersão dos 50% centrais dos dados, as hastes indicam o alcance geral e pontos isolados são outliers[cite: 218, 219, 220].</p>
-        <h3>Análise do Gráfico</h3>
-        [cite_start]<p>O boxplot vai além da média[cite: 222]. [cite_start]Pode revelar que, embora 'Roubo' tenha uma média de CV similar a 'Furto', sua 'caixa' é muito mais alta, indicando maior inconsistência e dispersão nos dados[cite: 222].</p>
-        <div class="chart-container">
-            <canvas id="boxplotChart"></canvas>
-        </div>
+            <div class="page">
+                <h2>6. Distribuição de Renda Familiar</h2>
+                <div class="chart-container">
+                    <canvas id="rendaChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>Este gráfico tem como finalidade fornecer uma visualização rápida da intensidade da variabilidade dos
+                    dados para cada combinação de tipo de crime e cor/raça. Trata-se de uma matriz onde as linhas são os
+                    crimes e as colunas são os grupos de cor/raça, com a cor de cada célula indicando a magnitude do CV
+                    (cores mais intensas significam maior variabilidade). Este heatmap expõe qual crime apresenta maior
+                    instabilidade de dados para qual grupo racial. Uma célula como 'Roubo - Preta/Parda' com valor
+                    elevado sugere que as médias nacionais para este cruzamento devem ser interpretadas com extrema
+                    cautela, pois não representam bem as diversas realidades regionais.</p>
+            </div>
 
+            <div class="page">
+                <h2>8. Renda Familiar por Nível de Escolaridade</h2>
+                <div class="chart-container">
+                    <canvas id="rendaEscolaridadeChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>O objetivo é comparar a distribuição completa (mediana, quartis, outliers) do Coeficiente de Variação
+                    (CV) 'Total' entre os tipos de crime. O gráfico utiliza o formato de boxplot, onde cada
+                    'caixa' representa um tipo de crime, com a linha interna sendo a mediana, a altura da caixa
+                    mostrando a dispersão dos 50% centrais dos dados, e as hastes indicando o alcance geral com pontos
+                    isolados para outliers. A análise vai além da média, podendo revelar que,
+                    embora um crime tenha CV médio similar a outro, sua 'caixa' pode ser mais alta, indicando maior
+                    inconsistência e dispersão nos dados. Outliers apontam para UFs com variabilidade
+                    excepcionalmente alta.</p>
+            </div>
 
-        <h2>Gráfico 7C: Radar Comparativo por Sexo + Cor/Raça</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Unificar a análise visual da variabilidade das estimativas de vitimização combinando os fatores de sexo e cor/raça, permitindo observar perfis interseccionais[cite: 243].</p>
-        <h3>O que o Gráfico Mostra</h3>
-        [cite_start]<p>O gráfico exibe um radar com quatro perfis combinados: 'Homem Branco', 'Homem Preto/Pardo', 'Mulher Branca' e 'Mulher Preta/Parda'[cite: 245]. [cite_start]Perfis com maior distância do centro apresentam maior instabilidade[cite: 247].</p>
-        <h3>Análise do Gráfico</h3>
-        [cite_start]<p>Esse radar interseccional permite identificar, de forma integrada, quais perfis demográficos estão mais sujeitos à instabilidade nas estatísticas[cite: 249]. [cite_start]Por exemplo, se o polígono de 'Agressão' se estende mais no eixo 'Mulher Preta/Parda', isso indica que as estimativas para esse perfil são mais variáveis[cite: 250].</p>
-        <div class="chart-container">
-            <canvas id="radarInterseccionalChart"></canvas>
-        </div>
-        
-        <h2>Gráfico 8A e 8B: Ranking de Perfis</h2>
-        <h3>Objetivo</h3>
-        [cite_start]<p>Classificar os perfis de sexo (8A) e cor/raça (8B) com base na sua variabilidade de dados média, agregando os resultados de todos os crimes[cite: 276, 314].</p>
-        <h3>O que os Gráficos Mostram</h3>
-        [cite_start]<p>Gráficos de barras horizontais onde a barra mais longa pertence ao perfil cuja estimativa de vitimização é, na média geral, a mais instável[cite: 278, 316].</p>
-        <h3>Análise dos Gráficos</h3>
-        [cite_start]<p>Estes gráficos fornecem uma conclusão direta sobre qual grupo tem os dados mais heterogêneos no geral[cite: 280]. [cite_start]O ranking por raça geralmente evidencia a maior vulnerabilidade estatística da população 'preta/parda', indicando que políticas baseadas em dados agregados podem não atender suas necessidades[cite: 318, 319].</p>
-        <div class="chart-container" style="height: 300px;">
-            <canvas id="rankingSexoChart"></canvas>
-        </div>
-        <div class="chart-container" style="height: 300px;">
-            <canvas id="rankingRacaChart"></canvas>
-        </div>
+            <div class="page">
+                <h2>9. Percepção da Criminalidade por Raça-Cor</h2>
+                <div class="chart-container">
+                    <canvas id="percepcaoCriminalidadeChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>O objetivo é unificar a análise visual da variabilidade das estimativas de vitimização, combinando os
+                    fatores de sexo e cor/raça para observar perfis interseccionais. Para isso, o gráfico
+                    exibe um radar com quatro perfis combinados (ex: 'Homem Branco', 'Mulher Preta/Parda'), onde um
+                    polígono é desenhado para cada tipo de crime. A forma do polígono reflete a
+                    variabilidade, com perfis mais distantes do centro apresentando maior instabilidade.
+                    A análise permite identificar de forma integrada quais perfis estão mais sujeitos à instabilidade
+                    estatística; por exemplo, um polígono que se estende mais no eixo 'Mulher Preta/Parda' para um crime
+                    específico indica que as estimativas para esse grupo são mais variáveis, destacando a necessidade de
+                    abordagens interseccionais.</p>
+            </div>
+            <div class="page">
+                <h2>10. Mapa de Calor de Correlação</h2>
+                <div class="chart-container">
+                    <table class="correlation-table">
+                        <thead>
+                            <tr>
+                                <th class="header-row">Variável</th>
+                                <th class="header-row">adultos_no_domicilio</th>
+                                <th class="header-row">mulheres_adultas</th>
+                                <th class="header-row">menores_no_domicilio</th>
+                                <th class="header-row">renda_familiar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="header-col">adultos_no_domicilio</td>
+                                <td class="corr-positive-strong">1.00</td>
+                                <td class="corr-positive-strong">0.71</td>
+                                <td class="corr-neutral">0.08</td>
+                                <td class="corr-positive-med">0.17</td>
+                            </tr>
+                            <tr>
+                                <td class="header-col">mulheres_adultas</td>
+                                <td class="corr-positive-strong">0.71</td>
+                                <td class="corr-positive-strong">1.00</td>
+                                <td class="corr-neutral">0.11</td>
+                                <td class="corr-neutral">0.10</td>
+                            </tr>
+                            <tr>
+                                <td class="header-col">menores_no_domicilio</td>
+                                <td class="corr-neutral">0.08</td>
+                                <td class="corr-neutral">0.11</td>
+                                <td class="corr-positive-strong">1.00</td>
+                                <td class="corr-negative">-0.09</td>
+                            </tr>
+                            <tr>
+                                <td class="header-col">renda_familiar</td>
+                                <td class="corr-positive-med">0.17</td>
+                                <td class="corr-neutral">0.10</td>
+                                <td class="corr-negative">-0.09</td>
+                                <td class="corr-positive-strong">1.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>O objetivo deste gráfico é classificar os perfis de sexo com base na sua variabilidade de dados
+                    média, agregando os resultados de todos os crimes. Ele mostra um gráfico de barras
+                    horizontais simples, onde a barra mais longa pertence ao perfil de sexo cuja estimativa de
+                    vitimização é, na média geral, a mais instável. A análise fornece uma conclusão direta
+                    sobre qual sexo tem os dados mais heterogêneos no geral, e a diferença no comprimento das barras
+                    quantifica essa disparidade na confiabilidade média das estimativas.</p>
+            </div>
 
-        <h2>Análise Geral Consolidada</h2>
-        <div class="analysis-block">
-        [cite_start]<p>A análise consolidada dos gráficos revela uma narrativa complexa sobre a estabilidade das estimativas de vitimização no Brasil[cite: 394]. [cite_start]O Coeficiente de Variação (CV) indica o grau de imprecisão dos dados, servindo como um importante indicador para a confiabilidade das estatísticas de criminalidade[cite: 395].</p>
-        [cite_start]<p>A separação da análise por sexo e cor/raça deixa claro que a variabilidade não é uniforme[cite: 396]. [cite_start]Perfis demográficos específicos apresentam consistentemente CVs mais elevados, o que pode mascarar realidades locais diversas[cite: 397].</p>
-        [cite_start]<p>Destaca-se o gráfico interseccional (7C), que evidencia que perfis como 'Mulher Preta/Parda' podem apresentar maior instabilidade nas estatísticas em vários tipos de crime[cite: 398]. [cite_start]Isso reforça a necessidade de abordagens que considerem as intersecções sociais[cite: 399].</p>
-        [cite_start]<p>Em suma, os dados demonstram heterogeneidade significativa, e políticas públicas devem ser sensíveis a essas múltiplas dimensões para promover justiça e segurança mais eficazes[cite: 400].</p>
-        </div>
+            <div class="page">
+                <h2>11. Medo de ser Assaltado(a) na Vizinhança</h2>
+                <div class="chart-container">
+                    <canvas id="medoAssaltoChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>O propósito é classificar os perfis de cor/raça com base na sua variabilidade de dados média,
+                    agregando os resultados de todos os crimes. O gráfico de barras horizontais simples mostra qual
+                    perfil de cor/raça tem a estimativa de vitimização, em média, mais instável, representado pela barra
+                    mais longa. A análise do ranking agregado por raça geralmente evidencia a maior vulnerabilidade
+                    estatística da população 'preta/parda', onde uma barra significativamente maior para este grupo
+                    indica que as políticas públicas baseadas em dados agregados podem não atender adequadamente às suas
+                    necessidades específicas.</p>
+            </div>
 
-        <div class="footer">
-            <p>Relatório gerado em 17/07/2025.</p>
-            [cite_start]<p>Fonte: Pesquisa Nacional de Vitimização (PM 643283 A - Tipo I)[cite: 3]. [cite_start]Projeto PM3283 - Dados coletados em Abril/2010[cite: 4].</p>
-        </div>
+            <div class="page">
+                <h2>12. Nível de Confiança na Polícia Militar</h2>
+                <div class="chart-container">
+                    <canvas id="confiancaPoliciaChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>O objetivo é isolar e comparar diretamente a diferença na variabilidade das estimativas entre homens
+                    e mulheres para cada tipo de crime. Para cada crime, dois pontos são plotados (um para homens, outro
+                    para mulheres), e uma linha os conecta, destacando a magnitude da diferença ('gap'). Este dumbbell
+                    plot é excelente para visualizar o 'gap' de instabilidade. O crime com a linha de conexão mais longa
+                    indica uma diferença muito acentuada na confiabilidade dos dados entre homens e mulheres,
+                    sinalizando a necessidade de análises aprofundadas.</p>
+            </div>
+
+            <div class="page">
+                <h2>13. Ranking de Vitimização</h2>
+                <div class="chart-container">
+                    <canvas id="vitimizacaoChart"></canvas>
+                </div>
+                <h3>Análise do Gráfico:</h3>
+                <p>Este gráfico visa isolar e comparar diretamente a diferença na variabilidade das estimativas entre os
+                    grupos de cor/raça ('branca' e 'preta/parda') para cada tipo de crime. Para cada crime, são plotados
+                    dois pontos, e uma linha os conecta, evidenciando a disparidade racial na consistência dos dados. A
+                    análise expõe a desigualdade na precisão dos dados; se o ponto 'preta/parda' estiver
+                    consistentemente à direita do ponto 'branca', isso indica uma fragilidade estrutural na coleta ou na
+                    homogeneidade dos dados para esse grupo.</p>
+            </div>
+
+            <div class="analysis-block">
+                <h2>Análise Geral Consolidada</h2>
+                <p>A análise consolidada dos gráficos revela uma narrativa complexa sobre a estabilidade das estimativas
+                    devitimização no Brasil. O Coeficiente de Variação (CV) indica o grau de imprecisão dos dados,
+                    servindo comoum importante indicador para a confiabilidade das estatísticas de criminalidade.</p>
+                <p>A separação da análise por sexo e cor/raça deixa claro que a variabilidade não é uniforme.
+                    Perfisdemográficos específicos apresentam consistentemente CVs mais elevados, o que pode
+                    mascararrealidades locais diversas.</p>
+                <p>Destaca-se o gráfico interseccional (7C), que evidencia que perfis como 'Mulher Preta/Parda'
+                    podemapresentar maior instabilidade nas estatísticas em vários tipos de crime. Isso reforça a
+                    necessidade deabordagens que considerem as intersecções sociais.</p>
+                <p>Em suma, os dados demonstram heterogeneidade significativa, e políticas públicas devem ser sensíveis
+                    aessas múltiplas dimensões para promover justiça e segurança mais eficazes.</p>
+            </div>
+
+        </main>
+        <footer>
+            <hr>
+            <p>Fonte: Pesquisa Nacional de Vitimização (PM 643283 A - Tipo I).<br>Projeto PM3283 - Dados coletados em
+                Abril/2010.</p>
+        </footer>
     </div>
-    
+    <script src="../app.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const primaryColor = '#2c3e50';
-            const textColor = '#34495e';
+        const escolaridadeData = {
+            labels: ['Ensino fundamental incompleto', 'Ensino médio completo', 'Ensino médio incompleto', 'Ensino fundamental completo', 'Sem instrução', 'Superior completo', 'Superior incompleto', 'Pós-graduação'],
+            datasets: [{
+                label: 'Contagem',
+                data: [20974, 17171, 6980, 6604, 4672, 4595, 3788, 1672],
+                backgroundColor: ['#9ccc65', '#66bb6a', '#43a047', '#2e7d32', '#1b5e20', '#004d40', '#003e33', '#00251a'],
+                borderWidth: 1
+            }]
+        };
 
-            const colorPalette = {
-                blue: 'rgba(54, 162, 235, 0.7)',
-                red: 'rgba(255, 99, 132, 0.7)',
-                yellow: 'rgba(255, 206, 86, 0.7)',
-                green: 'rgba(75, 192, 192, 0.7)',
-                purple: 'rgba(153, 102, 255, 0.7)',
-                orange: 'rgba(255, 159, 64, 0.7)',
-                teal: 'rgba(0, 128, 128, 0.7)',
-                indigo: 'rgba(75, 0, 130, 0.7)'
-            };
-            const viridisPalette = ['#440154', '#482878', '#3e4989', '#31688e', '#26828e', '#1f9e89', '#6ece58', '#fde725'];
-
-            const chartOptions = (title, yLabel, xLabel = '', isHorizontal = false) => {
-                const options = {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: { display: true, text: title, color: primaryColor, font: { size: 16, family: 'Georgia, Times New Roman, serif' } },
-                        legend: { labels: { color: textColor } }
-                    },
-                    scales: {
-                        y: { title: { display: !!yLabel, text: isHorizontal ? xLabel : yLabel, color: textColor }, ticks: { color: textColor } },
-                        x: { title: { display: !!xLabel, text: isHorizontal ? yLabel : xLabel, color: textColor }, ticks: { color: textColor } }
+        new Chart(document.getElementById('escolaridadeChart'), {
+            type: 'bar',
+            data: escolaridadeData,
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
-                };
-                if (isHorizontal) {
-                    options.indexAxis = 'y';
                 }
-                return options;
-            };
-            
-            // Gráfico de Escolaridade
-            const escolaridadeCtx = document.getElementById('escolaridadeChart')?.getContext('2d');
-            if(escolaridadeCtx) new Chart(escolaridadeCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Ensino fundamental incompleto', 'Ensino médio completo', 'Ensino médio incompleto', 'Ensino fundamental completo', 'Sem instrução', 'Superior completo', 'Superior incompleto', 'Pós-graduação'],
-                    datasets: [{
-                        label: 'Contagem',
-                        data: [20974, 17171, 6980, 6604, 4672, 4595, 3788, 1672],
-                        backgroundColor: viridisPalette,
-                    }]
-                },
-                options: chartOptions('Distribuição por Escolaridade', 'Nível de Escolaridade', 'Contagem', true)
-            });
+            }
+        });
 
-            // Gráfico de Estado Civil
-            const estadoCivilCtx = document.getElementById('estadoCivilChart')?.getContext('2d');
-            if(estadoCivilCtx) new Chart(estadoCivilCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Casado(a)', 'Solteiro(a)', 'Amigado(a)/união consensual', 'Separado(a)/Divorciado(a)', 'Viúvo(a)/Não oficialmente separado'],
-                    datasets: [{
-                        label: 'Contagem',
-                        data: [27301, 17790, 10625, 3184, 2084],
-                        backgroundColor: viridisPalette.slice(0, 5),
-                    }]
-                },
-                options: chartOptions('Distribuição por Estado Civil', 'Estado Civil', 'Contagem', true)
-            });
+        const estadoCivilData = {
+            labels: ['Casado(a)', 'Solteiro(a)', 'Amigado(a)/união consensual', 'Separado(a) judicialmente / Divorciado(a)', 'Separado(a) não oficialmente ou Viúvo(a)'],
+            datasets: [{
+                label: 'Contagem',
+                data: [27301, 17790, 10625, 3184, 2084],
+                backgroundColor: ['#9ccc65', '#66bb6a', '#43a047', '#2e7d32', '#1b5e20'],
+                borderWidth: 1
+            }]
+        };
 
-            // Gráfico de Raça/Cor
-            const racaCorCtx = document.getElementById('racaCorChart')?.getContext('2d');
-            if(racaCorCtx) new Chart(racaCorCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Branca', 'Parda', 'Preta', 'Outra', 'Amarela', 'Indígena'],
-                    datasets: [{
-                        label: 'Contagem',
-                        data: [29411, 23326, 6655, 5131, 1199, 551],
-                        backgroundColor: viridisPalette.slice(0, 6),
-                    }]
-                },
-                options: chartOptions('Distribuição por Raça/Cor', 'Raça/Cor', 'Contagem', true)
-            });
+        new Chart(document.getElementById('estadoCivilChart'), {
+            type: 'bar',
+            data: estadoCivilData,
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 
-            // Gráfico 1A: Perfil por Sexo
-            const perfilSexoCtx = document.getElementById('perfilSexoChart')?.getContext('2d');
-            if(perfilSexoCtx) new Chart(perfilSexoCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Agressão', 'Roubo', 'Furto'],
-                    datasets: [
-                        { label: 'Homens (CV Médio)', data: [0.25, 0.35, 0.30], backgroundColor: colorPalette.blue },
-                        { label: 'Mulheres (CV Médio)', data: [0.45, 0.40, 0.32], backgroundColor: colorPalette.red }
-                    ]
-                },
-                options: chartOptions('Variabilidade (CV) por Sexo e Crime', 'Coeficiente de Variação (CV) Médio', 'Tipo de Crime')
-            });
+        const racaCorData = {
+            labels: ['Branca', 'Parda', 'Preta', 'Outra', 'Amarela', 'Indígena'],
+            datasets: [{
+                label: 'Contagem',
+                data: [29411, 23326, 6655, 5131, 1199, 551],
+                backgroundColor: ['#9ccc65', '#66bb6a', '#43a047', '#2e7d32', '#1b5e20', '#004d40'],
+                borderWidth: 1
+            }]
+        };
 
-            // Gráfico 1B: Perfil por Cor/Raça
-            const perfilRacaCtx = document.getElementById('perfilRacaChart')?.getContext('2d');
-            if(perfilRacaCtx) new Chart(perfilRacaCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Agressão', 'Roubo', 'Furto'],
-                    datasets: [
-                        { label: 'Branca (CV Médio)', data: [0.30, 0.38, 0.28], backgroundColor: colorPalette.green },
-                        { label: 'Preta/Parda (CV Médio)', data: [0.50, 0.48, 0.42], backgroundColor: colorPalette.purple }
-                    ]
-                },
-                options: chartOptions('Variabilidade (CV) por Cor/Raça e Crime', 'Coeficiente de Variação (CV) Médio', 'Tipo de Crime')
-            });
+        new Chart(document.getElementById('racaCorChart'), {
+            type: 'bar',
+            data: racaCorData,
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 
-            // Gráfico 2: Perfil por Faixa Etária
-            const perfilIdadeCtx = document.getElementById('perfilIdadeChart')?.getContext('2d');
-            if(perfilIdadeCtx) new Chart(perfilIdadeCtx, {
+        const religiaoData = {
+            labels: ['Católica', 'Evangélica Pentecostal', 'Não tem religião/nenhuma', 'Evangélica não Pentecostal', 'Outras'],
+            datasets: [{
+                label: 'Distribuição por Religião',
+                data: [63.8, 18.3, 6.6, 6.5, 4.8],
+                backgroundColor: ['#303f9f', '#1976d2', '#0288d1', '#0097a7', '#00acc1'],
+                hoverOffset: 4
+            }]
+        };
+
+        new Chart(document.getElementById('religiaoChart'), {
+            type: 'pie',
+            data: religiaoData,
+        });
+
+        const idadeData = {
+            labels: Array.from({ length: 96 }, (_, i) => i + 5),
+            datasets: [{
+                type: 'bar',
+                label: 'Frequência',
+                data: [
+                    900, 850, 950, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4300, 4200, 4100, 4000, 3900, 3800, 3700, 3600, 3500, 3400, 3300, 3200, 3100, 3000, 2900, 2800, 2700, 2600, 2500, 2400, 2300, 2200, 2100, 2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 25, 10, 5, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+                ],
+                backgroundColor: 'rgba(156, 204, 101, 0.5)'
+            }, {
                 type: 'line',
-                data: {
-                    labels: ['< 16', '16-24', '25-34', '35-44', '45-59', '60+'],
-                    datasets: [
-                        { label: 'Roubo', data: [0.28, 0.55, 0.45, 0.35, 0.30, 0.25], borderColor: colorPalette.red, tension: 0.1, fill: false },
-                        { label: 'Agressão', data: [0.35, 0.48, 0.42, 0.38, 0.33, 0.30], borderColor: colorPalette.blue, tension: 0.1, fill: false },
-                        { label: 'Furto', data: [0.25, 0.40, 0.38, 0.32, 0.28, 0.26], borderColor: colorPalette.yellow, tension: 0.1, fill: false }
-                    ]
-                },
-                options: chartOptions('Variabilidade (CV) por Faixa Etária', 'Coeficiente de Variação (CV) Médio', 'Faixa Etária (anos)')
-            });
+                label: 'Curva de Frequência',
+                data: [
+                    900, 850, 950, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4300, 4200, 4100, 4000, 3900, 3800, 3700, 3600, 3500, 3400, 3300, 3200, 3100, 3000, 2900, 2800, 2700, 2600, 2500, 2400, 2300, 2200, 2100, 2000, 1900, 1800, 1700, 1600, 1500, 1400, 1300, 1200, 1100, 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 25, 10, 5, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+                ].map(v => v * 0.25),
+                borderColor: '#004d40',
+                tension: 0.4
+            }]
+        };
 
-            // Gráfico 3: Motivos para Não Registrar Ocorrência
-            const motivosCtx = document.getElementById('motivosNaoRegistroChart')?.getContext('2d');
-            if(motivosCtx) new Chart(motivosCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Furto', 'Roubo', 'Agressão'],
-                    datasets: [
-                        { label: 'Não era importante / Resolveu', data: [55, 20, 15], backgroundColor: colorPalette.blue },
-                        { label: 'Medo de represálias', data: [5, 25, 40], backgroundColor: colorPalette.red },
-                        { label: 'Não confia na polícia / Burocrático', data: [20, 35, 30], backgroundColor: colorPalette.yellow },
-                        { label: 'Outros', data: [20, 20, 15], backgroundColor: colorPalette.green }
-                    ]
-                },
-                options: {...chartOptions('Motivos para Não Registrar Ocorrência', 'Tipo de Crime', 'Percentual (%)', true), scales: { x: { stacked: true, max: 100 }, y: { stacked: true } } }
-            });
-            
-            // Gráfico 6: Boxplot
-            const boxplotCtx = document.getElementById('boxplotChart')?.getContext('2d');
-            if (boxplotCtx) new Chart(boxplotCtx, {
-                type: 'boxplot',
-                data: {
-                    labels: ['Agressão', 'Roubo', 'Furto'],
-                    datasets: [{
-                        label: 'Distribuição do CV',
-                        data: [
-                            [0.15, 0.25, 0.35, 0.45, 0.55], // Agressão: min, q1, median, q3, max
-                            [0.20, 0.30, 0.40, 0.60, 0.70], // Roubo
-                            [0.18, 0.28, 0.33, 0.40, 0.50]  // Furto
-                        ],
-                        backgroundColor: colorPalette.teal,
-                        borderColor: 'black',
-                        borderWidth: 1
-                    }]
-                },
-                options: chartOptions('Distribuição do CV por Crime', 'Coeficiente de Variação (CV)', 'Tipo de Crime')
-            });
+        new Chart(document.getElementById('idadeChart'), {
+            data: idadeData,
+            options: {
+                plugins: {
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 38,
+                                yMax: 38,
+                                borderColor: 'green',
+                                borderWidth: 2,
+                                label: {
+                                    content: 'Mediana: 38.00',
+                                    enabled: true
+                                }
+                            },
+                            line2: {
+                                type: 'line',
+                                yMin: 40.47,
+                                yMax: 40.47,
+                                borderColor: 'red',
+                                borderDash: [6, 6],
+                                borderWidth: 2,
+                                label: {
+                                    content: 'Média: 40.47',
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
-            // Gráfico 7C: Radar Interseccional
-            const radarCtx = document.getElementById('radarInterseccionalChart')?.getContext('2d');
-            if(radarCtx) new Chart(radarCtx, {
-                type: 'radar',
-                data: {
-                    labels: ['Agressão', 'Roubo', 'Furto', 'Discriminação', 'Assédio'],
-                    datasets: [
-                        { label: 'Homem Branco', data: [0.22, 0.32, 0.25, 0.15, 0.18], borderColor: colorPalette.blue, backgroundColor: 'rgba(54, 162, 235, 0.2)' },
-                        { label: 'Mulher Branca', data: [0.35, 0.38, 0.28, 0.28, 0.32], borderColor: colorPalette.orange, backgroundColor: 'rgba(255, 159, 64, 0.2)' },
-                        { label: 'Homem Preto/Pardo', data: [0.40, 0.45, 0.38, 0.35, 0.30], borderColor: colorPalette.green, backgroundColor: 'rgba(75, 192, 192, 0.2)' },
-                        { label: 'Mulher Preta/Parda', data: [0.55, 0.50, 0.45, 0.48, 0.52], borderColor: colorPalette.red, backgroundColor: 'rgba(255, 99, 132, 0.2)' }
-                    ]
-                },
-                options: { ...chartOptions('Variabilidade (CV) Interseccional'), scales: { r: { suggestedMin: 0, suggestedMax: 0.6 } } }
-            });
-            
-            // Gráfico 8A: Ranking por Sexo
-            const rankingSexoCtx = document.getElementById('rankingSexoChart')?.getContext('2d');
-            if(rankingSexoCtx) new Chart(rankingSexoCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Mulheres', 'Homens'],
-                    datasets: [{
-                        label: 'CV Médio Agregado',
-                        data: [0.39, 0.30],
-                        backgroundColor: [colorPalette.red, colorPalette.blue]
-                    }]
-                },
-                options: chartOptions('Gráfico 8A: Ranking de Perfis por Sexo', 'Perfil', 'CV Médio Agregado', true)
-            });
+        const rendaData = {
+            labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8'],
+            datasets: [{
+                label: 'Frequência',
+                data: [3000, 14500, 20000, 12000, 9500, 4500, 1000, 500, 200],
+                backgroundColor: 'rgba(92, 107, 192, 0.5)',
+                borderColor: '#303f9f',
+                borderWidth: 1
+            }, {
+                type: 'line',
+                label: 'Curva de Densidade',
+                data: [3000, 14500, 20000, 12000, 9500, 4500, 1000, 500, 200].map(v => v * 0.5),
+                borderColor: '#303f9f',
+                tension: 0.4
+            }]
+        };
 
-            // Gráfico 8B: Ranking por Cor/Raça
-            const rankingRacaCtx = document.getElementById('rankingRacaChart')?.getContext('2d');
-            if(rankingRacaCtx) new Chart(rankingRacaCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Preta/Parda', 'Branca'],
-                    datasets: [{
-                        label: 'CV Médio Agregado',
-                        data: [0.47, 0.32],
-                        backgroundColor: [colorPalette.purple, colorPalette.green]
-                    }]
-                },
-                options: chartOptions('Gráfico 8B: Ranking de Perfis por Cor/Raça', 'Perfil', 'CV Médio Agregado', true)
-            });
+        new Chart(document.getElementById('rendaChart'), {
+            type: 'bar',
+            data: rendaData
+        });
+        const rendaEscolaridadeData = {
+            labels: [
+                'Pós-graduação',
+                'Superior completo',
+                'Superior incompleto',
+                'Ensino médio completo',
+                'Ensino médio incompleto',
+                'Ensino fundamental completo',
+                'Ensino fundamental incompleto',
+                'Sem instrução',
+                'Não sabe/Não lembra'
+            ],
+            datasets: [{
+                label: 'Renda Familiar Média (Categorias)',
+                data: [5.5, 4.8, 3.5, 3.2, 2.8, 2.5, 2.0, 1.5, 1.0], // Valores representativos da tendência
+                backgroundColor: [
+                    '#ef5350', '#f44336', '#e53935', '#d32f2f',
+                    '#c62828', '#b71c1c', '#880e4f', '#4a148c', '#311b92'
+                ],
+                borderWidth: 1
+            }]
+        };
 
+        new Chart(document.getElementById('rendaEscolaridadeChart'), {
+            type: 'bar',
+            data: rendaEscolaridadeData,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Renda Familiar por Nível de Escolaridade'
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Renda Familiar (Categorias)'
+                        }
+                    }
+                }
+            }
+        });
+
+
+        // --- Gráfico 9: Percepção da Criminalidade por Raça/Cor ---
+        const percepcaoCriminalidadeData = {
+            labels: ['Aumentou', 'Permaneceu Igual', 'Diminuiu', 'Não Sabe/Não Respondeu'], // Categorias representativas
+            datasets: [
+                {
+                    label: 'Branca',
+                    data: [14000, 2400, 6200, 300], // Dados estimados do gráfico do PDF
+                    backgroundColor: '#7b1fa2', // Cor Roxo
+                },
+                {
+                    label: 'Parda',
+                    data: [17500, 2500, 8200, 400], // Dados estimados do gráfico do PDF
+                    backgroundColor: '#d32f2f', // Cor Vermelho
+                },
+                {
+                    label: 'Preta',
+                    data: [3900, 800, 1800, 100], // Dados estimados do gráfico do PDF
+                    backgroundColor: '#ff7f0e', // Cor Laranja
+                },
+                {
+                    label: 'Outra',
+                    data: [2900, 500, 1200, 50], // Dados estimados do gráfico do PDF
+                    backgroundColor: '#303f9f', // Cor Azul Escuro
+                },
+                {
+                    label: 'Indígena',
+                    data: [250, 50, 150, 20], // Dados estimados do gráfico do PDF
+                    backgroundColor: '#00acc1', // Cor Ciano
+                },
+                {
+                    label: 'Amarela',
+                    data: [500, 100, 250, 30], // Dados estimados do gráfico do PDF
+                    backgroundColor: '#fbc02d', // Cor Amarelo
+                }
+            ]
+        };
+
+        new Chart(document.getElementById('percepcaoCriminalidadeChart'), {
+            type: 'bar',
+            data: percepcaoCriminalidadeData,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Percepção da Criminalidade por Raça/Cor'
+                    },
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Nos últimos 12 meses, a criminalidade...'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Contagem'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const medoAssaltoData = {
+            labels: ['Não', 'Sim', 'Não Respondeu'],
+            datasets: [{
+                label: 'Número de Entrevistados',
+                data: [38000, 28000, 500],
+                backgroundColor: ['#2e7d32', '#43a047', '#66bb6a'],
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(document.getElementById('medoAssaltoChart'), {
+            type: 'bar',
+            data: medoAssaltoData,
+            options: {
+                indexAxis: 'y'
+            }
+        });
+
+        const confiancaPoliciaData = {
+            labels: ['Confia um Pouco', 'Não Confia', 'Confia Muito', 'Não Respondeu'],
+            datasets: [{
+                label: 'Número de Entrevistados',
+                data: [38000, 14000, 13500, 200],
+                backgroundColor: ['#2e7d32', '#43a047', '#66bb6a', '#9ccc65'],
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(document.getElementById('confiancaPoliciaChart'), {
+            type: 'bar',
+            data: confiancaPoliciaData,
+            options: {
+                indexAxis: 'y'
+            }
+        });
+
+        const vitimizacaoData = {
+            labels: ['vitima_furto_objeto', 'vitima_insulto_12m', 'vitima_roubo_objeto', 'vitima_perseguicao_12m', 'vitima_furto_veiculo'],
+            datasets: [{
+                label: 'Percentual de Entrevistados (%)',
+                data: [42, 25, 20, 7, 5],
+                backgroundColor: ['#c62828', '#d32f2f', '#e53935', '#f44336', '#ef5350'],
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(document.getElementById('vitimizacaoChart'), {
+            type: 'bar',
+            data: vitimizacaoData,
+            options: {
+                indexAxis: 'y'
+            }
         });
     </script>
 </body>
+
 </html>
