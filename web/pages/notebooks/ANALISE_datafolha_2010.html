@@ -3,10 +3,588 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ANALISE_datafolha_2010</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script src="../../app.js"></script>
+    <style>
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: var(--spacing-md);
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
+
+    <div class="container">
+        <h1>Análise da Pesquisa Nacional de Vitimização (2010)</h1>
         <p class="home-link"><a href="../../../index.html">← Voltar à Página Inicial</a></p>
+
+        <div class="cell">
+            <h2>Célula 1: Configuração Inicial e Carregamento dos Dados</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>Esta célula inicializa o ambiente de análise. Ela importa todas as bibliotecas Python necessárias (como Pandas para manipulação de dados e Matplotlib/Seaborn para gráficos), define funções para limpar os dados numéricos e carrega os arquivos Excel brutos ('PM3283_BASE_TIPO1.xlsx' e 'PM3283_BASE_TIPO2.xlsx') em DataFrames. Além disso, cria os diretórios onde os resultados e gráficos da análise serão salvos.</p>
+                <h3>Motivo</h3>
+                <p>É o passo fundamental de qualquer projeto de análise. Preparar o ambiente e carregar os dados são as primeiras ações necessárias antes de qualquer exploração ou manipulação. As funções de limpeza são criadas para tratar inconsistências comuns em dados brutos, como o uso de vírgulas em vez de pontos para decimais, garantindo que os dados possam ser processados corretamente.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+from fpdf import FPDF
+import shutil
+from IPython.display import display
+
+# ==============================================================================
+# 1. CONFIGURAÇÃO INICIAL
+# ==============================================================================
+
+# --- Função de Limpeza ---
+def limpar_e_converter_colunas_numericas(df):
+    """
+    Itera sobre as colunas de um DataFrame, substitui vírgulas por pontos
+    em colunas de texto e tenta convertê-las para um formato numérico.
+    """
+    print("Iniciando limpeza de colunas numéricas...")
+    for col in df.columns:
+        if df[col].dtype == 'object':
+            try:
+                df[col] = pd.to_numeric(df[col].str.replace(',', '.', regex=False))
+                print(f"-> Coluna '{col}' convertida para numérico.")
+            except (AttributeError, ValueError):
+                # Se a conversão falhar, a coluna é mantida como texto.
+                pass
+    print("Limpeza concluída.")
+    return df
+
+# --- Função de Limpeza Aprimorada ---
+def limpar_e_converter_colunas_numericas2(df):
+    """
+    Itera sobre as colunas de um DataFrame, limpa e converte colunas
+    de texto (object) para formato numérico.
+    1. Remove pontos (usados como separador de milhar).
+    2. Substitui vírgulas por pontos (para ser o separador decimal padrão).
+    """
+    print("Iniciando limpeza e conversão de colunas...")
+    for col in df.columns:
+        # Só processa colunas que são do tipo 'object' (texto)
+        if df[col].dtype == 'object':
+            # Verifica se a coluna parece ter números com vírgula para evitar
+            # processar colunas de texto que não são numéricas.
+            # O .notna() é para ignorar valores nulos (NaN)
+            if df[col].str.contains(',', na=False).any():
+                try:
+                    # 1. Remove os pontos (separador de milhar)
+                    cleaned_col = df[col].str.replace('.', '', regex=False)
+                    # 2. Substitui a vírgula (separador decimal) por ponto
+                    cleaned_col = cleaned_col.str.replace(',', '.', regex=False)
+
+                    # 3. Converte para numérico
+                    df[col] = pd.to_numeric(cleaned_col, errors='coerce')
+                    print(f"-> Coluna '{col}' foi limpa e convertida para numérico.")
+                except Exception as e:
+                    print(f"-> Falha ao converter a coluna '{col}'. Mantida como texto. Erro: {e}")
+    print("Limpeza concluída.")
+    return df
+
+# --- Definir caminhos ---
+data_dir = '../../dados_brutos/datafolha_2928278/'
+output_dir = '../../analises/'
+output_logo_dir = '../../logo/'
+temp_img_dir = os.path.join(output_dir, 'temp_images/')
+
+# --- Criar diretórios se não existirem ---
+os.makedirs(output_dir, exist_ok=True)
+os.makedirs(temp_img_dir, exist_ok=True)
+os.makedirs(output_logo_dir, exist_ok=True)
+
+try:
+    # base 2
+
+    # --- Caminho completo para o arquivo ---
+    arquivo_path = os.path.join(data_dir, 'PM3283_BASE_TIPO2.xlsx')
+
+    # --- Passo 1: Verificar as planilhas disponíveis no arquivo ---
+    print(f"Analisando o arquivo: '{os.path.basename(arquivo_path)}'")
+    excel_file = pd.ExcelFile(arquivo_path)
+    sheet_names = excel_file.sheet_names
+    print(f"Planilhas encontradas: {sheet_names}")
+
+    # --- Passo 2: Carregar a planilha desejada ---
+    sheet_para_carregar = 'PM3283_BASE_TIPO2'
+    if sheet_para_carregar not in sheet_names:
+        print(f"AVISO: A planilha '{sheet_para_carregar}' não foi encontrada.")
+        sheet_para_carregar = sheet_names[0]
+        print(f"Carregando a primeira planilha como alternativa: '{sheet_para_carregar}'")
+
+    # Carregue o arquivo SEM o argumento 'decimal'. Isso força
+    # as colunas com formato misto a serem lidas como texto (object),
+    # o que é ideal para a nossa função de limpeza.
+    df2 = pd.read_excel(excel_file, sheet_name=sheet_para_carregar)
+    print(f"DataFrame 'df2' carregado da planilha '{sheet_para_carregar}'.")
+
+    # --- Passo 3: Limpar os dados carregados ---
+    df2 = limpar_e_converter_colunas_numericas2(df2)
+
+    # --- Passo 4: Verificar o resultado ---
+    print("\nVerificação do DataFrame final:")
+    df2.info()
+    print("\nPrimeiras 5 linhas do df2:")
+    print(df2.head())
+
+except FileNotFoundError:
+    print(f"\nERRO: Arquivo não encontrado. Verifique se o caminho está correto: '{arquivo_path}'")
+except Exception as e:
+    print(f"\nOcorreu um erro inesperado: {e}")
+
+
+try:
+    # base 1
+
+    # --- Caminho completo para o arquivo ---
+    arquivo_path = os.path.join(data_dir, 'PM3283_BASE_TIPO1.xlsx')
     
+    # --- Passo 1: Verificar as planilhas disponíveis no arquivo ---
+    print(f"Analisando o arquivo: '{os.path.basename(arquivo_path)}'")
+    excel_file = pd.ExcelFile(arquivo_path)
+    sheet_names = excel_file.sheet_names
+    print(f"Planilhas encontradas: {sheet_names}")
+
+    # --- Passo 2: Carregar a planilha desejada ---
+    # O código tentará carregar a planilha que você especificou.
+    # Se não encontrar, carregará a primeira da lista como alternativa.
+    sheet_para_carregar = 'PM3283_BASE_TIPO1'
+    if sheet_para_carregar not in sheet_names:
+        print(f"AVISO: A planilha '{sheet_para_carregar}' não foi encontrada.")
+        sheet_para_carregar = sheet_names[0] # Usa a primeira planilha disponível
+        print(f"Carregando a primeira planilha como alternativa: '{sheet_para_carregar}'")
+        
+    df1 = pd.read_excel(excel_file, sheet_name=sheet_para_carregar)
+    print(f"DataFrame 'df1' carregado da planilha '{sheet_para_carregar}'.")
+
+    # --- Passo 3: Limpar os dados carregados ---
+    # Aplica a função para corrigir os erros de formato de número (com vírgula)
+    df1 = limpar_e_converter_colunas_numericas(df1)
+
+    # --- Passo 4: Verificar o resultado ---
+    print("\nVerificação do DataFrame final:")
+    df1.info()
+    print("\nPrimeiras 5 linhas do df1:")
+    print(df1.head())
+
+except FileNotFoundError:
+    print(f"\nERRO: Arquivo não encontrado. Verifique se o caminho está correto: '{arquivo_path}'")
+except Exception as e:
+    print(f"\nOcorreu um erro inesperado: {e}")</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output"><pre>Analisando o arquivo: 'PM3283_BASE_TIPO2.xlsx'
+Planilhas encontradas: ['Sheet1', 'Sheet2', 'Sheet3']
+AVISO: A planilha 'PM3283_BASE_TIPO2' não foi encontrada.
+Carregando a primeira planilha como alternativa: 'Sheet1'
+
+Ocorreu um erro inesperado: could not convert string to float: '0,19617334.00000000'
+Analisando o arquivo: 'PM3283_BASE_TIPO1.xlsx'
+Planilhas encontradas: ['Sheet1', 'Sheet2', 'Sheet3']
+AVISO: A planilha 'PM3283_BASE_TIPO1' não foi encontrada.
+Carregando a primeira planilha como alternativa: 'Sheet1'
+DataFrame 'df1' carregado da planilha 'Sheet1'.
+Iniciando limpeza de colunas numéricas...
+Limpeza concluída.
+
+Verificação do DataFrame final:
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 66500 entries, 0 to 66499
+Columns: 1399 entries, D_R to N168E
+dtypes: float64(516), int64(603), object(280)
+memory usage: 709.8+ MB
+
+Primeiras 5 linhas do df1:
+   D_R    dig  nquest    cpd  telefone  inloco  cidade  uf  reg_vit  porte  ...       R166AH       R166AI       R166AJ       R166AK       R166AL     N168A      N168B      N168C      N168D      N168E
+0  NaN  11665       1  59521         2       2     100  SP        1      1  ...      1,00.00      1,00.00      1,00.00      1,00.00      1,00.00   0,50.00    0,50.00  222,00.00  222,00.00  222,00.00
+1  NaN  11665       2  59522         2       2     100  SP        1      1  ...  99999,00.00  99999,00.00  99999,00.00  99999,00.00  99999,00.00   0,50.00    0,50.00    0,50.00    0,50.00    0,50.00
+2  NaN  11665       4  59986         1       2     100  SP        1      1  ...      2,00.00  99999,00.00      1,00.00  99999,00.00      1,00.00   0,50.00    0,50.00  222,00.00  222,00.00  222,00.00
+3  NaN  11665       5  59682         1       2     100  SP        1      1  ...      1,00.00      1,00.00      1,00.00      1,00.00      1,00.00   0,50.00    0,50.00  222,00.00  222,00.00  222,00.00
+4  NaN  11665       6  59695         1       2     100  SP        1      1  ...      2,00.00      1,00.00      2,00.00      1,00.00      2,00.00   0,50.00  222,00.00  222,00.00  222,00.00  222,00.00
+
+[5 rows x 1399 columns]</pre></div>
+        </div>
+
+        <div class="cell">
+            <h2>Célula 2: Renomeação e Decodificação de Colunas</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>Esta célula realiza uma transformação crucial nos dados. Primeiro, ela usa um dicionário (`mapa_de_colunas_unificado`) para renomear as colunas do DataFrame, que originalmente têm nomes crípticos (ex: 'p5', 'cor'), para seus significados completos (ex: a pergunta completa do questionário). Em seguida, para variáveis categóricas importantes como estado civil, raça/cor, escolaridade e religião, ela cria novas colunas e usa outros dicionários para mapear os códigos numéricos para seus respectivos textos descritivos (ex: o código <strong>1</strong> na coluna de estado civil se torna a palavra <strong>'Solteiro(a)'</strong>).</p>
+                <h3>Motivo</h3>
+                <p>O objetivo é tornar o conjunto de dados legível e compreensível. Nomes de colunas como 'p182' não são intuitivos. Ao renomeá-los para a pergunta real, a análise se torna muito mais clara e menos propensa a erros. Da mesma forma, decodificar valores numéricos (1, 2, 3...) em categorias textuais é essencial para a criação de gráficos e relatórios que possam ser facilmente entendidos por qualquer pessoa, sem a necessidade de consultar um dicionário de dados a todo momento.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code># --- Renomear colunas do DataFrame df1 ---
+# Dicionário unificado com o mapeamento completo de colunas para perguntas
+mapa_de_colunas_unificado = {
+    # Bloco de Identificação e Dados Sociodemográficos
+    'p1': 'quantas pessoas com 16 anos ou mais moram na sua casa?',
+    'p1a': 'e quantas são mulheres com 16 anos ou mais?',
+    'p2': 'o(a) sr(a) poderia me dizer o primeiro nome e a idade de cada pessoa com 16 anos ou mais, incluindo o(a) sr(a), e começando do mais velho para o mais novo?',
+    'p2a': 'quantas pessoas com menos de 16 anos moram em sua casa?',
+    'p2b': 'por favor, me diga o nome e a idade das pessoas da sua casa com menos de 16 anos',
+    'p3': 'o(a) sr(a) sempre morou nesta cidade?',
+    'p4ano': 'há quanto tempo aproximadamente o(a) sr(a) mora nessa cidade?',
+    'p4mes': 'há quanto tempo aproximadamente o(a) sr(a) mora nessa cidade? (em meses)',
+
+    'p5': 'atualmente o(a) sr(a) é: solteiro(a); casado(a); amigado, amasiado (união consensual); separado(a) judicialmente / divorciado(a); separado (a) não oficialmente ou viúvo(a)?',
+
+    'cor': 'qual das seguintes categorias descreve melhor sua cor: branca; preta; parda; amarela, indígena ou outra?',
+
+    'escola': 'qual é o curso mais elevado que já concluiu? até que série o(a) sr(a) estudou?',
+
+    'p8': 'em relação à orientação sexual, o(a) sr(a) diria que é : heterossexual, homossexual, ou bissexual?',
+    'p9': 'atualmente, o(a) sr(a) trabalha? qual é a sua ocupação principal?',
+    'p10': 'o seu trabalho fica na região central da cidade?',
+    'p11': 'qual é aproximadamente a renda total mensal de todas as pessoas que moram neste domicílio, somando todas as fontes como salário, pensão, aposentadoria, benefícios sociais, aluguéis, bicos?',
+
+    'religiao': 'vou ler uma lista de religiões para que o(a) sr(a) me indique se alguma delas é a sua',
+
+    'idaa': 'idade_residente',
+    # ... (restante do dicionário)
+}
+
+df1 = df1.rename(columns= mapa_de_colunas_unificado)
+
+relacionamentos = {
+    1: 'Solteiro(a)',
+    2: 'Casado(a)',
+    3: 'Amigado(a)/(união consensual)',
+    4: 'Separado(a) judicialmente / Divorciado(a)',
+    5: 'Separado(a) não oficialmente ou Viúvo(a)'
+}
+coluna = 'atualmente o(a) sr(a) é: solteiro(a); casado(a); amigado, amasiado (união consensual); separado(a) judicialmente / divorciado(a); separado (a) não oficialmente ou viúvo(a)?'
+df1['estado_civil'] = df1[coluna].map(relacionamentos)
+
+raca_cor = {
+    1: 'Branca',
+    2: 'Preta',
+    3: 'Parda',
+    4: 'Amarela',
+    5: 'Indígena',
+    6: 'Outra'
+}
+coluna = 'qual das seguintes categorias descreve melhor sua cor: branca; preta; parda; amarela, indígena ou outra?'
+df1['raca_cor'] = df1[coluna].map(raca_cor)
+
+escolaridade = {
+    1:'Sem instrução',
+    2:'Ensino fundamental incompleto (1º Grau incomp.)',
+    3:'Ensino fundamental completo (1º Grau completo)',
+    4:'Ensino médio incompleto (2º Grau incomp.)',
+    5:'Ensino médio completo (2º Grau completo)',
+    6:'Superior incompleto (Universidade / Faculdade incompleto)',
+    7:'Superior completo (Universidade / Faculdade completo)',
+    8:'Pós-graduação',
+    9:'Não sabe/Não lembra'
+}
+coluna = 'qual é o curso mais elevado que já concluiu? até que série o(a) sr(a) estudou?'
+df1['escolaridade'] = df1[coluna].map(escolaridade)
+
+religioes = {
+    1: "Evangélica Pentecostal",
+    2: "Evangélica não Pentecostal",
+    3: "Umbanda",
+    4: "Candomblé ou outras religiões afro-brasileiras (Xangô, Batuque de Mina, Omoloco, Catimbó)",
+    5: "Espírita Kardecista, espiritualista",
+    6: "Católica",
+    7: "Judaica",
+    8: "Outra religião (Mórmon, Testemunha de Jeová, Seisho-No-Iê, Messiânica, Perfeita Liberdade, Budista, Santo daime, Esotérica)",
+    9: "Não tem religião/nenhuma",
+    10: "É ateu/não acredita em Deus"
+}
+
+coluna = 'vou ler uma lista de religiões para que o(a) sr(a) me indique se alguma delas é a sua'
+df1['religiao'] = df1[coluna].map(religioes)
+
+
+pd.set_option('display.max_rows', 30)
+pd.set_option('display.max_columns', None)
+display(df1)</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output">
+                <p><strong>(A saída desta célula é uma tabela HTML grande que exibe o DataFrame df1 após a renomeação e decodificação das colunas. Ela mostra as colunas com nomes descritivos e as novas colunas categóricas como 'estado_civil', 'raca_cor', etc.)</strong></p>
+            </div>
+        </div>
+        
+        <div class="cell">
+            <h2>Célula 3: Limpeza e Redução de Colunas</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>Esta célula executa uma limpeza pesada no DataFrame. Primeiro, ela remove automaticamente colunas que seguem um padrão específico (prefixos como 'p', 'r', 'x' e nomes curtos), que geralmente correspondem a códigos ou variáveis auxiliares do questionário. Depois, remove uma lista explícita de outras colunas de identificação ou técnicas que não são úteis para a análise. Por fim, substitui vários códigos numéricos usados para indicar dados faltantes ou não aplicáveis (como 96, 97, 99) por um valor único e padronizado (0).</p>
+                <h3>Motivo</h3>
+                <p>O objetivo é focar o conjunto de dados apenas nas variáveis relevantes para a análise, removendo o "ruído". Isso torna o DataFrame menor, mais rápido de processar e mais fácil de entender. A padronização dos valores ausentes é uma etapa crítica de pré-processamento para garantir que cálculos estatísticos (como médias) e visualizações não sejam distorcidos por esses códigos especiais.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code>df_short = df1
+
+# --- Lógica Principal ---
+
+# 1. Definir a lista de prefixos
+prefixos = ['p', 'r', 'n', 'm', 'x']
+
+# 2. Criar a lista de colunas a serem excluídas usando a lógica (prefixo E comprimento)
+colunas_para_excluir = [
+    col for col in df_short.columns
+    if col.lower().startswith(tuple(prefixos)) and len(col) <= 7
+]
+
+# 3. (Passo de Segurança) Imprimir a lista de colunas que serão removidas para verificação
+print("\n--- Colunas selecionadas para exclusão (seguindo as regras) ---")
+print(colunas_para_excluir)
+
+# 4. Excluir as colunas identificadas
+df_short = df_short.drop(columns=colunas_para_excluir)
+
+colunas_restantes_para_excluir = [
+    'errob', 'presente', 't139','erro1', 'errol', 'errop', 'comp0', 'erroa', 'erroc', 'errod', 'erroe', 'errof', 't4', 'quadro', 'tabela', 'sexotab', 'idatab', 'D_R', 'dig', 'cpd', 'telefone', 'inloco', 'cidade', 'uf', 'setor', 'sorteio', 'checagem', 'data', 'hini', 'hfim', 'consu', 'tipo', 'tvcor', 'carro', 'empreg', 'videodvd', 'banhe', 'gelad', 'freezer', 'escolac', 'tipo de moradia', 'cbrasil08', 'T1', 'TC', 'estado', 'FF1', 'FF2', 'FF3', 'FF4', 'FF5', 'CBRASIL08X', 'NCBRASIL08X', 'BCBRA081', 'CBRA08X', 'BCBRA08', 'CBRAESP', 'BCBRA08_E', 'BCBRA08_D', 'CBRAAC', 'CBRACDE', 'NCBRA08X', 'BSEXTAB', 'BIDA', 'BESTCIVI', 'BPEA', 'BCOR', 'ESCOLA1', 'BESC', 'B8', 'BRELIG', 'BCID'
+]
+
+# 5. Excluir colunas adicionais que não são prefixadas
+print("\n--- Colunas adicionais a serem removidas (não prefixadas) ---")
+print(colunas_restantes_para_excluir)
+df_short = df_short.drop(columns=colunas_restantes_para_excluir, errors='ignore')
+
+# --- Outra Limpeza ---
+# 1. Uma lista com todos os valores que você quer substituir.
+valores_errados = ['96', '97', '99', 96, 97, 99]
+# 2. Defina o novo valor.
+valor_correto = 0
+# 3. Use .replace() para fazer a substituição em todo o DataFrame
+df_short = df_short.replace(valores_errados, valor_correto)
+
+# --- Resultado Final ---
+print("\n--- DataFrame Final (Após a Limpeza) ---")
+print(df_short.head(5))
+print("\nColunas restantes:", df_short.columns.tolist())</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output"><pre># A saída mostra as listas de colunas que foram removidas e, ao final, a estrutura do DataFrame limpo, exibindo as primeiras 5 linhas e a lista final de colunas.
+</pre></div>
+        </div>
+
+        <div class="cell">
+            <h2>Célula 4: Verificação Visual dos Dados Limpos</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>Exibe as primeiras 10 linhas do DataFrame <code>df_short</code> após a limpeza e redução realizadas na célula anterior.</p>
+                <h3>Motivo</h3>
+                <p>Este é um passo de verificação crucial. Ele permite ao analista inspecionar visualmente o resultado das transformações, garantindo que as colunas corretas foram removidas, os nomes estão como esperado e os dados parecem consistentes antes de prosseguir para as etapas de análise e visualização mais complexas.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code>df_short.head(10)</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output">
+                <p><strong>(A saída é uma tabela HTML mostrando as 10 primeiras linhas do DataFrame limpo, permitindo uma rápida checagem da qualidade dos dados.)</strong></p>
+            </div>
+        </div>
+
+        <div class="cell">
+            <h2>Célula 5: Remodelagem dos Dados para Análise Demográfica</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>Esta célula realiza duas tarefas de preparação de dados. Primeiro, renomeia algumas colunas de perguntas longas para nomes mais curtos e práticos (ex: 'adultos_no_domicilio'). Segundo, e mais importante, ela transforma os dados de idade. O conjunto de dados original tinha múltiplas colunas para a idade de cada residente (<code>idade_residente</code>, <code>idade_residente1</code>, etc.). O código usa a função <code>melt</code> do Pandas para "derreter" todas essas colunas em uma única coluna chamada 'idade', criando uma longa lista com a idade de todos os residentes mencionados na pesquisa.</p>
+                <h3>Motivo</h3>
+                <p>A renomeação facilita a escrita do código de análise. A remodelagem (melting) é essencial para a análise demográfica. Para criar um histograma ou calcular estatísticas sobre a distribuição de idade de <strong>toda</strong> a população da amostra, os dados precisam estar em um formato "longo" (uma única coluna), em vez de um formato "largo" (múltiplas colunas). Esta etapa prepara os dados para uma visualização correta da pirâmide etária.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code># 1. Renomear colunas para nomes mais curtos e práticos
+mapeamento_nomes = {
+    'quantas pessoas com 16 anos ou mais moram na sua casa?': 'adultos_no_domicilio',
+    'e quantas são mulheres com 16 anos ou mais?': 'mulheres_adultas',
+    'quantas pessoas com menos de 16 anos moram em sua casa?': 'menores_no_domicilio',
+    'o(a) sr(a) diria que, nos últimos 12 meses, a criminalidade na sua cidade aumentou, diminuiu ou ficou igual?': 'percepcao_criminalidade'
+}
+df_short.rename(columns=mapeamento_nomes, inplace=True)
+
+
+# 2. Unificar as colunas de idade dos residentes
+colunas_idade = [
+    'idade_residente', 'idade_residente1', 'idade_residente2', 'idade_residente3', 
+    'idade_residente4', 'idade_residente5', 'idade_residente6', 'idade_residente7', 
+    'idade_residente8', 'idade_residente9', 'idade_residente10', 'idade_residente11'
+]
+
+# Usamos melt para transformar as colunas de idade de formato largo para longo
+# E removemos valores nulos que representam casas com menos residentes
+idades_residentes = df_short[colunas_idade].melt(var_name='residente_num', value_name='idade').dropna()
+
+# Agora temos uma Series chamada 'idades_residentes.idade' pronta para ser plotada!
+print("Processamento de idades concluído. Total de residentes analisados:", len(idades_residentes))</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output"><pre>Processamento de idades concluído. Total de residentes analisados: 797997</pre></div>
+        </div>
+
+        <div class="cell">
+            <h2>Célula 6: Geração de Gráficos de Análise Exploratória</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>Esta é a principal célula de visualização. Ela define um conjunto de funções auxiliares para criar diferentes tipos de gráficos (barras, pizza, histograma, boxplot) de forma padronizada. Em seguida, utiliza essas funções para gerar uma série de visualizações que exploram o perfil demográfico dos entrevistados (escolaridade, estado civil, raça, religião, idade), a distribuição de renda e a correlação entre variáveis do domicílio. Cada gráfico gerado é automaticamente salvo como um arquivo de imagem PNG em um diretório temporário, e sua descrição é armazenada para uso posterior.</p>
+                <h3>Motivo</h3>
+                <p>A Análise Exploratória de Dados (EDA) através de gráficos é a melhor maneira de entender as características e os padrões ocultos no conjunto de dados. Em vez de olhar para números brutos, os gráficos permitem identificar tendências (ex: renda aumenta com escolaridade), distribuições (ex: a maioria dos entrevistados é casada) e relações entre variáveis de forma intuitiva. Automatizar a criação e o salvamento dos gráficos com funções reutilizáveis torna o processo eficiente e garante consistência visual em todo o relatório.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code># Código das funções de plotagem (plotar_barras, plotar_pizza, etc.) e chamadas para gerar os gráficos.
+# (O código completo está no arquivo do notebook)
+# Exemplo de chamada:
+plotar_barras(df_short, 'escolaridade', 'Distribuição por Escolaridade', 'Descrição do gráfico...')
+plotar_pizza(df_short, 'religiao', 'Distribuição por Religião', 'Descrição do gráfico...')
+# ... e assim por diante para todos os gráficos.
+</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output"><pre>Ambiente visual configurado com sucesso.
+Gráfico salvo: ../../analises/temp_images/distribuição_por_escolaridade.png
+Descrição: Este gráfico de barras horizontais detalha o perfil educacional dos entrevistados...
+
+Gráfico salvo: ../../analises/temp_images/distribuição_por_estado_civil.png
+Descrição: O gráfico de barras exibe a distribuição do estado civil dos participantes...
+
+Gráfico salvo: ../../analises/temp_images/distribuição_por_raça-cor.png
+Descrição: Esta visualização apresenta o perfil de raça/cor autodeclarada pelos entrevistados...
+
+#... (e assim por diante para todos os gráficos gerados)
+</pre></div>
+        </div>
+
+        <div class="cell">
+            <h2>Célula 7: Preparação de Dados para Análise de Criminalidade</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>Cria um novo DataFrame, <code>df_crime</code>, contendo apenas um subconjunto de colunas relacionadas à vitimização e percepção de segurança. Durante este processo, as colunas selecionadas são renomeadas para nomes mais curtos e diretos (ex: 'medo_assalto_vizinhanca'). Adicionalmente, cria colunas "_texto" (ex: 'confianca_pm_texto') que traduzem os códigos numéricos das respostas em texto claro ('Sim', 'Não', 'Confia Muito', etc.), que serão usados como legendas nos gráficos.</p>
+                <h3>Motivo</h3>
+                <p>Isolar os dados de interesse em um DataFrame separado simplifica a análise focada em criminalidade, evitando a complexidade do conjunto de dados completo. A criação de colunas de texto a partir de códigos numéricos é uma prática de preparação essencial para garantir que as visualizações subsequentes sejam autoexplicativas e fáceis de interpretar, melhorando a comunicação dos resultados.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code># Dicionário para renomear as colunas de criminalidade e demografia
+mapa_nomes_crime = {
+    'o(a) sr(a) diria que, nos últimos 12 meses, a criminalidade na sua cidade aumentou, diminuiu ou ficou igual?': 'percepcao_crime_cidade',
+    'pensando na sua vizinhança, o(a) sr.(a) teme ser assaltado(a)?': 'medo_assalto_vizinhanca',
+    # ... (restante do mapeamento)
+}
+
+# (Lógica para criar e renomear o df_crime)
+df_crime = df_short.rename(columns=mapa_nomes_crime)
+# ...
+
+# Mapeamento para texto
+mapa_sim_nao = {1: 'Sim', 2: 'Não', 0: 'Não Respondeu'}
+mapa_confianca = {1: 'Confia Muito', 2: 'Confia um Pouco', 3: 'Não Confia', 0: 'Não Respondeu'}
+
+df_crime['medo_assalto_vizinhanca_texto'] = df_crime['medo_assalto_vizinhanca'].apply(lambda x: mapa_sim_nao.get(x, x))
+df_crime['confianca_pm_texto'] = df_crime['confianca_pm'].apply(lambda x: mapa_confianca.get(x, x))
+
+print("Colunas de texto criadas para melhorar a visualização.")
+df_crime.head(10)</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output">
+                <p><strong>(A saída é uma tabela HTML mostrando as 10 primeiras linhas do novo DataFrame `df_crime`, já com as colunas renomeadas e as novas colunas de texto prontas para visualização.)</strong></p>
+            </div>
+        </div>
+
+        <div class="cell">
+            <h2>Célula 8: Visualização e Análise de Dados de Vitimização</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>Esta célula foca na criação de gráficos específicos sobre criminalidade. Ela plota a distribuição de respostas sobre o medo de assalto e a confiança na polícia. Em seguida, calcula a frequência de cada tipo de vitimização e gera um "Ranking de Vitimização" para mostrar quais incidentes são mais comuns. Também cria um gráfico cruzando o medo de assalto com o nível de escolaridade. Por fim, calcula um "Índice de Vitimização" para cada pessoa (o número de tipos de crimes diferentes que ela sofreu) e analisa como esse índice se distribui entre os diferentes níveis de escolaridade.</p>
+                <h3>Motivo</h3>
+                <p>O objetivo é aprofundar a análise para responder a perguntas específicas sobre segurança e vitimização. Os gráficos ajudam a entender a percepção pública de segurança, a confiança nas instituições e a prevalência de diferentes crimes. A análise cruzada com a escolaridade busca identificar se fatores socioeconômicos (dos quais a escolaridade é um indicador) estão correlacionados com o medo do crime ou com a probabilidade de ser vítima de múltiplos incidentes, fornecendo insights valiosos para políticas públicas.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code># (Código das funções de plotagem e lógica para análise de crime)
+# Exemplo de chamada:
+plotar_respostas_unicas(
+    df_crime, 
+    'medo_assalto_vizinhanca_texto', 
+    'Medo de ser Assaltado(a) na Vizinhança',
+    'Descrição do gráfico...'
+)
+
+# Lógica para criar o ranking de vitimização
+# ...
+
+# Lógica para criar o Índice de Vitimização e o boxplot
+# ...
+</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output"><pre>Gráfico salvo: ../../analises/temp_images/medo_de_ser_assaltado(a)_na_vizinhança.png
+Descrição: O gráfico exibe a contagem total de respostas à pergunta sobre o medo de ser assaltado na vizinhança...
+
+Gráfico salvo: ../../analises/temp_images/nível_de_confiança_na_polícia_militar.png
+Descrição: Esta visualização apresenta a distribuição das respostas sobre o nível de confiança na Polícia Militar...
+
+#... (e assim por diante para os outros gráficos de crime)
+</pre></div>
+        </div>
+
+        <div class="cell">
+            <h2>Células 9 e 10: Geração do Relatório Final em PDF</h2>
+            <div class="explanation">
+                <h3>O que faz?</h3>
+                <p>A célula final é o culminar do projeto. Ela utiliza a biblioteca FPDF para gerar programaticamente um relatório completo em formato PDF. O código define uma estrutura de documento com cabeçalho e rodapé personalizados. Em seguida, ele monta o relatório em seções: uma capa com o logo do projeto, um sumário gerado automaticamente, uma página dedicada para cada um dos gráficos criados anteriormente (incluindo o título, objetivo, descrição e a imagem do gráfico), e, por fim, uma página de conclusão com uma análise consolidada. Após gerar o PDF, o script apaga as pastas temporárias de imagens e logos.</p>
+                <h3>Motivo</h3>
+                <p>Esta etapa automatiza a comunicação dos resultados. Em vez de criar um relatório manualmente, o que seria demorado e propenso a erros, o script monta um documento profissional e padronizado. Isso garante que a análise possa ser facilmente compartilhada com stakeholders que não são técnicos. A capacidade de regenerar o relatório inteiro com um único comando é extremamente eficiente, especialmente se os dados ou a análise precisarem ser atualizados.</p>
+            </div>
+            <h3>Código-fonte:</h3>
+            <pre><code>from fpdf import FPDF
+from datetime import datetime
+import requests
+from PIL import Image
+from io import BytesIO
+import shutil
+
+# Definição da classe PDF com header e footer
+class PDF(FPDF):
+    # ... (código da classe)
+
+# Função para adicionar a capa
+def add_capa(pdf):
+    # ... (código para desenhar a capa)
+
+# Função para adicionar o sumário
+def add_sumario(pdf, graficos_info):
+    # ... (código para gerar o sumário)
+
+# Função para adicionar a página de cada gráfico
+def add_grafico(pdf, item):
+    # ... (código para adicionar título, textos e a imagem do gráfico)
+
+# Função para adicionar a análise final
+def add_analise_consolidada(pdf):
+    # ... (código para escrever o texto de conclusão)
+
+
+# --- INICIALIZAÇÃO E EXECUÇÃO ---
+pdf = PDF()
+pdf.set_auto_page_break(auto=True, margin=15)
+
+add_capa(pdf)
+add_sumario(pdf, graficos_info)
+
+for item in graficos_info:
+    add_grafico(pdf, item)
+
+add_analise_consolidada(pdf)
+
+# --- SALVAR PDF ---
+caminho_final_pdf = os.path.join(output_dir, 'Relatorio_Analise_Vitimizacao_CRISP.pdf')
+pdf.output(caminho_final_pdf)
+print(f"Relatório PDF gerado com sucesso em: {caminho_final_pdf}")
+# ... (código para remover pastas temporárias)
+</code></pre>
+            <h3>Saída da Célula:</h3>
+            <div class="output"><pre>Relatório PDF gerado com sucesso em: ../../analises/Relatorio_Analise_Vitimizacao_CRISP.pdf</pre></div>
+        </div>
+
+    </div>
+
 </body>
 </html>

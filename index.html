@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Repositório central de dados e análises sobre vitimização e percepção de segurança no Brasil, com foco em gestão da informação científica e reprodutibilidade.">
-    <meta name="keywords" content="vitimização, segurança pública, análise de dados, criminalidade, Brasil, pesquisa, CRISP, PNAD">
+    <meta name="description"
+        content="Repositório central de dados e análises sobre vitimização e percepção de segurança no Brasil, com foco em gestão da informação científica e reprodutibilidade.">
+    <meta name="keywords"
+        content="vitimização, segurança pública, análise de dados, criminalidade, Brasil, pesquisa, CRISP, PNAD">
     <title>Repositório de Análises sobre Vitimização e Segurança</title>
     <link rel="stylesheet" href="web/css/style.css">
     <style>
@@ -22,6 +25,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <main class="container">
@@ -44,15 +48,20 @@
 
         <section id="introducao" aria-labelledby="titulo-introducao">
             <h2 id="titulo-introducao">Introdução</h2>
-            <p>O presente repositório tem por finalidade centralizar, processar e analisar dados de vitimização e percepção de segurança, com foco especial em pesquisas realizadas no Brasil. O projeto foi concebido para assegurar a gestão da informação científica e a reprodutibilidade das análises, em conformidade com as melhores práticas de organização de código e dados.</p>
-            <p>Nesta plataforma, são disponibilizados desde os microdados brutos e scripts de tratamento (ETL) até as análises estatísticas e os relatórios consolidados.</p>
+            <p>O presente repositório tem por finalidade centralizar, processar e analisar dados de vitimização e
+                percepção de segurança, com foco especial em pesquisas realizadas no Brasil. O projeto foi concebido
+                para assegurar a gestão da informação científica e a reprodutibilidade das análises, em conformidade com
+                as melhores práticas de organização de código e dados.</p>
+            <p>Nesta plataforma, são disponibilizados desde os microdados brutos e scripts de tratamento (ETL) até as
+                análises estatísticas e os relatórios consolidados.</p>
         </section>
 
         <section id="metodologia" aria-labelledby="titulo-metodologia">
             <h2 id="titulo-metodologia">Metodologia e Estrutura Técnica</h2>
 
             <h3>Estrutura do Repositório</h3>
-            <p>O projeto está organizado na seguinte estrutura de diretórios para segregar de forma clara os dados, códigos e resultados:</p>
+            <p>O projeto está organizado na seguinte estrutura de diretórios para segregar de forma clara os dados,
+                códigos e resultados:</p>
             <pre>
 /analises_vitimizacao
 ├── dados_brutos/
@@ -73,11 +82,15 @@
             </pre>
             <ul>
                 <li><b>dados_brutos/</b>: Contém os dados originais e imutáveis, conforme foram coletados.</li>
-                <li><b>dados_tratados/</b>: Armazena os dados após o processo de limpeza e tratamento, prontos para a análise.</li>
-                <li><b>scripts/</b>: Abriga o código-fonte, dividido em tratamento (ETL) e análise (modelagem e visualização).</li>
+                <li><b>dados_tratados/</b>: Armazena os dados após o processo de limpeza e tratamento, prontos para a
+                    análise.</li>
+                <li><b>scripts/</b>: Abriga o código-fonte, dividido em tratamento (ETL) e análise (modelagem e
+                    visualização).</li>
                 <li><b>analises/</b>: Guarda os resultados finais, como relatórios (.pdf) e gráficos.</li>
-                <li><b>documentos/</b>: Inclui documentação de apoio, como os questionários originais das pesquisas.</li>
-                <li><b>metadados/</b>: Contém dicionários de variáveis, logs de integração e outra documentação técnica.</li>
+                <li><b>documentos/</b>: Inclui documentação de apoio, como os questionários originais das pesquisas.
+                </li>
+                <li><b>metadados/</b>: Contém dicionários de variáveis, logs de integração e outra documentação técnica.
+                </li>
             </ul>
 
             <h3>Acesso e Configuração do Ambiente</h3>
@@ -86,11 +99,17 @@
                 <li><b>Clonagem do Repositório:</b> O repositório pode ser clonado por meio do seguinte comando Git:
                     <pre>git clone https://github.com/vitimizacaocrisp/Repositorio_pesquisas</pre>
                 </li>
-                <li><b>Acesso aos Dados Brutos:</b> Os dados originais, devido ao seu volume, não são versionados diretamente no repositório. O download pode ser realizado a partir do seguinte link:
-                    <br><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank">Acessar Dados no Google Drive</a>
+                <li><b>Acesso aos Dados Brutos:</b> Os dados originais, devido ao seu volume, não são versionados
+                    diretamente no repositório. O download pode ser realizado a partir do seguinte link:
+                    <br><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing"
+                        target="_blank">Acessar Dados no Google Drive</a>
                 </li>
-                <li><b>Organização dos Dados:</b> Os arquivos baixados devem ser descompactados e alocados na pasta <code>/dados_brutos/</code>.</li>
-                <li><b>Instalação de Dependências:</b> As bibliotecas Python necessárias para a execução dos scripts estão listadas no arquivo <code>pyproject.toml</code>. A instalação pode ser feita com o pip, utilizando um arquivo <code>requirements.txt</code>.
+                <li><b>Organização dos Dados:</b> Os arquivos baixados devem ser descompactados e alocados na pasta
+                    <code>/dados_brutos/</code>.
+                </li>
+                <li><b>Instalação de Dependências:</b> As bibliotecas Python necessárias para a execução dos scripts
+                    estão listadas no arquivo <code>pyproject.toml</code>. A instalação pode ser feita com o pip,
+                    utilizando um arquivo <code>requirements.txt</code>.
                     <pre>pip install -r requirements.txt</pre>
                 </li>
             </ol>
@@ -98,21 +117,31 @@
             <h3>Fluxo de Trabalho (Workflow)</h3>
             <p>O fluxo de trabalho foi desenhado para garantir clareza e reprodutibilidade:</p>
             <ul>
-                <li><strong>Coleta e Armazenamento:</strong> Os dados brutos são inseridos no diretório <code>dados_brutos/</code> e permanecem inalterados.</li>
-                <li><strong>Tratamento (ETL):</strong> Scripts localizados em <code>scripts/tratamento/</code> são executados para limpar, padronizar e unificar os dados.</li>
-                <li><strong>Armazenamento de Dados Tratados:</strong> Os datasets resultantes são salvos em <code>dados_tratados/</code>, nos formatos CSV e Excel.</li>
-                <li><strong>Análise:</strong> Scripts em <code>scripts/analise/</code> utilizam os dados tratados para gerar modelagens, visualizações e insights.</li>
-                <li><strong>Resultados:</strong> Relatórios, dashboards e gráficos finais são armazenados no diretório <code>analises/</code>.</li>
+                <li><strong>Coleta e Armazenamento:</strong> Os dados brutos são inseridos no diretório
+                    <code>dados_brutos/</code> e permanecem inalterados.
+                </li>
+                <li><strong>Tratamento (ETL):</strong> Scripts localizados em <code>scripts/tratamento/</code> são
+                    executados para limpar, padronizar e unificar os dados.</li>
+                <li><strong>Armazenamento de Dados Tratados:</strong> Os datasets resultantes são salvos em
+                    <code>dados_tratados/</code>, nos formatos CSV e Excel.
+                </li>
+                <li><strong>Análise:</strong> Scripts em <code>scripts/analise/</code> utilizam os dados tratados para
+                    gerar modelagens, visualizações e insights.</li>
+                <li><strong>Resultados:</strong> Relatórios, dashboards e gráficos finais são armazenados no diretório
+                    <code>analises/</code>.
+                </li>
             </ul>
 
             <h3>Estratégia de Branches</h3>
             <p>O repositório utiliza duas branches principais para diferentes finalidades de desenvolvimento:</p>
             <ul>
-                <li><strong>notebook:</strong> Contém arquivos <code>.ipynb</code> (Jupyter Notebooks) utilizados para análise exploratória, prototipagem e desenvolvimento interativo.</li>
-                <li><strong>script:</strong> Contém arquivos <code>.py</code> (Python scripts) otimizados para produção, automação e reprodutibilidade de código.</li>
+                <li><strong>notebook:</strong> Contém arquivos <code>.ipynb</code> (Jupyter Notebooks) utilizados para
+                    análise exploratória, prototipagem e desenvolvimento interativo.</li>
+                <li><strong>script:</strong> Contém arquivos <code>.py</code> (Python scripts) otimizados para produção,
+                    automação e reprodutibilidade de código.</li>
             </ul>
         </section>
-        
+
         <section id="scripts" aria-labelledby="titulo-scripts">
             <h2 id="titulo-scripts">Descrição dos Scripts de Processamento e Análise</h2>
             <h3>Scripts de Tratamento</h3>
@@ -128,33 +157,58 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><b><a href="web/pages/notebooks/TRATAMENTO_belo_horrizonte_2002.html">belo_horrizonte_2002.ipynb</a></b></td>
+                            <td><b><a
+                                        href="web/pages/notebooks/TRATAMENTO_belo_horrizonte_2002.html">belo_horrizonte_2002.ipynb</a></b>
+                            </td>
                             <td><code>indices_violencia.csv</code><br><code>Vitimizacao_UP_27.csv</code></td>
                             <td><code>belo_horrizonte_2002.csv</code><br><code>belo_horrizonte_2002.xlsx</code></td>
-                            <td><p>Realizada a junção de dois arquivos CSV. Foram removidas 52 colunas nulas do primeiro arquivo e 114 do segundo. Valores nulos em colunas numéricas foram imputados com 0. Ao final, os dataframes tratados foram unificados e exportados para os formatos CSV e XLSX.</p></td>
+                            <td>
+                                <p>Realizada a junção de dois arquivos CSV. Foram removidas 52 colunas nulas do primeiro
+                                    arquivo e 114 do segundo. Valores nulos em colunas numéricas foram imputados com 0.
+                                    Ao final, os dataframes tratados foram unificados e exportados para os formatos CSV
+                                    e XLSX.</p>
+                            </td>
                         </tr>
                         <tr>
-                            <td><b><a href="web/pages/notebooks/TRATAMENTO_escolas_2006.html">escolas_2006.ipynb</a></b></td>
+                            <td><b><a href="web/pages/notebooks/TRATAMENTO_escolas_2006.html">escolas_2006.ipynb</a></b>
+                            </td>
                             <td><code>alunos_2006.csv</code><br><code>professores_2006.csv</code></td>
-                            <td><code>escolas_alunos_2006.csv</code><br><code>escolas_alunos_2006.xlsx</code><br><code>escolas_professores_2006.csv</code><br><code>escolas_professores_2006.xlsx</code></td>
-                            <td>Dois conjuntos de dados (alunos e professores) foram carregados e tratados separadamente. Em ambos, valores numéricos nulos foram preenchidos com 0, textos e nomes de colunas foram convertidos para minúsculas e colunas inteiramente nulas ou com um único valor irrelevante foram removidas. Os nomes das colunas foram padronizados, e os dataframes resultantes foram salvos em CSV e XLSX.</td>
+                            <td><code>escolas_alunos_2006.csv</code><br><code>escolas_alunos_2006.xlsx</code><br><code>escolas_professores_2006.csv</code><br><code>escolas_professores_2006.xlsx</code>
+                            </td>
+                            <td>Dois conjuntos de dados (alunos e professores) foram carregados e tratados
+                                separadamente. Em ambos, valores numéricos nulos foram preenchidos com 0, textos e nomes
+                                de colunas foram convertidos para minúsculas e colunas inteiramente nulas ou com um
+                                único valor irrelevante foram removidas. Os nomes das colunas foram padronizados, e os
+                                dataframes resultantes foram salvos em CSV e XLSX.</td>
                         </tr>
                         <tr>
-                            <td><b><a href="web/pages/notebooks/TRATAMENTO_percepcao_medoMG_2008.html">percepcao_medoMG_2008.ipynb</a></b></td>
-                            <td><code>amostra_BH.xls</code><br><code>amostra_MG.xls</code><br><code>populacao_idade_sexo.csv</code></td>
+                            <td><b><a
+                                        href="web/pages/notebooks/TRATAMENTO_percepcao_medoMG_2008.html">percepcao_medoMG_2008.ipynb</a></b>
+                            </td>
+                            <td><code>amostra_BH.xls</code><br><code>amostra_MG.xls</code><br><code>populacao_idade_sexo.csv</code>
+                            </td>
                             <td><code>percepcao_medoMG.csv</code><br><code>percepcao_medoMG.xlsx</code></td>
-                            <td>Três arquivos de fontes distintas foram carregados. Em cada um, foram removidas linhas duplicadas e colunas nulas. Os valores numéricos nulos foram imputados com 0. Após o tratamento individual, os três dataframes foram consolidados em um único arquivo, exportado para CSV e XLSX.</td>
+                            <td>Três arquivos de fontes distintas foram carregados. Em cada um, foram removidas linhas
+                                duplicadas e colunas nulas. Os valores numéricos nulos foram imputados com 0. Após o
+                                tratamento individual, os três dataframes foram consolidados em um único arquivo,
+                                exportado para CSV e XLSX.</td>
                         </tr>
                         <tr>
                             <td><b><a href="web/pages/notebooks/TRATAMENTO_PNAD_2009.html">PNAD_2009.ipynb</a></b></td>
-                            <td>Múltiplos arquivos <code>.xls</code> de diversas pastas (agressao, furto, roubo, etc.)</td>
-                            <td>Múltiplos arquivos <code>.csv</code> e <code>.xlsx</code>, organizados em pastas por categoria.</td>
-                            <td>O script processou um grande volume de arquivos <code>.xls</code>. Para cada arquivo, os dados foram lidos, colunas renomeadas para maior clareza, nomes de colunas e índices padronizados, e os dados convertidos para tipos numéricos. Os dataframes tratados foram exportados como arquivos individuais (CSV e XLSX) e como um único arquivo XLSX por categoria, contendo múltiplas abas.</td>
+                            <td>Múltiplos arquivos <code>.xls</code> de diversas pastas (agressao, furto, roubo, etc.)
+                            </td>
+                            <td>Múltiplos arquivos <code>.csv</code> e <code>.xlsx</code>, organizados em pastas por
+                                categoria.</td>
+                            <td>O script processou um grande volume de arquivos <code>.xls</code>. Para cada arquivo, os
+                                dados foram lidos, colunas renomeadas para maior clareza, nomes de colunas e índices
+                                padronizados, e os dados convertidos para tipos numéricos. Os dataframes tratados foram
+                                exportados como arquivos individuais (CSV e XLSX) e como um único arquivo XLSX por
+                                categoria, contendo múltiplas abas.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            
+
             <h3>Scripts de Análise</h3>
             <div class="table-responsive">
                 <table class="table-description-wide">
@@ -168,22 +222,57 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><b><a href="web/pages/notebooks/ANALISE_escolas_2006.html">escolas_2006.ipynb</a></b></td>
+                            <td><b><a href="web/pages/notebooks/ANALISE_escolas_2006.html">escolas_2006.ipynb</a></b>
+                            </td>
                             <td><code>escolas_alunos_2006.csv</code><br><code>escolas_professores_2006.csv</code></td>
-                            <td><code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf">relatorio_final_escolas_2006.pdf</a></code></td>
-                            <td><p>O notebook carrega os dados tratados de alunos e professores, realizando um pré-processamento para padronizar colunas demográficas (sexo, idade, raça/cor). Gera análises visuais sobre a distribuição demográfica e a satisfação com o aprendizado. Ao final, compila os gráficos e as análises em um relatório consolidado em PDF.</p></td>
+                            <td><code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf">relatorio_final_escolas_2006.pdf</a></code>
+                            </td>
+                            <td>
+                                <p>O notebook carrega os dados tratados de alunos e professores, realizando um
+                                    pré-processamento para padronizar colunas demográficas (sexo, idade, raça/cor). Gera
+                                    análises visuais sobre a distribuição demográfica e a satisfação com o aprendizado.
+                                    Ao final, compila os gráficos e as análises em um relatório consolidado em PDF.</p>
+                            </td>
                         </tr>
                         <tr>
-                            <td><b><a href="web/pages/notebooks/ANALISE_percepcao_social.html">percepcao_social.ipynb</a></b></td>
+                            <td><b><a
+                                        href="web/pages/notebooks/ANALISE_percepcao_social.html">percepcao_social.ipynb</a></b>
+                            </td>
                             <td><code>belo_horrizonte_2002.xlsx</code><br><code>percepcao_medoMG.xlsx</code></td>
-                            <td><code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">relatorio_completo_percepcao_social.pdf</a></code></td>
-                            <td>Este script combina dois conjuntos de dados sobre percepção de segurança. Prepara os dados combinados, focando em colunas como sexo, faixa etária e estrato do bairro. Gera análises sobre a percepção de risco (roubo, agressão, sequestro), segmentadas por demografia. Também cria uma matriz de correlação e exporta todas as visualizações para um relatório em PDF.</td>
+                            <td><code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">relatorio_completo_percepcao_social.pdf</a></code>
+                            </td>
+                            <td>Este script combina dois conjuntos de dados sobre percepção de segurança. Prepara os
+                                dados combinados, focando em colunas como sexo, faixa etária e estrato do bairro. Gera
+                                análises sobre a percepção de risco (roubo, agressão, sequestro), segmentadas por
+                                demografia. Também cria uma matriz de correlação e exporta todas as visualizações para
+                                um relatório em PDF.</td>
                         </tr>
                         <tr>
                             <td><b><a href="web/pages/notebooks/ANALISE_PNAD_2009.html">PNAD_2009.ipynb</a></b></td>
                             <td>Múltiplos arquivos <code>.xls</code> da PNAD 2009.</td>
-                            <td>Gerado: <code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_pnad_2009.pdf">relatorio_pnad_2009.pdf</a></code>. A presente análise examina a estabilidade das estatísticas de vitimização no Brasil, utilizando o Coeficiente de Variação (CV) para medir o grau de imprecisão e inconstância dos dados. O estudo avalia como a confiabilidade dessas estimativas varia de acordo com o perfil demográfico da vítima (sexo, raça, idade), o tipo de crime e a localidade.</td>
-                            <td>O notebook carrega e trata um grande volume de arquivos <code>.xls</code> da PNAD 2009.[INCOMPLETO]</td>
+                            <td>Gerado:
+                                <code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_pnad_2009.pdf">relatorio_pnad_2009.pdf</a></code>.
+                                A presente análise examina a estabilidade das estatísticas de vitimização no Brasil,
+                                utilizando o Coeficiente de Variação (CV) para medir o grau de imprecisão e inconstância
+                                dos dados. O estudo avalia como a confiabilidade dessas estimativas varia de acordo com
+                                o perfil demográfico da vítima (sexo, raça, idade), o tipo de crime e a localidade.
+                            </td>
+                            <td>O notebook carrega e trata um grande volume de arquivos <code>.xls</code> da PNAD
+                                2009.[INCOMPLETO]</td>
+                        </tr>
+                        <tr>
+                            <td><b><a
+                                        href="web/pages/notebooks/ANALISE_datafolha_2010.html">datafolha_2010.ipynb</a></b>
+                            </td>
+                            <td><code>PM3283_BASE_TIPO1.xlsx</code></td>
+                            <td><code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/Relatorio_Analise_Vitimizacao_CRISP.pdf">Relatorio_Analise_Vitimizacao_CRISP.pdf</a></code>
+                            </td>
+                            <td>O script carrega dados brutos da pesquisa Datafolha de 2010, realizando uma limpeza
+                                profunda para corrigir formatos numéricos e remover colunas irrelevantes. As colunas são
+                                renomeadas de códigos para perguntas descritivas, e variáveis categóricas (como
+                                escolaridade e raça) são decodificadas para texto legível. Por fim, gera diversas
+                                visualizações para análise demográfica e de vitimização, compilando automaticamente
+                                todos os resultados em um relatório PDF detalhado.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -193,15 +282,19 @@
         <section id="documentacao" aria-labelledby="titulo-documentacao">
             <h2 id="titulo-documentacao">Metadados e Documentação Técnica</h2>
             <ul>
-                <li><b>Metadados por Fonte:</b> Documentação detalhada sobre a origem, o escopo e as características de cada conjunto de dados.</li>
-                <li><b>Dicionário de Variáveis Unificado:</b> Arquivo <code>dicionario_unificado.csv</code> contendo a descrição padronizada de todas as variáveis utilizadas no projeto.</li>
-                <li><b>Log de Integração:</b> Histórico detalhado das operações de combinação, transformação e enriquecimento de dados.</li>
+                <li><b>Metadados por Fonte:</b> Documentação detalhada sobre a origem, o escopo e as características de
+                    cada conjunto de dados.</li>
+                <li><b>Dicionário de Variáveis Unificado:</b> Arquivo <code>dicionario_unificado.csv</code> contendo a
+                    descrição padronizada de todas as variáveis utilizadas no projeto.</li>
+                <li><b>Log de Integração:</b> Histórico detalhado das operações de combinação, transformação e
+                    enriquecimento de dados.</li>
             </ul>
         </section>
 
         <section id="analises" aria-labelledby="titulo-analises">
             <h2 id="titulo-analises">Projetos de Análise e Resultados</h2>
-            <p>A tabela a seguir detalha o status dos projetos de análise, indicando os concluídos (✅), os dados utilizados, os resultados gerados e as análises futuras planejadas (⬜).</p>
+            <p>A tabela a seguir detalha o status dos projetos de análise, indicando os concluídos (✅), os dados
+                utilizados, os resultados gerados e as análises futuras planejadas (⬜).</p>
             <div class="table-responsive">
                 <table>
                     <thead>
@@ -218,25 +311,33 @@
                         <tr>
                             <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
                             <td><strong>Violência Escolar</strong></td>
-                            <td>Panorama sobre o perfil e a percepção de alunos e professores em escolas de Minas Gerais (2006).</td>
+                            <td>Panorama sobre o perfil e a percepção de alunos e professores em escolas de Minas Gerais
+                                (2006).</td>
                             <td><code>alunos_2006.csv</code>, <code>professores_2006.csv</code></td>
-                            <td>A análise inclui distribuição demográfica, experiência docente e satisfação discente.</td>
+                            <td>A análise inclui distribuição demográfica, experiência docente e satisfação discente.
+                            </td>
                             <td class="file-links">
-                                <a href="web/pages/analise_escolas_2006.html">PDF</a>, 
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_final_2006.py">.py</a>, 
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb">.ipynb</a>
+                                <a href="web/pages/analise_escolas_2006.html">Análise HTML</a>,
+                                <a
+                                    href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_final_2006.py">.py</a>,
+                                <a
+                                    href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb">.ipynb</a>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
                             <td><strong>Percepção Social</strong></td>
-                            <td>Análise da percepção de risco de crimes (roubo, agressão, sequestro) em Belo Horizonte e Minas Gerais.</td>
+                            <td>Análise da percepção de risco de crimes (roubo, agressão, sequestro) em Belo Horizonte e
+                                Minas Gerais.</td>
                             <td><code>belo_horrizonte_2002.xlsx</code>, <code>percepcao_medoMG.xlsx</code></td>
-                            <td>Os dados foram segmentados por sexo, tipo de bairro e faixa etária, revelando diferenças na experiência do medo.</td>
+                            <td>Os dados foram segmentados por sexo, tipo de bairro e faixa etária, revelando diferenças
+                                na experiência do medo.</td>
                             <td class="file-links">
-                                <a href="web/pages/relatorio_percepcao_social.html">PDF</a>, 
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>, 
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
+                                <a href="web/pages/relatorio_percepcao_social.html">Análise HTML</a>,
+                                <a
+                                    href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
+                                <a
+                                    href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
                             </td>
                         </tr>
                         <tr>
@@ -255,7 +356,7 @@
                             <td>Analisar proporções para compreender a natureza da criminalidade.</td>
                             <td class="file-links"><a href="web/pages/analise_violencia_urbana_crimes.html">-</a></td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
                             <td><strong>Demografia</strong></td>
                             <td>Distribuição populacional por idade e sexo.</td>
@@ -278,21 +379,26 @@
                             <td>PNAD_2009</td>
                             <td>PNAD</td>
                             <td class="file-links">
-                                <a href="web/pages/analise_PNAD.html">PDF</a>
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.py" target="_blank">.py</a>, 
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.ipynb" target="_blank">.ipynb</a>
+                                <a href="web/pages/analise_PNAD.html">Análise HTML</a>
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.py"
+                                    target="_blank">.py</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.ipynb"
+                                    target="_blank">.ipynb</a>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
-                            <td><strong>Dados Socioeconômicos</strong></td>
-                            <td>Análise de indicadores da Pesquisa Nacional por Amostra de Domicílios.</td>
-                            <td>Analise gerada com dados da Base 1 Datafolha</td>
-                            <td>Pesquisa nacional de vitimização</td>
+                            <td><strong>Pesquisa Nacional de Vitimização (2010)</strong></td>
+                            <td>Análise demográfica e da percepção de segurança com base nos dados da PNV
+                                2010.</td>
+                            <td>Datafolha (Base: PM3283_BASE_TIPO1)</td>
+                            <td>Pesquisa Nacional de Vitimização</td>
                             <td class="file-links">
-                                <a href="web/pages/datafolha_2010.html">PDF</a>
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/datafolha_2010.py" target="_blank">.py</a>, 
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/datafolha_2010.ipynb" target="_blank">.ipynb</a>
+                                <a href="web/pages/notebooks/ANALISE_datafolha_2010.html">Análise HTML</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/datafolha_2010.py"
+                                    target="_blank">.py</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/datafolha_2010.ipynb"
+                                    target="_blank">.ipynb</a>
                             </td>
                         </tr>
                     </tbody>
@@ -302,7 +408,8 @@
 
         <section id="fontes_dados" aria-labelledby="titulo-fontes-dados">
             <h2 id="titulo-fontes-dados">Fontes de Dados Utilizadas</h2>
-            <p>Esta seção detalha os arquivos de dados brutos utilizados, incluindo uma breve descrição do seu conteúdo principal.</p>
+            <p>Esta seção detalha os arquivos de dados brutos utilizados, incluindo uma breve descrição do seu conteúdo
+                principal.</p>
             <div class="table-responsive">
                 <table border="1">
                     <thead>
@@ -316,47 +423,58 @@
                         <tr>
                             <td><code>indices_violencia.csv</code></td>
                             <td>N/A</td>
-                            <td>Contém índices de violência referentes ao Survey de Vitimização em Belo Horizonte (2002).</td>
+                            <td>Contém índices de violência referentes ao Survey de Vitimização em Belo Horizonte
+                                (2002).</td>
                         </tr>
                         <tr>
                             <td><code>Vitimizacao_UP_27.csv</code></td>
                             <td>N/A</td>
-                            <td>Contém dados de vitimização de uma unidade de pesquisa específica, como parte do Survey de Vitimização em Belo Horizonte (2002).</td>
+                            <td>Contém dados de vitimização de uma unidade de pesquisa específica, como parte do Survey
+                                de Vitimização em Belo Horizonte (2002).</td>
                         </tr>
                         <tr>
                             <td><code>amostra_BH.xls</code></td>
                             <td>Plan1, Plan2, Plan3, Plan4</td>
-                            <td>Contém amostras de dados coletadas em Belo Horizonte no âmbito do "Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã" (2008).</td>
+                            <td>Contém amostras de dados coletadas em Belo Horizonte no âmbito do "Módulo da Pesquisa de
+                                Percepção de Medo e Cultura Cidadã" (2008).</td>
                         </tr>
                         <tr>
                             <td><code>amostra_MG.xls</code></td>
                             <td>Plan1</td>
-                            <td>Contém amostras de dados para o estado de Minas Gerais, coletadas para a "Pesquisa de percepção de medo em Minas Gerais" e a "Pesquisa Policiamento comunitário: a visão dos policiais" (2008).</td>
+                            <td>Contém amostras de dados para o estado de Minas Gerais, coletadas para a "Pesquisa de
+                                percepção de medo em Minas Gerais" e a "Pesquisa Policiamento comunitário: a visão dos
+                                policiais" (2008).</td>
                         </tr>
                         <tr>
                             <td><code>populacao_idade_sexo.csv</code></td>
                             <td>N/A</td>
-                            <td>Contém dados demográficos da população brasileira (fonte: IBGE/PNAD), categorizados por idade e sexo.</td>
+                            <td>Contém dados demográficos da população brasileira (fonte: IBGE/PNAD), categorizados por
+                                idade e sexo.</td>
                         </tr>
                         <tr>
                             <td><code>alunos_2006.csv</code></td>
                             <td>N/A</td>
-                            <td>Contém dados de alunos coletados em 2006, referentes ao projeto "Violência nas escolas públicas de Belo Horizonte e Região Metropolitana".</td>
+                            <td>Contém dados de alunos coletados em 2006, referentes ao projeto "Violência nas escolas
+                                públicas de Belo Horizonte e Região Metropolitana".</td>
                         </tr>
                         <tr>
                             <td><code>professores_2006.csv</code></td>
                             <td>N/A</td>
-                            <td>Contém dados de professores coletados em 2006, relacionados ao mesmo projeto de violência nas escolas.</td>
+                            <td>Contém dados de professores coletados em 2006, relacionados ao mesmo projeto de
+                                violência nas escolas.</td>
                         </tr>
                         <tr>
                             <td><code>Homicidios Tentado e Consumado(ENELISE).xls</code></td>
                             <td>Homicidios Consumado, Homicidios Tentado, etc.</td>
-                            <td>Inclui dados sobre homicídios tentados e consumados em diversas cidades de Minas Gerais.</td>
+                            <td>Inclui dados sobre homicídios tentados e consumados em diversas cidades de Minas Gerais.
+                            </td>
                         </tr>
                         <tr>
-                            <td>Dados da PNAD 2009</td>
-                            <td>Múltiplas</td>
-                            <td>Dados da Pesquisa Nacional por Amostra de Domicílios (2009), com 153.837 domicílios, organizados em subpastas por tipo de ocorrência (agressão, furto, roubo, etc.).</td>
+                            <td><code>PM3283_BASE_TIPO1.xlsx</code></td>
+                            <td>Sheet1, Sheet2, Sheet3</td>
+                            <td>Base de dados da Pesquisa Nacional de Vitimização (PNV), projeto PM3283, com dados
+                                coletados em abril de 2010. O arquivo contém as respostas detalhadas do questionário
+                                aplicado.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -365,9 +483,10 @@
 
         <section id="inventario_pesquisas" aria-labelledby="titulo-inventario">
             <h2 id="titulo-inventario">Inventário de Pesquisas Relevantes em Segurança Pública</h2>
-            
+
             <h3>Tabela 1: Projetos e Pesquisas Geradoras de Dados</h3>
-            <p>Esta tabela lista os principais projetos e pesquisas que resultaram na coleta de dados sobre vitimização e percepção de segurança no Brasil.</p>
+            <p>Esta tabela lista os principais projetos e pesquisas que resultaram na coleta de dados sobre vitimização
+                e percepção de segurança no Brasil.</p>
             <div class="table-responsive">
                 <table class="security-table">
                     <thead>
@@ -394,7 +513,8 @@
                         <tr>
                             <td class="col-checklist">✅</td>
                             <td class="col-ano">2005</td>
-                            <td>Prevenção da violência nas escolas públicas de Belo Horizonte: caracterização das escolas e intervenções possíveis</td>
+                            <td>Prevenção da violência nas escolas públicas de Belo Horizonte: caracterização das
+                                escolas e intervenções possíveis</td>
                             <td>Contagem - Minas Gerais</td>
                         </tr>
                         <tr>
@@ -406,7 +526,9 @@
                         <tr>
                             <td class="col-checklist"></td>
                             <td class="col-ano">2006</td>
-                            <td>Violência nas escolas pública de Belo Horizonte e Região Metropolitana: caracterização do cenário, identificação de intervenções preventivas e capacitação para gestão local do problema</td>
+                            <td>Violência nas escolas pública de Belo Horizonte e Região Metropolitana: caracterização
+                                do cenário, identificação de intervenções preventivas e capacitação para gestão local do
+                                problema</td>
                             <td>Região Metropolitana de Belo Horizonte - Minas Gerais</td>
                         </tr>
                         <tr>
@@ -418,7 +540,8 @@
                         <tr>
                             <td class="col-checklist"></td>
                             <td class="col-ano">2006</td>
-                            <td>Diagnóstico da violência criminal no município de Itabira e construção do plano de segurança municipal com pesquisa de vitimização</td>
+                            <td>Diagnóstico da violência criminal no município de Itabira e construção do plano de
+                                segurança municipal com pesquisa de vitimização</td>
                             <td>Itabira - Minas Gerais</td>
                         </tr>
                         <tr>
@@ -454,7 +577,8 @@
                         <tr>
                             <td class="col-checklist"></td>
                             <td class="col-ano">2009</td>
-                            <td>Diagnóstico da violência criminal no município de Contagem e construção do Plano de segurança municipal e pesquisa de vitimização</td>
+                            <td>Diagnóstico da violência criminal no município de Contagem e construção do Plano de
+                                segurança municipal e pesquisa de vitimização</td>
                             <td>Contagem - Minas Gerais</td>
                         </tr>
                         <tr>
@@ -472,7 +596,8 @@
                         <tr>
                             <td class="col-checklist"></td>
                             <td class="col-ano">2023</td>
-                            <td>Diagnóstico de Criminalidade, Plano municipal de segurança pública do município de Contagem e pesquisa de vitimização</td>
+                            <td>Diagnóstico de Criminalidade, Plano municipal de segurança pública do município de
+                                Contagem e pesquisa de vitimização</td>
                             <td>Contagem - Minas Gerais</td>
                         </tr>
                         <tr>
@@ -484,7 +609,9 @@
                         <tr>
                             <td class="col-checklist"></td>
                             <td class="col-ano">2023</td>
-                            <td>Diagnóstico da Segurança Pública em Minas Gerais: Pesquisa de Vitimização, Pesquisa de Qualidade de vida dos agentes de segurança, Mapeamento da articulação do Sistema de Justiça e dos Municípios com a segurança pública</td>
+                            <td>Diagnóstico da Segurança Pública em Minas Gerais: Pesquisa de Vitimização, Pesquisa de
+                                Qualidade de vida dos agentes de segurança, Mapeamento da articulação do Sistema de
+                                Justiça e dos Municípios com a segurança pública</td>
                             <td>Minas Gerais</td>
                         </tr>
                     </tbody>
@@ -494,7 +621,9 @@
             <hr>
 
             <h3>Tabela 2: Catálogo Detalhado de Pesquisas de Vitimização (Características Técnicas)</h3>
-            <p>Esta tabela apresenta um panorama de diversas pesquisas de vitimização realizadas no Brasil, com detalhes sobre sua metodologia, abrangência e escopo temporal. <strong>Nota</strong>: Algumas informações podem estar incompletas.</p>
+            <p>Esta tabela apresenta um panorama de diversas pesquisas de vitimização realizadas no Brasil, com detalhes
+                sobre sua metodologia, abrangência e escopo temporal. <strong>Nota</strong>: Algumas informações podem
+                estar incompletas.</p>
             <div class="table-responsive">
                 <table class="security-table">
                     <thead>
@@ -808,7 +937,8 @@
                             <td class="col-checklist">✅</td>
                             <td class="col-ano">2008</td>
                             <td>Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã</td>
-                            <td>Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas Gerais</td>
+                            <td>Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas
+                                Gerais</td>
                             <td>Toda a vida</td>
                             <td>5.607 entrevistados</td>
                         </tr>
@@ -824,7 +954,8 @@
                             <td class="col-checklist"></td>
                             <td class="col-ano">2009</td>
                             <td>Módulo da Pesquisa de Percepção de Medo e Cultura Cidadã</td>
-                            <td>Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas Gerais</td>
+                            <td>Belo Horizonte, RMBH, Municípios polo e 16 municípios pequenos do interior de Minas
+                                Gerais</td>
                             <td>Toda a vida</td>
                             <td>5.067 entrevistados</td>
                         </tr>
@@ -895,8 +1026,10 @@
                         <tr>
                             <td class="col-checklist"></td>
                             <td class="col-ano">2015</td>
-                            <td>Pesquisa sobre vitimização e percepção de risco entre profissionais da segurança (FBSP)</td>
-                            <td>Profissionais de Segurança Pública registrados na Rede de Ensino à Distância da SENASP/MJ</td>
+                            <td>Pesquisa sobre vitimização e percepção de risco entre profissionais da segurança (FBSP)
+                            </td>
+                            <td>Profissionais de Segurança Pública registrados na Rede de Ensino à Distância da
+                                SENASP/MJ</td>
                             <td>Toda a carreira</td>
                             <td>10.323 entrevistados</td>
                         </tr>
@@ -931,6 +1064,7 @@
         </footer>
 
     </main>
-    
+
 </body>
+
 </html>
