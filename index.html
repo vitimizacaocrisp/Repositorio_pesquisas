@@ -142,6 +142,113 @@
             </ul>
         </section>
 
+        <section id="analises" aria-labelledby="titulo-analises">
+            <h2 id="titulo-analises">Projetos de Análise e Resultados</h2>
+            <p>A tabela a seguir detalha o status dos projetos de análise, indicando os concluídos (✅), os dados
+                utilizados, os resultados gerados e as análises futuras planejadas (⬜).</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-checklist">Status</th>
+                            <th>Categoria</th>
+                            <th>Análise</th>
+                            <th>Dados Relevantes</th>
+                            <th>Observações</th>
+                            <th>Arquivos Gerados</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
+                            <td><strong>Violência Escolar</strong></td>
+                            <td>Panorama sobre o perfil e a percepção de alunos e professores em escolas de Minas Gerais
+                                (2006).</td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>alunos_2006.csv</code></a>, <a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>professores_2006.csv</code></a></td>
+                            <td>A análise inclui distribuição demográfica, experiência docente e satisfação discente.
+                            </td>
+                            <td class="file-links">
+                                <a href="web/pages/analise_escolas_2006.html">Análise HTML</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_final_2006.py" target="_blank">.py</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb" target="_blank">.ipynb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
+                            <td><strong>Percepção Social</strong></td>
+                            <td>Análise da percepção de risco de crimes (roubo, agressão, sequestro) em Belo Horizonte e
+                                Minas Gerais.</td>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/excel/belo_horrizonte_2002.xlsx" target="_blank"><code>belo_horrizonte_2002.xlsx</code></a>, <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/excel/percepcao_medoMG.xlsx" target="_blank"><code>percepcao_medoMG.xlsx</code></a></td>
+                            <td>Os dados foram segmentados por sexo, tipo de bairro e faixa etária, revelando diferenças
+                                na experiência do medo.</td>
+                            <td class="file-links">
+                                <a href="web/pages/relatorio_percepcao_social.html">Análise HTML</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.py" target="_blank">.py</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.ipynb" target="_blank">.ipynb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
+                            <td><strong>Violência Urbana</strong></td>
+                            <td>Evolução dos índices de violência ao longo do tempo.</td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>indices_violencia.csv</code></a></td>
+                            <td>Comparar diferentes anos para identificar tendências.</td>
+                            <td class="file-links"><a href="web/pages/analise_violencia_urbana_indices.html">-</a></td>
+                        </tr>
+                        <tr>
+                            <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
+                            <td><strong>Violência Urbana</strong></td>
+                            <td>Análise comparativa entre tipos de crimes (agressão, furto, roubo).</td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>agressao</code></a>, <a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>furto</code></a>, <a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>roubo</code></a></td>
+                            <td>Analisar proporções para compreender a natureza da criminalidade.</td>
+                            <td class="file-links"><a href="web/pages/analise_violencia_urbana_crimes.html">-</a></td>
+                        </tr>
+                        <tr>
+                            <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
+                            <td><strong>Demografia</strong></td>
+                            <td>Distribuição populacional por idade e sexo.</td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>populacao_idade_sexo.csv</code></a></td>
+                            <td>Possibilidade de cruzamento com dados de violência para análises aprofundadas.</td>
+                            <td class="file-links"><a href="web/pages/analise_demografia.html">-</a></td>
+                        </tr>
+                        <tr>
+                            <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
+                            <td><strong>Homicídios</strong></td>
+                            <td>Análise de homicídios tentados e consumados.</td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>Homicidios Tentado e Consumado(ENELISE)</code></a></td>
+                            <td>Verificar necessidade de tratamento adicional dos dados.</td>
+                            <td class="file-links"><a href="web/pages/analise_homicidios.html">-</a></td>
+                        </tr>
+                        <tr>
+                            <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
+                            <td><strong>Dados Socioeconômicos</strong></td>
+                            <td>Análise de indicadores da Pesquisa Nacional por Amostra de Domicílios (PNAD).</td>
+                            <td>PNAD_2009</td>
+                            <td>PNAD</td>
+                            <td class="file-links">
+                                <a href="web/pages/analise_PNAD.html">Análise HTML</a>
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.py" target="_blank">.py</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.ipynb" target="_blank">.ipynb</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
+                            <td><strong>Pesquisa Nacional de Vitimização (2010)</strong></td>
+                            <td>Análise demográfica e da percepção de segurança com base nos dados da PNV
+                                2010.</td>
+                            <td>Datafolha (Base: PM3283_BASE_TIPO1)</td>
+                            <td>Pesquisa Nacional de Vitimização</td>
+                            <td class="file-links">
+                                <a href="web/pages/datafolha_2010.html">Análise HTML</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/datafolha_2010.py" target="_blank">.py</a>,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/datafolha_2010.ipynb" target="_blank">.ipynb</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
         <section id="scripts" aria-labelledby="titulo-scripts">
             <h2 id="titulo-scripts">Descrição dos Scripts de Processamento e Análise</h2>
             <h3>Scripts de Tratamento</h3>
@@ -160,8 +267,8 @@
                             <td><b><a
                                         href="web/pages/notebooks/TRATAMENTO_belo_horrizonte_2002.html">belo_horrizonte_2002.ipynb</a></b>
                             </td>
-                            <td><code>indices_violencia.csv</code><br><code>Vitimizacao_UP_27.csv</code></td>
-                            <td><code>belo_horrizonte_2002.csv</code><br><code>belo_horrizonte_2002.xlsx</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>indices_violencia.csv</code></a><br><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>Vitimizacao_UP_27.csv</code></a></td>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/csv/belo_horrizonte_2002.csv" target="_blank"><code>belo_horrizonte_2002.csv</code></a><br><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/excel/belo_horrizonte_2002.xlsx" target="_blank"><code>belo_horrizonte_2002.xlsx</code></a></td>
                             <td>
                                 <p>Realizada a junção de dois arquivos CSV. Foram removidas 52 colunas nulas do primeiro
                                     arquivo e 114 do segundo. Valores nulos em colunas numéricas foram imputados com 0.
@@ -172,8 +279,8 @@
                         <tr>
                             <td><b><a href="web/pages/notebooks/TRATAMENTO_escolas_2006.html">escolas_2006.ipynb</a></b>
                             </td>
-                            <td><code>alunos_2006.csv</code><br><code>professores_2006.csv</code></td>
-                            <td><code>escolas_alunos_2006.csv</code><br><code>escolas_alunos_2006.xlsx</code><br><code>escolas_professores_2006.csv</code><br><code>escolas_professores_2006.xlsx</code>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>alunos_2006.csv</code></a><br><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>professores_2006.csv</code></a></td>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/csv/escolas_alunos_2006.csv" target="_blank"><code>escolas_alunos_2006.csv</code></a><br><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/excel/escolas_alunos_2006.xlsx" target="_blank"><code>escolas_alunos_2006.xlsx</code></a><br><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/csv/escolas_professores_2006.csv" target="_blank"><code>escolas_professores_2006.csv</code></a><br><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/excel/escolas_professores_2006.xlsx" target="_blank"><code>escolas_professores_2006.xlsx</code></a>
                             </td>
                             <td>Dois conjuntos de dados (alunos e professores) foram carregados e tratados
                                 separadamente. Em ambos, valores numéricos nulos foram preenchidos com 0, textos e nomes
@@ -185,9 +292,9 @@
                             <td><b><a
                                         href="web/pages/notebooks/TRATAMENTO_percepcao_medoMG_2008.html">percepcao_medoMG_2008.ipynb</a></b>
                             </td>
-                            <td><code>amostra_BH.xls</code><br><code>amostra_MG.xls</code><br><code>populacao_idade_sexo.csv</code>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>amostra_BH.xls</code></a><br><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>amostra_MG.xls</code></a><br><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>populacao_idade_sexo.csv</code></a>
                             </td>
-                            <td><code>percepcao_medoMG.csv</code><br><code>percepcao_medoMG.xlsx</code></td>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/csv/percepcao_medoMG.csv" target="_blank"><code>percepcao_medoMG.csv</code></a><br><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/excel/percepcao_medoMG.xlsx" target="_blank"><code>percepcao_medoMG.xlsx</code></a></td>
                             <td>Três arquivos de fontes distintas foram carregados. Em cada um, foram removidas linhas
                                 duplicadas e colunas nulas. Os valores numéricos nulos foram imputados com 0. Após o
                                 tratamento individual, os três dataframes foram consolidados em um único arquivo,
@@ -224,8 +331,8 @@
                         <tr>
                             <td><b><a href="web/pages/notebooks/ANALISE_escolas_2006.html">escolas_2006.ipynb</a></b>
                             </td>
-                            <td><code>escolas_alunos_2006.csv</code><br><code>escolas_professores_2006.csv</code></td>
-                            <td><code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf">relatorio_final_escolas_2006.pdf</a></code>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/csv/escolas_alunos_2006.csv" target="_blank"><code>escolas_alunos_2006.csv</code></a><br><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/csv/escolas_professores_2006.csv" target="_blank"><code>escolas_professores_2006.csv</code></a></td>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_final_escolas_2006.pdf" target="_blank"><code>relatorio_final_escolas_2006.pdf</code></a>
                             </td>
                             <td>
                                 <p>O notebook carrega os dados tratados de alunos e professores, realizando um
@@ -238,8 +345,8 @@
                             <td><b><a
                                         href="web/pages/notebooks/ANALISE_percepcao_social.html">percepcao_social.ipynb</a></b>
                             </td>
-                            <td><code>belo_horrizonte_2002.xlsx</code><br><code>percepcao_medoMG.xlsx</code></td>
-                            <td><code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf">relatorio_completo_percepcao_social.pdf</a></code>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/excel/belo_horrizonte_2002.xlsx" target="_blank"><code>belo_horrizonte_2002.xlsx</code></a><br><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/dados_tratados/excel/percepcao_medoMG.xlsx" target="_blank"><code>percepcao_medoMG.xlsx</code></a></td>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_completo_percepcao_social.pdf" target="_blank"><code>relatorio_completo_percepcao_social.pdf</code></a>
                             </td>
                             <td>Este script combina dois conjuntos de dados sobre percepção de segurança. Prepara os
                                 dados combinados, focando em colunas como sexo, faixa etária e estrato do bairro. Gera
@@ -251,8 +358,7 @@
                             <td><b><a href="web/pages/notebooks/ANALISE_PNAD_2009.html">PNAD_2009.ipynb</a></b></td>
                             <td>Múltiplos arquivos <code>.xls</code> da PNAD 2009.</td>
                             <td>Gerado:
-                                <code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_pnad_2009.pdf">relatorio_pnad_2009.pdf</a></code>.
-                                A presente análise examina a estabilidade das estatísticas de vitimização no Brasil,
+                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/relatorio_pnad_2009.pdf" target="_blank"><code>relatorio_pnad_2009.pdf</code></a>. A presente análise examina a estabilidade das estatísticas de vitimização no Brasil,
                                 utilizando o Coeficiente de Variação (CV) para medir o grau de imprecisão e inconstância
                                 dos dados. O estudo avalia como a confiabilidade dessas estimativas varia de acordo com
                                 o perfil demográfico da vítima (sexo, raça, idade), o tipo de crime e a localidade.
@@ -264,8 +370,8 @@
                             <td><b><a
                                         href="web/pages/notebooks/ANALISE_datafolha_2010.html">datafolha_2010.ipynb</a></b>
                             </td>
-                            <td><code>PM3283_BASE_TIPO1.xlsx</code></td>
-                            <td><code><a target="_blank" href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/Relatorio_Analise_Vitimizacao_CRISP.pdf">Relatorio_Analise_Vitimizacao_CRISP.pdf</a></code>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>PM3283_BASE_TIPO1.xlsx</code></a></td>
+                            <td><a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/analises/Relatorio_Analise_Vitimizacao_CRISP.pdf" target="_blank"><code>Relatorio_Analise_Vitimizacao_CRISP.pdf</code></a>
                             </td>
                             <td>O script carrega dados brutos da pesquisa Datafolha de 2010, realizando uma limpeza
                                 profunda para corrigir formatos numéricos e remover colunas irrelevantes. As colunas são
@@ -284,126 +390,11 @@
             <ul>
                 <li><b>Metadados por Fonte:</b> Documentação detalhada sobre a origem, o escopo e as características de
                     cada conjunto de dados.</li>
-                <li><b>Dicionário de Variáveis Unificado:</b> Arquivo <code>dicionario_unificado.csv</code> contendo a
+                <li><b>Dicionário de Variáveis Unificado:</b> Arquivo <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/metadados/dicionario_unificado.csv" target="_blank"><code>dicionario_unificado.csv</code></a> contendo a
                     descrição padronizada de todas as variáveis utilizadas no projeto.</li>
                 <li><b>Log de Integração:</b> Histórico detalhado das operações de combinação, transformação e
                     enriquecimento de dados.</li>
             </ul>
-        </section>
-
-        <section id="analises" aria-labelledby="titulo-analises">
-            <h2 id="titulo-analises">Projetos de Análise e Resultados</h2>
-            <p>A tabela a seguir detalha o status dos projetos de análise, indicando os concluídos (✅), os dados
-                utilizados, os resultados gerados e as análises futuras planejadas (⬜).</p>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="col-checklist">Status</th>
-                            <th>Categoria</th>
-                            <th>Análise</th>
-                            <th>Dados Relevantes</th>
-                            <th>Observações</th>
-                            <th>Arquivos Gerados</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
-                            <td><strong>Violência Escolar</strong></td>
-                            <td>Panorama sobre o perfil e a percepção de alunos e professores em escolas de Minas Gerais
-                                (2006).</td>
-                            <td><code>alunos_2006.csv</code>, <code>professores_2006.csv</code></td>
-                            <td>A análise inclui distribuição demográfica, experiência docente e satisfação discente.
-                            </td>
-                            <td class="file-links">
-                                <a href="web/pages/analise_escolas_2006.html">Análise HTML</a>,
-                                <a
-                                    href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_final_2006.py">.py</a>,
-                                <a
-                                    href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/escolas_final_2006.ipynb">.ipynb</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
-                            <td><strong>Percepção Social</strong></td>
-                            <td>Análise da percepção de risco de crimes (roubo, agressão, sequestro) em Belo Horizonte e
-                                Minas Gerais.</td>
-                            <td><code>belo_horrizonte_2002.xlsx</code>, <code>percepcao_medoMG.xlsx</code></td>
-                            <td>Os dados foram segmentados por sexo, tipo de bairro e faixa etária, revelando diferenças
-                                na experiência do medo.</td>
-                            <td class="file-links">
-                                <a href="web/pages/relatorio_percepcao_social.html">Análise HTML</a>,
-                                <a
-                                    href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.py">.py</a>,
-                                <a
-                                    href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/percepcao_social.ipynb">.ipynb</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
-                            <td><strong>Violência Urbana</strong></td>
-                            <td>Evolução dos índices de violência ao longo do tempo.</td>
-                            <td><code>indices_violencia.csv</code></td>
-                            <td>Comparar diferentes anos para identificar tendências.</td>
-                            <td class="file-links"><a href="web/pages/analise_violencia_urbana_indices.html">-</a></td>
-                        </tr>
-                        <tr>
-                            <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
-                            <td><strong>Violência Urbana</strong></td>
-                            <td>Análise comparativa entre tipos de crimes (agressão, furto, roubo).</td>
-                            <td><code>agressao</code>, <code>furto</code>, <code>roubo</code></td>
-                            <td>Analisar proporções para compreender a natureza da criminalidade.</td>
-                            <td class="file-links"><a href="web/pages/analise_violencia_urbana_crimes.html">-</a></td>
-                        </tr>
-                        <tr>
-                            <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
-                            <td><strong>Demografia</strong></td>
-                            <td>Distribuição populacional por idade e sexo.</td>
-                            <td><code>populacao_idade_sexo.csv</code></td>
-                            <td>Possibilidade de cruzamento com dados de violência para análises aprofundadas.</td>
-                            <td class="file-links"><a href="web/pages/analise_demografia.html">-</a></td>
-                        </tr>
-                        <tr>
-                            <td class="col-checklist">⬜<span class="sr-only">Status: Planejado</span></td>
-                            <td><strong>Homicídios</strong></td>
-                            <td>Análise de homicídios tentados e consumados.</td>
-                            <td><code>Homicidios Tentado e Consumado(ENELISE)</code></td>
-                            <td>Verificar necessidade de tratamento adicional dos dados.</td>
-                            <td class="file-links"><a href="web/pages/analise_homicidios.html">-</a></td>
-                        </tr>
-                        <tr>
-                            <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
-                            <td><strong>Dados Socioeconômicos</strong></td>
-                            <td>Análise de indicadores da Pesquisa Nacional por Amostra de Domicílios (PNAD).</td>
-                            <td>PNAD_2009</td>
-                            <td>PNAD</td>
-                            <td class="file-links">
-                                <a href="web/pages/analise_PNAD.html">Análise HTML</a>
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.py"
-                                    target="_blank">.py</a>,
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/PNAD_2009.ipynb"
-                                    target="_blank">.ipynb</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-checklist">✅<span class="sr-only">Status: Concluído</span></td>
-                            <td><strong>Pesquisa Nacional de Vitimização (2010)</strong></td>
-                            <td>Análise demográfica e da percepção de segurança com base nos dados da PNV
-                                2010.</td>
-                            <td>Datafolha (Base: PM3283_BASE_TIPO1)</td>
-                            <td>Pesquisa Nacional de Vitimização</td>
-                            <td class="file-links">
-                                <a href="web/pages/datafolha_2010.html">Análise HTML</a>,
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/datafolha_2010.py"
-                                    target="_blank">.py</a>,
-                                <a href="https://github.com/vitimizacaocrisp/Repositorio_pesquisas/blob/main/analises_vitimizacao/scripts/analises/datafolha_2010.ipynb"
-                                    target="_blank">.ipynb</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </section>
 
         <section id="fontes_dados" aria-labelledby="titulo-fontes-dados">
@@ -421,56 +412,56 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>indices_violencia.csv</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>indices_violencia.csv</code></a></td>
                             <td>N/A</td>
                             <td>Contém índices de violência referentes ao Survey de Vitimização em Belo Horizonte
                                 (2002).</td>
                         </tr>
                         <tr>
-                            <td><code>Vitimizacao_UP_27.csv</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>Vitimizacao_UP_27.csv</code></a></td>
                             <td>N/A</td>
                             <td>Contém dados de vitimização de uma unidade de pesquisa específica, como parte do Survey
                                 de Vitimização em Belo Horizonte (2002).</td>
                         </tr>
                         <tr>
-                            <td><code>amostra_BH.xls</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>amostra_BH.xls</code></a></td>
                             <td>Plan1, Plan2, Plan3, Plan4</td>
                             <td>Contém amostras de dados coletadas em Belo Horizonte no âmbito do "Módulo da Pesquisa de
                                 Percepção de Medo e Cultura Cidadã" (2008).</td>
                         </tr>
                         <tr>
-                            <td><code>amostra_MG.xls</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>amostra_MG.xls</code></a></td>
                             <td>Plan1</td>
                             <td>Contém amostras de dados para o estado de Minas Gerais, coletadas para a "Pesquisa de
                                 percepção de medo em Minas Gerais" e a "Pesquisa Policiamento comunitário: a visão dos
                                 policiais" (2008).</td>
                         </tr>
                         <tr>
-                            <td><code>populacao_idade_sexo.csv</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>populacao_idade_sexo.csv</code></a></td>
                             <td>N/A</td>
                             <td>Contém dados demográficos da população brasileira (fonte: IBGE/PNAD), categorizados por
                                 idade e sexo.</td>
                         </tr>
                         <tr>
-                            <td><code>alunos_2006.csv</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>alunos_2006.csv</code></a></td>
                             <td>N/A</td>
                             <td>Contém dados de alunos coletados em 2006, referentes ao projeto "Violência nas escolas
                                 públicas de Belo Horizonte e Região Metropolitana".</td>
                         </tr>
                         <tr>
-                            <td><code>professores_2006.csv</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>professores_2006.csv</code></a></td>
                             <td>N/A</td>
                             <td>Contém dados de professores coletados em 2006, relacionados ao mesmo projeto de
                                 violência nas escolas.</td>
                         </tr>
                         <tr>
-                            <td><code>Homicidios Tentado e Consumado(ENELISE).xls</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>Homicidios Tentado e Consumado(ENELISE).xls</code></a></td>
                             <td>Homicidios Consumado, Homicidios Tentado, etc.</td>
                             <td>Inclui dados sobre homicídios tentados e consumados em diversas cidades de Minas Gerais.
                             </td>
                         </tr>
                         <tr>
-                            <td><code>PM3283_BASE_TIPO1.xlsx</code></td>
+                            <td><a href="https://drive.google.com/drive/folders/1k4qvQ4Vq6tAyDYbkf6zF0jkFH89Tp3Hf?usp=sharing" target="_blank"><code>PM3283_BASE_TIPO1.xlsx</code></a></td>
                             <td>Sheet1, Sheet2, Sheet3</td>
                             <td>Base de dados da Pesquisa Nacional de Vitimização (PNV), projeto PM3283, com dados
                                 coletados em abril de 2010. O arquivo contém as respostas detalhadas do questionário
